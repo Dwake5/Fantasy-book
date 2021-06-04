@@ -1,0 +1,27 @@
+.hoverText {
+  visibility: hidden;
+  position: absolute;
+  z-index: 2;
+  border: 1px;
+  background-color: black;
+  color: white;
+  border-style: solid;
+  border-width: 1px;
+  padding: 3px;
+  margin-left: 10px;
+  width: 250px;
+  max-width: 400px;
+  top: -3px;
+}
+
+.hoverItem:hover span.hoverText {
+  visibility: visible;
+}
+
+.hoverItem {
+  position: relative;
+}
+
+.itemsBox {
+  min-height: 200px
+}

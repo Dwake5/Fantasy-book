@@ -1,0 +1,14 @@
+.tutorialModal .modal-dialog { 
+  width: 80%;
+  max-width: 100%;
+}
+
+.tutorialModal .modal-dialog .modal-content { 
+  padding: 30px;
+  padding-top: 0px;
+  height: 100%;
+}
+
+.modalHeader {
+  margin-left: auto;
+}

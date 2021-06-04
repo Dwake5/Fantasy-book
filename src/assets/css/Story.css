@@ -1,0 +1,14 @@
+.storyBody {
+  min-height: 800px;
+}
+
+.userChoice {
+  width: 50%;
+  margin-left: 25%;
+  font-size: 22px;
+}
+
+p.userChoice:hover {
+  cursor: pointer;
+  font-weight: 700;
+}
