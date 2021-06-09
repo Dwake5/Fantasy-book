@@ -3,12 +3,15 @@ import { Container, ProgressBar } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import "../assets/css/Stats.css";
 import {
+  eatenToday,
   getSpiritCurse,
 } from "../redux/stats/selectors";
 import "../assets/css/Stats.css";
 
 const Stats = ({ skill, maxSkill, stamina, maxStamina, luck, maxLuck }) => {
   const _haveSpiritCurse = useSelector(getSpiritCurse);
+  const _eatenToday = useSelector(eatenToday);
+
 
   const getSkill = () => {
     return _haveSpiritCurse ? skill-2 : skill
@@ -17,10 +20,10 @@ const Stats = ({ skill, maxSkill, stamina, maxStamina, luck, maxLuck }) => {
   return (
     <Container className="border text-center statsBox mb-2">
       <p className="h3 text-center">Stats</p>
-      {skill > 0 && (
+      {maxSkill > 0 && (
         <>
           <p className="m-0">
-            Skill: {getSkill()}{_haveSpiritCurse && " (-2)"} / {maxSkill}
+            Skill: {getSkill()} / {maxSkill} {_haveSpiritCurse && " (-2)"}
           </p>
           <ProgressBar className="mb-2" now={getSkill()/maxSkill * 100} />
         </>
@@ -33,13 +36,16 @@ const Stats = ({ skill, maxSkill, stamina, maxStamina, luck, maxLuck }) => {
           <ProgressBar variant="danger" className="mb-2" now={stamina/maxStamina * 100} />
         </>
       )}
-      {luck > 0 && (
+      {maxLuck > 0 && (
         <>
           <p className="m-0">
             Luck: {luck} / {maxLuck}
           </p>
           <ProgressBar variant="warning" className="mb-2" now={luck/maxLuck * 100} />
         </>
+      )}
+      {maxLuck > 0 && (
+        <p>Eaten today: {_eatenToday ? "Yes" : "No"}</p>
       )}
     </Container>
   );

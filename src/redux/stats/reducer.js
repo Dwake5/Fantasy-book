@@ -4,6 +4,7 @@ import {
   MAX_LUCK,
   STAT_LOSS,
   STAT_GAIN,
+  EATEN_TODAY,
   LIBRA_CURE,
   LIBRA_RESTORE,
 } from "./action-types";
@@ -15,10 +16,11 @@ const initialState = {
   maxStamina: 0,
   luck: 0,
   maxLuck: 0,
+  eatenToday: false,
   libra: true,
-  plague: true,
-  spiritCurse: true,
-  aliannaCurse: true,
+  plague: false,
+  spiritCurse: false,
+  aliannaCurse: false,
 };
 
 const uppercase = (word) => {
@@ -52,6 +54,11 @@ export const reducer = (state = initialState, action) => {
         ...state,
         [stat]: newStat,
       };
+    case EATEN_TODAY:
+      return {
+        ...state,
+        eatenToday: action.payload
+      }
     case LIBRA_CURE:
       return {
         ...state,

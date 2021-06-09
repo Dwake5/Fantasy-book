@@ -1,4 +1,4 @@
-import { MAX_SKILL, MAX_STAMINA, MAX_LUCK, STAT_LOSS, STAT_GAIN, LIBRA_RESTORE, LIBRA_CURE } from "./action-types";
+import { MAX_SKILL, MAX_STAMINA, MAX_LUCK, STAT_LOSS, STAT_GAIN, LIBRA_RESTORE, LIBRA_CURE, EATEN_TODAY } from "./action-types";
 
 export const setMaxSkill = (dispatch, number) => {
   dispatch({
@@ -43,4 +43,11 @@ export const libraRestore = (dispatch) => {
 
 export const libraCure = (dispatch) => {
   dispatch({type: LIBRA_CURE})
+}
+
+export const changeEatenToday = (dispatch, boolean) => {
+  dispatch({
+    type: EATEN_TODAY,
+    payload: boolean,
+  })
 }

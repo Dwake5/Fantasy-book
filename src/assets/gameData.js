@@ -470,7 +470,7 @@ const gameData = {
     Analand? If not, you are feeling very hungry and must lose 3 
     stamina points.`,
     choices: [{ goToPage: 246, text: "Continue.." }],
-    notEaten: 3,
+    newDay: 3,
   },
   32: {
     text: `You press on through the grass and, after half an hour or so, you 
@@ -526,7 +526,7 @@ const gameData = {
     text: `Did you eat at all yesterday? If not, you must lose 3 stamina points as 
     you are now very hungry.`,
     choices: [{ goToPage: 147, text: "Continue.." }],
-    notEaten: 3,
+    newDay: 3,
   },
   37: {
     text: `I'm sure you would, I'm sure you would!" chuckles the little creature. 
@@ -618,6 +618,7 @@ const gameData = {
       { goToPage: 125, text: "Go left" },
       { goToPage: 226, text: "Go right" },
     ],
+    newDay: 3,
   },
   46: {
     text: `You continue along the path for most of the afternoon until you reach 
@@ -860,7 +861,7 @@ const gameData = {
       { goToPage: 135, text: "Uphill to the east" },
       { goToPage: 51, text: "Downhill to the west" },
     ],
-    notEaten: 3,
+    newDay: 3,
   },
   68: {
     text: `You press on, climbing up the hillside for several hours until you are 
@@ -1339,7 +1340,7 @@ const gameData = {
     next morning.`,
     choices: [{ goToPage: 222, text: "Continue.." }],
     staminaGain: 2,
-    notEaten: 3,
+    newDay: 3,
   },
   110: {
     text: `You pick yourself up off the floor and look around, A shaft of light 
@@ -1713,7 +1714,7 @@ const gameData = {
     further 3 stamina points if you did not eat yesterday.`,
     choices: [{ goToPage: 222, text: "Continue.." }],
     staminaLoss: 2,
-    notEaten: 3,
+    newDay: 3,
   },
   141: {
     text: `The strange carvings are in a familiar language, but the quality of the 
@@ -1819,7 +1820,7 @@ const gameData = {
     able to drag themselves along with their hands. Will you try to talk 
     with the villagers or continue onwards through the village?`,
     choices: [
-      { goToPage: 61, text: "Talk to the villagers" },
+      { goToPage: 61, text: "Talk to the villagers blah blah blah blah" },
       { goToPage: 220, text: "Continue onwards" },
     ],
   },
@@ -2355,7 +2356,7 @@ const gameData = {
         info: "A nourishing Bomba. Used to double the stamina gain of your next meal",
       },
     ],
-    staminaGain: 2,
+    luckGain: 2,
   },
   193: {
     text: `You continue onwards, up the path for a couple of hours, down 
@@ -2794,7 +2795,7 @@ const gameData = {
   },
   226: {
     text: `You leave the village. Sitting against the wall on the way out is a blind 
-    beggar and, as you pass, he asks you for alms. He looks a sorry sight: 
+    beggar and, as you pass, he asks you for money. He looks a sorry sight: 
     skinny and sparsely clothed. His eyes are painted with a dark dye to 
     indicate his blindness. You are considering whether to toss him a 
     Gold Piece when an ox cart comes up the road. Seeing you are a 

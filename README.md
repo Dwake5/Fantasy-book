@@ -42,6 +42,7 @@
   <li>Use Libra in other ways (restore fully working)</li>
   <li>Implement Libra (can cure and revitilize)</li>
   <li>Implement Curses and Diseases (curses done)</li>
+  <li>You lose 3 hp if you havent eaten, can be up to 7 with plague (3) and spirits curse (1)</li>
 </ul>
 
 eatOption: [{ haveEaten: 1, haveNotEaten: 2 }],
@@ -53,6 +54,10 @@ plague: true
 curse: true
 dead: true
 getJann: true
+
+newDays are: 31, 36, 45, 67, 109, 140
+This is tied to notEaten: 3
+And does not need to be coded.
 
 # Extra content story nodes
 2: Fight Serpent Skill 7 Stamina 8

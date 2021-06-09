@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import "../assets/css/Story.css";
 import gameData from "../assets/gameData";
 import { getItems, getMoney } from "../redux/items/selectors";
-import { loseStat, gainStat } from "../redux/stats/actions";
+import { loseStat, gainStat, changeEatenToday } from "../redux/stats/actions";
 import { setPage } from "../redux/story/actions";
 import { getPage } from "../redux/story/selectors";
 import BuyProvisions from "./BuyProvisions";
@@ -15,6 +15,7 @@ import {
   getPlague,
   getSpiritCurse,
   getAliannaCurse,
+  eatenToday,
 } from "../redux/stats/selectors";
 
 const StoryMain = () => {
@@ -28,6 +29,8 @@ const StoryMain = () => {
   const _haveSpiritCurse = useSelector(getSpiritCurse);
   const _haveAliannaCurse = useSelector(getAliannaCurse);
 
+  const _eatenToday = useSelector(eatenToday);
+
   const pageData = gameData[_pageNumber];
   const pageChoices = pageData.choices;
   const pageText = pageData.text;
@@ -36,10 +39,12 @@ const StoryMain = () => {
 
   const skillLoss = pageData.skillLoss;
   const skillGain = pageData.skillGain;
-  let staminaLoss = 1;
+  let staminaLoss = pageData.staminaLoss;
   const staminaGain = pageData.staminaGain;
   const luckLoss = pageData.skillLoss;
   const luckGain = pageData.skillGain;
+
+  const newDay = pageData.newDay;
 
   const [stayShowing, setStayShowing] = useState(false);
 
@@ -93,7 +98,9 @@ const StoryMain = () => {
     return choices.filter((choice) => canAfford(choice));
   };
 
+  // This function is used to handle stat changes on a new page
   useEffect(() => {
+    // stats loss
     if (skillLoss !== undefined) loseStat(dispatch, "skill", skillLoss);
     if (staminaLoss !== undefined) {
       if (_haveSpiritCurse) {
@@ -104,9 +111,22 @@ const StoryMain = () => {
     }
     if (luckLoss !== undefined) loseStat(dispatch, "luck", luckLoss);
 
+    // stats gain
     if (skillGain !== undefined) gainStat(dispatch, "skill", skillGain);
     if (staminaGain !== undefined) gainStat(dispatch, "stamina", staminaGain);
     if (luckGain !== undefined) gainStat(dispatch, "luck", luckGain);
+
+    // new day
+    if (newDay) {
+      let loseStamina = 0;
+      if (!_eatenToday) loseStamina += 3;
+      if (_havePlague) loseStamina += 3;
+      if (loseStamina > 0) {
+        if (_haveSpiritCurse) loseStamina++;
+        loseStat(dispatch, "stamina", loseStamina);
+      }
+      changeEatenToday(dispatch, false);
+    }
   }, [_pageNumber]);
 
   return (
