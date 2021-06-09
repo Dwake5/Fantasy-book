@@ -3,7 +3,7 @@ import { Container } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import "../assets/css/Story.css";
 import gameData from "../assets/gameData";
-import { getItems, getMoney } from "../redux/items/selectors";
+import { getItems, getMoney, getProvisions } from "../redux/items/selectors";
 import { loseStat, gainStat, changeEatenToday } from "../redux/stats/actions";
 import { setPage } from "../redux/story/actions";
 import { getPage } from "../redux/story/selectors";
@@ -17,12 +17,14 @@ import {
   getAliannaCurse,
   eatenToday,
 } from "../redux/stats/selectors";
+import EatOption from "./EatOption";
 
 const StoryMain = () => {
   const dispatch = useDispatch();
   const _pageNumber = useSelector(getPage);
   const _items = useSelector(getItems);
   const _money = useSelector(getMoney);
+  const _provisions = useSelector(getProvisions);
 
   // Ailments
   const _havePlague = useSelector(getPlague);
@@ -43,6 +45,8 @@ const StoryMain = () => {
   const staminaGain = pageData.staminaGain;
   const luckLoss = pageData.skillLoss;
   const luckGain = pageData.skillGain;
+
+  const eatOption = pageData.eatOption;
 
   const newDay = pageData.newDay;
 
@@ -134,9 +138,10 @@ const StoryMain = () => {
       <p className="h3 mb-3 text-center">
         Adventure! Current Page: {_pageNumber}
       </p>
-      <label>Go to page:</label>
+      <label>Go to page:</label> 
       <input type="text" onKeyDown={handleKeyDown}></input>
       <p dangerouslySetInnerHTML={{ __html: pageText }}></p>
+      {eatOption && <EatOption eatOptions={eatOption} eatenToday={_eatenToday} food={_provisions} />}
       {(pauseChoices || stayShowing) && mapWhatToDo()}
       {extraText && mapExtraText()}
       {!pauseChoices && (

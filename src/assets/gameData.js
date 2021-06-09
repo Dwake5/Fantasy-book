@@ -659,7 +659,7 @@ const gameData = {
     ],
   },
   49: {
-    text: `You may rest if you wish to eat Provisions (if you have any) before 
+    text: `You may rest and eat Provisions (if you have any) before 
     your all-night trek. If you take a meal, you may add 2 stamina points 
     if you have not already eaten today but only 1 stamina point if you 
     have eaten anything. Then you set off. You soon leave the woods 
@@ -668,7 +668,7 @@ const gameData = {
     without sleep.`,
     choices: [{ goToPage: 36, text: "Continue.." }],
     staminaLoss: 2,
-    eatOption: [{ haveEaten: 1, haveNotEaten: 2 }],
+    eatOption: { haveEaten: 1, haveNotEaten: 2 },
   },
   50: {
     text: `Around the creature's neck is a collar which interests you. It is 
@@ -895,14 +895,14 @@ const gameData = {
   71: {
     text: `You are thrown into the hut and the door is locked. You are their 
     prisoner. You spend half an hour looking for a possible escape but 
-    there does not appear to be one. if you wish you may sit down and eat 
+    there does not appear to be one. If you wish you may sit down and eat 
     Provisions (add 2 stamina points if this is your first meal today; 1 if 
     you have already eaten), then you may either settle down to sleep for 
     the rest of the night or keep awake and on your guard in 
     case anything should happen.`,
     choices: [
       { goToPage: 109, text: "Sleep for the night" },
-      { goToPage: 140, text: "Stay awake watching the guard" },
+      { goToPage: 140, text: "Stay awake and keep guard" },
     ], // todo add eating choice
     eatOption: [{ haveEaten: 1, haveNotEaten: 2 }],
   },
@@ -1674,11 +1674,9 @@ const gameData = {
     ],
   },
   136: {
-    text: `If this is your first meal today, add 2 stamina points. If you have 
-    already eaten, add only 1 stamina point. You rest for half an hour or 
-    so and then continue your journey.`,
+    text: `Refactored this into 164, there were 9 places you could eat conditionally, this was an outlier, forcing you to eat.
+    If you got to here, I have no idea how, please inform Danny`,
     choices: [{ goToPage: 65, text: "Continue.." }],
-    eatOption: [{ haveEaten: 1, haveNotEaten: 2 }],
   },
   137: {
     text: `You continue through the bush until you reach a point where the 
@@ -1820,7 +1818,7 @@ const gameData = {
     able to drag themselves along with their hands. Will you try to talk 
     with the villagers or continue onwards through the village?`,
     choices: [
-      { goToPage: 61, text: "Talk to the villagers blah blah blah blah" },
+      { goToPage: 61, text: "Talk to the villagers" },
       { goToPage: 220, text: "Continue onwards" },
     ],
   },
@@ -2002,11 +2000,11 @@ const gameData = {
     text: `The path winds alongside a bubbling stream and you follow it 
     onwards along the west bank. The valley you are in becomes narrower, 
     but you soon come across a flat, grassy bank where you may stop and 
-    eat Provisions or would you prefer to continue.`,
-    choices: [
-      { goToPage: 136, text: "Stop and eat" },
-      { goToPage: 65, text: "Continue" },
-    ],
+    eat Provisions. If this is your first meal today, add 2 stamina points. If you have 
+    already eaten, add only 1 stamina point. You rest for half an hour or 
+    so and then continue your journey.`,
+    choices: [{ goToPage: 65, text: "Continue.." }],
+    eatOption: [{ haveEaten: 1, haveNotEaten: 2 }],
   },
   165: {
     text: `You may try to kill all the snakes in the pit with your weapon. Test your 
@@ -2730,14 +2728,14 @@ const gameData = {
     pebbles, on the floor includes some large items such as a huge broken 
     stool, a net with a very wide mesh and a large skull, human-shaped 
     but well over normal size. All of this leads you to one conclusion; 
-    these caves are inhabited by Giants! Knowing they are useful in magic, you take some teeth from the dead giant.
+    these caves are inhabited by Giants! You take the net and two giant teeth from the skull with you,
+    unfortuantely the stool is too large to fit in your backpack.
     Then you may leave and go either into the other cave or leave the caves 
     and continue onwards.`,
     choices: [
       { goToPage: 207, text: "Into the other cave" },
       { goToPage: 250, text: "Continue onwards" },
     ],
-    getItems: [{ name: "Giant's teeth", amount: 3 }],
   },
   222: {
     text: `An hour after daybreak you hear noises outside. The door opens and 
@@ -3198,7 +3196,7 @@ const gameData = {
       { goToPage: 251, text: "Try the other box" },
       { goToPage: 196, text: "Leave the village" },
     ],
-    extraText: true
+    extraText: true,
   },
   259: {
     text: `You manage to avoid the Goblins and sneak off along a downhill path 
@@ -3255,7 +3253,7 @@ const gameData = {
     text: `You finish the job well and in good time and the villager pays you 3 
     Gold Pieces. You leave Dhumpus in the early morning light.`,
     choices: [{ goToPage: 208, text: "Continue.." }],
-    getItems: [{name: "Gold", amount: 3}]
+    getItems: [{ name: "Gold", amount: 3 }],
   },
   264: {
     text: `He grunts and motions for you to follow, taking you through the 
@@ -3284,7 +3282,10 @@ const gameData = {
       { goToPage: 284, text: "Eat from the loaf" },
       { goToPage: 250, text: "Continue" },
     ],
-    getItems: [{name: "Gold", amount: 8}, {name: "Giants Teeth", amount: 1}]
+    getItems: [
+      { name: "Gold", amount: 8 },
+      { name: "Giants Teeth", amount: 2 },
+    ],
   },
   266: {
     text: `You find an ale-house and walk in. Gruff voices come from inside, but 
@@ -3336,7 +3337,7 @@ const gameData = {
       { goToPage: 276, text: "Test your Luck - Success" },
       { goToPage: 0, text: "Test your Luck - Fail" }, // todo Leads to death
     ],
-    testLuck: true
+    testLuck: true,
   },
   270: {
     text: `The bees swarm around you but you are powerless to defend yourself 
@@ -3348,8 +3349,15 @@ const gameData = {
     Cutting open the hive on the ground, you take with you the wax 
     and the honey. The honey will provide you with enough nourishment for one meal..`,
     choices: [{ goToPage: 9, text: "Continue" }], // todo roll dice take damage + add items
-    getItems: [{name: "Provisions", amount: 1}, {name: "Beeswax", amount: 1, info: "Gathered from a beehive. Used in spells"}],
-    extraText: true
+    getItems: [
+      { name: "Provisions", amount: 1 },
+      {
+        name: "Beeswax",
+        amount: 1,
+        info: "Gathered from a beehive. Used in spells",
+      },
+    ],
+    extraText: true,
   },
   271: {
     text: `You try knocking on another door. This time a voice calls 'Who is 
@@ -3363,7 +3371,7 @@ const gameData = {
     dizzy and pass out as the poison takes effect. Your head will soon be 
     joining the others on a pole at the last junction . . .`,
     choices: [], // todo you are dead
-    dead: true
+    dead: true,
   },
   273: {
     text: `Before your eyes the snakes form a living ladder, stretching back up to 
@@ -3420,7 +3428,7 @@ const gameData = {
       { goToPage: 304, text: "Magic: FIL" },
       { goToPage: 392, text: "Magic: SUS" },
     ],
-    checkDeath: true
+    checkDeath: true,
   },
   277: {
     text: `The fall is not too far, but there is a chance of injury. Throw two dice 
@@ -3434,7 +3442,7 @@ const gameData = {
       { goToPage: 110, text: "Continue.." },
       { goToPage: 0, text: "Rolled a 12" }, // todo you have died
     ],
-    extraText: true
+    extraText: true,
   },
   278: {
     text: `You follow the path back up to the junction and continue towards 
@@ -3919,7 +3927,7 @@ const gameData = {
     you are buried for ever in the rubble . . .`,
     choices: [], // todo you are dead
     staminaLoss: 1,
-    dead: true
+    dead: true,
   },
   330: {
     text: `Deduct 1 stamina point. Your spell will not work as you do not 
@@ -4028,7 +4036,7 @@ const gameData = {
     you, crushing you on to the floor. Your journey has ended here . . .`,
     choices: [], // todo you are dead
     staminaLoss: 1,
-    dead: true
+    dead: true,
   },
   344: {
     text: `Deduct 3 stamina points. There is no such spell as this and, as you 
@@ -4036,7 +4044,7 @@ const gameData = {
     journey . . .`,
     choices: [], // todo you are dead
     staminaLoss: 3,
-    dead: true
+    dead: true,
   },
   345: {
     text: `Deduct 5 stamina points. There is no such spell as this and, while 
@@ -5058,7 +5066,7 @@ const gameData = {
     You sleep heavily that night and rise the next morning to continue on 
     your way. Before you go, the Svinn chief meets you. He hands you 
     two gifts: a pouch containing 10 Gold Pieces and a large key. I know 
-    you head for Khar&,' says the chief, 'but the city is evil and you must 
+    you head for Khare' says the chief, 'but the city is evil and you must 
     be on your guard. Two years ago a traveller passed through here 
     from Khare and gave me this key, saying he would never return. This 
     is a key to the city gates and with it you will be able to enter the city 

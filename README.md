@@ -3,18 +3,15 @@
   <li>Find a way to adapt story text based on users stats</li>
   <li>Write staminaLoss for non magic nodes</li>
   <li>Add P tags to text to format it better</li>
-  <li>Lose 2 hp when viewing magic book (not during tutorial though)</li>
   <li>Progress bars to combat</li>
   <li>Implement Jann</li>
-  <li>Implement have eaten today</li>
+  <li>Implement have eaten today (fully)</li>
   <li>Find a way to fight night creatures and return to previous node (84, 108, 283 || 396, 421, 437, 453)</li>
   <li>108, 283 adds +2 to night creatures roll</li>
   <li>Get no change for buying with gems (15) might not do this, a lot of work for little payoff, maybe just give 5gp a piece</li>
   <li>Implement getting items at nodes, not choices</li>
-  <li>Implement losing hp if not eaten, notEaten variable</li>
   <li>Handle death</li>
   <li>Implement test luck</li>
-  <li>Implement new days: should be tied to not eaten</li>
   <li>Can't cast spells if Jann is with you</li>
   <li>Use up libra in choices: 160</li>
   <li>Implement luck item, 177</li>
@@ -43,9 +40,15 @@
   <li>Implement Libra (can cure and revitilize)</li>
   <li>Implement Curses and Diseases (curses done)</li>
   <li>You lose 3 hp if you havent eaten, can be up to 7 with plague (3) and spirits curse (1)</li>
+  <li>Stop user choices going into new line (also on hover)</li>
+  <li>Write most of eat options, for when the player can choose to eat provisions</li>
+  <li>Write list of all items, because current item implementation is bad.</li>
 </ul>
 
 eatOption: [{ haveEaten: 1, haveNotEaten: 2 }],
+35,49,51,62,71,76,108,127,164,283
+134,267 cost money instead.
+
 notEaten: 3,
 enemies: [{ name: "Elvin", skill: "6", stamina: "4" }],
 getItems: [{name: ""}]
@@ -58,6 +61,35 @@ getJann: true
 newDays are: 31, 36, 45, 67, 109, 140
 This is tied to notEaten: 3
 And does not need to be coded.
+
+Gold,
+Provisions,
+Sword
+Blimberry potion
+Broadsword
+Pipe
+Axe
+Ice Jewel
+Bomba
+Old Key
+Goblin Key
+Khare Key
+Khare Key 2
+Net Giant
+Large skull
+Waterfall pass
+Vial of Glue
+Nose-plugs
+Pebbles
+Spell book page
+Beezwax
+Ragnar's Armband of Swordmastery
+Finely crafted sword
+A skullcap
+Ape teeth
+Goblin Teeth
+Gaints Teeth
+Snattacat Teeth
 
 # Extra content story nodes
 2: Fight Serpent Skill 7 Stamina 8
