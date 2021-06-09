@@ -3737,9 +3737,9 @@ const gameData = {
     choices: [], // todo you are dead
   },
   308: {
-    text: `Deduct 1 stamina point. Do you have a bamboo flute with you? If 
+    text: `Deduct 1 stamina point. Do you have a bamboo Pipe with you? If 
     not, you lose a further 3 stamina points as the Bandits attack. If you 
-    have such a flute, you may take it from your bag, cast your spell and 
+    have such a Pipe, you may take it from your bag, cast your spell and 
     play. The angry faces of the Bandits turn to expressions of astonishment 
     as they find their limbs jerking in time to the music, quite out of 
     control they drop their swords and are soon dancing merrily before 
@@ -3994,7 +3994,7 @@ const gameData = {
     staminaLoss: 4,
   },
   339: {
-    text: `Deduct 1 stamina point. Do you have a Bamboo Flute with you? If 
+    text: `Deduct 1 stamina point. Do you have a Bamboo Pipe with you? If 
     not, the Wood Golem attacks for 1 stamina points' worth of damage 
     - return and choose again. If you have a Bamboo Pipe, you pull it 
     out of your backpack, cast your spell and play. The Golem stops and 
