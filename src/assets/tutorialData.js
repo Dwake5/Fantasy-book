@@ -80,10 +80,10 @@ const tutorialData = [
     
     <li>You have wounded the creature, so subtract 2 points from its 
     stamina score. You may use your luck here to do additional 
-    damage (see over).</li>
+    damage.</li>
     
     <li>The creature has wounded you, so subtract 2 points from your sta- 
-    mina score. Again, you may use luck at this stage (see over).</li>
+    mina score. Again, you may use luck at this stage.</li>
     
     <li>Make the appropriate adjustments to either the creature's or your 
     own stamina score.</li>
@@ -96,7 +96,7 @@ const tutorialData = [
     <h3>Fighting More Than One Creature</h3>
     
     <p>If you come across more than one creature in a particular encounter, 
-    the instructions on that page will tell you how to handle the battle. 
+    the instructions will tell you how to handle the battle. 
     Sometimes you will treat them as a single monster; sometimes you 
     will fight each one in turn.</p>`,
   },
@@ -111,7 +111,7 @@ const tutorialData = [
     
     <p>The procedure for using your luck is as follows: roll two dice. If the 
     number rolled is equal to or less than your current luck score, you have 
-    been Lucky and the result will go In your favour. If the number rolled 
+    been Lucky and the result will go in your favour. If the number rolled 
     is higher than your current luck score, you have been Unlucky and 
     you will be penalized.</p> 
 
@@ -122,7 +122,7 @@ const tutorialData = [
     minimize the effects of a wound the creature has just inflicted on you.</p> 
     
     <p>This procedure is known as Testing your Luck. Each time you Test your 
-    Luck you must subtract one point from your current luck score. 
+    Luck you lose one point from your current luck score. 
     Thus you will soon realize that the more you rely on your luck, the 
     more risky this will become.</p>`,
   },
@@ -142,7 +142,7 @@ const tutorialData = [
     doing 2 points of damage it has done only 1). If you are Unlucky, you 
     have taken a more serious blow. Subtract 1 extra stamina point.</p> 
     
-    <p>Remember that you must subtract 1 point from your own luck score 
+    <p>Remember that you lose 1 point from your own luck score 
     each time you Test your Luck.</p>`,
   },
   {
@@ -156,7 +156,7 @@ const tutorialData = [
     claim 2 sktll bonuses for carrying two Magic Swords. Your skill 
     score can never exceed its Initial value unless specifically instructed.</p> 
     
-    <h3>Stamina and Provisions<h3/>
+    <h3>Stamina and Provisions</h3>
     
     <p>Your stamina score will change a lot during your adventure as you 
     fight monsters and undertake arduous tasks. As you near your goal, 
@@ -169,7 +169,7 @@ const tutorialData = [
     score as instructed. Remember that you have a long way to go, so 
     manage your Provisions wisely!</p> 
     
-    <p>Remember also that your stamina score may never exceed its Initial 
+    <p>Remember also that your stamina score will never exceed its Initial 
     value unless specifically instructed.</p>
     
     <h3>Luck</h3>
@@ -180,15 +180,14 @@ const tutorialData = [
     score may never exceed its Initial value unless specifically instructed.</p>
     
     <p>Skill, stamina and luck scores can be restored to their Initial 
-    values by calling on your goddess (see later).</p>`,
+    values by calling on your goddess (see Libra).</p>`,
   },
   {
     header: `Wizards: How to use Magic`,
     info: `<p>If you have chosen to become a wizard you will have the option, 
     throughout the adventure, of using magic spells. All the spells known 
-    to the sorcerers of Analand are listed in a separate volume, The 
-    Sorcery! Spell Book, and you will need to study this before you set off on 
-    your adventure.</p>
+    to the sorcerers of Analand are listed in a separate volume, The Spell Book, 
+    and you should study this before you set off on your adventure.</p>
     
     <p>All spells are coded with a three-letter code and you must learn and 
     practise your spells until you are able to identify a reasonable number 
@@ -199,30 +198,29 @@ const tutorialData = [
     unknown spells or if he/she has not found the artefact required for a 
     less costly spell.</p> 
     
-    <p>Full rules for using spells are given in the Spell Book;</p> 
+    <p>Full rules for using spells are given in the Spell Book.</p> 
     
-    <p>Don't forget! You may not refer to the spell book once you have 
-    started your adventure.</p>`,
+    <p>Don't forget! Looking at your spellbook during your adventure is risky. You will lose 2 stamina points.</p>`,
   },
   {
     header: `Libra - The Goddess of Justice`,
     info: `<p>During your adventure you will be watched over by your own 
-    goddess, Libra, If the going gets tough, you may call on her for aid, 
+    goddess, Libra, If the going gets tough, you may call on her for aid. 
     But she will only help you once in each adventure, Once you have called on 
     her help in the Shamutanti Hills, she will not listen to you again until 
     you reach Khare.<p/> 
     
     <p>There are three ways in which she may help you:<p/> 
     
-    <p>Revitalization: You may call on her at any time to restore your ski ll, 
+    <p>Restore: You may call on her at any time to restore your skill, 
     stamina and luck scores to their Initial values. This is not given as 
-    an option in the text; you may do this if and when you wish, but only 
+    an option; you may do this if and when you wish, but only 
     once in each adventure.<p/> 
     
     <p>Escape: Occasionally, when you are in danger, the text will offer you 
     the option of calling on Libra to help you. <p/>
     
-    <p>Removal of Curses and Diseases: She will remove any curses or 
+    <p>Cure: She will remove any curses or 
     diseases you may pick up on your adventure. This is not given as an 
     option in the text; you may do this if and when you wish, but only 
     once in each adventure.<p/>`,

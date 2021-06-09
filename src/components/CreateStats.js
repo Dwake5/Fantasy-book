@@ -39,7 +39,7 @@ const CreateStats = ({ cancelPause }) => {
       )}
       {step > 1 && (
         <p className="mb-4">
-          You rolled a {rolls[0]}, your total skill is {rolls[0] + 6}
+          You rolled a {rolls[0]} (+6), your total skill is {rolls[0] + 6}
         </p>
       )}
 
@@ -49,7 +49,7 @@ const CreateStats = ({ cancelPause }) => {
       )}
       {step > 2 && (
         <p className="mb-4">
-          You rolled a {rolls[1]}, your total skill is {rolls[1] + 12}
+          You rolled a {rolls[1]} (+12), your total skill is {rolls[1] + 12}
         </p>
       )}
 
@@ -59,7 +59,7 @@ const CreateStats = ({ cancelPause }) => {
       )}
       {step > 3 && (
         <p className="mb-4">
-          You rolled a {rolls[2]}, your total skill is {rolls[2] + 6}
+          You rolled a {rolls[2]} (+6), your total skill is {rolls[2] + 6}
         </p>
       )}
     </Container>

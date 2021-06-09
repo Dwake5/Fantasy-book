@@ -12,3 +12,7 @@
 .modalHeader {
   margin-left: auto;
 }
+
+.hoverWarning:hover {
+  border: 2px solid red;
+}

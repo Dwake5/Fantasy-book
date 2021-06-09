@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { Accordion, Card } from "react-bootstrap";
 import tutorialData from "../assets/tutorialData";
+import TestLuckTable from "./TestLuckTable";
 
 const TutorialModal = () => {
   const [faqActiveKey, setFaqActiveKey] = useState(0);
 
-  const handleFaqClick = (i) => setFaqActiveKey(faqActiveKey === i ? 0 : i)
+  const handleFaqClick = (i) => setFaqActiveKey(faqActiveKey === i ? 0 : i);
 
   return (
     <Accordion activeKey={faqActiveKey} className="mb-5 box-shadow">
@@ -19,7 +20,10 @@ const TutorialModal = () => {
             <h2>{tutorial.header}</h2>
           </Accordion.Toggle>
           <Accordion.Collapse eventKey={i + 1}>
-            <Card.Body dangerouslySetInnerHTML={{ __html: tutorial.info }} />
+            <Card.Body>
+              <p dangerouslySetInnerHTML={{ __html: tutorial.info }}></p>
+              {tutorial.header === "Luck" && <TestLuckTable />}
+            </Card.Body>
           </Accordion.Collapse>
         </Card>
       ))}

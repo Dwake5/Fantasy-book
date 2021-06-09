@@ -1,3 +1,7 @@
 .statsBox {
-  min-height: 130px;
+  min-height: 187px;
+}
+
+.textSmall {
+  font-size: .75rem;
 }

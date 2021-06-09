@@ -1,3 +1,4 @@
-.test { 
-  min-height: 200px;
+.storyMain {
+  min-height: 800px;
+  border: 1px solid rgb(222, 226, 230);
 }

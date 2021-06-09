@@ -8,7 +8,7 @@ const Items = () => {
   const _items = useSelector(getItems);
 
   return (
-    <Container className="border text-center test">
+    <Container className="border text-center itemsBox mb-2">
       <div>
         <p className="h3 text-center">Items</p>
         {_items?.map((item) => {

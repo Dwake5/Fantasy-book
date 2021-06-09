@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Container, Modal } from "react-bootstrap";
+import { Button, Container, Modal } from "react-bootstrap";
 import TutorialModal from "./TutorialModal";
 import "../assets/css/Tutorial.css";
 
@@ -12,9 +12,9 @@ const Tutorial = () => {
   return (
     <Container className="border text-center">
       <p className="h3 text-center">Tutorial</p>
-      <button onClick={handleShow} className="mb-3">
+      <Button onClick={handleShow} className="mb-3">
         View
-      </button>
+      </Button>
 
       <Modal show={show} onHide={handleClose} className="tutorialModal">
         <Modal.Header  closeButton>
