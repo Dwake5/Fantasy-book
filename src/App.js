@@ -9,14 +9,7 @@ import Title from "./components/Title";
 import Combat from "./components/Combat";
 import Libra from "./components/Libra";
 import { useSelector } from "react-redux";
-import {
-  getSkill,
-  getMaxSkill,
-  getStamina,
-  getMaxStamina,
-  getLuck,
-  getMaxLuck,
-} from "./redux/stats/selectors";
+import { getStat } from "./redux/stats/selectors";
 
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
@@ -24,12 +17,12 @@ import Tutorial from "./components/tutorial/Tutorial";
 import Ailments from "./components/Ailments";
 
 const App = () => {
-  const skill = useSelector(getSkill);
-  const maxSkill = useSelector(getMaxSkill);
-  const stamina = useSelector(getStamina);
-  const maxStamina = useSelector(getMaxStamina);
-  const luck = useSelector(getLuck);
-  const maxLuck = useSelector(getMaxLuck);
+  const skill = useSelector((state) => getStat(state, "skill"));
+  const maxSkill = useSelector((state) => getStat(state, "maxSkill"));
+  const stamina = useSelector((state) => getStat(state, "stamina"));
+  const maxStamina = useSelector((state) => getStat(state, "maxStamina"));
+  const luck = useSelector((state) => getStat(state, "luck"));
+  const maxLuck = useSelector((state) => getStat(state, "maxLuck"));
 
   return (
     <div className="main">
