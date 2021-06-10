@@ -1,7 +1,5 @@
 import {
-  MAX_SKILL,
-  MAX_STAMINA,
-  MAX_LUCK,
+  MAX_STAT,
   STAT_LOSS,
   STAT_GAIN,
   LIBRA_RESTORE,
@@ -9,24 +7,10 @@ import {
   EATEN_TODAY,
 } from "./action-types";
 
-export const setMaxSkill = (dispatch, number) => {
+export const setMaxStat = (dispatch, stat, number) => {
   dispatch({
-    type: MAX_SKILL,
-    payload: number,
-  });
-};
-
-export const setMaxStamina = (dispatch, number) => {
-  dispatch({
-    type: MAX_STAMINA,
-    payload: number,
-  });
-};
-
-export const setMaxLuck = (dispatch, number) => {
-  dispatch({
-    type: MAX_LUCK,
-    payload: number,
+    type: MAX_STAT,
+    payload: { stat, number },
   });
 };
 

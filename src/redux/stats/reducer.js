@@ -1,8 +1,6 @@
 import { uppercase } from "../../utils";
 import {
-  MAX_SKILL,
-  MAX_STAMINA,
-  MAX_LUCK,
+  MAX_STAT,
   STAT_LOSS,
   STAT_GAIN,
   EATEN_TODAY,
@@ -13,8 +11,8 @@ import {
 const initialState = {
   skill: 0,
   maxSkill: 0,
-  stamina: 10,
-  maxStamina: 20,
+  stamina: 0,
+  maxStamina: 0,
   luck: 0,
   maxLuck: 0,
   eatenToday: false,
@@ -22,33 +20,32 @@ const initialState = {
   plague: false,
   spiritCurse: false,
   aliannaCurse: false,
+  jann: false,
 };
 
 export const reducer = (state = initialState, action) => {
+  let stat, amount, currentAmountOfStat, maxStat, newStat;
   switch (action.type) {
     case STAT_LOSS:
-      const statL = action.payload.stat;
-      const amountL = action.payload.amount;
-      const currentAmountOfStatL = state[action.payload.stat];
+      stat = action.payload.stat;
+      amount = action.payload.amount;
+      currentAmountOfStat = state[action.payload.stat];
 
-      let newStatL = currentAmountOfStatL - amountL;
-      if (newStatL < 0) newStatL = 0;
+      newStat = currentAmountOfStat - amount;
+      if (newStat < 0) newStat = 0;
 
       return {
         ...state,
-        [statL]: newStatL,
+        [stat]: newStat,
       };
     case STAT_GAIN:
-      const stat = action.payload.stat;
-      const amount = action.payload.amount;
-      const maxStat = uppercase(stat, true);
-      console.log('maxStat :', maxStat);
-      const currentAmountOfStat = state[action.payload.stat];
-      console.log('currentAmountOfStat :', currentAmountOfStat);
+      stat = action.payload.stat;
+      amount = action.payload.amount;
+      maxStat = uppercase(stat, true);
+      currentAmountOfStat = state[action.payload.stat];
 
-      let newStat = currentAmountOfStat + amount;
+      newStat = currentAmountOfStat + amount;
       if (newStat > state[maxStat]) newStat = state[maxStat];
-      console.log('newStat :', newStat);
 
       return {
         ...state,
@@ -57,8 +54,8 @@ export const reducer = (state = initialState, action) => {
     case EATEN_TODAY:
       return {
         ...state,
-        eatenToday: action.payload
-      }
+        eatenToday: action.payload,
+      };
     case LIBRA_CURE:
       return {
         ...state,
@@ -75,23 +72,13 @@ export const reducer = (state = initialState, action) => {
         luck: state.maxLuck,
         libra: false,
       };
-    case MAX_SKILL:
+    case MAX_STAT:
+      maxStat = uppercase(action.payload.stat, true);
+      stat = action.payload.stat
       return {
         ...state,
-        maxSkill: action.payload,
-        skill: action.payload,
-      };
-    case MAX_STAMINA:
-      return {
-        ...state,
-        maxStamina: action.payload,
-        stamina: action.payload,
-      };
-    case MAX_LUCK:
-      return {
-        ...state,
-        maxLuck: action.payload,
-        luck: action.payload,
+        [maxStat]: action.payload.number,
+        [stat]: action.payload.number,
       };
     default:
       return state;

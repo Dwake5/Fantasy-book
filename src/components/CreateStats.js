@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Container } from "react-bootstrap";
-import { setMaxSkill, setMaxStamina, setMaxLuck } from '../redux/stats/actions';
+import { setMaxStat } from '../redux/stats/actions';
 import { useDispatch } from 'react-redux';
 
 const CreateStats = ({ cancelPause }) => {
@@ -20,11 +20,11 @@ const CreateStats = ({ cancelPause }) => {
       rolled = roll1 + roll2;
     }
 
-    if (stat === "skill") setMaxSkill(dispatch, rolled + 6);
-    if (stat === "stamina") setMaxStamina(dispatch, rolled + 12);
-    if (stat === "luck") setMaxLuck(dispatch, rolled + 6);
-
     updateRolls([...rolls, rolled]);
+
+    rolled += stat === 'stamina' ? 12 : 6;
+    
+    setMaxStat(dispatch, stat, rolled)
     changeStep(step + 1);
   
     if (step === 3) cancelPause(true)

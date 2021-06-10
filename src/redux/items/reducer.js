@@ -1,4 +1,11 @@
-import { SET_ITEMS, EQUIP_WEAPON, DRINK_POTION } from "./action-types";
+import {
+  SET_ITEMS,
+  EQUIP_WEAPON,
+  DRINK_POTION,
+  PAY_MONEY,
+  EAT_PROVISION,
+  GET_ITEM,
+} from "./action-types";
 
 const initialState = {
   gold: {
@@ -15,36 +22,46 @@ const initialState = {
   },
   sword: {
     name: "Basic Sword",
-    owned: true,
+    amount: 1,
+    singular: true,
     info: "Weak starting sword",
     equipped: true,
   },
   potion: {
     name: "Blimberry Potion",
-    owned: false,
+    amount: 0,
+    singular: true,
     info: "<p>Replenish 3 Stamina points outside of battle</p> Pungant Blimberry Juice. Useful in magic or to recover Stamina.",
-    use: false
+    use: false,
   },
   broadSword: {
     name: "Broadsword",
-    owned: false,
+    amount: 0,
+    singular: true,
     info: "<p>+1 Attack Strength when equipped.</p> A fine-edged weapon.",
     equipped: false,
   },
   pipe: {
     name: "Bamboo Pipe",
-    owned: false,
+    amount: 0,
+    singular: true,
     info: "A musical pipe made of bamboo",
   },
   axe: {
     name: "Axe",
-    owned: false,
+    amount: 0,
+    singular: true,
     info: `<p>-1 Attack Strength when equipped.</p> 
     The carvings read: This axe was crafted in the Year of the Ox for Glandragor the Protector. 
     Its powers may be realized only by its owner.`,
     equipped: false,
   },
-  iceJewel: { name: "Ice Jewel", owned: false, info: "A mounted Ice Jewel" },
+  iceJewel: {
+    name: "Ice Jewel",
+    amount: 0,
+    singular: true,
+    info: "A mounted Ice Jewel",
+  },
   bomba: {
     name: "Bomba Fruit",
     amount: 0,
@@ -53,44 +70,61 @@ const initialState = {
   },
   oldKey: {
     name: "Old Key",
-    owned: false,
+    amount: 0,
+    singular: true,
     info: "An old and rusty key.",
   },
   goblinKey: {
     name: "Goblin Key",
-    owned: false,
+    amount: 0,
+    singular: true,
     info: "Stolen from a dead Goblin.",
   },
   khareKey: {
     name: "Khare Gate Key",
-    owned: false,
+    amount: 0,
+    singular: true,
     info: "A large key used to open the Khare city gates.",
   },
   khareKey2: {
     name: "Khare Dungeon Key",
-    owned: false,
+    amount: 0,
+    singular: true,
     info: "Can be used to unlock dungeons in Khare.",
   },
   net: {
     name: "Giant Net",
-    owned: false,
-    info: "A large net stolen from a giant's cave.",
+    amount: 0,
+    singular: true,
+    info: "A large net, stolen from a giant's cave.",
   },
   waterfallPass: {
     name: "Waterfall Pass",
-    owned: false,
+    amount: 0,
+    singular: true,
     info: "Allows free entry into the Crystal Waterfall.",
   },
-  vialOfGlue: { name: "Vial of Glue", owned: false, info: "Used in spells." },
-  nosePlugs: { name: "Noseplugs", owned: false, info: "Used in spells." },
+  glue: {
+    name: "Vial of Glue",
+    amount: 0,
+    singular: true,
+    info: "Used in spells.",
+  },
+  nosePlugs: {
+    name: "Noseplugs",
+    amount: 0,
+    singular: true,
+    info: "Used in spells.",
+  },
   pebbles: {
     name: "Pebbles",
-    owned: false,
+    amount: 0,
     info: "Small round pebbles, useful for spells.",
   },
   spellbookPage: {
     name: "Spellbook Page",
-    owned: false,
+    amount: 0,
+    singular: true,
     info: "Part of a pest repelling spell.",
   },
   beezwax: {
@@ -100,28 +134,33 @@ const initialState = {
   },
   locket: {
     name: "Locket",
-    owned: false,
+    amount: 0,
+    singular: true,
     info: "A locket with a portrait of a woman inside.",
   },
   luckAmulet: {
     name: "Amulet",
-    owned: false,
-    info: "<p>-1 from Test your Luck die roll</p> Stolen from a dead troll. Improves Test your Luck chances.",
+    amount: 0,
+    singular: true,
+    info: "<p>-1 from Test your Luck die roll</p> A small amulet made of twisted metal, stolen from a dead troll. Improves Test your Luck chances.",
   },
   armband: {
     name: "Armband",
-    owned: false,
+    amount: 0,
+    singular: true,
     info: "<p>+2 Attack Strength when a sword is equipped</p> Ragnar's Armband of Swordmastery. A magical armband that improves your combat skill with a sword.",
   },
   craftedSword: {
     name: "Finely Crafted Sword",
-    owned: false,
+    amount: 0,
+    singular: true,
     info: "<p>Does 3 damage instead of 2 in combat</p> Finely crafted sword with a sharpened blade.",
     equipped: false,
   },
   skullcap: {
     name: "Skullcap",
-    owned: false,
+    amount: 0,
+    singular: true,
     info: "A woven skullcap. No magical properties but useful for magic.",
   },
   apeTeeth: { name: "Apes Teeth", amount: 0, info: "Ape Teeth" },
@@ -140,6 +179,16 @@ const initialState = {
     amount: 0,
     info: "Snattacat Teeth, used in magic",
   },
+  deathhoundTeeth: {
+    name: "Death-hound Teeth",
+    amount: 0,
+    info: "Death-hound Teeth, used in magic",
+  },
+  gems: {
+    name: "Black Gems",
+    amount: 0,
+    info: "<p>Exchance for items</p> Valuable black rock gems. Can be used to buy items with, worth up to 10 Gold Pieces, but no change will be given.",
+  },
 };
 
 // Im well aware this is bad code.
@@ -149,43 +198,69 @@ const equipSpecificWeapon = (state, weapon) => {
   return {
     sword: {
       ...state.sword,
-      equipped: weapon === "sword"
+      equipped: weapon === "sword",
     },
     broadSword: {
       ...state.broadSword,
-      equipped: weapon === "broadSword"
+      equipped: weapon === "broadSword",
     },
     axe: {
       ...state.axe,
-      equipped: weapon === "axe"
+      equipped: weapon === "axe",
     },
     craftedSword: {
       ...state.craftedSword,
-      equipped: weapon === "craftedSword"
+      equipped: weapon === "craftedSword",
     },
-  }
-}
+  };
+};
 
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case PAY_MONEY:
+      return {
+        ...state,
+        gold: {
+          ...state.gold,
+          amount: state.gold.amount - action.payload,
+        },
+      };
+    case EAT_PROVISION:
+      return {
+        ...state,
+        provisions: {
+          ...state.provisions,
+          amount: state.provisions.amount - 1,
+        },
+      };
     case SET_ITEMS:
       return {
         ...state,
-        items: action.payload,
       };
-    case EQUIP_WEAPON: 
-      const weapon = action.payload
+    case GET_ITEM:
+      const relevantItem = action.payload.item
+      const amountGained = action.payload.amount
+
       return {
         ...state,
-        ...equipSpecificWeapon(state, weapon)
+        [relevantItem]: {
+          ...state[relevantItem],
+          amount: state[relevantItem].amount + amountGained
+        }
       };
-    case DRINK_POTION: 
+    case EQUIP_WEAPON:
+      const weapon = action.payload;
+      return {
+        ...state,
+        ...equipSpecificWeapon(state, weapon),
+      };
+    case DRINK_POTION:
       return {
         ...state,
         potion: {
           ...state.potion,
           own: false,
-        }
+        },
       };
     default:
       return state;

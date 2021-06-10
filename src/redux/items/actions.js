@@ -1,44 +1,30 @@
-import { SET_ITEMS, EQUIP_WEAPON, DRINK_POTION } from "./action-types";
+import {
+  PAY_MONEY,
+  EAT_PROVISION,
+  EQUIP_WEAPON,
+  DRINK_POTION,
+  GET_ITEM,
+} from "./action-types";
 
-export const setItems = (dispatch, itemsRecieved, oldItems) => {
-  let newItems = [];
-  if (oldItems) newItems = [...oldItems];
-
-  itemsRecieved.forEach((newItem) => {
-    // Do we already have the item?
-    const findItem = newItems.find((oldItem) => newItem.name === oldItem.name);
-
-    if (!!findItem) {
-      // Amend the quantity, if less than 0 make it zero
-      if (findItem.amount) findItem.amount += newItem.amount;
-      if (findItem.amount < 0) findItem.amount = 0;
-      // Reinsert it in the same place
-      const findIndex = oldItems.findIndex(
-        (oldItem) => oldItem.name === findItem.name
-      );
-      newItems[findIndex] = findItem;
-    } else {
-      newItems.push(newItem);
-    }
-  });
-
+export const getItem = (dispatch, itemRecieved, amount) => {
   dispatch({
-    type: SET_ITEMS,
-    payload: newItems,
+    type: GET_ITEM,
+    payload: { item: itemRecieved, amount },
   });
 };
 
-export const payMoney = (dispatch, cost, oldItems) => {
-  const money = oldItems.find((oldItem) => oldItem.name === "Gold");
-  const index = oldItems.findIndex((oldItem) => oldItem.name === "Gold");
+export const setItems = () => {};
 
-  money.amount -= cost;
-  oldItems[index] = money;
-  let newItems = [...oldItems];
-
+export const payMoney = (dispatch, data) => {
   dispatch({
-    type: SET_ITEMS,
-    payload: newItems,
+    type: PAY_MONEY,
+    payload: data,
+  });
+};
+
+export const eatProvision = (dispatch) => {
+  dispatch({
+    type: EAT_PROVISION,
   });
 };
 
@@ -47,10 +33,10 @@ export const equipSpecificWeapon = (dispatch, data) => {
     type: EQUIP_WEAPON,
     payload: data,
   });
-}
+};
 
 export const drinkPotion = (dispatch) => {
   dispatch({
     type: DRINK_POTION,
   });
-}
+};

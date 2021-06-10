@@ -46,6 +46,7 @@
   <li>Write list of all items, because current item implementation is bad.</li>
   <li>Rewrite item implementation, will be more manageable going forwards</li>
   <li>Can now equip a weapon and change weapon</li>
+  <li>Can drink blimberry potion, gaining health and using it up. Doesnt let user drink if they are at max health.</li>
 </ul>
 
 Try to prioritize getting items at a node, rather than a choice.

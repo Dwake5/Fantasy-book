@@ -20,7 +20,7 @@ import {
 
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
-import Tutorial from "./components/Tutorial";
+import Tutorial from "./components/tutorial/Tutorial";
 import Ailments from "./components/Ailments";
 
 const App = () => {

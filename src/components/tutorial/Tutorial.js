@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, Container, Modal } from "react-bootstrap";
 import TutorialModal from "./TutorialModal";
-import "../assets/css/Tutorial.css";
+import "../../assets/css/Tutorial.css";
 
 const Tutorial = () => {
   const [show, setShow] = useState(false);

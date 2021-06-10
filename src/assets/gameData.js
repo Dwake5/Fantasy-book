@@ -26,16 +26,14 @@ const gameData = {
         text: "Continue..",
         items: [
           {
-            name: "Gold",
+            name: "gold",
             amount: 20,
-            info: "Standard currency used throughout the land",
           },
           {
-            name: "Provisions",
+            name: "provisions",
             amount: 2,
-            info: "Enough food for a good meal",
           },
-          { name: "Sword", info: "Weak starting sword" },
+          { name: "sword", amount: 1 },
         ],
       },
     ],
@@ -61,9 +59,14 @@ const gameData = {
     choices: [
       {
         goToPage: 1002,
-        text: "Determine your stats!",
+        text: "Determine your starting stats!",
       },
     ],
+    getItems: [
+      { name: 'gold', amount: 20 },
+      { name: 'provisions', amount: 2 },
+      { name: 'sword', amount: 1 }
+    ]
   },
   1002: {
     text: `Before setting off you roll to determine your starting stats:`,
@@ -171,11 +174,23 @@ const gameData = {
       {
         goToPage: 280,
         text: "Buy the teeth and return to the merchant",
+        cost: 3,
         items: [
           {
-            name: "Bag of Teeth",
-            cost: 3,
-            info: "Several from Death-hounds, three from an Ape, four from a Goblin, two from a Snattacat and a large molar from a Giant.",
+            name: "apeTeeth",
+            amount: 3,
+          },
+          {
+            name: "deathhoundTeeth",
+            amount: 3,
+          },
+          {
+            name: "snattacatTeeth",
+            amount: 2,
+          },
+          {
+            name: "giantsTeeth",
+            amount: 1,
           },
         ],
       },
@@ -281,9 +296,8 @@ const gameData = {
     choices: [{ goToPage: 144, text: "Continue.." }],
     getItems: [
       {
-        name: "Gems",
+        name: "gems",
         amount: 2,
-        info: "Can be exchanged in shops for up to 10 gp, but no change will be given",
       },
     ],
   },
@@ -345,11 +359,11 @@ const gameData = {
       {
         goToPage: 280,
         text: "Buy the pipe, and return to the trader",
+        cost: undefined,
         items: [
           {
-            name: "Pipe",
-            cost: undefined,
-            info: "A music pipe made of bamboo",
+            name: "pipe",
+            amount: 1,
           },
         ],
       },
@@ -776,7 +790,8 @@ const gameData = {
       {
         goToPage: 280,
         text: "Buy the jewel and return to the merchant",
-        items: [{ name: "Jewel", cost: "10", info: "A mounted Ice Jewel" }],
+        cost: 10,
+        items: [{ name: "jewel", amount: 1 }],
       },
       { goToPage: 280, text: "Do not buy the jewel, return to the merchant" },
     ],
@@ -1305,8 +1320,8 @@ const gameData = {
         cost: 4,
         items: [
           {
-            name: "Potion",
-            info: "Pungant Blimberry Juice. Use in magic or to consume 3 stamina points anytime outside of battle",
+            name: "potion",
+            amount: 1,
           },
         ],
       },
@@ -1487,8 +1502,8 @@ const gameData = {
     choices: [{ goToPage: 87, text: "Continue.." }], // todo get bracelet
     getItems: [
       {
-        name: "Armband of Swordmastery",
-        info: "A magical armband that improves your combat skill with a sword. Gives +2 Attack Strength if using a sword",
+        name: "armband",
+        amount: 1,
       },
     ],
   },
@@ -1727,11 +1742,11 @@ const gameData = {
       {
         goToPage: 280,
         text: "Buy the sword for 7 gold, and return to the merchant",
+        cost: 7,
         items: [
           {
-            name: "Axe",
-            cost: 7,
-            info: "An old axe, -1 Attack Strength when used. Carved with the number 233.",
+            name: "axe",
+            amount: 1,
           },
         ],
       },
@@ -1943,9 +1958,7 @@ const gameData = {
     with you. Eventually you reach the river-bank again, well past the 
     village.`,
     choices: [{ goToPage: 231, text: "Continue.." }], // todo get locket
-    getItems: [
-      { name: "Locket", info: "A locket with a portrait of a woman inside" },
-    ],
+    getItems: [{ name: "locket", amount: 1 }],
   },
   160: {
     text: `You pray to your goddess and, amidst the crashing of rubble, you can 
@@ -2118,16 +2131,16 @@ const gameData = {
   },
   177: {
     text: `You search the Troll's body and hut. Inside the hut you find a pouch 
-    containing 3 Gold Pieces, Around the Troll's neck is a small amulet 
+    containing 3 Gold Pieces, around the Troll's neck is a small amulet 
     made of twisted metal. This is a Lucky Charm - although it brought 
     little luck to the Troll. While wearing this charm, you may subtract 
     one point from your dice roll each time you Test your Luck`,
     choices: [{ goToPage: 237, text: "Continue.." }],
     getItems: [
-      { name: "Gold", amount: 3 },
+      { name: "gold", amount: 3 },
       {
-        name: "Luck Amulet",
-        info: "Stolen from a dead troll. Improves Test your Luck odds, -1 from dice roll.",
+        name: "luckAmulet",
+        amount: 1,
       },
     ],
   },
@@ -2222,9 +2235,7 @@ const gameData = {
         text: "Investigate the buzzing coming from around the tree",
       },
     ],
-    getItems: [
-      { name: "Spellbook Page", info: "Part of a pest repelling spell" },
-    ],
+    getItems: [{ name: "spellbookPage", amount: 1 }],
   },
   184: {
     text: `You describe the old man you encountered and her eyes light up. She 
@@ -2261,8 +2272,7 @@ const gameData = {
     ],
     getItems: [
       {
-        name: "Goblin key",
-        info: "Stolen from a dead Goblin. Inscribed with the number 111",
+        name: "goblinKey",
       },
     ],
   },
@@ -2350,8 +2360,8 @@ const gameData = {
     ],
     getItems: [
       {
-        name: "Apple-like fruit",
-        info: "A nourishing Bomba. Used to double the stamina gain of your next meal",
+        name: "bomba",
+        amount: 1,
       },
     ],
     luckGain: 2,
@@ -2445,8 +2455,8 @@ const gameData = {
     ],
     getItems: [
       {
-        name: "Old Key",
-        info: "An old and rusty key. Inscribed with the number 54",
+        name: "oldKey",
+        amount: 1,
       },
     ],
   },
@@ -2619,11 +2629,11 @@ const gameData = {
       {
         goToPage: 280,
         text: "Buy the sword, and return to the trader",
+        cost: undefined,
         items: [
           {
-            name: "Broadsword",
-            cost: undefined,
-            info: "A fine weapon. Adds 1 point to Attack Strength when in use.",
+            name: "broadsword",
+            amount: 1,
           },
         ],
       },
@@ -2728,13 +2738,18 @@ const gameData = {
     pebbles, on the floor includes some large items such as a huge broken 
     stool, a net with a very wide mesh and a large skull, human-shaped 
     but well over normal size. All of this leads you to one conclusion; 
-    these caves are inhabited by Giants! You take the net and two giant teeth from the skull with you,
+    these caves are inhabited by Giants! You take the net, pebbles and two giant teeth from the skull with you,
     unfortuantely the stool is too large to fit in your backpack.
     Then you may leave and go either into the other cave or leave the caves 
     and continue onwards.`,
     choices: [
       { goToPage: 207, text: "Into the other cave" },
       { goToPage: 250, text: "Continue onwards" },
+    ],
+    getItems: [
+      { name: "net", amount: "1" },
+      { name: "pebbles", amount: "5" },
+      { name: "giantsTeeth", amount: "2" },
     ],
   },
   222: {
@@ -2912,7 +2927,7 @@ const gameData = {
     getItems: [
       {
         name: "Waterfall Pass",
-        info: "Allows free entry into the Crystal Waterfall",
+        amount: 1,
       },
     ],
     staminaGain: 2,
@@ -3039,8 +3054,8 @@ const gameData = {
     choices: [{ goToPage: 58, text: "Continue.." }],
     getItems: [
       {
-        name: "Khare Key",
-        info: "Can be used to unlock dungeons in Khare. Inscribed with the number 206",
+        name: "khareKey2",
+        amount: 1,
       },
     ],
   },
@@ -3077,12 +3092,11 @@ const gameData = {
     small pebbles - all useful in creating spells.`,
     choices: [{ goToPage: 87, text: "Continue.." }],
     getItems: [
-      { name: "Vial of Glue", info: "Used in spells" },
-      { name: "Nose-plugs", info: "Used in spells" },
+      { name: "glue", amount: 1 },
+      { name: "nosePlugs", amount: 1 },
       {
-        name: "Pebbles",
+        name: "pebbles",
         amount: 4,
-        info: "Small round pebbles, useful for spells",
       },
     ],
   },
@@ -3352,9 +3366,8 @@ const gameData = {
     getItems: [
       { name: "Provisions", amount: 1 },
       {
-        name: "Beeswax",
+        name: "beeswax",
         amount: 1,
-        info: "Gathered from a beehive. Used in spells",
       },
     ],
     extraText: true,

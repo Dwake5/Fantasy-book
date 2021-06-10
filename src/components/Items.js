@@ -21,7 +21,7 @@ const Items = () => {
               key={item.name}
               name={item.name}
               amount={item.amount}
-              owned={item.owned}
+              singular={item.singular}
               equipped={item.equipped}
               info={item.info}
               use={item.use}

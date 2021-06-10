@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Accordion, Card } from "react-bootstrap";
-import tutorialData from "../assets/tutorialData";
+import tutorialData from "./tutorialData";
 import TestLuckTable from "./TestLuckTable";
 
 const TutorialModal = () => {

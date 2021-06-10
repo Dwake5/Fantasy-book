@@ -8,17 +8,17 @@ const Item = ({
   name,
   info,
   amount,
-  owned,
   equipped,
   use,
+  singular,
   alwaysShow,
   reduxKey,
   healthMax,
 }) => {
   const dispatch = useDispatch();
 
-  const shouldShow = alwaysShow || owned || amount > 0;
-  // if (!shouldShow) return null;
+  const shouldShow = alwaysShow || amount > 0;
+  if (!shouldShow) return null;
 
   const equipWeapon = (weapon) => {
     equipSpecificWeapon(dispatch, weapon);
@@ -34,7 +34,7 @@ const Item = ({
       {/* Generic text for all items */}
       <p className="mb-1 hoverItem">
         {name}
-        {amount !== undefined && `: ${amount}`}
+        {amount !== undefined && singular !== true && `: ${amount}`}
         {info && (
           <span
             className="hoverText"
@@ -43,7 +43,7 @@ const Item = ({
         )}
       </p>
       {/* Drink potion */}
-      {reduxKey === "potion" && <button onClick={handleDrinkPotion} disabled={healthMax} className="btn btn-info">Drink</button>}
+      {reduxKey === "potion" && <button onClick={handleDrinkPotion} disabled={healthMax} className="btn btn-info btn-sm">Drink</button>}
       {/* Weapons */}
       {equipped !== "undefined" && equipped && (
         <button type="button" className="btn btn-secondary btn-sm">

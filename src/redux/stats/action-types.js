@@ -1,5 +1,7 @@
 const namespace = 'USER/';
 
+export const MAX_STAT = namespace + 'MAX_STAT';
+
 export const SKILL = namespace + 'SKILL';
 export const MAX_SKILL = namespace + 'MAX_SKILL';
 export const STAMINA = namespace + 'STAMINA';

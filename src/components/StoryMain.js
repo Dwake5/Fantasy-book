@@ -14,7 +14,6 @@ import Trader from "./Trader";
 import {
   getPlague,
   getSpiritCurse,
-  getAliannaCurse,
   eatenToday,
 } from "../redux/stats/selectors";
 import EatOption from "./EatOption";
@@ -23,14 +22,12 @@ const StoryMain = () => {
   const dispatch = useDispatch();
   const _pageNumber = useSelector(getPage);
   const _items = useSelector(getItems);
-  // console.log('_items :', _items);
   const _money = useSelector(getMoney);
   const _provisions = useSelector(getProvisions);
 
   // Ailments
   const _havePlague = useSelector(getPlague);
   const _haveSpiritCurse = useSelector(getSpiritCurse);
-  const _haveAliannaCurse = useSelector(getAliannaCurse);
 
   const _eatenToday = useSelector(eatenToday);
 
@@ -46,6 +43,8 @@ const StoryMain = () => {
   const staminaGain = pageData.staminaGain;
   const luckLoss = pageData.skillLoss;
   const luckGain = pageData.skillGain;
+  const playerGetsItems = pageData.getItems;
+  console.log('playerGetsItems :', playerGetsItems);
 
   const eatOption = pageData.eatOption;
 
