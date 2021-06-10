@@ -17,6 +17,7 @@ import {
   eatenToday,
 } from "../redux/stats/selectors";
 import EatOption from "./EatOption";
+import { getItem } from "../redux/items/actions";
 
 const StoryMain = () => {
   const dispatch = useDispatch();
@@ -44,7 +45,7 @@ const StoryMain = () => {
   const luckLoss = pageData.skillLoss;
   const luckGain = pageData.skillGain;
   const playerGetsItems = pageData.getItems;
-  console.log('playerGetsItems :', playerGetsItems);
+  console.log("playerGetsItems :", playerGetsItems);
 
   const eatOption = pageData.eatOption;
 
@@ -102,8 +103,17 @@ const StoryMain = () => {
     return choices.filter((choice) => canAfford(choice));
   };
 
+  const addItems = (items) => {
+    items.forEach((item) => {
+      getItem(dispatch, item);
+    });
+  };
+
   // This function is used to handle stat changes on a new node
   useEffect(() => {
+    // get items
+    if (playerGetsItems !== undefined) addItems(playerGetsItems)
+
     // stats loss
     if (skillLoss !== undefined) loseStat(dispatch, "skill", skillLoss);
     if (staminaLoss !== undefined) {
@@ -138,10 +148,16 @@ const StoryMain = () => {
       <p className="h3 mb-3 text-center">
         Adventure! Current Page: {_pageNumber}
       </p>
-      <label>Go to page:</label> 
+      <label>Go to page:</label>
       <input type="text" onKeyDown={handleKeyDown}></input>
       <p dangerouslySetInnerHTML={{ __html: pageText }}></p>
-      {eatOption && <EatOption eatOptions={eatOption} eatenToday={_eatenToday} food={_provisions} />}
+      {eatOption && (
+        <EatOption
+          eatOptions={eatOption}
+          eatenToday={_eatenToday}
+          food={_provisions}
+        />
+      )}
       {(pauseChoices || stayShowing) && mapWhatToDo()}
       {extraText && mapExtraText()}
       {!pauseChoices && (

@@ -6,10 +6,10 @@ import {
   GET_ITEM,
 } from "./action-types";
 
-export const getItem = (dispatch, itemRecieved, amount) => {
+export const getItem = (dispatch, { name, amount }) => {
   dispatch({
     type: GET_ITEM,
-    payload: { item: itemRecieved, amount },
+    payload: { item: name, amount },
   });
 };
 

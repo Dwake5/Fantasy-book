@@ -10,19 +10,19 @@ import {
 const initialState = {
   gold: {
     name: "Gold Pieces",
-    amount: 20,
+    amount: 0,
     info: "Basic currency used throughout the land",
     alwaysShow: true,
   },
   provisions: {
     name: "Provisions",
-    amount: 2,
+    amount: 0,
     info: "Enough food for 1 good meal, replenishes Stamina.",
     alwaysShow: true,
   },
   sword: {
     name: "Basic Sword",
-    amount: 1,
+    amount: 0,
     singular: true,
     info: "Weak starting sword",
     equipped: true,
