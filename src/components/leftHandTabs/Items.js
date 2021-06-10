@@ -1,10 +1,10 @@
 import React from "react";
 import { Container } from "react-bootstrap";
 import { useSelector } from "react-redux";
-import { getItems } from "../redux/items/selectors";
-import "../assets/css/Items.css";
+import { getItems } from "../../redux/items/selectors";
+import "../../assets/css/Items.css";
 import Item from "./Item";
-import { isStatMax } from "../redux/stats/selectors";
+import { isStatMax } from "../../redux/stats/selectors";
 
 const Items = () => {
   const _items = useSelector(getItems);

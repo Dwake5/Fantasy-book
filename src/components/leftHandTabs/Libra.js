@@ -1,9 +1,9 @@
 import React from "react";
 import { Container, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import "../assets/css/Stats.css";
-import { getLibra } from "../redux/stats/selectors";
-import { libraRestore, libraCure } from "../redux/stats/actions";
+import "../../assets/css/Stats.css";
+import { getLibra } from "../../redux/stats/selectors";
+import { libraRestore, libraCure } from "../../redux/stats/actions";
 
 const Stats = () => {
   const dispatch = useDispatch();

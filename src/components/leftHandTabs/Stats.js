@@ -1,12 +1,11 @@
 import React from "react";
 import { Container, ProgressBar } from "react-bootstrap";
 import { useSelector } from "react-redux";
-import "../assets/css/Stats.css";
+import "../../assets/css/Stats.css";
 import {
   eatenToday,
   getSpiritCurse,
-} from "../redux/stats/selectors";
-import "../assets/css/Stats.css";
+} from "../../redux/stats/selectors";
 
 const Stats = ({ skill, maxSkill, stamina, maxStamina, luck, maxLuck }) => {
   const _haveSpiritCurse = useSelector(getSpiritCurse);

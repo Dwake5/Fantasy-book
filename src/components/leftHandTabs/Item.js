@@ -1,8 +1,8 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import "../assets/css/Stats.css";
-import { drinkPotion, equipSpecificWeapon } from "../redux/items/actions";
-import { gainStat } from "../redux/stats/actions";
+import "../../assets/css/Stats.css";
+import { drinkPotion, equipSpecificWeapon } from "../../redux/items/actions";
+import { gainStat } from "../../redux/stats/actions";
 
 const Item = ({
   name,

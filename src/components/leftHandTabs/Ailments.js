@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Container } from "react-bootstrap";
 import { useSelector } from "react-redux";
-import "../assets/css/Stats.css";
+import "../../assets/css/Stats.css";
 import {
   getPlague,
   getSpiritCurse,
   getAliannaCurse,
-} from "../redux/stats/selectors";
+} from "../../redux/stats/selectors";
 
 const Ailments = () => {
   const _havePlague = useSelector(getPlague);

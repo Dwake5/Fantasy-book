@@ -6,6 +6,7 @@ export const isStatMax = (state, stat) => {
   const maxStat = uppercase(stat, true);
   return state.stats[stat] >= state.stats[maxStat];
 };
+
 export const eatenToday = (state) => state.stats.eatenToday;
 
 export const getLibra = (state) => state.stats.libra;

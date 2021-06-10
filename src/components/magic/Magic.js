@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Container, Modal, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { loseStat } from "../redux/stats/actions";
-import { getPage } from "../redux/story/selectors";
+import { loseStat } from "../../redux/stats/actions";
+import { getPage } from "../../redux/story/selectors";
 import MagicModal from "./MagicModel";
 
 const Magic = () => {
