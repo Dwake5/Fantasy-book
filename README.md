@@ -18,7 +18,7 @@
   <li>Drink blimberry juice for 3 HP</li>
   <li>Handle spells requiring certain items</li>
   <li>Handle spells causing extra damage if you dont have items</li>
-  <li>Disable swapping weapons in combat</li>
+  <li>Disable swapping weapons or drinking potion in combat</li>
 </ul>
 
 # Done
@@ -45,6 +45,7 @@
   <li>Write most of eat options, for when the player can choose to eat provisions</li>
   <li>Write list of all items, because current item implementation is bad.</li>
   <li>Rewrite item implementation, will be more manageable going forwards</li>
+  <li>Can now equip a weapon and change weapon</li>
 </ul>
 
 Try to prioritize getting items at a node, rather than a choice.

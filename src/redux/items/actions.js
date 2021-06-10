@@ -1,4 +1,4 @@
-import { SET_ITEMS, EQUIP_WEAPON } from "./action-types";
+import { SET_ITEMS, EQUIP_WEAPON, DRINK_POTION } from "./action-types";
 
 export const setItems = (dispatch, itemsRecieved, oldItems) => {
   let newItems = [];
@@ -46,5 +46,11 @@ export const equipSpecificWeapon = (dispatch, data) => {
   dispatch({
     type: EQUIP_WEAPON,
     payload: data,
+  });
+}
+
+export const drinkPotion = (dispatch) => {
+  dispatch({
+    type: DRINK_POTION,
   });
 }

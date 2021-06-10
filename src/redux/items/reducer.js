@@ -1,4 +1,4 @@
-import { SET_ITEMS, EQUIP_WEAPON } from "./action-types";
+import { SET_ITEMS, EQUIP_WEAPON, DRINK_POTION } from "./action-types";
 
 const initialState = {
   gold: {
@@ -175,10 +175,17 @@ export const reducer = (state = initialState, action) => {
       };
     case EQUIP_WEAPON: 
       const weapon = action.payload
-      console.log('weapon :', weapon);
       return {
         ...state,
         ...equipSpecificWeapon(state, weapon)
+      };
+    case DRINK_POTION: 
+      return {
+        ...state,
+        potion: {
+          ...state.potion,
+          own: false,
+        }
       };
     default:
       return state;

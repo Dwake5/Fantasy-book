@@ -26,3 +26,12 @@ export const testYourLuck = (luck, amulet) => {
   if (amulet) luck++;
   return rolled <= luck;
 };
+
+// Used to uppercase a word
+// Because this was being used with "max" a lot
+// stamina => maxStamina, I incorporated it in. 
+export const uppercase = (word, max) => {
+  word = word[0].toUpperCase() + word.slice(1);
+  if (max) return "max" + word;
+  return word
+};

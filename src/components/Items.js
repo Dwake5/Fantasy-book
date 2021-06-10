@@ -4,10 +4,11 @@ import { useSelector } from "react-redux";
 import { getItems } from "../redux/items/selectors";
 import "../assets/css/Items.css";
 import Item from "./Item";
+import { isStatMax } from "../redux/stats/selectors";
 
 const Items = () => {
   const _items = useSelector(getItems);
-  console.log("_items :", _items);
+  const _isHealthMax = useSelector((state) => isStatMax(state, "stamina"));
 
   return (
     <Container className="border text-center itemsBox mb-2">
@@ -26,6 +27,7 @@ const Items = () => {
               use={item.use}
               alwaysShow={item.alwaysShow}
               reduxKey={key}
+              healthMax={_isHealthMax}
             />
           );
         })}

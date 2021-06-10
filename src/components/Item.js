@@ -1,7 +1,8 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import "../assets/css/Stats.css";
-import { equipSpecificWeapon } from "../redux/items/actions";
+import { drinkPotion, equipSpecificWeapon } from "../redux/items/actions";
+import { gainStat } from "../redux/stats/actions";
 
 const Item = ({
   name,
@@ -12,6 +13,7 @@ const Item = ({
   use,
   alwaysShow,
   reduxKey,
+  healthMax,
 }) => {
   const dispatch = useDispatch();
 
@@ -22,8 +24,14 @@ const Item = ({
     equipSpecificWeapon(dispatch, weapon);
   };
 
+  const handleDrinkPotion = () => {
+    gainStat(dispatch, "stamina", 3);
+    drinkPotion(dispatch)
+  }
+
   return (
-    <div className="">
+    <div >
+      {/* Generic text for all items */}
       <p className="mb-1 hoverItem">
         {name}
         {amount !== undefined && `: ${amount}`}
@@ -34,6 +42,9 @@ const Item = ({
           ></span>
         )}
       </p>
+      {/* Drink potion */}
+      {reduxKey === "potion" && <button onClick={handleDrinkPotion} disabled={healthMax} className="btn btn-info">Drink</button>}
+      {/* Weapons */}
       {equipped !== "undefined" && equipped && (
         <button type="button" className="btn btn-secondary btn-sm">
           Equiped

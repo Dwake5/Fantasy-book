@@ -1,3 +1,4 @@
+import { uppercase } from "../../utils";
 import {
   MAX_SKILL,
   MAX_STAMINA,
@@ -12,8 +13,8 @@ import {
 const initialState = {
   skill: 0,
   maxSkill: 0,
-  stamina: 0,
-  maxStamina: 0,
+  stamina: 10,
+  maxStamina: 20,
   luck: 0,
   maxLuck: 0,
   eatenToday: false,
@@ -21,10 +22,6 @@ const initialState = {
   plague: false,
   spiritCurse: false,
   aliannaCurse: false,
-};
-
-const uppercase = (word) => {
-  return word[0].toUpperCase() + word.slice(1);
 };
 
 export const reducer = (state = initialState, action) => {
@@ -44,11 +41,14 @@ export const reducer = (state = initialState, action) => {
     case STAT_GAIN:
       const stat = action.payload.stat;
       const amount = action.payload.amount;
-      const maxStat = "max" + uppercase(stat);
+      const maxStat = uppercase(stat, true);
+      console.log('maxStat :', maxStat);
       const currentAmountOfStat = state[action.payload.stat];
+      console.log('currentAmountOfStat :', currentAmountOfStat);
 
       let newStat = currentAmountOfStat + amount;
       if (newStat > state[maxStat]) newStat = state[maxStat];
+      console.log('newStat :', newStat);
 
       return {
         ...state,
