@@ -2338,7 +2338,7 @@ const gameData = {
     great ones. I wish you the luck of Sindla on your journey. Perhaps this 
     will help you on your way. He hands you an apple-like fruit which he 
     has grown on his farm. It is a nourishing Bomba and, if you eat this 
-    along with a normal meal, it will double your gain in stamina. You 
+    along with a normal meal, it will double your gain in Stamina. You 
     thank him and wish him a good night. 
     
     You may add 2 luck points for your encounter. Then you must 

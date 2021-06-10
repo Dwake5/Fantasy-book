@@ -23,6 +23,7 @@ const StoryMain = () => {
   const dispatch = useDispatch();
   const _pageNumber = useSelector(getPage);
   const _items = useSelector(getItems);
+  // console.log('_items :', _items);
   const _money = useSelector(getMoney);
   const _provisions = useSelector(getProvisions);
 
@@ -102,7 +103,7 @@ const StoryMain = () => {
     return choices.filter((choice) => canAfford(choice));
   };
 
-  // This function is used to handle stat changes on a new page
+  // This function is used to handle stat changes on a new node
   useEffect(() => {
     // stats loss
     if (skillLoss !== undefined) loseStat(dispatch, "skill", skillLoss);
