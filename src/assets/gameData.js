@@ -565,6 +565,7 @@ const gameData = {
       { goToPage: 23, text: "Test your luck" },
     ],
     staminaLoss: 2,
+    testLuck: { optional: true },
   },
   39: {
     text: `The room is quite large and is evidently a storeroom of some kind. In 
@@ -1055,7 +1056,7 @@ const gameData = {
       { goToPage: 250, text: "Test your Luck - success" },
       { goToPage: 181, text: "Test your Luck - fail" },
     ],
-    testLuck: true,
+    testLuck: { optional: false },
   },
   83: {
     text: `Unfortunately for you, there is no other way of escape. As you try to 
@@ -1221,7 +1222,7 @@ const gameData = {
     text: `As you pass by the sentry post, the Troll emerges from behind the 
     hut armed with a halberd, and sees you. You will have to fight him: 
     
-    TROLL SKILL 8 STAMTNA 7 
+    TROLL SKILL 8 STAMINA 7 
     
     If you wish to fight with magic, you may choose:`,
     choices: [
@@ -1625,7 +1626,7 @@ const gameData = {
       { goToPage: 390, text: "Magic: SUS" },
       { goToPage: 324, text: "Magic: HUF" },
       { goToPage: 416, text: "Magic: DIP" },
-      { goToPage: 365, text: "Magic: FQF" },
+      { goToPage: 365, text: "Magic: FOF" },
       { goToPage: 445, text: "Magic: SUD" },
       { goToPage: 64, text: "I have another plan" }, // leads to death
       { goToPage: 260, text: "Call Libra", needLibra: true },
@@ -1659,7 +1660,7 @@ const gameData = {
       { goToPage: 70, text: "Test your Luck - Fail" },
       { goToPage: 70, text: "Don't test your luck" },
     ], // todo add test your luck choice
-    testLuck: true,
+    testLuck: { optional: true },
   },
   134: {
     text: `The inn charges 3 Gold Pieces for a hearty meal and 3 Gold Pieces for a 
@@ -1807,7 +1808,7 @@ const gameData = {
       { goToPage: 259, text: "Test your Luck - Success" },
       { goToPage: 217, text: "Test your Luck - Fail" },
     ],
-    testLuck: true,
+    testLuck: { optional: false },
   },
   145: {
     text: `Both boxes look like fairly uninteresting wooden cases, each fastened 
@@ -1898,7 +1899,7 @@ const gameData = {
     text: `Looking through his pockets you find 3 Gold Pieces. You may now set 
     off ahead, continuing along the path.`,
     choices: [{ goToPage: 212, text: "Continue.." }], // todo get gold
-    getItems: [{ name: "Gold", amount: 3 }],
+    getItems: [{ name: "gold", amount: 3 }],
   },
   154: {
     text: `Some way down the path you come across a hut in a rather picturesque setting, 
@@ -2043,6 +2044,7 @@ const gameData = {
     you are Lucky three times in succession, you manage to kill all the 
     snakes.`,
     choices: [{ goToPage: 206, text: "Lucky 3 times in a row - continue" }],
+    testLuck: { optional: false },
   },
   166: {
     text: `Which spell will you choose?
@@ -2183,7 +2185,7 @@ const gameData = {
     What is your response?</p>`,
     choices: [
       { goToPage: 264, text: "Tell him you are a trader" },
-      { goToPage: 33, text: "Ask for directions onwards", requires: "axe" },
+      { goToPage: 33, text: "Ask for directions onwards" },
       { goToPage: 198, text: "Tell him you are hungry and need Provisions" },
     ],
   },
@@ -2403,7 +2405,7 @@ const gameData = {
       { goToPage: 75, text: "Test your Luck - Fail" },
       { goToPage: 75, text: "Continue" },
     ],
-    testLuck: true,
+    testLuck: { optional: true },
   },
   195: {
     text: `Behind you a roaring puts you on your guard. The walls of the 
@@ -2553,7 +2555,7 @@ const gameData = {
     passage! The rest of your life will now be spent starving to death 
     although if you can stomach raw snake you will live a little longer . . . 
     Your only remaining chance is if you have not yet called upon Libra`,
-    choices: [{ goToPage: 273, text: "Call on Libra" }],
+    choices: [{ goToPage: 273, text: "Call on Libra", needLibra: true }],
   },
   207: {
     text: `You enter the cave and can hear a faint whistling which gets louder 
@@ -2721,6 +2723,7 @@ const gameData = {
     When they have ransacked your possessions, they let you go and you 
     may leave the village.`,
     choices: [{ goToPage: 196, text: "Continue.." }],
+    testLuck: { optional: false },
   },
   219: {
     text: `She asks you whether you have any items 'of a magical nature". You 
@@ -2980,7 +2983,7 @@ const gameData = {
       { goToPage: 118, text: "Test your Luck - Success" },
       { goToPage: 223, text: "Test your Luck - Fail" },
     ],
-    testLuck: true,
+    testLuck: { optional: false },
   },
   237: {
     text: `You continue up the hill. The climb is steep, but by mid-afternoon you 
@@ -3368,7 +3371,7 @@ const gameData = {
       { goToPage: 276, text: "Test your Luck - Success" },
       { goToPage: 0, text: "Test your Luck - Fail" }, // todo Leads to death
     ],
-    testLuck: true,
+    testLuck: { optional: false },
   },
   270: {
     text: `The bees swarm around you but you are powerless to defend yourself 
@@ -3515,7 +3518,7 @@ const gameData = {
       { goToPage: 148, text: "Test your Luck - Success" },
       { goToPage: 12, text: "Test your Luck - Fail" },
     ],
-    testLuck: true,
+    testLuck: { optional: false },
   },
   282: {
     text: `You approach a group of Svinns deep in conversation and take a seat 
@@ -4171,6 +4174,7 @@ const gameData = {
       { goToPage: 203, text: "Attack it" },
     ],
     staminaLoss: 2,
+    testLuck: { optional: true },
   },
   357: {
     text: `Deduct 5 stamina points. There is no such spell as this. In fact you 
@@ -4279,6 +4283,7 @@ const gameData = {
       { goToPage: 63, text: "Go back and choose again" },
     ],
     staminaLoss: 1,
+    testLuck: { optional: true },
   },
   367: {
     text: `Deduct 1 stamina point. Do you have a vial of glue with you? If not 
@@ -4526,6 +4531,7 @@ const gameData = {
       { goToPage: 3, text: "Return and take the other passageway" },
     ],
     staminaLoss: 2,
+    testLuck: { optional: false },
   },
   391: {
     text: `Deduct 5 stamina points. There is no such spell as this. You have 
@@ -4864,6 +4870,7 @@ const gameData = {
     avoid this attack.`,
     choices: [{ goToPage: 217, text: "Fight the goblins or cast a spell" }], // todo test your luck + 2 hp if pass
     staminaLoss: 3, // todo come back to this
+    testLuck: { optional: true },
   },
   429: {
     text: `Deduct 1 stamina point. You cannot use this spell as you do not 
@@ -5053,6 +5060,7 @@ const gameData = {
       { goToPage: 123, text: "Fight the creature with double skill" }, // todo double skill fight
     ],
     staminaLoss: 2,
+    testLuck: { optional: true },
   },
   454: {
     text: `Deduct 2 stamina points. You cast this spell and consider both 

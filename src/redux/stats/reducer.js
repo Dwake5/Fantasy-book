@@ -24,7 +24,7 @@ const initialState = {
   plague: false,
   spiritCurse: false,
   aliannaCurse: false,
-  jann: false,
+  jann: true,
 };
 
 export const reducer = (state = initialState, action) => {

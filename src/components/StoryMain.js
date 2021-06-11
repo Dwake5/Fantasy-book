@@ -1,24 +1,31 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import "../assets/css/Story.css";
 import gameData from "../assets/gameData";
-import { getItems, getMoney, getOwnedItems, getProvisions, ownItem } from "../redux/items/selectors";
-import { loseStat, gainStat, changeEatenToday } from "../redux/stats/actions";
-import { setPage } from "../redux/story/actions";
-import { getPage } from "../redux/story/selectors";
+import { getItem } from "../redux/items/actions";
+import {
+  getItems,
+  getMoney,
+  getOwnedItems,
+  getProvisions
+} from "../redux/items/selectors";
+import { changeEatenToday, gainStat, loseStat } from "../redux/stats/actions";
+import {
+  eatenToday,
+  getHaveJann,
+  getLibra,
+  getPlague,
+  getSpiritCurse
+} from "../redux/stats/selectors";
+import { playerLearnsJann, setPage } from "../redux/story/actions";
+import { getCantUseMagic, getPage } from "../redux/story/selectors";
 import BuyProvisions from "./BuyProvisions";
 import CreateStats from "./CreateStats";
-import PlayerChoices from "./PlayerChoices";
-import Trader from "./Trader";
-import {
-  getPlague,
-  getSpiritCurse,
-  eatenToday,
-  getLibra,
-} from "../redux/stats/selectors";
 import EatOption from "./EatOption";
-import { getItem } from "../redux/items/actions";
+import PlayerChoices from "./PlayerChoices";
+import TestLuck from "./TestLuck";
+import Trader from "./Trader";
 
 const StoryMain = () => {
   const dispatch = useDispatch();
@@ -29,6 +36,10 @@ const StoryMain = () => {
   const _money = useSelector(getMoney);
   const _provisions = useSelector(getProvisions);
   const _eatenToday = useSelector(eatenToday);
+
+  // Jann
+  const _haveJann = useSelector(getHaveJann);
+  const _cantUseMagic = useSelector(getCantUseMagic);
 
   // Ailments
   const _havePlague = useSelector(getPlague);
@@ -48,10 +59,13 @@ const StoryMain = () => {
   const luckGain = pageData.skillGain;
   const playerGetsItems = pageData.getItems;
   const eatOption = pageData.eatOption;
+  const testLuck = pageData.testLuck;
   const newDay = pageData.newDay;
   const eaten = pageData.eaten;
 
   const [stayShowing, setStayShowing] = useState(false);
+
+  const discoverJannSecret = [286,305,306,321,394,387];
 
   const cancelPause = (keepShowing) => {
     pageData.pause = false;
@@ -106,35 +120,51 @@ const StoryMain = () => {
     const requires = choice.requires;
     if (requires === undefined) return true;
     return _itemsOwned.includes(requires);
-  }
+  };
 
   const filterNeedItems = (choices) => {
     return choices.filter((choice) => haveItem(choice));
   };
 
+  const isSpellAndHaveJann = (choice) => {
+    const isSpell = choice.text.slice(0, 5) === "Magic";
+    if (!isSpell) return true;
+    if (_haveJann && _cantUseMagic) return false;
+    return true
+  };
+
+  const filterMagic = (choices) => {
+    return choices.filter((choice) => isSpellAndHaveJann(choice));
+  };
+
   const needAndHaveLibra = (choice) => {
     const needLibra = choice.needLibra;
-    if (needLibra === undefined) return true
-    return _haveLibra
-  }
+    if (needLibra === undefined) return true;
+    return _haveLibra;
+  };
 
   const filterNeedLibra = (choices) => {
-    return choices.filter(choice => needAndHaveLibra(choice))
-  }
+    return choices.filter((choice) => needAndHaveLibra(choice));
+  };
 
   const filterChoices = (choices) => {
-    let filtered = filterNeedItems(choices)
-    filtered = filterCanAfford(filtered)
-    filtered = filterNeedLibra(filtered)
-    return filtered
-  }
+    let filtered
+    if (_pageNumber === 100) {
+      console.log('_haveJann:', _haveJann ? [choices[0]] : [choices[1]]);
+      return _haveJann ? [choices[0]] : [choices[1]]
+    }
+    filtered = filterNeedItems(choices);
+    filtered = filterCanAfford(filtered);
+    filtered = filterNeedLibra(filtered);
+    filtered = filterMagic(filtered);
+    return filtered;
+  };
 
   const addItems = (items) => {
     items.forEach((item) => {
       getItem(dispatch, item);
     });
   };
-
 
   const handleNewDay = () => {
     let loseStamina = 0;
@@ -145,12 +175,17 @@ const StoryMain = () => {
       loseStat(dispatch, "stamina", loseStamina);
     }
     changeEatenToday(dispatch, false);
-  }
+  };
 
   // This function is used to handle stat changes on a new node
   useEffect(() => {
-    // get items
-    if (playerGetsItems !== undefined) addItems(playerGetsItems)
+
+    if (discoverJannSecret.includes(_pageNumber)) {
+      console.log('should be called')
+      playerLearnsJann(dispatch);
+    }
+
+    if (playerGetsItems !== undefined) addItems(playerGetsItems);
 
     // stats loss
     if (skillLoss !== undefined) loseStat(dispatch, "skill", skillLoss);
@@ -164,7 +199,7 @@ const StoryMain = () => {
     if (luckLoss !== undefined) loseStat(dispatch, "luck", luckLoss);
 
     // The player ate at this node
-    if (eaten !== undefined) changeEatenToday(dispatch, true)
+    if (eaten !== undefined) changeEatenToday(dispatch, true);
 
     // stats gain
     if (skillGain !== undefined) gainStat(dispatch, "skill", skillGain);
@@ -183,6 +218,7 @@ const StoryMain = () => {
       <label>Go to page:</label>
       <input type="text" onKeyDown={handleKeyDown}></input>
       <p dangerouslySetInnerHTML={{ __html: pageText }}></p>
+      {testLuck && <TestLuck />}
       {eatOption && (
         <EatOption
           eatOptions={eatOption}

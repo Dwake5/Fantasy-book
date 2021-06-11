@@ -21,10 +21,12 @@ export const pluralize = (word, amount) => {
 // Gets the sum of two dice and compares it to luck
 // Returns a boolean depending on if the role is less than or equal to
 // the die roll. The luck amulet adds 1 to luck, increasing chances
+
+// This should be a hook? 
 export const testYourLuck = (luck, amulet) => {
   const rolled = diceRolls(2, true);
   if (amulet) luck++;
-  return rolled <= luck;
+  return [rolled, rolled <= luck]
 };
 
 // Used to uppercase a word

@@ -9,7 +9,7 @@ import {
 } from "../redux/stats/actions";
 import { addOneToTraderItem, setPage } from "../redux/story/actions";
 
-const PlayerChoices = ({ choices, playerItems, setStayShowing }) => {
+const PlayerChoices = ({ choices, setStayShowing }) => {
   const dispatch = useDispatch();
 
   const handleChoice = (choice) => {
@@ -33,6 +33,7 @@ const PlayerChoices = ({ choices, playerItems, setStayShowing }) => {
       case 184: // lose spell book page
         getItem(dispatch, { name: "spellbookPage", amount: -1 });
         break;
+      
       default:
         console.log("uneventful node");
     }

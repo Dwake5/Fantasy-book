@@ -3,7 +3,7 @@ import { SET_PAGE, SET_TRADER_VIEWS, PLAYER_LEARNS_JANN } from "./action-types";
 const initialState = {
   page: 1000,
   traderViews: 0,
-  noMagicJann: false
+  cantUseMagic: false,
 };
 
 export const reducer = (state = initialState, action) => {
@@ -21,7 +21,7 @@ export const reducer = (state = initialState, action) => {
     case PLAYER_LEARNS_JANN:
       return {
         ...state,
-        noMagicJann: true,
+        cantUseMagic: true,
       };
     default:
       return state;

@@ -5,19 +5,18 @@
   <li>Find a way to adapt story text based on users stats (done?)</li>
   <li>Add P tags to text to format it better</li>
   <li>Progress bars to combat</li>
-  <li>Implement Jann</li>
   <li>Find a way to fight night creatures and return to previous node (84, 108, 283 || 396, 421, 437, 453)</li>
   <li>108, 283 adds +2 to night creatures roll</li>
   <li>Get no change for buying with gems (15) might not do this, a lot of work for little payoff, maybe just give 5gp a piece</li>
   <li>Implement getting items at nodes, not choices</li>
   <li>Handle death</li>
   <li>Implement test luck</li>
-  <li>Can't cast spells if Jann is with you</li>
   <li>Implement luck item, 177</li>
   <li>Handle spells requiring certain items</li>
-  <li>Handle using spells causing extra damage to you if you dont have items</li>
+  <li>Handle using spells causing extra damage to you if you don't have items</li>
   <li>Disable swapping weapons or drinking potion in combat</li>
   <li>Add in Glamdragors sword 233</li>
+  <li>Workout when the user has to know about Jann... (305, 306, 321, 394, 387, 286 all tell you, but are optional choices except 286!) Requires a lot of testing</li>
 </ul>
 
 # Done
@@ -28,7 +27,7 @@
   <li>Gain/lose luck when going to some nodes, luckGain/loss variable</li>
   <li>Write list of story nodes which need to have extra code written</li>
   <li>Create a luck table success chance in the tutorial</li>
-  <li>Remove items from choices list that are too expensive</li>
+  <li>Remove items from choices list that are too expensive (money-wise)</li>
   <li>Refactor choices into its own component</li>
   <li>Move logic for paying and getting items into redux action (feel like this has been doing poorly)</li>
   <li>Move filter options into storyMain so that press a button to go to a choice works</li>
@@ -53,6 +52,8 @@
   <li>Implement have eaten today (fully)</li>
   <li>Require libra to pick a choice and use her.</li>
   <li>Waterfall at 204 removes disease(s) and restores all stats to max</li>
+  <li>Block magic if both the player has Jann and knows she blocks magic.</li>
+  <li>Can't cast spells if Jann is with you (and the player knows Jann is anti magic)</li>
 </ul>
 
 Try to prioritize getting items at a node, rather than a choice.
