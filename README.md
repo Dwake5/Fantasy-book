@@ -1,11 +1,11 @@
 # Things to do
+
 <ul>
-  <li>Find a way to adapt story text based on users stats</li>
-  <li>Write staminaLoss for non magic nodes</li>
+  <li>Integrate combat</li>
+  <li>Find a way to adapt story text based on users stats (done?)</li>
   <li>Add P tags to text to format it better</li>
   <li>Progress bars to combat</li>
   <li>Implement Jann</li>
-  <li>Implement have eaten today (fully)</li>
   <li>Find a way to fight night creatures and return to previous node (84, 108, 283 || 396, 421, 437, 453)</li>
   <li>108, 283 adds +2 to night creatures roll</li>
   <li>Get no change for buying with gems (15) might not do this, a lot of work for little payoff, maybe just give 5gp a piece</li>
@@ -13,17 +13,18 @@
   <li>Handle death</li>
   <li>Implement test luck</li>
   <li>Can't cast spells if Jann is with you</li>
-  <li>Use up libra in choices: 160</li>
   <li>Implement luck item, 177</li>
-  <li>Drink blimberry juice for 3 HP</li>
   <li>Handle spells requiring certain items</li>
-  <li>Handle spells causing extra damage if you dont have items</li>
+  <li>Handle using spells causing extra damage to you if you dont have items</li>
   <li>Disable swapping weapons or drinking potion in combat</li>
+  <li>Add in Glamdragors sword 233</li>
 </ul>
 
 # Done
+
 <ul>
   <li>Gain HP when going to some nodes, staminaGain variable</li>
+  <li>Write staminaLoss for non magic nodes</li>
   <li>Gain/lose luck when going to some nodes, luckGain/loss variable</li>
   <li>Write list of story nodes which need to have extra code written</li>
   <li>Create a luck table success chance in the tutorial</li>
@@ -47,6 +48,11 @@
   <li>Rewrite item implementation, will be more manageable going forwards</li>
   <li>Can now equip a weapon and change weapon</li>
   <li>Can drink blimberry potion, gaining health and using it up. Doesnt let user drink if they are at max health.</li>
+  <li>Put a requires on choices, and filter them based on if user has that item i.e. need provisions to eat</li>
+  <li>Used a useRef hook to store a value so EatOption has a fixed health after clicking it.</li>
+  <li>Implement have eaten today (fully)</li>
+  <li>Require libra to pick a choice and use her.</li>
+  <li>Waterfall at 204 removes disease(s) and restores all stats to max</li>
 </ul>
 
 Try to prioritize getting items at a node, rather than a choice.
@@ -98,6 +104,7 @@ Gaints Teeth
 Snattacat Teeth
 
 # Extra content story nodes
+
 2: Fight Serpent Skill 7 Stamina 8
 4: Use Key if have it
 20: Fight Skunkbear Skill 7 Stamina 5 (you lose 2 AS)
@@ -141,7 +148,7 @@ Snattacat Teeth
 141: Barter or not for the axe
 142: Try to roll lower than skill, unlimited tries, - AS for weapon chosen each try
 144: Test luck
-151: Get Svinn girl? 
+151: Get Svinn girl?
 161: You have to pay, so block this option if not enough GP
 162: Fight Hill Gaint skill 9 stamina 11
 165: Keep testing your luck, until success 3 times in a row. -3 hp each time
@@ -151,7 +158,7 @@ Snattacat Teeth
 182: Give him axe if have it, or give him something else
 185: Lose weapon, -4 skill if no weapon
 187: Get friend for second book Flanker
-194: Can take sword and leave the old one behind, does +1 damage. If unwanted you can test your luck, if pass, sell it again. 
+194: Can take sword and leave the old one behind, does +1 damage. If unwanted you can test your luck, if pass, sell it again.
 203: Fight Elvin skill 6+2 stamina 4
 204: Waterfall cures you of all except disease
 205: Lose Jann

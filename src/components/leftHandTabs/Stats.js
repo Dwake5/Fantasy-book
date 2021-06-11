@@ -4,13 +4,16 @@ import { useSelector } from "react-redux";
 import "../../assets/css/Stats.css";
 import {
   eatenToday,
+  getHaveJann,
   getSpiritCurse,
 } from "../../redux/stats/selectors";
+import { getPage } from "../../redux/story/selectors";
 
 const Stats = ({ skill, maxSkill, stamina, maxStamina, luck, maxLuck }) => {
   const _haveSpiritCurse = useSelector(getSpiritCurse);
   const _eatenToday = useSelector(eatenToday);
-
+  const _pageNumber = useSelector(getPage);
+  const _haveJann = useSelector(getHaveJann);
 
   const getSkill = () => {
     return _haveSpiritCurse ? skill-2 : skill
@@ -43,8 +46,11 @@ const Stats = ({ skill, maxSkill, stamina, maxStamina, luck, maxLuck }) => {
           <ProgressBar variant="warning" className="mb-2" now={luck/maxLuck * 100} />
         </>
       )}
-      {maxLuck > 0 && (
+      {_pageNumber < 1000 && (
         <p>Eaten today: {_eatenToday ? "Yes" : "No"}</p>
+      )}
+      {_haveJann && (
+        <p>Jann flies around your shoulders</p>
       )}
     </Container>
   );

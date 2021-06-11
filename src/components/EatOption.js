@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { Container } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import "../assets/css/Stats.css";
 import { changeEatenToday, gainStat } from "../redux/stats/actions";
 
-const EatOption = ({ eatOptions, eatenToday, food }) => {
+const EatOption = ({ eatOptions, eatenToday, food, money, pageNumber }) => {
   const dispatch = useDispatch();
+  const fixedFoodHealth = useRef(null);
 
   const [usedOption, setUsedOption] = useState(false);
 
@@ -13,7 +14,8 @@ const EatOption = ({ eatOptions, eatenToday, food }) => {
   const mealHealth = eatOptions.haveEaten;
   const foodHeals = eatenToday ? mealHealth : firstMealHealth;
 
-  // const costsMoney = eatOptions.cost; come back to this
+  const costsMoney = eatOptions.cost;
+  const mealName = eatOptions.name;
 
   const handleEatFood = () => {
     gainStat(dispatch, "stamina", foodHeals);
@@ -21,14 +23,39 @@ const EatOption = ({ eatOptions, eatenToday, food }) => {
     setUsedOption(true);
   };
 
+  useEffect(() => {
+    fixedFoodHealth.current = foodHeals;
+  }, [pageNumber]);
+
   return (
-    <Container>
-      {food > 0 && (
-        <button disable={usedOption} onClick={handleEatFood}>
-          Eat 1 Provision for {foodHeals} Stamina
+    <Container className="mb-4">
+      {/* Costs Food */}
+      {!costsMoney && food > 0 ? (
+        <button
+          disabled={usedOption}
+          type="button"
+          className="btn btn-success mb-3"
+          onClick={handleEatFood}
+        >
+          Eat 1 Provision for {fixedFoodHealth.current || foodHeals} Stamina
         </button>
+      ) : (
+        food <= 0 && <p>You are out of Provisions</p>
       )}
-      {food <= 0 && <p>You are out of Provisions</p>}
+      {/* Costs money */}
+      {costsMoney && money >= costsMoney ? (
+        <button
+          disabled={usedOption}
+          type="button"
+          className="btn btn-success mb-3"
+          onClick={handleEatFood}
+        >
+          Eat the {mealName} for {fixedFoodHealth.current || foodHeals} Stamina, -
+          {costsMoney} Gold Pieces
+        </button>
+      ) : (
+        money <= costsMoney && <p>You don't have enough money for the meal</p>
+      )}
     </Container>
   );
 };

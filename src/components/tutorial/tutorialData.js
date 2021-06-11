@@ -152,8 +152,8 @@ const tutorialData = [
     <p>Your skill score will not change much during your adventure. 
     Occasionally, you may be given instructions to increase or decrease 
     your skill score. A Magic Weapon may increase your skill, but 
-    remember that only one weapon can be used at a timet You cannot 
-    claim 2 sktll bonuses for carrying two Magic Swords. Your skill 
+    remember that only one weapon can be used at a time. You cannot 
+    claim 2 skill bonuses for carrying two Magic Swords. Your skill 
     score can never exceed its Initial value unless specifically instructed.</p> 
     
     <h3>Stamina and Provisions</h3>
@@ -200,7 +200,7 @@ const tutorialData = [
     
     <p>Full rules for using spells are given in the Spell Book.</p> 
     
-    <p>Don't forget! Looking at your spellbook during your adventure is risky. You will lose 2 stamina points.</p>`,
+    <p>Don't forget! Looking at your spellbook during your adventure is risky. You will lose 2 stamina points for doing so.</p>`,
   },
   {
     header: `Libra - The Goddess of Justice`,

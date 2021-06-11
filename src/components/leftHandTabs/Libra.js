@@ -22,19 +22,18 @@ const Stats = () => {
     <Container className="border text-center mb-2">
       <p className="h3 text-center">Libra</p>
       {_haveLibra && (
-        <>
+        <div className="d-flex flex-column">
           <p className="mb-3">Libra is with you!</p>
           <p className="mb-1 textSmall">
-            Fully restore all stats to thier initial values:
+            Use Libra to:
           </p>
           <Button
             onClick={() => handleLibra("restore")}
             variant="secondary"
             className="mb-3"
           >
-            Restore
+            Revitalize
           </Button>
-          <p className="mb-1 textSmall">Cure all diseases and curses:</p>
           <Button
             onClick={() => handleLibra("cure")}
             variant="secondary"
@@ -42,7 +41,7 @@ const Stats = () => {
           >
             Cure
           </Button>
-        </>
+        </div>
       )}
       {!_haveLibra && <p>Libra will join you in the next adventure</p>}
     </Container>

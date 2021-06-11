@@ -15,5 +15,11 @@ export const STAT_GAIN = namespace + 'STAT_GAIN';
 export const EATEN_TODAY = namespace + 'EATEN_TODAY';
 
 export const LIBRA = namespace + 'LIBRA';
+export const LOSE_LIBRA = namespace + 'LOSE_LIBRA,';
 export const LIBRA_CURE = namespace + 'LIBRA_CURE';
 export const LIBRA_RESTORE = namespace + 'LIBRA_RESTORE';
+
+export const WATERFALL = namespace + 'WATERFALL';
+
+export const RECEIVE_JANN = namespace + 'RECEIVE_JANN';
+export const LOSE_JANN = namespace + 'LOSE_JANN';

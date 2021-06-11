@@ -13,3 +13,6 @@ export const getLibra = (state) => state.stats.libra;
 export const getPlague = (state) => state.stats.plague;
 export const getSpiritCurse = (state) => state.stats.spiritCurse;
 export const getAliannaCurse = (state) => state.stats.aliannaCurse;
+
+export const getHaveJann = (state) => state.stats.jann;
+

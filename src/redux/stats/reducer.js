@@ -6,6 +6,10 @@ import {
   EATEN_TODAY,
   LIBRA_CURE,
   LIBRA_RESTORE,
+  LOSE_LIBRA,
+  WATERFALL,
+  RECEIVE_JANN,
+  LOSE_JANN,
 } from "./action-types";
 
 const initialState = {
@@ -56,6 +60,11 @@ export const reducer = (state = initialState, action) => {
         ...state,
         eatenToday: action.payload,
       };
+    case LOSE_LIBRA:
+      return {
+        ...state,
+        libra: false,
+      };
     case LIBRA_CURE:
       return {
         ...state,
@@ -72,13 +81,31 @@ export const reducer = (state = initialState, action) => {
         luck: state.maxLuck,
         libra: false,
       };
+    case WATERFALL:
+      return {
+        ...state,
+        skill: state.maxSkill,
+        stamina: state.maxStamina,
+        luck: state.maxLuck,
+        plague: false,
+      };
     case MAX_STAT:
       maxStat = uppercase(action.payload.stat, true);
-      stat = action.payload.stat
+      stat = action.payload.stat;
       return {
         ...state,
         [maxStat]: action.payload.number,
         [stat]: action.payload.number,
+      };
+    case RECEIVE_JANN:
+      return {
+        ...state,
+        jann: true,
+      };
+    case LOSE_JANN:
+      return {
+        ...state,
+        jann: false,
       };
     default:
       return state;
