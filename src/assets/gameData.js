@@ -11,7 +11,7 @@ const gameData = {
     You can however always choose to defeat enemies with combat.</p>
 
     <p>Take time to view your Spell Book now and learn some of the core spells. Due to the dangerous nature of your quest, 
-    viewing it on your journey will be risky and a penalty will occur. No wizard would be expected to memorize all of the spells 
+    viewing it on your journey will be risky and a penalty will be occured. No wizard would be expected to memorize all of the spells 
     and a small handful will usually be sufficient.</p>
 
     <p>Through the multi-choice system, you will choose which 
@@ -1053,10 +1053,11 @@ const gameData = {
   82: {
     text: `You creep past the caves, Test your Luck.`,
     choices: [
-      { goToPage: 250, text: "Test your Luck - success" },
-      { goToPage: 181, text: "Test your Luck - fail" },
+      { goToPage: 250, text: "Test your Luck - success", luck: "success" },
+      { goToPage: 181, text: "Test your Luck - fail", luck: "failed" },
     ],
     testLuck: { optional: false },
+    pause: true,
   },
   83: {
     text: `Unfortunately for you, there is no other way of escape. As you try to 
@@ -1656,9 +1657,9 @@ const gameData = {
     thicker. Suddenly there is a cracking beneath your feet and something 
     gives way underfoot. You may Test your Luck if you wish.`,
     choices: [
-      { goToPage: 89, text: "Test your Luck - Success" },
-      { goToPage: 70, text: "Test your Luck - Fail" },
-      { goToPage: 70, text: "Don't test your luck" },
+      { goToPage: 89, text: "Test your Luck - Success", luck: "success" },
+      { goToPage: 70, text: "Test your Luck - Fail", luck: "failed" },
+      { goToPage: 70, text: "Don't test your luck", luck: "blocked" },
     ], // todo add test your luck choice
     testLuck: { optional: true },
   },
@@ -1805,10 +1806,11 @@ const gameData = {
     text: `You emerge carefully from the cave, trying not to be spotted by 
     wandering Goblins. Test your Luck.`,
     choices: [
-      { goToPage: 259, text: "Test your Luck - Success" },
-      { goToPage: 217, text: "Test your Luck - Fail" },
+      { goToPage: 259, text: "Test your Luck - Success", luck: "success" },
+      { goToPage: 217, text: "Test your Luck - Fail", luck: "failed" }, 
     ],
     testLuck: { optional: false },
+    pause: true
   },
   145: {
     text: `Both boxes look like fairly uninteresting wooden cases, each fastened 
@@ -2036,7 +2038,7 @@ const gameData = {
     choices: [{ goToPage: 65, text: "Continue.." }],
     eatOption: { haveEaten: 1, haveNotEaten: 2 },
   },
-  165: {
+  165: { // unique node
     text: `You may try to kill all the snakes in the pit with your weapon. Test your 
     Luck. If you are Lucky, Test your Luck again. You must keep trying 
     until you are Lucky three times in succession. Each time you are 
@@ -2393,7 +2395,7 @@ const gameData = {
     you, however, is a small village set into the hill.`,
     choices: [{ goToPage: 28, text: "Continue.." }],
   },
-  194: {
+  194: { // unique node
     text: `The sword has a specially sharpened blade and will inflict 3 stamina 
     points' worth of damage instead of the normal 2. However, you will 
     not be able to take this sword if you already have a sword unless you 
@@ -2401,9 +2403,9 @@ const gameData = {
     good as your old one, you may ask the merchant for your money back 
     (Test your Luck - if you are Lucky he will give you a refund).`,
     choices: [
-      { goToPage: 75, text: "Test your Luck - Success" },
-      { goToPage: 75, text: "Test your Luck - Fail" },
-      { goToPage: 75, text: "Continue" },
+      { goToPage: 75, text: "Test your Luck - Success", luck: "success" },
+      { goToPage: 75, text: "Test your Luck - Fail", luck: "failed" },
+      { goToPage: 75, text: "Continue", luck: "blocked" },
     ],
     testLuck: { optional: true },
   },
@@ -2707,7 +2709,7 @@ const gameData = {
       { name: "Third Goblin", skill: 5, stamina: 5 },
     ],
   },
-  218: {
+  218: { // unique node
     text: `They have taken your backpack and are sorting through it, taking any 
     items they wish. Having done this, and regarding you as fairly 
     harmless, they let you go. 
@@ -2945,7 +2947,7 @@ const gameData = {
     ],
     getItems: [
       {
-        name: "Waterfall Pass",
+        name: "waterfallPass",
         amount: 1,
       },
     ],
@@ -2980,10 +2982,11 @@ const gameData = {
   236: {
     text: `Test your Luck`,
     choices: [
-      { goToPage: 118, text: "Test your Luck - Success" },
-      { goToPage: 223, text: "Test your Luck - Fail" },
+      { goToPage: 118, text: "Test your Luck - Success", luck: "success" },
+      { goToPage: 223, text: "Test your Luck - Fail", luck: "success" },
     ],
     testLuck: { optional: false },
+    pause: true,
   },
   237: {
     text: `You continue up the hill. The climb is steep, but by mid-afternoon you 
@@ -3242,7 +3245,7 @@ const gameData = {
     As you thrash about in the water, you are able to breathe easily and 
     soon you relax knowing you are safe. After several minutes, the 
     water drains off, leaving you on the ground unharmed, although 
-    somewhat damp. The sealing wall disappears into the floor and you 
+    somewhat damp. The cieling wall disappears into the floor and you 
     return to the large chamber to choose another passage. Will you take 
     the right-hand path or the left-hand path?`,
     choices: [
@@ -3368,10 +3371,11 @@ const gameData = {
     are too late and the tree lands on you, crushing you and your 
     miniature companion to death.`,
     choices: [
-      { goToPage: 276, text: "Test your Luck - Success" },
-      { goToPage: 0, text: "Test your Luck - Fail" }, // todo Leads to death
+      { goToPage: 276, text: "Test your Luck - Success", luck: "success" },
+      { goToPage: 0, text: "Test your Luck - Fail", luck: "failed" }, // todo Leads to death
     ],
     testLuck: { optional: false },
+    pause: true,
   },
   270: {
     text: `The bees swarm around you but you are powerless to defend yourself 
@@ -3515,10 +3519,11 @@ const gameData = {
     one of them sees you across the stream and points you out to the 
     others.`,
     choices: [
-      { goToPage: 148, text: "Test your Luck - Success" },
-      { goToPage: 12, text: "Test your Luck - Fail" },
+      { goToPage: 148, text: "Test your Luck - Success", luck: "success" },
+      { goToPage: 12, text: "Test your Luck - Fail", luck: "failed" },
     ],
     testLuck: { optional: false },
+    pause: true
   },
   282: {
     text: `You approach a group of Svinns deep in conversation and take a seat 
@@ -4169,9 +4174,9 @@ const gameData = {
     If you are Unlucky, the Elvin will continue its battle. If you 
     end up fighting the creature, due to your size, you may double your skill score.`,
     choices: [
-      { goToPage: 148, text: "Test your Luck - Success" },
-      { goToPage: 203, text: "Test your Luck - Fail (skill doubled in fight)" },
-      { goToPage: 203, text: "Attack it" },
+      { goToPage: 148, text: "Test your Luck - Success", luck: "success" },
+      { goToPage: 203, text: "Test your Luck - Fail (skill doubled in fight)", luck: "failed" },
+      { goToPage: 203, text: "Attack it", luck: "blocked" },
     ],
     staminaLoss: 2,
     testLuck: { optional: true },
@@ -4260,7 +4265,7 @@ const gameData = {
     text: `Deduct 4 stamina points. You cast your spell and an invisible force 
     field forms itself around you, sealing you into a pocket of air. 
     Although the water floods around you, you are quite safe. After 
-    several moments, the sealing wall lowers and the waiter drains off. 
+    several moments, the cieling wall lowers and the waiter drains off. 
     You may continue by either returning to the junction and taking the 
     other fork or going back to the main chamber and taking 
     the other passageway.`,
@@ -4270,7 +4275,7 @@ const gameData = {
     ],
     staminaLoss: 4,
   },
-  366: {
+  366: { // unique node
     text: `Deduct 1 stamina point. You cannot use this spell as you do not 
     have the Jewel-Studded Medallion it requires. While you are trying to 
     cast it, the snakes have taken an interest in you. Roll one die, This is 
@@ -4511,7 +4516,7 @@ const gameData = {
     ],
     staminaLoss: 5,
   },
-  390: {
+  390: { // unique node
     text: `Deduct 2 stamina points. You cast the spell and wait. From some-where inside, 
     a voice warns you that the situation is not good. Your 
     only hope is to empty your backpack, open it out to fill with air, and 
@@ -4526,12 +4531,13 @@ const gameData = {
     anything that would have been spoiled by the water (e.g. Provisions) 
     is now lost for ever.`,
     choices: [
-      { goToPage: 64, text: "Test your Luck - Fail" },
-      { goToPage: 151, text: "Return and take the other fork" },
-      { goToPage: 3, text: "Return and take the other passageway" },
+      { goToPage: 64, text: "Test your Luck - Fail", luck: "failed" },
+      { goToPage: 151, text: "Return and take the other fork", luck: "success" },
+      { goToPage: 3, text: "Return and take the other passageway", luck: "success" },
     ],
     staminaLoss: 2,
     testLuck: { optional: false },
+    pause: true
   },
   391: {
     text: `Deduct 5 stamina points. There is no such spell as this. You have 
@@ -4863,7 +4869,7 @@ const gameData = {
     choices: [{ goToPage: 166, text: "Continue.." }],
     staminaLoss: 5,
   },
-  428: {
+  428: { // unique node
     text: `Deduct 3 stamina points. There is no such spell as this. The Goblins 
     are quickly on you and attack you for 2 stamina points' worth of 
     damage. You may, if you wish, Test your Luck and if you are Lucky you 
@@ -5056,8 +5062,9 @@ const gameData = {
     not Test your Luck, the creature continues to attack but you may 
     double your skill score as you attack it.`,
     choices: [
-      { goToPage: 123, text: "The creature fled" },
-      { goToPage: 123, text: "Fight the creature with double skill" }, // todo double skill fight
+      { goToPage: 123, text: "The creature fled", luck: "success" },
+      { goToPage: 123, text: "Fight the creature with double skill", luck: "failed" }, // todo double skill fight
+      { goToPage: 123, text: "Fight the creature with double skill", luck: "blocked" }, // todo double skill fight
     ],
     staminaLoss: 2,
     testLuck: { optional: true },

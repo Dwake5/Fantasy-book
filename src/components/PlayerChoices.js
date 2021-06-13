@@ -33,9 +33,7 @@ const PlayerChoices = ({ choices, setStayShowing }) => {
       case 184: // lose spell book page
         getItem(dispatch, { name: "spellbookPage", amount: -1 });
         break;
-      
       default:
-        console.log("uneventful node");
     }
     if (choice.needLibra) {
       loseLibra(dispatch);

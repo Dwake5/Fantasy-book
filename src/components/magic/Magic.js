@@ -20,7 +20,7 @@ const Magic = () => {
   };
 
   const dangerousPage = () => {
-    const acceptablePages = [1000, 1001, 1002, 1];
+    const acceptablePages = [1000, 1001, 1002, 1003];
     return !acceptablePages.includes(_pageNumber);
   };
 

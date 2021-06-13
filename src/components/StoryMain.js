@@ -8,7 +8,7 @@ import {
   getItems,
   getMoney,
   getOwnedItems,
-  getProvisions
+  getProvisions,
 } from "../redux/items/selectors";
 import { changeEatenToday, gainStat, loseStat } from "../redux/stats/actions";
 import {
@@ -16,7 +16,7 @@ import {
   getHaveJann,
   getLibra,
   getPlague,
-  getSpiritCurse
+  getSpiritCurse,
 } from "../redux/stats/selectors";
 import { playerLearnsJann, setPage } from "../redux/story/actions";
 import { getCantUseMagic, getPage } from "../redux/story/selectors";
@@ -36,6 +36,8 @@ const StoryMain = () => {
   const _money = useSelector(getMoney);
   const _provisions = useSelector(getProvisions);
   const _eatenToday = useSelector(eatenToday);
+
+  const [luckPassed, setLuckPassed] = useState(null);
 
   // Jann
   const _haveJann = useSelector(getHaveJann);
@@ -65,7 +67,7 @@ const StoryMain = () => {
 
   const [stayShowing, setStayShowing] = useState(false);
 
-  const discoverJannSecret = [286,305,306,321,394,387];
+  const discoverJannSecret = [286, 305, 306, 321, 394, 387];
 
   const cancelPause = (keepShowing) => {
     pageData.pause = false;
@@ -80,7 +82,6 @@ const StoryMain = () => {
       case 1002:
         return <CreateStats cancelPause={cancelPause} />;
       default:
-        console.log("mapWhatToDo did nothing");
     }
     alreadyMapped = true;
   };
@@ -96,7 +97,6 @@ const StoryMain = () => {
       case 257:
         return <BuyProvisions amount={2} cost={2} playerMoney={_money} />;
       default:
-        console.log("mapExtraText did nothing");
     }
   };
 
@@ -130,7 +130,7 @@ const StoryMain = () => {
     const isSpell = choice.text.slice(0, 5) === "Magic";
     if (!isSpell) return true;
     if (_haveJann && _cantUseMagic) return false;
-    return true
+    return true;
   };
 
   const filterMagic = (choices) => {
@@ -147,13 +147,32 @@ const StoryMain = () => {
     return choices.filter((choice) => needAndHaveLibra(choice));
   };
 
-  const filterChoices = (choices) => {
-    let filtered
-    if (_pageNumber === 100) {
-      console.log('_haveJann:', _haveJann ? [choices[0]] : [choices[1]]);
-      return _haveJann ? [choices[0]] : [choices[1]]
+  const checkLuckOptions = (choice) => {
+    // See if luck is involved
+    const involvesLuck = choice.luck;
+    // If luck is not involved, return the choice
+    if (involvesLuck === undefined) return true;
+
+    if (pauseChoices === undefined) {
+      if (choice.luck === "blocked") return true;
     }
-    filtered = filterNeedItems(choices);
+    if (pauseChoices !== undefined) {
+      if (luckPassed && choice.luck === "success") return true;
+      if (!luckPassed && choice.luck === "failed") return true;
+    }
+    return false;
+  };
+
+  const filterLuckOptions = (choices) => {
+    return choices.filter((choice) => checkLuckOptions(choice));
+  };
+
+  const filterChoices = (choices) => {
+    if (_pageNumber === 100) {
+      return _haveJann ? [choices[0]] : [choices[1]];
+    }
+    let filtered = filterNeedItems(choices);
+    filtered = filterLuckOptions(filtered);
     filtered = filterCanAfford(filtered);
     filtered = filterNeedLibra(filtered);
     filtered = filterMagic(filtered);
@@ -179,9 +198,7 @@ const StoryMain = () => {
 
   // This function is used to handle stat changes on a new node
   useEffect(() => {
-
     if (discoverJannSecret.includes(_pageNumber)) {
-      console.log('should be called')
       playerLearnsJann(dispatch);
     }
 
@@ -218,7 +235,13 @@ const StoryMain = () => {
       <label>Go to page:</label>
       <input type="text" onKeyDown={handleKeyDown}></input>
       <p dangerouslySetInnerHTML={{ __html: pageText }}></p>
-      {testLuck && <TestLuck />}
+      {testLuck && (
+        <TestLuck
+          setLuckPassed={setLuckPassed}
+          cancelPause={cancelPause}
+          pageNumber={_pageNumber}
+        />
+      )}
       {eatOption && (
         <EatOption
           eatOptions={eatOption}
