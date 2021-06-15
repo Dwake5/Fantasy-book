@@ -15,10 +15,10 @@ const CreateStats = ({ cancelPause }) => {
       0,
       sixth * 0.4,
       sixth * 0.7,
-      sixth * 1.3,
+      sixth * 1,
+      sixth * 1.4,
       sixth * 1.3,
       sixth * 1.2,
-      sixth * 1.1,
     ];
     const sumWeights = weights.map(
       (

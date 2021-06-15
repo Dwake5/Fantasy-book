@@ -75,7 +75,7 @@ const initialState = {
   },
   goblinKey: {
     name: "Goblin Key",
-    amount: 1,
+    amount: 0,
     singular: true,
     info: "Stolen from a dead Goblin.",
   },
@@ -139,7 +139,7 @@ const initialState = {
   },
   luckAmulet: {
     name: "Amulet",
-    amount: 1,
+    amount: 0,
     singular: true,
     info: "<p>-1 from Test your Luck die roll</p> A small amulet made of twisted metal, stolen from a dead troll. Improves Test your Luck chances.",
   },
@@ -179,7 +179,7 @@ const initialState = {
     info: "Snattacat Teeth, used in magic",
   },
   deathhoundTeeth: {
-    name: "Death-hound Teeth",
+    name: "Deathhound Teeth",
     amount: 0,
     info: "Death-hound Teeth, used in magic",
   },

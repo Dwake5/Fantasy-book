@@ -222,8 +222,8 @@ const StoryMain = () => {
       return _haveJann ? [choices[0]] : [choices[1]];
     }
     if (_pageNumber === 280) {
-      if (_traderViews >= 3) return choices.slice(-1);
-      if (_traderViews < 3) return choices.filter((choice) => !choice.visited);
+      if (_traderViews >= 10) return choices.slice(-1);
+      if (_traderViews < 10) return choices.filter((choice) => !choice.visited);
     }
     let filtered = filterNeedItems(choices);
     filtered = filterLuckOptions(filtered);

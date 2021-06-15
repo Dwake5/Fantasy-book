@@ -14,11 +14,13 @@
   <li>Disable swapping weapons or drinking potion in combat</li>
   <li>Workout when the user has to know about Jann... (305, 306, 321, 394, 387, 286 all tell you, but are optional choices except 286!) Requires a lot of testing</li>
   <li>Add bold text to important info the player recieves, and stat loss / increases</li>
+  <li>Look into greying out unselectable choices instead</li>
 </ul>
 
 # Done
 
 <ul>
+  <li>Created weighted dice function for creating starts increasing average starting stats from 38 to 40</li>
   <li>Implement getting items at nodes, not choices</li>
   <li>Implement luck item, 177</li>
   <li>Add in Glamdragors sword 233 (item)</li>

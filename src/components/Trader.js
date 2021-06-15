@@ -15,7 +15,7 @@ const Trader = ({ itemViews, dice, changeCost, optional, itemName }) => {
 
     const totalRoll = rolls.reduce((a, b) => a + b);
     if (dice > 1) {
-      localDiceText += ` The ${itemName}'s cost is now ${totalRoll}`;
+      localDiceText += ` The ${itemName}'s cost is now ${totalRoll}.`;
     }
     if (dice === 1) {
       localDiceText += ` Which is now the ${itemName}'s cost.`;
