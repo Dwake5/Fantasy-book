@@ -14,12 +14,12 @@ const Magic = () => {
   const handleClose = () => setShow(false);
   const handleShow = () => {
     setShow(true);
-    if (dangerousPage()) {
+    if (leftTutorialPages()) {
       loseStat(dispatch, "stamina", 2);
     }
   };
 
-  const dangerousPage = () => {
+  const leftTutorialPages = () => {
     const acceptablePages = [1000, 1001, 1002, 1003];
     return !acceptablePages.includes(_pageNumber);
   };
@@ -27,7 +27,7 @@ const Magic = () => {
   return (
     <Container className="border text-center">
       <p className="h3 text-center">Magic</p>
-      <Button onClick={handleShow} className={`mb-3 ${dangerousPage() ? "hoverWarning" : ""}`}>
+      <Button onClick={handleShow} className={`mb-3 ${leftTutorialPages() ? "hoverWarning" : ""}`}>
         View Spell Book
       </Button>
 

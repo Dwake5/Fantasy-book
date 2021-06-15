@@ -2,26 +2,27 @@
 
 <ul>
   <li>Integrate combat</li>
-  <li>Find a way to adapt story text based on users stats (done?)</li>
+  <li>Find a way to adapt story text based on users stats for example when you dont have a magic item</li>
   <li>Add P tags to text to format it better</li>
   <li>Progress bars to combat</li>
   <li>Find a way to fight night creatures and return to previous node (84, 108, 283 || 396, 421, 437, 453)</li>
   <li>108, 283 adds +2 to night creatures roll</li>
   <li>Get no change for buying with gems (15) might not do this, a lot of work for little payoff, maybe just give 5gp a piece</li>
-  <li>Implement getting items at nodes, not choices</li>
   <li>Handle death</li>
-  <li>Implement test luck</li>
-  <li>Implement luck item, 177</li>
   <li>Handle spells requiring certain items</li>
   <li>Handle using spells causing extra damage to you if you don't have items</li>
   <li>Disable swapping weapons or drinking potion in combat</li>
-  <li>Add in Glamdragors sword 233</li>
   <li>Workout when the user has to know about Jann... (305, 306, 321, 394, 387, 286 all tell you, but are optional choices except 286!) Requires a lot of testing</li>
+  <li>Add bold text to important info the player recieves, and stat loss / increases</li>
 </ul>
 
 # Done
 
 <ul>
+  <li>Implement getting items at nodes, not choices</li>
+  <li>Implement luck item, 177</li>
+  <li>Add in Glamdragors sword 233 (item)</li>
+  <li>Add in soft brown sand 213 (item)</li>
   <li>Gain HP when going to some nodes, staminaGain variable</li>
   <li>Write staminaLoss for non magic nodes</li>
   <li>Gain/lose luck when going to some nodes, luckGain/loss variable</li>
@@ -54,6 +55,8 @@
   <li>Waterfall at 204 removes disease(s) and restores all stats to max</li>
   <li>Block magic if both the player has Jann and knows she blocks magic.</li>
   <li>Can't cast spells if Jann is with you (and the player knows Jann is anti magic)</li>
+  <li>Actually recieve curses and disease when going to nodes 123, 213, 79</li>
+  <li>Implement test luck</li>
 </ul>
 
 Try to prioritize getting items at a node, rather than a choice.
@@ -109,52 +112,52 @@ Snattacat Teeth
 2: Fight Serpent Skill 7 Stamina 8
 4: Use Key if have it
 20: Fight Skunkbear Skill 7 Stamina 5 (you lose 2 AS)
-21: Add eat food option
-22: Trader Pipe roll
+<!-- 21: Add eat food option  -->
+<!-- 22: Trader Pipe roll  -->
 23: Check if tested luck at node 38
-25: Use up Libra
+<!-- 25: Use up Libra -->
 29: Choose artefact to give
 31: Possibly lose 3 hp
 32: Choose 2 items to give up
-33: Choice costs 2 gp
-35: Can eat food if you wish 2 or 1 hp
-36: Possibly lose 3 hp
+<!-- 33: Choice costs 2 gp -->
+<!-- 35: Can eat food if you wish 2 or 1 hp -->
+<!-- 36: Possibly lose 3 hp -->
 37: Get Jann
-45: Possibly lose 3 hp
+<!-- 45: Possibly lose 3 hp -->
 47: Fight Goblin Skill 7 Stamina 6
 48: Takes either spell book or 2 magic items
-50: Get collar
+<!-- 50: Get collar -->
 57: Get 12 gold, lose 1 item user chooses
 72: Lose 1 AS when using axe
 74: Fight Wolfhound skill 7 stamina 6
-79: Get plague (-3 hp per day)
-82: Test luck
+<!-- 79: Get plague (-3 hp per day) -->
+<!-- 82: Test luck -->
 87: Fight Wood Golem skill 8 stamina 6
 88: Options depend on items (pipe)
-93: Must roll 2 dice once, - stamina each time, try more itmes if wanted
+93: Must roll 2 dice once, - stamina each time, try more times if wanted
 99: Fight Troll skill 8 stamina 7
-100: Options depend on Jann
+<!-- 100: Options depend on Jann -->
 101: Nothing leads here
 102: Could be free
 104: Fight 2 Bandit's skill 7,7 stamina 6,5
 106: Merchant
 108: add +2 to night creatures roll
-112: Libra choice
+<!-- 112: Libra choice -->
 117: Fight Assassin skill 8 stamina 6, you can spare him conditionally
 122: Get item Armband + 2 AS if using sword
 123: Go to previous reference, roll to determine who we fight
-124: Get cursed, from now on lose +1 stamina for all stamina loss actions except magic
-130: Libra option
-133: Test luck if you want
-141: Barter or not for the axe
+<!-- 124: Get cursed, from now on lose +1 stamina for all stamina loss actions except magic -->
+<!-- 130: Libra option -->
+<!-- 133: Test luck if you want -->
+<!-- 141: Barter or not for the axe -->
 142: Try to roll lower than skill, unlimited tries, - AS for weapon chosen each try
-144: Test luck
-151: Get Svinn girl?
-161: You have to pay, so block this option if not enough GP
+<!-- 144: Test luck -->
+151: Get Svinn girl? (maybe)
+<!-- 161: You have to pay, so block this option if not enough GP -->
 162: Fight Hill Gaint skill 9 stamina 11
 165: Keep testing your luck, until success 3 times in a row. -3 hp each time
-168: Lose all provisions
-171: Either option means Jann stays
+<!-- 168: Lose all provisions  -->
+<!-- 171: Either option means Jann stays -->
 177: Luck item
 182: Give him axe if have it, or give him something else
 185: Lose weapon, -4 skill if no weapon

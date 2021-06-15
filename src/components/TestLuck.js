@@ -2,17 +2,19 @@ import React, { useState, useRef, useEffect } from "react";
 import { Container } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import "../assets/css/Stats.css";
+import { ownItem } from "../redux/items/selectors";
 import { loseStat } from "../redux/stats/actions";
 import { getStat } from "../redux/stats/selectors";
 import { testYourLuck } from "../utils";
  
 // Note to self, add luck amulet in here somewhere
-const TestLuck = ({ setLuckPassed, cancelPause, pageNumber }) => {
+const TestLuck = ({ setLuckPassed, cancelPause}) => {
   const dispatch = useDispatch();
   const [luckTested, setLuckTested] = useState(false);
   const [luckSuccess, setLuckSuccess] = useState(false);
   const [luckTotal, setLuckTotal] = useState(null);
   const _luck = useSelector((state) => getStat(state, "luck"));
+  const _haveLuckAmulet = useSelector((state) => ownItem(state, "luckAmulet"));
   const fixedLuckNeeded = useRef(null);
 
   const testLuck = () => {
@@ -34,12 +36,13 @@ const TestLuck = ({ setLuckPassed, cancelPause, pageNumber }) => {
       <button
         disabled={luckTested}
         type="button"
-        className="btn btn-success mb-3"
+        className="btn btn-warning mb-3"
         onClick={() => testLuck()}
         >
         Test your Luck
       </button>
-      <p>You would need a {fixedLuckNeeded.current || _luck} or lower to pass.</p>
+      {!_haveLuckAmulet && <p>You would need a {fixedLuckNeeded.current || _luck} or lower to pass.</p>}
+      {_haveLuckAmulet && <p>Due to your luck amulet, you would need a {(fixedLuckNeeded.current || _luck) + 1} or lower to pass.</p>}
       {luckTested && (
         <>
           <p className="mb-1">You rolled a {luckTotal},</p>

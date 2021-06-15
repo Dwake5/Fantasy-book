@@ -1,36 +1,36 @@
 import React, { useState } from "react";
 import { Container } from "react-bootstrap";
-import { useSelector } from "react-redux";
-import { getTraderViews } from "../redux/story/selectors";
 import { diceRolls } from "../../src/utils";
-import gameData from "../assets/gameData";
 
-const Trader = ({ itemViews, dice, setItem }) => {
-  const _traderViews = useSelector(getTraderViews);
+const Trader = ({ itemViews, dice, changeCost, optional, itemName }) => {
   const [haveRolled, setHaveRolled] = useState(false);
   const [diceText, setDiceText] = useState("");
 
   const handleDiceRolls = () => {
     setHaveRolled(true);
     const rolls = diceRolls(dice);
-    let localDiceText = `You rolled ${rolls.toString().replace(",", ", ")}`;
+    let localDiceText = `You rolled ${dice === 1 ? "a" : ""} ${rolls
+      .toString()
+      .replace(",", ", ")}.`;
 
     const totalRoll = rolls.reduce((a, b) => a + b);
     if (dice > 1) {
-      localDiceText += ` for a total of ${totalRoll}`;
+      localDiceText += ` The ${itemName}'s cost is now ${totalRoll}`;
+    }
+    if (dice === 1) {
+      localDiceText += ` Which is now the ${itemName}'s cost.`;
     }
 
     setDiceText(localDiceText);
-    const findItem = gameData[setItem].choices[0].items[0];
-    findItem.cost = totalRoll;
+    changeCost(totalRoll);
   };
 
   if (itemViews !== undefined) {
-    if (_traderViews < 1) return null;
+    if (itemViews < 1) return null;
     return (
       <Container>
         <p>
-          You have viewed {_traderViews} item{_traderViews === 1 ? "" : "s"}
+          You have viewed {itemViews} item{itemViews === 1 ? "" : "s"}
         </p>
       </Container>
     );
@@ -39,15 +39,23 @@ const Trader = ({ itemViews, dice, setItem }) => {
   if (dice > 0) {
     return (
       <Container className="text-center mb-3">
-        {!haveRolled && (
-          <>
-            <p>
-              Roll {dice} {dice === 1 ? "die" : "dice"}
-            </p>
-            <button onClick={handleDiceRolls}>Roll</button>
-          </>
+        <>
+          <p>
+            Barter with {dice} {dice === 1 ? "die" : "dice"}
+          </p>
+          <button
+            onClick={handleDiceRolls}
+            type="button"
+            className="btn btn-success mb-3"
+            disabled={haveRolled}
+          >
+            Barter?
+          </button>
+        </>
+
+        {(haveRolled || optional) && (
+          <p>{diceText || `The ${itemName} currently costs 7 Gold Pieces`}</p>
         )}
-        {haveRolled && <p>{diceText}</p>}
       </Container>
     );
   }

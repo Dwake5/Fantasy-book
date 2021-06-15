@@ -9,6 +9,9 @@ import {
   WATERFALL,
   RECEIVE_JANN,
   LOSE_JANN,
+  GAIN_CURSE_SPIRIT,
+  GAIN_CURSE_ALIANNA,
+  GAIN_PLAGUE,
 } from "./action-types";
 
 export const setMaxStat = (dispatch, stat, number) => {
@@ -34,6 +37,18 @@ export const gainStat = (dispatch, stat, amount) => {
   });
 };
 
+export const playerRecieveCurseSpirit = (dispatch) => {
+  dispatch({ type: GAIN_CURSE_SPIRIT })
+}
+
+export const playerRecieveCurseAlianna = (dispatch) => {
+  dispatch({ type: GAIN_CURSE_ALIANNA })
+}
+
+export const playerRecievePlague = (dispatch) => {
+  dispatch({ type: GAIN_PLAGUE })
+}
+
 export const visitWaterfall = (dispatch) => {
   dispatch({ type: WATERFALL })
 }
@@ -58,7 +73,6 @@ export const changeEatenToday = (dispatch, boolean) => {
 };
 
 export const playerGetsJann = (dispatch) => {
-  console.log("called jann get")
   dispatch({ type: RECEIVE_JANN })
 }
 

@@ -1,5 +1,4 @@
 import {
-  SET_ITEMS,
   EQUIP_WEAPON,
   DRINK_POTION,
   PAY_MONEY,
@@ -34,7 +33,7 @@ const initialState = {
     info: "<p>Replenish 3 Stamina points outside of battle</p> Pungant Blimberry Juice. Useful in magic or to recover Stamina.",
     use: false,
   },
-  broadSword: {
+  broadsword: {
     name: "Broadsword",
     amount: 0,
     singular: true,
@@ -76,7 +75,7 @@ const initialState = {
   },
   goblinKey: {
     name: "Goblin Key",
-    amount: 0,
+    amount: 1,
     singular: true,
     info: "Stolen from a dead Goblin.",
   },
@@ -127,8 +126,8 @@ const initialState = {
     singular: true,
     info: "Part of a pest repelling spell.",
   },
-  beezwax: {
-    name: "Beezwax",
+  beeswax: {
+    name: "Beeswax",
     amount: 0,
     info: "Gathered from a beehive. Used in spells.",
   },
@@ -140,7 +139,7 @@ const initialState = {
   },
   luckAmulet: {
     name: "Amulet",
-    amount: 0,
+    amount: 1,
     singular: true,
     info: "<p>-1 from Test your Luck die roll</p> A small amulet made of twisted metal, stolen from a dead troll. Improves Test your Luck chances.",
   },
@@ -189,6 +188,25 @@ const initialState = {
     amount: 0,
     info: "<p>Exchance for items</p> Valuable black rock gems. Can be used to buy items with, worth up to 10 Gold Pieces, but no change will be given.",
   },
+  sand: {
+    name: "Pouch of Sand",
+    amount: 0,
+    singular: true,
+    info: "A pouch of soft brown sand, pillaged from Alianna's house"
+  },
+  collar: {
+    name: "Green Gem Collar",
+    amount: 0,
+    singular: true,
+    info: "A collar studded with green gems and looks quite valuable. Looted from a wolfhound."
+  },
+  glandragorSword: {
+    name: "Glandragor's Sword",
+    amount: 0,
+    singular: true,
+    equipped: false,
+    info: "A replacement sword given to you by Glandragor the Protector, no special properties."
+  }
 };
 
 // Im well aware this is bad code.
@@ -212,6 +230,10 @@ const equipSpecificWeapon = (state, weapon) => {
       ...state.craftedSword,
       equipped: weapon === "craftedSword",
     },
+    glandragorSword: {
+      ...state.glandragorSword,
+      equipped: weapon === 'glandragorSword'
+    }
   };
 };
 
@@ -233,19 +255,16 @@ export const reducer = (state = initialState, action) => {
           amount: state.provisions.amount - 1,
         },
       };
-    case SET_ITEMS:
-      return {
-        ...state,
-      };
     case GET_ITEM:
       const relevantItem = action.payload.item
       const amountGained = action.payload.amount
-
+      let amountAfter = state[relevantItem].amount + amountGained
+      if (amountAfter < 0) amountAfter = 0
       return {
         ...state,
         [relevantItem]: {
           ...state[relevantItem],
-          amount: state[relevantItem].amount + amountGained
+          amount: amountAfter,
         }
       };
     case EQUIP_WEAPON:

@@ -1,20 +1,46 @@
 import React, { useEffect, useCallback } from "react";
-import { useDispatch } from "react-redux";
-import { getItem } from "../redux/items/actions";
+import { useDispatch, useSelector } from "react-redux";
+import { getItem, payMoney } from "../redux/items/actions";
 import {
+  changeEatenToday,
+  gainStat,
   loseLibra,
   playerGetsJann,
   playerLosesJann,
   visitWaterfall,
 } from "../redux/stats/actions";
+import { eatenToday } from "../redux/stats/selectors";
 import { addOneToTraderItem, setPage } from "../redux/story/actions";
 
-const PlayerChoices = ({ choices, setStayShowing }) => {
+const PlayerChoices = ({ choices, setStayShowing, cost }) => {
   const dispatch = useDispatch();
+  const _eatenToday = useSelector(eatenToday);
+
+  const addItems = (items) => {
+    items.forEach((item) => {
+      getItem(dispatch, item);
+    });
+  };
 
   const handleChoice = (choice) => {
-    if (choice === null || choice === undefined) return;
     const nodeVisiting = choice.goToPage;
+
+    const oneTimeNodes = [107, 214, 22, 141, 5, 60];
+    if (oneTimeNodes.includes(nodeVisiting)) {
+      choice.visited = true;
+    }
+
+    if (nodeVisiting === 18) {
+      const gainStamina = _eatenToday ? 1 : 2;
+      gainStat(dispatch, "stamina", gainStamina);
+      changeEatenToday(dispatch, true)
+    }
+
+    if (choice === null || choice === undefined) return;
+
+    if (choice.cost > 0) payMoney(dispatch, choice.cost);
+
+    if (choice.items) addItems(choice.items);
 
     switch (nodeVisiting) {
       case 280:
@@ -30,9 +56,6 @@ const PlayerChoices = ({ choices, setStayShowing }) => {
       case 205:
         playerLosesJann(dispatch);
         break;
-      case 184: // lose spell book page
-        getItem(dispatch, { name: "spellbookPage", amount: -1 });
-        break;
       default:
     }
     if (choice.needLibra) {
@@ -45,7 +68,7 @@ const PlayerChoices = ({ choices, setStayShowing }) => {
   const handleUserKeyPress = useCallback(
     (event) => {
       const key = event.key;
-      if (key <= choices.length) {
+      if (key <= choices.length && key !== "0") {
         handleChoice(choices[key - 1]);
       }
     },

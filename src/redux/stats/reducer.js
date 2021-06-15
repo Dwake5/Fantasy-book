@@ -10,6 +10,9 @@ import {
   WATERFALL,
   RECEIVE_JANN,
   LOSE_JANN,
+  GAIN_CURSE_SPIRIT,
+  GAIN_CURSE_ALIANNA,
+  GAIN_PLAGUE,
 } from "./action-types";
 
 const initialState = {
@@ -106,6 +109,21 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         jann: false,
+      };
+    case GAIN_CURSE_SPIRIT:
+      return {
+        ...state,
+        spiritCurse: true,
+      };
+    case GAIN_CURSE_ALIANNA:
+      return {
+        ...state,
+        aliannaCurse: true,
+      };
+    case GAIN_PLAGUE:
+      return {
+        ...state,
+        plague: true,
       };
     default:
       return state;

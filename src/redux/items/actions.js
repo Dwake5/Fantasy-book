@@ -13,8 +13,6 @@ export const getItem = (dispatch, { name, amount }) => {
   });
 };
 
-export const setItems = () => {};
-
 export const payMoney = (dispatch, data) => {
   dispatch({
     type: PAY_MONEY,

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Container } from "react-bootstrap";
-import { setMaxStat } from '../redux/stats/actions';
-import { useDispatch } from 'react-redux';
+import { setMaxStat } from "../redux/stats/actions";
+import { useDispatch } from "react-redux";
 
 const CreateStats = ({ cancelPause }) => {
   const dispatch = useDispatch();
@@ -9,25 +9,46 @@ const CreateStats = ({ cancelPause }) => {
   const [step, changeStep] = useState(1);
   const [rolls, updateRolls] = useState([]);
 
+  const weightedDice = () => {
+    const sixth = 1 / 6;
+    const weights = [
+      0,
+      sixth * 0.4,
+      sixth * 0.7,
+      sixth * 1.3,
+      sixth * 1.3,
+      sixth * 1.2,
+      sixth * 1.1,
+    ];
+    const sumWeights = weights.map(
+      (
+        (sum) => (value) =>
+          (sum += value)
+      )(0)
+    );
+    const random = Math.random();
+    return sumWeights.filter((el) => random >= el).length;
+  };
+
   const handleDice = (stat) => {
     let rolled;
     if (stat === "skill" || stat === "luck") {
-      rolled = Math.ceil(Math.random() * 6);
+      rolled = weightedDice();
     }
     if (stat === "stamina") {
-      const roll1 = Math.ceil(Math.random() * 6);
-      const roll2 = Math.ceil(Math.random() * 6);
+      const roll1 = weightedDice();
+      const roll2 = weightedDice();
       rolled = roll1 + roll2;
     }
 
     updateRolls([...rolls, rolled]);
 
-    rolled += stat === 'stamina' ? 12 : 6;
-    
-    setMaxStat(dispatch, stat, rolled)
+    rolled += stat === "stamina" ? 12 : 6;
+
+    setMaxStat(dispatch, stat, rolled);
     changeStep(step + 1);
-  
-    if (step === 3) cancelPause(true)
+
+    if (step === 3) cancelPause(true);
   };
 
   return (

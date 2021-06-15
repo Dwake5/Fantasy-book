@@ -5,12 +5,18 @@ import "../assets/css/Story.css";
 import gameData from "../assets/gameData";
 import { getItem } from "../redux/items/actions";
 import {
-  getItems,
   getMoney,
   getOwnedItems,
   getProvisions,
 } from "../redux/items/selectors";
-import { changeEatenToday, gainStat, loseStat } from "../redux/stats/actions";
+import {
+  changeEatenToday,
+  gainStat,
+  loseStat,
+  playerRecieveCurseAlianna,
+  playerRecieveCurseSpirit,
+  playerRecievePlague,
+} from "../redux/stats/actions";
 import {
   eatenToday,
   getHaveJann,
@@ -19,7 +25,12 @@ import {
   getSpiritCurse,
 } from "../redux/stats/selectors";
 import { playerLearnsJann, setPage } from "../redux/story/actions";
-import { getCantUseMagic, getPage } from "../redux/story/selectors";
+import {
+  getCantUseMagic,
+  getPage,
+  getTraderViews,
+} from "../redux/story/selectors";
+import BeeStings from "./BeeStings";
 import BuyProvisions from "./BuyProvisions";
 import CreateStats from "./CreateStats";
 import EatOption from "./EatOption";
@@ -30,7 +41,6 @@ import Trader from "./Trader";
 const StoryMain = () => {
   const dispatch = useDispatch();
   const _pageNumber = useSelector(getPage);
-  const _items = useSelector(getItems);
   const _itemsOwned = useSelector(getOwnedItems);
 
   const _money = useSelector(getMoney);
@@ -38,6 +48,10 @@ const StoryMain = () => {
   const _eatenToday = useSelector(eatenToday);
 
   const [luckPassed, setLuckPassed] = useState(null);
+
+  const [itemVariableCost, setItemVariableCost] = useState(null);
+  const [costChanged, setCostChanged] = useState(null); // This line makes a feature work. Literally no idea why
+  const _traderViews = useSelector(getTraderViews);
 
   // Jann
   const _haveJann = useSelector(getHaveJann);
@@ -49,7 +63,7 @@ const StoryMain = () => {
   const _haveLibra = useSelector(getLibra);
 
   const pageData = gameData[_pageNumber];
-  const pageChoices = pageData.choices;
+  let pageChoices = pageData.choices;
   const pageText = pageData.text;
   let pauseChoices = pageData.pause;
   const extraText = pageData.extraText;
@@ -57,13 +71,17 @@ const StoryMain = () => {
   const skillGain = pageData.skillGain;
   let staminaLoss = pageData.staminaLoss;
   const staminaGain = pageData.staminaGain;
-  const luckLoss = pageData.skillLoss;
-  const luckGain = pageData.skillGain;
+  const luckLoss = pageData.luckLoss;
+  const luckGain = pageData.luckGain;
   const playerGetsItems = pageData.getItems;
   const eatOption = pageData.eatOption;
   const testLuck = pageData.testLuck;
   const newDay = pageData.newDay;
   const eaten = pageData.eaten;
+
+  const playerGetPlague = pageData.plague;
+  const playerGetCurse = pageData.curse;
+  const playerGetCurseAlianna = pageData.curseOfAlianna;
 
   const [stayShowing, setStayShowing] = useState(false);
 
@@ -81,19 +99,49 @@ const StoryMain = () => {
     switch (_pageNumber) {
       case 1002:
         return <CreateStats cancelPause={cancelPause} />;
+      case 270:
+        return <BeeStings cancelPause={cancelPause} />;
       default:
     }
     alreadyMapped = true;
   };
 
+  const handleItemVariableCost = (money) => {
+    setItemVariableCost(money);
+  };
+
   const mapExtraText = () => {
     switch (_pageNumber) {
       case 280:
-        return <Trader itemViews />;
+        return <Trader itemViews={_traderViews} />;
       case 214:
-        return <Trader dice={2} setItem={214} />;
+        return (
+          <Trader
+            dice={2}
+            changeCost={handleItemVariableCost}
+            key={214}
+            itemName={"broadsword"}
+          />
+        );
       case 22:
-        return <Trader dice={1} setItem={22} />;
+        return (
+          <Trader
+            dice={1}
+            changeCost={handleItemVariableCost}
+            key={22}
+            itemName={"pipe"}
+          />
+        );
+      case 141:
+        return (
+          <Trader
+            dice={2}
+            changeCost={handleItemVariableCost}
+            key={141}
+            itemName={"axe"}
+            optional
+          />
+        );
       case 257:
         return <BuyProvisions amount={2} cost={2} playerMoney={_money} />;
       default:
@@ -108,8 +156,10 @@ const StoryMain = () => {
   };
 
   const canAfford = (choice) => {
-    if (choice.cost === undefined) return true;
-    return choice.cost <= _money;
+    const choiceCost = choice.cost;
+    if (choiceCost === undefined) return true;
+    if (choiceCost === "must roll") return false;
+    return choiceCost <= _money;
   };
 
   const filterCanAfford = (choices) => {
@@ -148,14 +198,14 @@ const StoryMain = () => {
   };
 
   const checkLuckOptions = (choice) => {
-    // See if luck is involved
+    // See if luck is involved, if luck is not involved, return the choice
     const involvesLuck = choice.luck;
-    // If luck is not involved, return the choice
     if (involvesLuck === undefined) return true;
 
-    if (pauseChoices === undefined) {
-      if (choice.luck === "blocked") return true;
-    }
+    // try to show a choice that is only blocked after a luck role where possible
+    if (pauseChoices === undefined && choice.luck === "blocked") return true;
+
+    // if the page forced a pause (i.e. needed luck role) then only show the result of Test your Luck
     if (pauseChoices !== undefined) {
       if (luckPassed && choice.luck === "success") return true;
       if (!luckPassed && choice.luck === "failed") return true;
@@ -171,6 +221,10 @@ const StoryMain = () => {
     if (_pageNumber === 100) {
       return _haveJann ? [choices[0]] : [choices[1]];
     }
+    if (_pageNumber === 280) {
+      if (_traderViews >= 3) return choices.slice(-1);
+      if (_traderViews < 3) return choices.filter((choice) => !choice.visited);
+    }
     let filtered = filterNeedItems(choices);
     filtered = filterLuckOptions(filtered);
     filtered = filterCanAfford(filtered);
@@ -184,6 +238,11 @@ const StoryMain = () => {
       getItem(dispatch, item);
     });
   };
+
+  useEffect(() => {
+    pageChoices[0].cost = itemVariableCost;
+    setCostChanged(itemVariableCost);
+  }, [itemVariableCost]);
 
   const handleNewDay = () => {
     let loseStamina = 0;
@@ -223,6 +282,12 @@ const StoryMain = () => {
     if (staminaGain !== undefined) gainStat(dispatch, "stamina", staminaGain);
     if (luckGain !== undefined) gainStat(dispatch, "luck", luckGain);
 
+    // does player recieve ailments?
+    if (playerGetPlague !== undefined) playerRecievePlague(dispatch);
+    if (playerGetCurse !== undefined) playerRecieveCurseSpirit(dispatch);
+    if (playerGetCurseAlianna !== undefined)
+      playerRecieveCurseAlianna(dispatch);
+
     // new day
     if (newDay) handleNewDay();
   }, [_pageNumber]);
@@ -256,10 +321,7 @@ const StoryMain = () => {
       {!pauseChoices && (
         <PlayerChoices
           choices={filterChoices(pageChoices)}
-          playerMoney={_money}
-          playerItems={_items}
           setStayShowing={setStayShowing}
-          pause={pauseChoices}
         />
       )}
     </Container>

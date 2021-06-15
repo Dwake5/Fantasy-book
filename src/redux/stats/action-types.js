@@ -9,6 +9,10 @@ export const MAX_STAMINA = namespace + 'MAX_STAMINA';
 export const LUCK = namespace + 'LUCK';
 export const MAX_LUCK = namespace + 'MAX_LUCK';
 
+export const GAIN_CURSE_SPIRIT = namespace + 'GAIN_CURSE_SPIRIT';
+export const GAIN_CURSE_ALIANNA = namespace + 'GAIN_CURSE_ALIANNA';
+export const GAIN_PLAGUE = namespace + 'GAIN_PLAGUE';
+
 export const STAT_LOSS = namespace + 'STAT_LOSS';
 export const STAT_GAIN = namespace + 'STAT_GAIN';
 

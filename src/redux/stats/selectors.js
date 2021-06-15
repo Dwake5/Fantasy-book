@@ -1,6 +1,12 @@
 import { uppercase } from "../../utils";
 
-export const getStat = (state, stat) => state.stats[stat]
+export const getStat = (state, stat) => state.stats[stat];
+
+export const getSkill = (state) => {
+  const haveAlianna = getAliannaCurse(state);
+  const skill = state.stats.skill;
+  return haveAlianna ? skill - 2 : skill;
+};
 
 export const isStatMax = (state, stat) => {
   const maxStat = uppercase(stat, true);
@@ -15,4 +21,3 @@ export const getSpiritCurse = (state) => state.stats.spiritCurse;
 export const getAliannaCurse = (state) => state.stats.aliannaCurse;
 
 export const getHaveJann = (state) => state.stats.jann;
-
