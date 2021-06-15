@@ -12,7 +12,8 @@ import {
 import { eatenToday } from "../redux/stats/selectors";
 import { addOneToTraderItem, setPage } from "../redux/story/actions";
 
-const PlayerChoices = ({ choices, setStayShowing, cost }) => {
+const PlayerChoices = ({ choices, setStayShowing, pause }) => {
+console.log('pause :', pause);
   const dispatch = useDispatch();
   const _eatenToday = useSelector(eatenToday);
 
@@ -68,7 +69,7 @@ const PlayerChoices = ({ choices, setStayShowing, cost }) => {
   const handleUserKeyPress = useCallback(
     (event) => {
       const key = event.key;
-      if (key <= choices.length && key !== "0") {
+      if (key <= choices.length && key !== "0" && pause !== true) {
         handleChoice(choices[key - 1]);
       }
     },
@@ -83,6 +84,7 @@ const PlayerChoices = ({ choices, setStayShowing, cost }) => {
   }, [handleUserKeyPress]);
 
   const displayOptions = () => {
+    if (pause) return null
     return choices.map((choice, i) => {
       return (
         <p key={i} className="userChoice" onClick={() => handleChoice(choice)}>

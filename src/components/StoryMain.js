@@ -3,12 +3,9 @@ import { Container } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import "../assets/css/Story.css";
 import gameData from "../assets/gameData";
+import useFilters from "../hooks/useFilters";
 import { getItem } from "../redux/items/actions";
-import {
-  getMoney,
-  getOwnedItems,
-  getProvisions,
-} from "../redux/items/selectors";
+import { getMoney, getProvisions } from "../redux/items/selectors";
 import {
   changeEatenToday,
   gainStat,
@@ -19,17 +16,11 @@ import {
 } from "../redux/stats/actions";
 import {
   eatenToday,
-  getHaveJann,
-  getLibra,
   getPlague,
   getSpiritCurse,
 } from "../redux/stats/selectors";
 import { playerLearnsJann, setPage } from "../redux/story/actions";
-import {
-  getCantUseMagic,
-  getPage,
-  getTraderViews,
-} from "../redux/story/selectors";
+import { getPage, getTraderViews } from "../redux/story/selectors";
 import BeeStings from "./BeeStings";
 import BuyProvisions from "./BuyProvisions";
 import CreateStats from "./CreateStats";
@@ -41,26 +32,18 @@ import Trader from "./Trader";
 const StoryMain = () => {
   const dispatch = useDispatch();
   const _pageNumber = useSelector(getPage);
-  const _itemsOwned = useSelector(getOwnedItems);
 
   const _money = useSelector(getMoney);
   const _provisions = useSelector(getProvisions);
   const _eatenToday = useSelector(eatenToday);
 
-  const [luckPassed, setLuckPassed] = useState(null);
-
   const [itemVariableCost, setItemVariableCost] = useState(null);
   const [costChanged, setCostChanged] = useState(null); // This line makes a feature work. Literally no idea why
   const _traderViews = useSelector(getTraderViews);
 
-  // Jann
-  const _haveJann = useSelector(getHaveJann);
-  const _cantUseMagic = useSelector(getCantUseMagic);
-
   // Ailments
   const _havePlague = useSelector(getPlague);
   const _haveSpiritCurse = useSelector(getSpiritCurse);
-  const _haveLibra = useSelector(getLibra);
 
   const pageData = gameData[_pageNumber];
   let pageChoices = pageData.choices;
@@ -155,84 +138,6 @@ const StoryMain = () => {
     }
   };
 
-  const canAfford = (choice) => {
-    const choiceCost = choice.cost;
-    if (choiceCost === undefined) return true;
-    if (choiceCost === "must roll") return false;
-    return choiceCost <= _money;
-  };
-
-  const filterCanAfford = (choices) => {
-    return choices.filter((choice) => canAfford(choice));
-  };
-
-  const haveItem = (choice) => {
-    const requires = choice.requires;
-    if (requires === undefined) return true;
-    return _itemsOwned.includes(requires);
-  };
-
-  const filterNeedItems = (choices) => {
-    return choices.filter((choice) => haveItem(choice));
-  };
-
-  const isSpellAndHaveJann = (choice) => {
-    const isSpell = choice.text.slice(0, 5) === "Magic";
-    if (!isSpell) return true;
-    if (_haveJann && _cantUseMagic) return false;
-    return true;
-  };
-
-  const filterMagic = (choices) => {
-    return choices.filter((choice) => isSpellAndHaveJann(choice));
-  };
-
-  const needAndHaveLibra = (choice) => {
-    const needLibra = choice.needLibra;
-    if (needLibra === undefined) return true;
-    return _haveLibra;
-  };
-
-  const filterNeedLibra = (choices) => {
-    return choices.filter((choice) => needAndHaveLibra(choice));
-  };
-
-  const checkLuckOptions = (choice) => {
-    // See if luck is involved, if luck is not involved, return the choice
-    const involvesLuck = choice.luck;
-    if (involvesLuck === undefined) return true;
-
-    // try to show a choice that is only blocked after a luck role where possible
-    if (pauseChoices === undefined && choice.luck === "blocked") return true;
-
-    // if the page forced a pause (i.e. needed luck role) then only show the result of Test your Luck
-    if (pauseChoices !== undefined) {
-      if (luckPassed && choice.luck === "success") return true;
-      if (!luckPassed && choice.luck === "failed") return true;
-    }
-    return false;
-  };
-
-  const filterLuckOptions = (choices) => {
-    return choices.filter((choice) => checkLuckOptions(choice));
-  };
-
-  const filterChoices = (choices) => {
-    if (_pageNumber === 100) {
-      return _haveJann ? [choices[0]] : [choices[1]];
-    }
-    if (_pageNumber === 280) {
-      if (_traderViews >= 10) return choices.slice(-1);
-      if (_traderViews < 10) return choices.filter((choice) => !choice.visited);
-    }
-    let filtered = filterNeedItems(choices);
-    filtered = filterLuckOptions(filtered);
-    filtered = filterCanAfford(filtered);
-    filtered = filterNeedLibra(filtered);
-    filtered = filterMagic(filtered);
-    return filtered;
-  };
-
   const addItems = (items) => {
     items.forEach((item) => {
       getItem(dispatch, item);
@@ -302,7 +207,6 @@ const StoryMain = () => {
       <p dangerouslySetInnerHTML={{ __html: pageText }}></p>
       {testLuck && (
         <TestLuck
-          setLuckPassed={setLuckPassed}
           cancelPause={cancelPause}
           pageNumber={_pageNumber}
         />
@@ -318,12 +222,11 @@ const StoryMain = () => {
       )}
       {(pauseChoices || stayShowing) && mapWhatToDo()}
       {extraText && mapExtraText()}
-      {!pauseChoices && (
-        <PlayerChoices
-          choices={filterChoices(pageChoices)}
-          setStayShowing={setStayShowing}
-        />
-      )}
+      <PlayerChoices
+        choices={useFilters(pageChoices)}
+        setStayShowing={setStayShowing}
+        pause={pauseChoices}
+      />
     </Container>
   );
 };

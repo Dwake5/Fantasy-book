@@ -2186,7 +2186,7 @@ const gameData = {
     stranger!' he commands. 'What business have you in Cantopani?' 
     What is your response?</p>`,
     choices: [
-      { goToPage: 264, text: "Tell him you are a trader" },
+      { goToPage: 264, text: "Tell him you are a trader", blocked: true },
       { goToPage: 33, text: "Ask for directions onwards" },
       { goToPage: 198, text: "Tell him you are hungry and need Provisions" },
     ],
