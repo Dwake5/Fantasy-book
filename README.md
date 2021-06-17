@@ -194,9 +194,9 @@ Snattacat Teeth
 <!-- <li>277: Roll 2 dice, If equals luck, -1 hp, if over luck, -3 hp. If two 6's you die. Other pages affect these numbers.</li> -->
 <!-- <li>283: Get 2 hp if no enemies fought or 1 hp if fought</li> -->
 <li>285: Fight Ogre skill 8 stamina 7</li>
-<ul>
+</ul>
 
-Magic
+# Magic
 
 <ul>
 <li>295: Roll dice, 1 is bad: fight</li>
