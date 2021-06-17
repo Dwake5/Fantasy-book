@@ -117,11 +117,11 @@ Snattacat Teeth
 
 # Extra content story nodes
 
-2: Fight Serpent Skill 7 Stamina 8
-<!-- 4: Use Key if have it -->
-20: Fight Skunkbear Skill 7 Stamina 5 (you lose 2 AS)
-<!-- 21: Add eat food option  -->
-<!-- 22: Trader Pipe roll  -->
+  2: Fight Serpent Skill 7 Stamina 8
+  <!-- 4: Use Key if have it -->
+  20: Fight Skunkbear Skill 7 Stamina 5 (you lose 2 AS)
+  <!-- 21: Add eat food option  -->
+  <!-- 22: Trader Pipe roll  -->
 23: Check if tested luck at node 38
 <!-- 25: Use up Libra -->
 <!-- 29: Choose artefact to give -->
