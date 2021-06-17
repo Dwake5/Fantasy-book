@@ -196,7 +196,7 @@ Snattacat Teeth
 <li>285: Fight Ogre skill 8 stamina 7</li>
 <ul>
 
-# Magic
+Magic
 
 <ul>
 <li>295: Roll dice, 1 is bad: fight</li>
