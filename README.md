@@ -117,90 +117,95 @@ Snattacat Teeth
 
 # Extra content story nodes
 
-  2: Fight Serpent Skill 7 Stamina 8
-  <!-- 4: Use Key if have it -->
-  20: Fight Skunkbear Skill 7 Stamina 5 (you lose 2 AS)
-  <!-- 21: Add eat food option  -->
-  <!-- 22: Trader Pipe roll  -->
-23: Check if tested luck at node 38
-<!-- 25: Use up Libra -->
-<!-- 29: Choose artefact to give -->
-<!-- 31: Possibly lose 3 hp -->
-<!-- 32: Choose 2 items to give up -->
-<!-- 33: Choice costs 2 gp -->
-<!-- 35: Can eat food if you wish 2 or 1 hp -->
-<!-- 36: Possibly lose 3 hp -->
-<!-- 37: Get Jann -->
-<!-- 45: Possibly lose 3 hp -->
-47: Fight Goblin Skill 7 Stamina 6
-<!-- 48: Takes either spell book or 2 magic items -->
-<!-- 50: Get collar -->
-<!-- 57: Get 12 gold, lose 1 item user chooses -->
-72: Lose 1 AS when using axe
-74: Fight Wolfhound skill 7 stamina 6
-<!-- 79: Get plague (-3 hp per day) -->
-<!-- 82: Test luck -->
-87: Fight Wood Golem skill 8 stamina 6
-<!-- 88: Options depend on items (pipe) -->
-<!-- 93: Must roll 2 dice once, - stamina each time, try more times if wanted -->
-99: Fight Troll skill 8 stamina 7
-<!-- 100: Options depend on Jann -->
-<!-- 101: Nothing leads here -->
-102: Could be free
-104: Fight 2 Bandit's skill 7,7 stamina 6,5
-106: Merchant
-108: add +2 to night creatures roll
-<!-- 112: Libra choice -->
-117: Fight Assassin skill 8 stamina 6, you can spare him conditionally
-<!-- 122: Get item Armband + 2 AS if using sword -->
-123: Go to previous reference, roll to determine who we fight
-<!-- 124: Get cursed, from now on lose +1 stamina for all stamina loss actions except magic -->
-<!-- 126: Only view purchased items -->
+<ul>
+<li>2: Fight Serpent Skill 7 Stamina 8</li>
+<!-- <li>4: Use Key if have it</li> -->
+<li>20: Fight Skunkbear Skill 7 Stamina 5 (you lose 2 AS)</li>
+<!-- <li>21: Add eat food option </li> -->
+<!-- <li>22: Trader Pipe roll </li> -->
+<li>23: Check if tested luck at node 38</li>
+<!-- <li>25: Use up Libra</li> -->
+<!-- <li>29: Choose artefact to give</li> -->
+<!-- <li>31: Possibly lose 3 hp</li> -->
+<!-- <li>32: Choose 2 items to give up</li> -->
+<!-- <li>33: Choice costs 2 gp</li> -->
+<!-- <li>35: Can eat food if you wish 2 or 1 hp</li> -->
+<!-- <li>36: Possibly lose 3 hp</li> -->
+<!-- <li>37: Get Jann</li> -->
+<!-- <li>45: Possibly lose 3 hp</li> -->
+<li>47: Fight Goblin Skill 7 Stamina 6</li>
+<!-- <li>48: Takes either spell book or 2 magic items</li> -->
+<!-- <li>50: Get collar</li> -->
+<!-- <li>57: Get 12 gold, lose 1 item user chooses</li> -->
+<li>72: Lose 1 AS when using axe</li>
+<li>74: Fight Wolfhound skill 7 stamina 6</li>
+<!-- <li>79: Get plague (-3 hp per day)</li> -->
+<!-- <li>82: Test luck</li> -->
+<li>87: Fight Wood Golem skill 8 stamina 6</li>
+<!-- <li>88: Options depend on items (pipe)</li> -->
+<!-- <li>93: Must roll 2 dice once, - stamina each time, try more times if wanted</li> -->
+<li>99: Fight Troll skill 8 stamina 7</li>
+<!-- <li>100: Options depend on Jann</li> -->
+<!-- <li>101: Nothing leads here</li> -->
+<li>102: Could be free</li>
+<li>104: Fight 2 Bandit's skill 7,7 stamina 6,5</li>
+<li>106: Merchant</li>
+<li>108: add +2 to night creatures roll</li>
+<!-- <li>112: Libra choice</li> -->
+<li>117: Fight Assassin skill 8 stamina 6, you can spare him conditionally</li>
+<!-- <li>122: Get item Armband + 2 AS if using sword</li> -->
+<li>123: Go to previous reference, roll to determine who we fight</li>
+<!-- <li>124: Get cursed, from now on lose +1 stamina for all stamina loss actions except magic</li> -->
+<!-- <li>126: Only view purchased items</li> -->
 <!-- 130: Libra option -->
-<!-- 133: Test luck if you want -->
-<!-- 141: Barter or not for the axe -->
-142: Try to roll lower than skill, unlimited tries, - AS for weapon chosen each try
-<!-- 144: Test luck -->
-151: Get Svinn girl? (maybe)
-<!-- 161: You have to pay, so block this option if not enough GP -->
-162: Fight Hill Gaint skill 9 stamina 11
-165: Keep testing your luck, until success 3 times in a row. -3 hp each time
-<!-- 168: Lose all provisions  -->
-<!-- 171: Either option means Jann stays -->
-<!-- 177: Luck item -->
-<!-- 182: Give him axe if have it, or give him something else -->
-185: Lose weapon, -4 skill if no weapon
-187: Get friend for second book Flanker
-194: Can take sword and leave the old one behind, does +1 damage. If unwanted you can test your luck, if pass, sell it again.
-203: Fight Elvin skill 6+2 stamina 4
-<!-- 204: Waterfall cures you of all except disease -->
-<!-- 205: Lose Jann -->
-<!-- 206: Dead if no Libra -->
-207: Fight Hill Giant skill 9 stamina 11
-<!-- 213: Curse of Alianna -2 skill until removed -->
-<!-- 214: Trader broadsword barter -->
-<!-- 218: Remove each item based on Test your Luck roll -->
-227: Manticore fight. Each hit has a 1/3 chance of doing 6 hp, Succesful Luck roll can make this 2 instead.
-228: Roll one die three times, if less than skill, you escape, if not call Libra, if not you die.
-<!-- 233: Get free waterfall pass -->
-254: A dice determines where you go
-<!-- 257: The option to buy food 2 gp for 2 provisions -->
-258: Minigame, 5 coins and a key up for grabs, for each pick one and Test Luck, if fail lose half hp rounded down. If you get key, can view it at 199
-<!-- 261: Lose all items except equipped weapon -->
-<!-- 269: Test Luck - if fail you die -->
-<!-- 270: Roll dice if 1 - 4 take that damage -->
-<!-- 276: Can kill you if Jann is with you. Text is dynamic. -->
-<!-- 277: Roll 2 dice, If equals luck, -1 hp, if over luck, -3 hp. If two 6's you die. Other pages affect these numbers. -->
-<!-- 283: Get 2 hp if no enemies fought or 1 hp if fought -->
-285: Fight Ogre skill 8 stamina 7
+<!-- <li>133: Test luck if you want</li> -->
+<!-- <li>141: Barter or not for the axe</li> -->
+<li>142: Try to roll lower than skill, unlimited tries, - AS for weapon chosen each try</li>
+<!-- <li>144: Test luck</li> -->
+<li>151: Get Svinn girl? (maybe)</li>
+<!-- <li>161: You have to pay, so block this option if not enough GP</li> -->
+<li>162: Fight Hill Gaint skill 9 stamina 11</li>
+<li>165: Keep testing your luck, until success 3 times in a row. -3 hp each time</li>
+<!-- <li>168: Lose all provisions </li> -->
+<!-- <li>171: Either option means Jann stays</li> -->
+<!-- <li>177: Luck item</li> -->
+<!-- <li>182: Give him axe if have it, or give him something else</li> -->
+<li>185: Lose weapon, -4 skill if no weapon</li>
+<li>187: Get friend for second book Flanker</li>
+<li>194: Can take sword and leave the old one behind, does +1 damage. If unwanted you can test your luck, if pass, sell it again.</li>
+<li>203: Fight Elvin skill 6+2 stamina 4</li>
+<!-- <li>204: Waterfall cures you of all except disease</li> -->
+<!-- <li>205: Lose Jann</li> -->
+<!-- <li>206: Dead if no Libra</li> -->
+<li>207: Fight Hill Giant skill 9 stamina 11</li>
+<!-- <li>213: Curse of Alianna -2 skill until removed</li> -->
+<!-- <li>214: Trader broadsword barter</li> -->
+<!-- <li>218: Remove each item based on Test your Luck roll</li> -->
+<li>227: Manticore fight. Each hit has a 1/3 chance of doing 6 hp, Succesful Luck roll can make this 2 instead.</li>
+<li>228: Roll one die three times, if less than skill, you escape, if not call Libra, if not you die.</li>
+<!-- <li>233: Get free waterfall pass</li> -->
+<li>254: A dice determines where you go</li>
+<!-- <li>257: The option to buy food 2 gp for 2 provisions</li> -->
+<li>258: Minigame, 5 coins and a key up for grabs, for each pick one and Test Luck, if fail lose half hp rounded down. If you get key, can view it at 199</li>
+<!-- <li>261: Lose all items except equipped weapon</li> -->
+<!-- <li>269: Test Luck - if fail you die</li> -->
+<!-- <li>270: Roll dice if 1 - 4 take that damage</li> -->
+<!-- <li>276: Can kill you if Jann is with you. Text is dynamic.</li> -->
+<!-- <li>277: Roll 2 dice, If equals luck, -1 hp, if over luck, -3 hp. If two 6's you die. Other pages affect these numbers.</li> -->
+<!-- <li>283: Get 2 hp if no enemies fought or 1 hp if fought</li> -->
+<li>285: Fight Ogre skill 8 stamina 7</li>
+<ul>
 
-Magic
-295: Roll dice, 1 is bad: fight
-303: Need pebbles and dynamic text
-317: Weaken troll skill 4 stamina 7, 50/50 it gets strong after round 4
-325: Fights at half skill for 4 rounds Manticore
-328: Dyanmic text, requires beeswax
-330: Add + 3 to roll at 277
-338: Fight weakened Hill Giant skill 6 stamina 11
-339: requires bamboo flutes dynamic text
-356: Can test luck, if success no fight, if fail fight with double skill.
+# Magic
+
+<ul>
+<li>295: Roll dice, 1 is bad: fight</li>
+<li>303: Need pebbles and dynamic text</li>
+<li>317: Weaken troll skill 4 stamina 7, 50/50 it gets strong after round 4</li>
+<li>325: Fights at half skill for 4 rounds Manticore</li>
+<li>328: Dyanmic text, requires beeswax</li>
+<li>330: Add + 3 to roll at 277</li>
+<li>338: Fight weakened Hill Giant skill 6 stamina 11</li>
+<li>339: requires bamboo flutes dynamic text</li>
+<li>356: Can test luck, if success no fight, if fail fight with double skill.</li>
+</ul>
