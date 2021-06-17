@@ -4,6 +4,8 @@ import {
   PAY_MONEY,
   EAT_PROVISION,
   GET_ITEM,
+  LOSE_EVERYTHING,
+  LOSE_WEAPON,
 } from "./action-types";
 
 const initialState = {
@@ -21,7 +23,7 @@ const initialState = {
   },
   sword: {
     name: "Basic Sword",
-    amount: 0,
+    amount: 1,
     singular: true,
     info: "Weak starting sword",
     equipped: true,
@@ -105,7 +107,7 @@ const initialState = {
   },
   glue: {
     name: "Vial of Glue",
-    amount: 0,
+    amount: 20,
     singular: true,
     info: "Used in spells.",
   },
@@ -117,18 +119,18 @@ const initialState = {
   },
   pebbles: {
     name: "Pebbles",
-    amount: 0,
+    amount: 30,
     info: "Small round pebbles, useful for spells.",
   },
   spellbookPage: {
     name: "Spellbook Page",
-    amount: 0,
+    amount: 1,
     singular: true,
     info: "Part of a pest repelling spell.",
   },
   beeswax: {
     name: "Beeswax",
-    amount: 0,
+    amount: 3,
     info: "Gathered from a beehive. Used in spells.",
   },
   locket: {
@@ -139,7 +141,7 @@ const initialState = {
   },
   luckAmulet: {
     name: "Amulet",
-    amount: 0,
+    amount: 1,
     singular: true,
     info: "<p>-1 from Test your Luck die roll</p> A small amulet made of twisted metal, stolen from a dead troll. Improves Test your Luck chances.",
   },
@@ -153,7 +155,7 @@ const initialState = {
     name: "Finely Crafted Sword",
     amount: 0,
     singular: true,
-    info: "<p>Does 3 damage instead of 2 in combat</p> Finely crafted sword with a sharpened blade.",
+    info: "<p>Does 3 damage instead of 2 in combat</p> A Finely crafted sword with a sharpened blade.",
     equipped: false,
   },
   skullcap: {
@@ -192,21 +194,21 @@ const initialState = {
     name: "Pouch of Sand",
     amount: 0,
     singular: true,
-    info: "A pouch of soft brown sand, pillaged from Alianna's house"
+    info: "A pouch of soft brown sand, pillaged from Alianna's house",
   },
   collar: {
     name: "Green Gem Collar",
     amount: 0,
     singular: true,
-    info: "A collar studded with green gems and looks quite valuable. Looted from a wolfhound."
+    info: "A collar studded with green gems and looks quite valuable. Looted from a wolfhound.",
   },
   glandragorSword: {
     name: "Glandragor's Sword",
     amount: 0,
     singular: true,
     equipped: false,
-    info: "A replacement sword given to you by Glandragor the Protector, no special properties."
-  }
+    info: "A replacement sword given to you by Glandragor the Protector, no special properties.",
+  },
 };
 
 // Im well aware this is bad code.
@@ -218,9 +220,9 @@ const equipSpecificWeapon = (state, weapon) => {
       ...state.sword,
       equipped: weapon === "sword",
     },
-    broadSword: {
-      ...state.broadSword,
-      equipped: weapon === "broadSword",
+    broadsword: {
+      ...state.broadsword,
+      equipped: weapon === "broadsword",
     },
     axe: {
       ...state.axe,
@@ -232,9 +234,27 @@ const equipSpecificWeapon = (state, weapon) => {
     },
     glandragorSword: {
       ...state.glandragorSword,
-      equipped: weapon === 'glandragorSword'
-    }
+      equipped: weapon === "glandragorSword",
+    },
   };
+};
+
+const loseEquippedWeapon = (state) => {
+  for (let key in state) {
+    let value = state[key];
+    if (value.equipped) value.amount = 0;
+    key = value;
+  }
+  return state;
+}
+
+const loseAllButWeapon = (state) => {
+  for (let key in state) {
+    let value = state[key];
+    if (!value.equipped) value.amount = 0;
+    key = value;
+  }
+  return state;
 };
 
 export const reducer = (state = initialState, action) => {
@@ -256,16 +276,16 @@ export const reducer = (state = initialState, action) => {
         },
       };
     case GET_ITEM:
-      const relevantItem = action.payload.item
-      const amountGained = action.payload.amount
-      let amountAfter = state[relevantItem].amount + amountGained
-      if (amountAfter < 0) amountAfter = 0
+      const relevantItem = action.payload.item;
+      const amountGained = action.payload.amount;
+      let amountAfter = state[relevantItem].amount + amountGained;
+      if (amountAfter < 0) amountAfter = 0;
       return {
         ...state,
         [relevantItem]: {
           ...state[relevantItem],
           amount: amountAfter,
-        }
+        },
       };
     case EQUIP_WEAPON:
       const weapon = action.payload;
@@ -273,6 +293,10 @@ export const reducer = (state = initialState, action) => {
         ...state,
         ...equipSpecificWeapon(state, weapon),
       };
+    case LOSE_EVERYTHING:
+      return { ...loseAllButWeapon(state) };
+    case LOSE_WEAPON:
+      return { ...loseEquippedWeapon(state) };
     case DRINK_POTION:
       return {
         ...state,

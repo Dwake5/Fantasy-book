@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { loseStat } from "../redux/stats/actions";
 import { diceRolls, pluralize } from "../utils";
 
-// Used in node 270
+// Used in node 270, arrived from 200
 const BeeStings = ({ cancelPause }) => {
   const dispatch = useDispatch();
   const [alreadyStung, setAlreadyStung] = useState(false);
@@ -28,7 +28,7 @@ const BeeStings = ({ cancelPause }) => {
       <button
         onClick={handleSting}
         type="button"
-        className="btn btn-success mb-3"
+        className="btn btn-danger mb-3"
         disabled={alreadyStung}
       >
         Roll die

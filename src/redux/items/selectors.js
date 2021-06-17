@@ -3,6 +3,10 @@ export const getMoney = (state) => state.items.gold.amount;
 export const getProvisions = (state) => state.items.provisions.amount;
 export const ownItem = (state, item) => state.items[item].amount > 0;
 
+export const getEquippedWeapon = (state) => {
+  return Object.entries(state.items).find(item => item[1].equipped)[0]
+}
+
 export const getOwnedItems = (state) => {
   let itemsOwned = []
   Object.keys(state.items).forEach((key) => {

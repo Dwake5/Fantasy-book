@@ -7,8 +7,7 @@ import { loseStat } from "../redux/stats/actions";
 import { getStat } from "../redux/stats/selectors";
 import { testYourLuck } from "../utils";
  
-// Note to self, add luck amulet in here somewhere
-const TestLuck = ({ setLuckPassed, cancelPause}) => {
+const TestLuck = ({ setLuckPassed, cancelPause }) => {
   const dispatch = useDispatch();
   const [luckTested, setLuckTested] = useState(false);
   const [luckSuccess, setLuckSuccess] = useState(false);

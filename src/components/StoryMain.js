@@ -21,13 +21,19 @@ import {
 } from "../redux/stats/selectors";
 import { playerLearnsJann, setPage } from "../redux/story/actions";
 import { getPage, getTraderViews } from "../redux/story/selectors";
+import BackpackRobbed from "./BackpackRobbed";
 import BeeStings from "./BeeStings";
+import BreakDoor from "./BreakDoor";
 import BuyProvisions from "./BuyProvisions";
 import CreateStats from "./CreateStats";
 import EatOption from "./EatOption";
+import OfferArtefact from "./OfferArtefact";
+import PilferGrass from "./PilferGrass";
+import PitFall from "./PitFall";
 import PlayerChoices from "./PlayerChoices";
 import TestLuck from "./TestLuck";
 import Trader from "./Trader";
+import WitchSteals from "./WitchSteals";
 
 const StoryMain = () => {
   const dispatch = useDispatch();
@@ -40,6 +46,8 @@ const StoryMain = () => {
   const [itemVariableCost, setItemVariableCost] = useState(null);
   const [costChanged, setCostChanged] = useState(null); // This line makes a feature work. Literally no idea why
   const _traderViews = useSelector(getTraderViews);
+
+  const [luckPassed, setLuckPassed] = useState(null);
 
   // Ailments
   const _havePlague = useSelector(getPlague);
@@ -84,6 +92,8 @@ const StoryMain = () => {
         return <CreateStats cancelPause={cancelPause} />;
       case 270:
         return <BeeStings cancelPause={cancelPause} />;
+      case 218:
+        return <BackpackRobbed cancelPause={cancelPause} />;
       default:
     }
     alreadyMapped = true;
@@ -94,9 +104,10 @@ const StoryMain = () => {
   };
 
   const mapExtraText = () => {
+    console.log("map extra text", _pageNumber);
     switch (_pageNumber) {
       case 280:
-        return <Trader itemViews={_traderViews} />;
+        return <Trader itemViews={_traderViews.length} />;
       case 214:
         return (
           <Trader
@@ -127,6 +138,18 @@ const StoryMain = () => {
         );
       case 257:
         return <BuyProvisions amount={2} cost={2} playerMoney={_money} />;
+      case 29:
+        return <OfferArtefact pageNumber={_pageNumber} />;
+      case 32:
+        return <PilferGrass pageNumber={_pageNumber} amount={2} />;
+      case 57:
+        return <PilferGrass pageNumber={_pageNumber} amount={1} />;
+      case 48:
+        return <WitchSteals pageNumber={_pageNumber} />;
+      case 93:
+        return <BreakDoor />;
+      case 277:
+        return <PitFall />;
       default:
     }
   };
@@ -207,6 +230,7 @@ const StoryMain = () => {
       <p dangerouslySetInnerHTML={{ __html: pageText }}></p>
       {testLuck && (
         <TestLuck
+          setLuckPassed={setLuckPassed}
           cancelPause={cancelPause}
           pageNumber={_pageNumber}
         />
@@ -223,7 +247,7 @@ const StoryMain = () => {
       {(pauseChoices || stayShowing) && mapWhatToDo()}
       {extraText && mapExtraText()}
       <PlayerChoices
-        choices={useFilters(pageChoices)}
+        choices={useFilters(pageChoices, luckPassed, pauseChoices)}
         setStayShowing={setStayShowing}
         pause={pauseChoices}
       />

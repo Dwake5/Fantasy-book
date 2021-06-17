@@ -5,3 +5,5 @@ export const DRINK_POTION = namespace + "DRINK_POTION";
 export const PAY_MONEY = namespace + "PAY_MONEY";
 export const EAT_PROVISION = namespace + "EAT_PROVISION";
 export const GET_ITEM = namespace + "GET_ITEM";
+export const LOSE_EVERYTHING = namespace + "LOSE_EVERYTHING";
+export const LOSE_WEAPON = namespace + "LOSE_WEAPON";
