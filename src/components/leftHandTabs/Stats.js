@@ -7,6 +7,7 @@ import {
   getHaveJann,
   getAliannaCurse,
 } from "../../redux/stats/selectors";
+import { getWeaponSkillLoss } from "../../redux/items/selectors";
 import { getPage } from "../../redux/story/selectors";
 
 const Stats = ({ skill, maxSkill, stamina, maxStamina, luck, maxLuck }) => {
@@ -14,18 +15,12 @@ const Stats = ({ skill, maxSkill, stamina, maxStamina, luck, maxLuck }) => {
   const _eatenToday = useSelector(eatenToday);
   const _pageNumber = useSelector(getPage);
   const _haveJann = useSelector(getHaveJann);
+  const _weaponSkillLoss = useSelector(getWeaponSkillLoss);
+  const totalSkillLoss = _weaponSkillLoss + _haveAliannaCurse;
 
   return (
     <Container className="border text-center statsBox mb-2">
       <p className="h3 text-center">Stats</p>
-      {maxSkill > 0 && (
-        <>
-          <p className="m-0">
-            Skill: {skill} / {maxSkill} {_haveAliannaCurse && " (-2)"}
-          </p>
-          <ProgressBar className="mb-2" now={(skill / maxSkill) * 100} />
-        </>
-      )}
       {maxStamina > 0 && (
         <>
           <p className="m-0">
@@ -36,6 +31,15 @@ const Stats = ({ skill, maxSkill, stamina, maxStamina, luck, maxLuck }) => {
             className="mb-2"
             now={(stamina / maxStamina) * 100}
           />
+        </>
+      )}
+      {maxSkill > 0 && (
+        <>
+          <p className="m-0">
+            Skill: {skill} / {maxSkill}
+            {totalSkillLoss > 0 && ` (-${totalSkillLoss})`}
+          </p>
+          <ProgressBar className="mb-2" now={(skill / maxSkill) * 100} />
         </>
       )}
       {maxLuck > 0 && (

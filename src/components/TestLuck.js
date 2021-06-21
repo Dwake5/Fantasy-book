@@ -7,6 +7,7 @@ import { loseStat } from "../redux/stats/actions";
 import { getStat } from "../redux/stats/selectors";
 import { testYourLuck } from "../utils";
  
+// 236 is a good node to test
 const TestLuck = ({ setLuckPassed, cancelPause }) => {
   const dispatch = useDispatch();
   const [luckTested, setLuckTested] = useState(false);
@@ -17,7 +18,7 @@ const TestLuck = ({ setLuckPassed, cancelPause }) => {
   const fixedLuckNeeded = useRef(null);
 
   const testLuck = () => {
-    const [total, pass] = testYourLuck(_luck);
+    const [total, pass] = testYourLuck(_luck, _haveLuckAmulet);
     loseStat(dispatch, "luck", 1);
     setLuckSuccess(pass);
     setLuckTested(true);
@@ -41,11 +42,10 @@ const TestLuck = ({ setLuckPassed, cancelPause }) => {
         Test your Luck
       </button>
       {!_haveLuckAmulet && <p>You would need a {fixedLuckNeeded.current || _luck} or lower to pass.</p>}
-      {_haveLuckAmulet && <p>Due to your luck amulet, you would need a {(fixedLuckNeeded.current || _luck) + 1} or lower to pass.</p>}
+      {_haveLuckAmulet && <p>Due to your Luck Amulet, you would need a {(fixedLuckNeeded.current || _luck) + 1} or lower to pass.</p>}
       {luckTested && (
         <>
-          <p className="mb-1">You rolled a {luckTotal},</p>
-          <p>Test your Luck: {luckSuccess ? "Success!" : "Failed"}</p>
+          <p className="mb-1">{luckSuccess ? "Success!" : "Fail:"} You rolled a {luckTotal}.</p>
         </>
       )}
     </Container>

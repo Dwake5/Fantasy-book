@@ -13,7 +13,6 @@ const BackpackRobbed = ({ pageNumber, cancelPause }) => {
   const fixedItems = useRef(null);
   const totalItems = useRef(null);
   const testedItems = useRef(0);
-  console.log('testedItems :', testedItems);
   const _luck = useSelector((state) => getStat(state, "luck"));
   const _haveLuckAmulet = useSelector((state) => ownItem(state, "luckAmulet"));
   const rollNeeded = _haveLuckAmulet ? _luck + 1 : _luck;

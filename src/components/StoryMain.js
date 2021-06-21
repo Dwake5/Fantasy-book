@@ -27,13 +27,21 @@ import BreakDoor from "./BreakDoor";
 import BuyProvisions from "./BuyProvisions";
 import CreateStats from "./CreateStats";
 import EatOption from "./EatOption";
+import ForkDie from "./ForkDie";
+import KillSnakes from "./KillSnakes";
+import LockSmash from "./LockSmash";
 import OfferArtefact from "./OfferArtefact";
+import OpenDoor from "./OpenDoor";
+import PickpocketBox from "./PickpocketBox";
 import PilferGrass from "./PilferGrass";
 import PitFall from "./PitFall";
 import PlayerChoices from "./PlayerChoices";
 import TestLuck from "./TestLuck";
 import Trader from "./Trader";
+import TrollDice from "./TrollDice";
 import WitchSteals from "./WitchSteals";
+import Combat from "./Combat";
+import { getInCombat } from "../redux/combat/selectors";
 
 const StoryMain = () => {
   const dispatch = useDispatch();
@@ -48,6 +56,9 @@ const StoryMain = () => {
   const _traderViews = useSelector(getTraderViews);
 
   const [luckPassed, setLuckPassed] = useState(null);
+
+  // Combat
+  const _inCombat = useSelector(getInCombat);
 
   // Ailments
   const _havePlague = useSelector(getPlague);
@@ -94,6 +105,10 @@ const StoryMain = () => {
         return <BeeStings cancelPause={cancelPause} />;
       case 218:
         return <BackpackRobbed cancelPause={cancelPause} />;
+      case 38:
+        return <TrollDice cancelPause={cancelPause} />;
+      case 165:
+        return <KillSnakes cancelPause={cancelPause} />;
       default:
     }
     alreadyMapped = true;
@@ -104,7 +119,6 @@ const StoryMain = () => {
   };
 
   const mapExtraText = () => {
-    console.log("map extra text", _pageNumber);
     switch (_pageNumber) {
       case 280:
         return <Trader itemViews={_traderViews.length} />;
@@ -148,6 +162,14 @@ const StoryMain = () => {
         return <WitchSteals pageNumber={_pageNumber} />;
       case 93:
         return <BreakDoor />;
+      case 142:
+        return <LockSmash />;
+      case 228:
+        return <OpenDoor />;
+      case 254:
+        return <ForkDie />;
+      case 258:
+        return <PickpocketBox />;
       case 277:
         return <PitFall />;
       default:
@@ -220,6 +242,10 @@ const StoryMain = () => {
     if (newDay) handleNewDay();
   }, [_pageNumber]);
 
+  // This is probably a bad way to handle this.
+  const availableChoices = useFilters(pageChoices, luckPassed, pauseChoices);
+
+  if (_inCombat) return <Combat />
   return (
     <Container className="border storyBody">
       <p className="h3 mb-3 text-center">
@@ -237,6 +263,7 @@ const StoryMain = () => {
       )}
       {eatOption && (
         <EatOption
+          key={_pageNumber}
           eatOptions={eatOption}
           eatenToday={_eatenToday}
           food={_provisions}
@@ -247,7 +274,7 @@ const StoryMain = () => {
       {(pauseChoices || stayShowing) && mapWhatToDo()}
       {extraText && mapExtraText()}
       <PlayerChoices
-        choices={useFilters(pageChoices, luckPassed, pauseChoices)}
+        choices={availableChoices}
         setStayShowing={setStayShowing}
         pause={pauseChoices}
       />

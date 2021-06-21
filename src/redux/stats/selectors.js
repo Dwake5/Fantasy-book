@@ -5,7 +5,15 @@ export const getStat = (state, stat) => state.stats[stat];
 export const getSkill = (state) => {
   const haveAlianna = getAliannaCurse(state);
   const skill = state.stats.skill;
-  return haveAlianna ? skill - 2 : skill;
+
+  const equippedWeapon = Object.values(state.items).find(
+    (item) => item.equipped
+  );
+
+  const skillLoss = equippedWeapon ? equippedWeapon.skillLoss : 4;
+
+  let actualSkill = skill - skillLoss;
+  return haveAlianna ? actualSkill - 2 : actualSkill;
 };
 
 export const isStatMax = (state, stat) => {

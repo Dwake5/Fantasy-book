@@ -13,21 +13,28 @@ import {
   GAIN_CURSE_SPIRIT,
   GAIN_CURSE_ALIANNA,
   GAIN_PLAGUE,
+  SCORPION_STING,
 } from "./action-types";
 
 const initialState = {
-  skill: 0,
-  maxSkill: 0,
-  stamina: 5,
+  skill: 12,
+  maxSkill: 12,
+  stamina: 20,
   maxStamina: 20,
-  luck: 7,
-  maxLuck: 7,
+  luck: 10,
+  maxLuck: 10,
   eatenToday: false,
   libra: true,
   plague: false,
   spiritCurse: false,
   aliannaCurse: false,
   jann: false,
+};
+
+const halfHpRoundDown = (state) => {
+  const currentHp = state.stamina;
+  const newHp = Math.floor(currentHp / 2);
+  return newHp;
 };
 
 export const reducer = (state = initialState, action) => {
@@ -124,6 +131,11 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         plague: true,
+      };
+    case SCORPION_STING:
+      return {
+        ...state,
+        stamina: halfHpRoundDown(state),
       };
     default:
       return state;

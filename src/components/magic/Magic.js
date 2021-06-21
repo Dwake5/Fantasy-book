@@ -25,7 +25,7 @@ const Magic = () => {
   };
 
   return (
-    <Container className="border text-center">
+    <Container className="border text-center mb-2">
       <p className="h3 text-center">Magic</p>
       <Button onClick={handleShow} className={`mb-3 ${leftTutorialPages() ? "hoverWarning" : ""}`}>
         View Spell Book

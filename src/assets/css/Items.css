@@ -18,6 +18,10 @@
   visibility: visible;
 }
 
+.hoverText :last-child {
+  margin-bottom: 0
+}
+
 .hoverItem {
   position: relative;
 }

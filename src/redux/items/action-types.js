@@ -7,3 +7,4 @@ export const EAT_PROVISION = namespace + "EAT_PROVISION";
 export const GET_ITEM = namespace + "GET_ITEM";
 export const LOSE_EVERYTHING = namespace + "LOSE_EVERYTHING";
 export const LOSE_WEAPON = namespace + "LOSE_WEAPON";
+export const BLUNT_WEAPON = namespace + "BLUNT_WEAPON";

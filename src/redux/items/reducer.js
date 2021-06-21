@@ -6,6 +6,7 @@ import {
   GET_ITEM,
   LOSE_EVERYTHING,
   LOSE_WEAPON,
+  BLUNT_WEAPON,
 } from "./action-types";
 
 const initialState = {
@@ -21,41 +22,17 @@ const initialState = {
     info: "Enough food for 1 good meal, replenishes Stamina.",
     alwaysShow: true,
   },
-  sword: {
-    name: "Basic Sword",
-    amount: 1,
-    singular: true,
-    info: "Weak starting sword",
-    equipped: true,
-  },
   potion: {
     name: "Blimberry Potion",
     amount: 0,
     singular: true,
     info: "<p>Replenish 3 Stamina points outside of battle</p> Pungant Blimberry Juice. Useful in magic or to recover Stamina.",
-    use: false,
-  },
-  broadsword: {
-    name: "Broadsword",
-    amount: 0,
-    singular: true,
-    info: "<p>+1 Attack Strength when equipped.</p> A fine-edged weapon.",
-    equipped: false,
   },
   pipe: {
     name: "Bamboo Pipe",
     amount: 0,
     singular: true,
     info: "A musical pipe made of bamboo",
-  },
-  axe: {
-    name: "Axe",
-    amount: 0,
-    singular: true,
-    info: `<p>-1 Attack Strength when equipped.</p> 
-    The carvings read: This axe was crafted in the Year of the Ox for Glandragor the Protector. 
-    Its powers may be realized only by its owner.`,
-    equipped: false,
   },
   iceJewel: {
     name: "Ice Jewel",
@@ -107,7 +84,7 @@ const initialState = {
   },
   glue: {
     name: "Vial of Glue",
-    amount: 20,
+    amount: 0,
     singular: true,
     info: "Used in spells.",
   },
@@ -119,18 +96,18 @@ const initialState = {
   },
   pebbles: {
     name: "Pebbles",
-    amount: 30,
+    amount: 0,
     info: "Small round pebbles, useful for spells.",
   },
   spellbookPage: {
     name: "Spellbook Page",
-    amount: 1,
+    amount: 0,
     singular: true,
     info: "Part of a pest repelling spell.",
   },
   beeswax: {
     name: "Beeswax",
-    amount: 3,
+    amount: 0,
     info: "Gathered from a beehive. Used in spells.",
   },
   locket: {
@@ -141,22 +118,15 @@ const initialState = {
   },
   luckAmulet: {
     name: "Amulet",
-    amount: 1,
+    amount: 0,
     singular: true,
-    info: "<p>-1 from Test your Luck die roll</p> A small amulet made of twisted metal, stolen from a dead troll. Improves Test your Luck chances.",
+    info: "<p>-1 from Test your Luck dice rolls</p> A small amulet made of twisted metal, stolen from a dead troll. Improves Test your Luck chances.",
   },
   armband: {
     name: "Armband",
-    amount: 0,
+    amount: 1,
     singular: true,
     info: "<p>+2 Attack Strength when a sword is equipped</p> Ragnar's Armband of Swordmastery. A magical armband that improves your combat skill with a sword.",
-  },
-  craftedSword: {
-    name: "Finely Crafted Sword",
-    amount: 0,
-    singular: true,
-    info: "<p>Does 3 damage instead of 2 in combat</p> A Finely crafted sword with a sharpened blade.",
-    equipped: false,
   },
   skullcap: {
     name: "Skullcap",
@@ -202,12 +172,47 @@ const initialState = {
     singular: true,
     info: "A collar studded with green gems and looks quite valuable. Looted from a wolfhound.",
   },
+  sword: {
+    name: "Basic Sword",
+    amount: 0,
+    singular: true,
+    info: "<p>Weak starting sword.</p>",
+    equipped: false,
+    skillLoss: 0,
+  },
+  broadsword: {
+    name: "Broadsword",
+    amount: 1,
+    singular: true,
+    info: "<p>+1 Attack Strength when equipped.</p> <p>A fine-edged weapon.</p>",
+    equipped: true,
+    skillLoss: 0,
+  },
+  axe: {
+    name: "Axe",
+    amount: 1,
+    singular: true,
+    info: `<p>-1 Attack Strength when equipped.</p> 
+    <p>The carvings read: This axe was crafted in the Year of the Ox for Glandragor the Protector. 
+    Its powers may be realized only by its owner.</p>`,
+    equipped: false,
+    skillLoss: 0,
+  },
+  craftedSword: {
+    name: "Finely Crafted Sword",
+    amount: 1,
+    singular: true,
+    info: "<p>Does 3 damage instead of 2 in combat.</p> <p>A Finely crafted sword with a sharpened blade.</p>",
+    equipped: false,
+    skillLoss: 0,
+  },
   glandragorSword: {
     name: "Glandragor's Sword",
     amount: 0,
     singular: true,
     equipped: false,
-    info: "A replacement sword given to you by Glandragor the Protector, no special properties.",
+    skillLoss: 0,
+    info: "<p>A replacement sword given to you by Glandragor the Protector, no special properties.</p>",
   },
 };
 
@@ -242,11 +247,20 @@ const equipSpecificWeapon = (state, weapon) => {
 const loseEquippedWeapon = (state) => {
   for (let key in state) {
     let value = state[key];
-    if (value.equipped) value.amount = 0;
+    if (value.equipped) {
+      value.amount = 0;
+      value.equipped = false;
+    }
     key = value;
   }
   return state;
-}
+};
+
+const bluntWeapon = (state, weapon) => {
+  const correctWeapon = state[weapon];
+  correctWeapon.skillLoss += 1;
+  return state;
+};
 
 const loseAllButWeapon = (state) => {
   for (let key in state) {
@@ -297,6 +311,9 @@ export const reducer = (state = initialState, action) => {
       return { ...loseAllButWeapon(state) };
     case LOSE_WEAPON:
       return { ...loseEquippedWeapon(state) };
+    case BLUNT_WEAPON:
+      const weaponName = action.payload;
+      return { ...bluntWeapon(state, weaponName) };
     case DRINK_POTION:
       return {
         ...state,

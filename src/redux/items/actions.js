@@ -6,6 +6,7 @@ import {
   GET_ITEM,
   LOSE_EVERYTHING,
   LOSE_WEAPON,
+  BLUNT_WEAPON,
 } from "./action-types";
 
 export const getItem = (dispatch, { name, amount }) => {
@@ -50,4 +51,8 @@ export const robbedByBandits = (dispatch, equippedWeapon) => {
 
 export const loseEquippedWeapon = (dispatch) => {
   dispatch({ type: LOSE_WEAPON });
+};
+
+export const bluntWeapon = (dispatch, name) => {
+  dispatch({ type: BLUNT_WEAPON, payload: name });
 };

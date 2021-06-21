@@ -10,6 +10,7 @@ const EatOption = ({ eatOptions, eatenToday, food, money, pageNumber }) => {
   const fixedFoodHealth = useRef(null);
 
   const [usedOption, setUsedOption] = useState(false);
+  console.log('usedOption :', usedOption);
 
   const firstMealHealth = eatOptions.haveNotEaten;
   const mealHealth = eatOptions.haveEaten;
@@ -29,6 +30,10 @@ const EatOption = ({ eatOptions, eatenToday, food, money, pageNumber }) => {
     }
   };
 
+  useEffect(() => {
+    fixedFoodHealth.current = foodHeals;
+  }, [pageNumber]);
+  
   useEffect(() => {
     fixedFoodHealth.current = foodHeals;
   }, [pageNumber]);

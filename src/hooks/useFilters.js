@@ -3,12 +3,19 @@ import { getMoney, getOwnedItems } from "../redux/items/selectors";
 import { getHaveJann, getLibra } from "../redux/stats/selectors";
 import {
   getCantUseMagic,
+  getDoorOpened,
   getDoorStatus,
   getGlandragor,
   getPage,
   getPassedPilfer,
   getPitfallStatus,
+  getSentryDie,
+  getSentryLuck,
   getTraderViews,
+  getForkDie,
+  getSeenBox1,
+  getSeenBox2,
+  getLockStatus,
 } from "../redux/story/selectors";
 
 const blockAllChoices = (choices) => {
@@ -41,6 +48,13 @@ export function useFilters(choices, luckPassed, pauseChoices) {
   const _pilferGrass = useSelector(getPassedPilfer);
   const _doorStatus = useSelector(getDoorStatus);
   const _pitfallStatus = useSelector(getPitfallStatus);
+  const _sentryDie = useSelector(getSentryDie);
+  const _sentryLuck = useSelector(getSentryLuck);
+  const _doorOpened = useSelector(getDoorOpened);
+  const _forkDie = useSelector(getForkDie);
+  const _seenBox1 = useSelector(getSeenBox1);
+  const _seenBox2 = useSelector(getSeenBox2);
+  const _lockStatus = useSelector(getLockStatus);
 
   const canAfford = (choice) => {
     const choiceCost = choice.cost;
@@ -128,8 +142,30 @@ export function useFilters(choices, luckPassed, pauseChoices) {
   if (_pageNumber === 93) {
     const doorOpen = _doorStatus.broken;
     const doorTried = _doorStatus.tried;
+    let canLeave = doorTried;
+    if (doorOpen) canLeave = false;
     let choice1 = { ...choices[0], blocked: !doorOpen };
-    let choice2 = { ...choices[1], blocked: !doorTried };
+    let choice2 = { ...choices[1], blocked: !canLeave };
+    return [{ ...choice1 }, { ...choice2 }];
+  }
+
+  // Has door been tried, has door been opened?
+  if (_pageNumber === 142) {
+    const lockOpen = _lockStatus.broken;
+    const lockTried = _lockStatus.tried;
+    let canLeave = lockTried;
+    if (lockOpen) canLeave = false;
+    let choice1 = { ...choices[0], blocked: !lockOpen };
+    let choice2 = { ...choices[1], blocked: !canLeave };
+    return [{ ...choice1 }, { ...choice2 }];
+  }
+
+  if (_pageNumber === 91) {
+    const traderItems = ["potion", "broadsword", "pipe", "axe", "goblinTeeth", "jewel"];
+    const haveTraderItem = _itemsOwned.some(item => traderItems.includes(item))
+    
+    let choice1 = { ...choices[0], blocked: !haveTraderItem };
+    let choice2 = { ...choices[1], blocked: haveTraderItem };
     return [{ ...choice1 }, { ...choice2 }];
   }
 
@@ -150,6 +186,55 @@ export function useFilters(choices, luckPassed, pauseChoices) {
         { ...choices[0], blocked: false },
         { ...choices[1], blocked: true },
       ];
+  }
+
+  if (_pageNumber === 228) {
+    if (_doorOpened === null) return choices;
+    if (_doorOpened) {
+      return [
+        { ...choices[0], blocked: false },
+        { ...choices[1] },
+        { ...choices[2] },
+      ];
+    } else {
+      const newChoices = [
+        { ...choices[0] },
+        { ...choices[1], blocked: false },
+        { ...choices[2], blocked: false },
+      ];
+      return filterNeedLibra(newChoices);
+    }
+  }
+
+  if (_pageNumber === 23) {
+    let returnIndex;
+    if (_sentryLuck) {
+      returnIndex = 3;
+    } else {
+      returnIndex = Math.ceil(_sentryDie / 2) - 1;
+    }
+    return choices.map((choice, i) => {
+      if (i === returnIndex) return { ...choice, blocked: false };
+      return choice;
+    });
+  }
+
+  if (_pageNumber === 254) {
+    const returnIndex = Math.ceil(_forkDie / 2) - 1;
+    return choices.map((choice, i) => {
+      if (i === returnIndex) return { ...choice, blocked: false };
+      return choice;
+    });
+  }
+
+  if (_pageNumber === 258) {
+    if (!_seenBox1) return choices;
+    else return [{ ...choices[0], blocked: true }, { ...choices[1] }];
+  }
+
+  if (_pageNumber === 403) {
+    if (!_seenBox2) return choices;
+    else return [{ ...choices[0], blocked: true }, { ...choices[1] }];
   }
 
   // Pilfer grass
@@ -183,7 +268,7 @@ export function useFilters(choices, luckPassed, pauseChoices) {
   }
 
   let filtered = filterNeedItems(choices);
-  filtered = filterBlockItems(filtered); // used for 48, where else is this needed?
+  filtered = filterBlockItems(filtered);
   filtered = filterLuckOptions(filtered);
   filtered = filterCanAfford(filtered);
   filtered = filterNeedLibra(filtered);

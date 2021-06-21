@@ -12,6 +12,7 @@ import {
   GAIN_CURSE_SPIRIT,
   GAIN_CURSE_ALIANNA,
   GAIN_PLAGUE,
+  SCORPION_STING,
 } from "./action-types";
 
 export const setMaxStat = (dispatch, stat, number) => {
@@ -78,4 +79,8 @@ export const playerGetsJann = (dispatch) => {
 
 export const playerLosesJann = (dispatch) => {
   dispatch({ type: LOSE_JANN })
+}
+
+export const scorpionSting = (dispatch) => {
+  dispatch({ type: SCORPION_STING })
 }

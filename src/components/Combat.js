@@ -5,41 +5,74 @@ import knight from "../assets/images/knight.jpeg";
 import wolf from "../assets/images/wolf.jpeg";
 import "../assets/css/Combat.css";
 import { diceRolls } from "../utils";
+import { useDispatch, useSelector } from "react-redux";
+import { getSkill, getStat } from "../redux/stats/selectors";
+import { gainStat, loseStat } from "../redux/stats/actions";
+import { getEnemyStats, getNextPage } from "../redux/combat/selectors";
+import { damageEnemy, endCombat } from "../redux/combat/actions";
+import { setPage } from "../redux/story/actions";
+import { getEquippedWeapon, ownItem } from "../redux/items/selectors";
 
-function Magic() {
+const Combat = () => {
+  const dispatch = useDispatch();
+  // Player stats
+  const _skill = useSelector(getSkill);
+  const _stamina = useSelector((state) => getStat(state, "stamina"));
+  const _maxStamina = useSelector((state) => getStat(state, "maxStamina"));
+  const _luck = useSelector((state) => getStat(state, "luck"));
+  const _maxLuck = useSelector((state) => getStat(state, "maxLuck"));
+  // Enemy stats
+  const _enemyStats = useSelector(getEnemyStats);
+  const enemySkill = _enemyStats.skill;
+  const enemyStamina = _enemyStats.stamina;
+  const enemyMaxStamina = _enemyStats.maxStamina;
+  const enemyName = _enemyStats.name;
+
+  const _nextPage = useSelector(getNextPage);
+
   const [text, setText] = useState([]);
-  const [health, setHealth] = useState(20);
+  const [deathText, setDeathText] = useState("");
   const [whoWasDamaged, setWhoWasDamaged] = useState(null);
   const [canUseLuck, setCanUseLuck] = useState(false);
   const [someoneDead, setSomeoneDead] = useState(false);
 
   const [autoFight, setAutoFight] = useState(false);
+  const _haveArmband = useSelector((state) => ownItem(state, "armband"));
+  const _equippedWeapon = useSelector(getEquippedWeapon);
 
-  const maxHealth = 20;
-  const skill = 12;
-  const [luck, setLuck] = useState(8);
-  const maxLuck = 8;
+  let asModifier = 0;
+  let damage = 2;
+  if (_equippedWeapon === "craftedSword") {
+    damage++;
+  } else if (_equippedWeapon === "broadsword") {
+    asModifier++;
+  } else if (_equippedWeapon === "axe") {
+    asModifier--;
+  }
 
-  const [enemyHealth, setEnemyHealth] = useState(6);
-  const maxEnemyHealth = 10;
-  const enemySkill = 9;
+  const swordList = ["sword", "craftedSword", "broadsword", "glandragorSword"];
+  if (_haveArmband && swordList.includes(_equippedWeapon)) {
+    asModifier += 2;
+  }
+
+  const attackStrength = _skill + asModifier;
 
   const checkDeath = () => {
     let localText = "";
     let someoneDead = false;
-    if (health <= 0) {
+    if (_stamina <= 0) {
       someoneDead = true;
-      localText = "Oh no, you have died.";
+      localText = <p><b>Oh no, you have died.</b></p>;
     }
-    if (enemyHealth <= 0) {
+    if (enemyStamina <= 0) {
       someoneDead = true;
-      localText = "You have won. The enemy is dead.";
+      localText = <p><b>You have won, the enemy is dead!</b></p>;
     }
-
-    const deadText = <p>{localText}</p>;
 
     if (someoneDead) {
-      setText([...text, deadText]);
+      const deadText = <p>{localText}</p>;
+      setDeathText(deadText);
+      setAutoFight(false);
       setSomeoneDead(true);
     }
   };
@@ -49,21 +82,26 @@ function Magic() {
     const playerRoll = diceRolls(2, true);
     const enemyRoll = diceRolls(2, true);
 
-    const playerTotal = playerRoll + skill;
+    const playerTotal = playerRoll + attackStrength;
     const enemyTotal = enemyRoll + enemySkill;
 
     let damagedText = "";
 
     if (playerTotal > enemyTotal) {
-      setEnemyHealth(enemyHealth - 2);
+      damageEnemy(dispatch, damage);
       setWhoWasDamaged("enemy");
-      damagedText = "You damaged the enemy for 2 points!";
+      damagedText = (
+        <p className="text-success">You damaged the enemy for {damage} points!</p>
+      );
     } else if (enemyTotal > playerTotal) {
-      setHealth(health - 2);
+      loseStat(dispatch, "stamina", 2);
+
       setWhoWasDamaged("player");
-      damagedText = "The enemy damaged you for 2 points.";
+      damagedText = (
+        <p className="text-danger">The enemy damaged you for 2 points.</p>
+      );
     } else {
-      damagedText = "You miss each other causing no damage.";
+      damagedText = <p>You miss each other causing no damage.</p>;
     }
 
     const div = (
@@ -72,7 +110,7 @@ function Magic() {
           You rolled a {playerRoll}, for a total of: {playerTotal}. Enemy rolled
           a {enemyRoll}, for a total of: {enemyTotal}
         </p>
-        <p>{damagedText}</p>
+        {damagedText}
       </div>
     );
 
@@ -81,41 +119,57 @@ function Magic() {
 
   useEffect(() => {
     checkDeath();
-  }, [health, enemyHealth]);
+  }, [_stamina, enemyStamina]);
 
   const handleLuck = () => {
     setCanUseLuck(false);
     let localText = "";
     const luckRoll = diceRolls(2, true);
-    const rollPassed = luckRoll <= luck;
-    setLuck(luck - 1);
+    const rollPassed = luckRoll <= _luck;
+    loseStat(dispatch, "luck", 1);
 
     if (whoWasDamaged === "player") {
       if (rollPassed) {
-        localText =
-          "Test your Luck - Pass: The enemy merely grazed you and you recover 1 damage.";
-        setHealth(health + 1);
+        localText = (
+          <p>
+            <span className="text-success">Test your Luck - Success:</span> The
+            enemy merely grazed you and you recover 1 Stamina.
+          </p>
+        );
+        gainStat(dispatch, "stamina", 1);
       } else {
-        localText =
-          "Test your Luck - Fail: The enemy hit an artery, you lose an additional point of damage.";
-        setHealth(health - 1);
+        localText = (
+          <p>
+            <span className="text-danger">Test your Luck - Fail:</span> The
+            enemy hit an artery, you lose an additional point of damage.
+          </p>
+        );
+        loseStat(dispatch, "stamina", 1);
       }
     }
 
     if (whoWasDamaged === "enemy") {
       if (rollPassed) {
-        localText =
-          "Test your Luck - Pass: You land a devestating blow on the enemy, scoring an extra point of damage!";
-        setEnemyHealth(enemyHealth - 1);
+        localText = (
+          <p>
+            <span className="text-success">Test your Luck - Success:</span> You
+            land a devestating blow on the enemy, scoring an extra point of
+            damage!
+          </p>
+        );
+        damageEnemy(dispatch, 1);
       } else {
-        localText =
-          "Test your Luck - Fail: Your attack merely grazed the monster and he recovers a point of damage.";
-        setEnemyHealth(enemyHealth + 1);
+        localText = (
+          <p>
+            <span className="text-danger">Test your Luck - Fail:</span> Your
+            attack merely grazed the monster and he recovers a point of damage.
+          </p>
+        );
+        damageEnemy(dispatch, -1);
       }
     }
 
-    const luckText = <p>{localText}</p>;
-    setText([...text, luckText]);
+    setText([...text, localText]);
   };
 
   const useInterval = (callback, delay) => {
@@ -132,14 +186,20 @@ function Magic() {
       }
     }, [delay]);
     return intervalId.current;
-  }
+  };
 
   const shouldIntervalRun = autoFight && !someoneDead;
-  useInterval(handleAttack, shouldIntervalRun ? 1000 : null);
+  useInterval(handleAttack, shouldIntervalRun ? 750 : null);
+
+  const choices = [{ goToPage: _nextPage, text: "Continue" }];
+
+  const handleChoice = () => {
+    endCombat(dispatch);
+    setPage(dispatch, _nextPage);
+  };
 
   return (
     <Container>
-      <p className="h2 text-center">Combat</p>
       <Row>
         <Col className="border">
           <p className="text-center h3">You</p>
@@ -147,59 +207,84 @@ function Magic() {
             <img src={knight} alt="You fighting the enemy" />
           </div>
           <p className="mb-0">
-            Constitution: {health} / {maxHealth}
+            Stamina: {_stamina} / {_maxStamina}
           </p>
-          <p className="mb-0">Attack Strength: {skill}</p>
+          <p className="mb-0">
+            Attack Strength: {_skill}{" "}
+            {asModifier !== 0
+              ? `(${asModifier > 0 ? "+" : ""}${asModifier})`
+              : ""}
+          </p>
           <p className="mb-3">
-            Luck: {luck} / {maxLuck}
+            Luck: {_luck} / {_maxLuck}
           </p>
 
           <div className="d-flex flex-column align-items-start">
-            <button
-              disabled={someoneDead || autoFight}
-              onClick={handleAttack}
-              className="mb-2"
-            >
-              Attack
-            </button>
-            <button
-              onClick={handleLuck}
-              disabled={!canUseLuck || someoneDead || autoFight}
-              className="mb-4"
-            >
-              Test your Luck
-            </button>
-            <div className="d-flex align-items-center mb-2">
+            <div>
               <button
-                className="mr-2"
-                onClick={autoFight}
+                disabled={someoneDead || autoFight}
+                onClick={handleAttack}
+                className="btn btn-danger mb-4 mr-3"
+              >
+                Attack
+              </button>
+              <button
+                onClick={handleLuck}
+                disabled={!canUseLuck || someoneDead || autoFight}
+                className="btn btn-warning mb-4"
+              >
+                Test your Luck
+              </button>
+            </div>
+
+            <div className="d-flex mb-4 align-items-center">
+              <button
+                className="mr-2 btn border"
+                onClick={() => setAutoFight(!autoFight)}
                 disabled={someoneDead}
               >
                 Auto Fight
               </button>
-              <input className="autoCombat" onChange={() => setAutoFight(!autoFight)} type="checkbox"></input>
+              <p className="mb-0">{autoFight ? "ON" : "OFF"}</p>
             </div>
           </div>
         </Col>
 
         <Col className="border">
-          <p className="text-center h3">Wolf</p>
+          <p className="text-center h3">{enemyName}</p>
           <div className="imageContainer ml-auto mb-3">
-            <img src={wolf} alt="You fighting the enemy" />
+            <img src={wolf} alt="You enemy" />
           </div>
           <div className="text-right">
             <p className="mb-0">
-              Constitution: {enemyHealth} / {maxEnemyHealth}
+              Stamina: {enemyStamina} / {enemyMaxStamina}
             </p>
             <p className="mb-0">Attack Strength: {enemySkill}</p>
           </div>
         </Col>
       </Row>
       <Row>
-        <Col>{text.map((text) => text)}</Col>
+        <Col>{text.map((text) => text)}{deathText && deathText}</Col>
       </Row>
+      {someoneDead && (
+        <Row>
+          <Col className="text-center">
+            {choices.map((choice, i) => {
+              return (
+                <p
+                  key={i}
+                  className="userChoice"
+                  onClick={() => handleChoice(choice)}
+                >
+                  {i + 1}: {choice.text}
+                </p>
+              );
+            })}
+          </Col>
+        </Row>
+      )}
     </Container>
   );
-}
+};
 
-export default Magic;
+export default Combat;

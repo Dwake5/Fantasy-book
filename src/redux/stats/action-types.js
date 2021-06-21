@@ -27,3 +27,6 @@ export const WATERFALL = namespace + 'WATERFALL';
 
 export const RECEIVE_JANN = namespace + 'RECEIVE_JANN';
 export const LOSE_JANN = namespace + 'LOSE_JANN';
+
+export const SCORPION_STING = namespace + 'SCORPION_STING';
+

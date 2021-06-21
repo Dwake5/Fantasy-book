@@ -40,16 +40,15 @@ const App = () => {
               maxLuck={maxLuck}
             />
             <Items />
-            <Libra />
             <Ailments />
           </Col>
           <Col className="p-0 storyMain" xs={8}>
-            {/* <Combat />  */}
             <StoryMain />
           </Col>
           <Col className="p-0" xs={2}>
             <Magic />
             <Tutorial />
+            <Libra />
           </Col>
         </Row>
       </Container>

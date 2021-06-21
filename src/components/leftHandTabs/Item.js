@@ -1,17 +1,16 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import "../../assets/css/Stats.css";
-import { drinkPotion, equipSpecificWeapon } from "../../redux/items/actions";
+import { drinkPotion } from "../../redux/items/actions";
 import { gainStat } from "../../redux/stats/actions";
 
 const Item = ({
   name,
   info,
   amount,
-  equipped,
-  use,
   singular,
   alwaysShow,
+  use,
   reduxKey,
   healthMax,
 }) => {
@@ -20,17 +19,13 @@ const Item = ({
   const shouldShow = alwaysShow || amount > 0;
   if (!shouldShow) return null;
 
-  const equipWeapon = (weapon) => {
-    equipSpecificWeapon(dispatch, weapon);
-  };
-
   const handleDrinkPotion = () => {
     gainStat(dispatch, "stamina", 3);
-    drinkPotion(dispatch)
-  }
+    drinkPotion(dispatch);
+  };
 
   return (
-    <div >
+    <div>
       {/* Generic text for all items */}
       <p className="mb-1 hoverItem">
         {name}
@@ -43,20 +38,13 @@ const Item = ({
         )}
       </p>
       {/* Drink potion */}
-      {reduxKey === "potion" && <button onClick={handleDrinkPotion} disabled={healthMax} className="btn btn-info btn-sm">Drink</button>}
-      {/* Weapons */}
-      {equipped !== "undefined" && equipped && (
-        <button type="button" className="btn btn-secondary btn-sm">
-          Equiped
-        </button>
-      )}
-      {equipped !== "undefined" && equipped === false && (
+      {reduxKey === "potion" && (
         <button
-          onClick={() => equipWeapon(reduxKey)}
-          type="button"
-          className="btn btn-primary btn-sm"
+          onClick={handleDrinkPotion}
+          disabled={healthMax}
+          className="btn btn-info btn-sm"
         >
-          Equip
+          Drink
         </button>
       )}
     </div>

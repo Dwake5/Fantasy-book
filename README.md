@@ -14,13 +14,24 @@
   <li>Disable swapping weapons or drinking potion in combat</li>
   <li>Workout when the user has to know about Jann... (305, 306, 321, 394, 387, 286 all tell you, but are optional choices except 286!) Requires a lot of testing</li>
   <li>Add bold text to important info the player recieves, and stat loss / increases</li>
-  <li>Look into greying out unselectable choices instead</li>
   <li>Item furskin boots at 110</li>
+  <li>Handle items changing your AS in combat (passively)</li>
+  <li>Write usefilters a lot better</li>
+  <li>Handle Bomba</li>
+  <li>Bug: What if no items at pilfer Grass</li>
+  <li>Add combat config to gamedata</li>
 </ul>
 
 # Done
 
 <ul>
+  <li>Seperate the item component into weapons and items then do a weapon subheading</li>
+  <li>Horrible Bug: Combat doesnt show death text in auto combat mode. Fixed but the solution is horrible and no idea what was the issue</li>
+  <li>Lose 4 skill points if you have no weapon</li>
+  <li>Look into greying out unselectable choices instead</li>
+  <li>A lot of minigames, nearly all done</li>
+  <li>Dont let player see same box twice 145,403,251,258</li>
+  <li>Test Luck doesnt fully incorporate luck amulet</li>
   <li>Fixed Bug: Only the first item you pick at 280 reshows</li>
   <li>Completely fixed the overly complicated first trader</li>
   <li>All filters now swapped to a map, whereby bad options are greyed out with blocked attribute</li>
@@ -69,53 +80,8 @@
 
 Try to prioritize getting items at a node, rather than a choice.
 
-eatOption: [{ haveEaten: 1, haveNotEaten: 2 }],
-35,49,51,62,71,76,108,127,164,283
-134,267 cost money instead.
 
-notEaten: 3,
-enemies: [{ name: "Elvin", skill: "6", stamina: "4" }],
-getItems: [{name: ""}]
-
-plague: true
-curse: true
-dead: true
-getJann: true
-
-newDays are: 31, 36, 45, 67, 109, 140
-This is tied to notEaten: 3
-And does not need to be coded.
-
-Gold,
-Provisions,
-Sword
-Blimberry potion
-Broadsword
-Pipe
-Axe
-Ice Jewel
-Bomba
-Old Key
-Goblin Key
-Khare Key
-Khare Key 2
-Net Giant
-Large skull
-Waterfall pass
-Vial of Glue
-Nose-plugs
-Pebbles
-Spell book page
-Beezwax
-Ragnar's Armband of Swordmastery
-Finely crafted sword
-A skullcap
-Ape teeth
-Goblin Teeth
-Gaints Teeth
-Snattacat Teeth
-
-# Extra content story nodes
+# Extra content story nodes to do
 
 <ul>
 <li>2: Fight Serpent Skill 7 Stamina 8</li>
@@ -123,7 +89,7 @@ Snattacat Teeth
 <li>20: Fight Skunkbear Skill 7 Stamina 5 (you lose 2 AS)</li>
 <!-- <li>21: Add eat food option </li> -->
 <!-- <li>22: Trader Pipe roll </li> -->
-<li>23: Check if tested luck at node 38</li>
+<!-- <li>23: Check if tested luck at node 38</li> -->
 <!-- <li>25: Use up Libra</li> -->
 <!-- <li>29: Choose artefact to give</li> -->
 <!-- <li>31: Possibly lose 3 hp</li> -->
@@ -137,7 +103,7 @@ Snattacat Teeth
 <!-- <li>48: Takes either spell book or 2 magic items</li> -->
 <!-- <li>50: Get collar</li> -->
 <!-- <li>57: Get 12 gold, lose 1 item user chooses</li> -->
-<li>72: Lose 1 AS when using axe</li>
+<!-- <li>72: Lose 1 AS when using axe</li> -->
 <li>74: Fight Wolfhound skill 7 stamina 6</li>
 <!-- <li>79: Get plague (-3 hp per day)</li> -->
 <!-- <li>82: Test luck</li> -->
@@ -149,7 +115,7 @@ Snattacat Teeth
 <!-- <li>101: Nothing leads here</li> -->
 <li>102: Could be free</li>
 <li>104: Fight 2 Bandit's skill 7,7 stamina 6,5</li>
-<li>106: Merchant</li>
+<!-- <li>106: Merchant</li> -->
 <li>108: add +2 to night creatures roll</li>
 <!-- <li>112: Libra choice</li> -->
 <li>117: Fight Assassin skill 8 stamina 6, you can spare him conditionally</li>
@@ -160,19 +126,19 @@ Snattacat Teeth
 <!-- 130: Libra option -->
 <!-- <li>133: Test luck if you want</li> -->
 <!-- <li>141: Barter or not for the axe</li> -->
-<li>142: Try to roll lower than skill, unlimited tries, - AS for weapon chosen each try</li>
+<!-- <li>142: Try to roll lower than skill, unlimited tries, - AS for weapon chosen each try</li> -->
 <!-- <li>144: Test luck</li> -->
 <li>151: Get Svinn girl? (maybe)</li>
 <!-- <li>161: You have to pay, so block this option if not enough GP</li> -->
 <li>162: Fight Hill Gaint skill 9 stamina 11</li>
-<li>165: Keep testing your luck, until success 3 times in a row. -3 hp each time</li>
+<!-- <li>165: Keep testing your luck, until success 3 times in a row. -3 hp each time</li> -->
 <!-- <li>168: Lose all provisions </li> -->
 <!-- <li>171: Either option means Jann stays</li> -->
 <!-- <li>177: Luck item</li> -->
 <!-- <li>182: Give him axe if have it, or give him something else</li> -->
-<li>185: Lose weapon, -4 skill if no weapon</li>
+<!-- <li>185: Lose weapon, -4 skill if no weapon</li> -->
 <li>187: Get friend for second book Flanker</li>
-<li>194: Can take sword and leave the old one behind, does +1 damage. If unwanted you can test your luck, if pass, sell it again.</li>
+<!-- <li>194: Can take sword and leave the old one behind, does +1 damage. If unwanted you can test your luck, if pass, sell it again.</li> -->
 <li>203: Fight Elvin skill 6+2 stamina 4</li>
 <!-- <li>204: Waterfall cures you of all except disease</li> -->
 <!-- <li>205: Lose Jann</li> -->
@@ -182,11 +148,11 @@ Snattacat Teeth
 <!-- <li>214: Trader broadsword barter</li> -->
 <!-- <li>218: Remove each item based on Test your Luck roll</li> -->
 <li>227: Manticore fight. Each hit has a 1/3 chance of doing 6 hp, Succesful Luck roll can make this 2 instead.</li>
-<li>228: Roll one die three times, if less than skill, you escape, if not call Libra, if not you die.</li>
+<!-- <li>228: Roll one die three times, if less than skill, you escape, if not call Libra, if not you die.</li> -->
 <!-- <li>233: Get free waterfall pass</li> -->
-<li>254: A dice determines where you go</li>
+<!-- <li>254: A dice determines where you go</li> -->
 <!-- <li>257: The option to buy food 2 gp for 2 provisions</li> -->
-<li>258: Minigame, 5 coins and a key up for grabs, for each pick one and Test Luck, if fail lose half hp rounded down. If you get key, can view it at 199</li>
+<!-- <li>258: Minigame, 5 coins and a key up for grabs, for each pick one and Test Luck, if fail lose half hp rounded down. If you get key, can view it at 199</li> -->
 <!-- <li>261: Lose all items except equipped weapon</li> -->
 <!-- <li>269: Test Luck - if fail you die</li> -->
 <!-- <li>270: Roll dice if 1 - 4 take that damage</li> -->

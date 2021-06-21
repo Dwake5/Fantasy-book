@@ -11,7 +11,7 @@ const Trader = ({ itemViews, dice, changeCost, optional, itemName }) => {
     const rolls = diceRolls(dice);
     let localDiceText = `You rolled ${dice === 1 ? "a" : ""} ${rolls
       .toString()
-      .replace(",", ", ")}.`;
+      .replace(",", " + ")}.`;
 
     const totalRoll = rolls.reduce((a, b) => a + b);
     if (dice > 1) {

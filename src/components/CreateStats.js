@@ -54,23 +54,23 @@ const CreateStats = ({ cancelPause }) => {
   return (
     <Container className="text-center">
       <p className="h3 mb-4">Determine your stats</p>
-      <p className="m-0">Roll for Skill</p>
+      <p className="m-0">Roll for Stamina ( 2 Dice )</p>
       {step === 1 && (
-        <button onClick={() => handleDice("skill")}>Throw Dice</button>
+        <button onClick={() => handleDice("stamina")}>Throw Dice</button>
       )}
       {step > 1 && (
         <p className="mb-4">
-          You rolled a {rolls[0]} (+6), your total skill is {rolls[0] + 6}
+          You rolled a {rolls[0]} (+12), your total Stamina is {rolls[0] + 6}
         </p>
       )}
 
-      {step > 1 && <p className="m-0">Roll for Stamina ( 2 Dice )</p>}
+      {step > 1 && <p className="m-0">Roll for Skill</p>}
       {step === 2 && (
-        <button onClick={() => handleDice("stamina")}>Throw Dice</button>
+        <button onClick={() => handleDice("skill")}>Throw Dice</button>
       )}
       {step > 2 && (
         <p className="mb-4">
-          You rolled a {rolls[1]} (+12), your total skill is {rolls[1] + 12}
+          You rolled a {rolls[1]} (+6), your total Skill is {rolls[1] + 6}
         </p>
       )}
 
@@ -80,7 +80,7 @@ const CreateStats = ({ cancelPause }) => {
       )}
       {step > 3 && (
         <p className="mb-4">
-          You rolled a {rolls[2]} (+6), your total skill is {rolls[2] + 6}
+          You rolled a {rolls[2]} (+6), your total Luck is {rolls[2] + 6}
         </p>
       )}
     </Container>
