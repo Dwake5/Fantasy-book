@@ -3,7 +3,7 @@ import {
   DRINK_POTION,
   PAY_MONEY,
   EAT_PROVISION,
-  GET_ITEM,
+  CHANGE_ITEM_AMOUNT,
   LOSE_EVERYTHING,
   LOSE_WEAPON,
   BLUNT_WEAPON,
@@ -24,15 +24,15 @@ const initialState = {
   },
   potion: {
     name: "Blimberry Potion",
-    amount: 0,
+    amount: 1,
     singular: true,
-    info: "<p>Replenish 3 Stamina points outside of battle</p> Pungant Blimberry Juice. Useful in magic or to recover Stamina.",
+    info: "<p>Replenish 3 Stamina points outside of battle</p> <p>Pungant Blimberry Juice. Useful in magic or to recover Stamina.</p>",
   },
   pipe: {
-    name: "Bamboo Pipe",
-    amount: 0,
+    name: "Bamboo Flute",
+    amount: 1,
     singular: true,
-    info: "A musical pipe made of bamboo",
+    info: "A musical flute made of bamboo",
   },
   iceJewel: {
     name: "Ice Jewel",
@@ -117,7 +117,7 @@ const initialState = {
     info: "A locket with a portrait of a woman inside.",
   },
   luckAmulet: {
-    name: "Amulet",
+    name: "Luck Amulet",
     amount: 0,
     singular: true,
     info: "<p>-1 from Test your Luck dice rolls</p> A small amulet made of twisted metal, stolen from a dead troll. Improves Test your Luck chances.",
@@ -126,7 +126,7 @@ const initialState = {
     name: "Armband",
     amount: 1,
     singular: true,
-    info: "<p>+2 Attack Strength when a sword is equipped</p> Ragnar's Armband of Swordmastery. A magical armband that improves your combat skill with a sword.",
+    info: "<p>+2 Attack Strength when a sword is equipped</p> <p>Ragnar's Armband of Swordmastery. A magical armband that improves your combat skill with a sword.</p>",
   },
   skullcap: {
     name: "Skullcap",
@@ -158,7 +158,7 @@ const initialState = {
   gems: {
     name: "Black Gems",
     amount: 0,
-    info: "<p>Exchance for items</p> Valuable black rock gems. Can be used to buy items with, worth up to 10 Gold Pieces, but no change will be given.",
+    info: "<p>Exchange for items</p> <p>Valuable black rock gems. Can be used to buy items with, worth up to 10 Gold Pieces, but no change will be given.</p>",
   },
   sand: {
     name: "Pouch of Sand",
@@ -184,7 +184,7 @@ const initialState = {
     name: "Broadsword",
     amount: 1,
     singular: true,
-    info: "<p>+1 Attack Strength when equipped.</p> <p>A fine-edged weapon.</p>",
+    info: "<p>+1 Attack Strength when equipped</p> <p>A fine-edged weapon.</p>",
     equipped: true,
     skillLoss: 0,
   },
@@ -192,7 +192,7 @@ const initialState = {
     name: "Axe",
     amount: 1,
     singular: true,
-    info: `<p>-1 Attack Strength when equipped.</p> 
+    info: `<p>-1 Attack Strength when equipped</p> 
     <p>The carvings read: This axe was crafted in the Year of the Ox for Glandragor the Protector. 
     Its powers may be realized only by its owner.</p>`,
     equipped: false,
@@ -216,32 +216,15 @@ const initialState = {
   },
 };
 
-// Im well aware this is bad code.
-// The goal was to map over state and turn the single equipped: true to false
-// and for the weapon given switch it to equipped: true
 const equipSpecificWeapon = (state, weapon) => {
-  return {
-    sword: {
-      ...state.sword,
-      equipped: weapon === "sword",
-    },
-    broadsword: {
-      ...state.broadsword,
-      equipped: weapon === "broadsword",
-    },
-    axe: {
-      ...state.axe,
-      equipped: weapon === "axe",
-    },
-    craftedSword: {
-      ...state.craftedSword,
-      equipped: weapon === "craftedSword",
-    },
-    glandragorSword: {
-      ...state.glandragorSword,
-      equipped: weapon === "glandragorSword",
-    },
-  };
+  for (let key in state) {
+    let value = state[key];
+    if (value.equipped !== undefined) {
+      value.equipped = weapon === key;
+    }
+    key = value;
+  }
+  return state;
 };
 
 const loseEquippedWeapon = (state) => {
@@ -271,6 +254,23 @@ const loseAllButWeapon = (state) => {
   return state;
 };
 
+const changeItemAmount = (state, relevantItem, amountGained) => {
+  let amountAfter = state[relevantItem].amount + amountGained;
+  if (amountAfter < 0) amountAfter = 0;
+
+  let returnState = {
+    ...state[relevantItem],
+    amount: amountAfter,
+  };
+  if (amountAfter === 0 && state[relevantItem].equipped) {
+    returnState.equipped = false;
+  }
+  return {
+    ...state,
+    [relevantItem]: returnState,
+  };
+};
+
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
     case PAY_MONEY:
@@ -289,18 +289,10 @@ export const reducer = (state = initialState, action) => {
           amount: state.provisions.amount - 1,
         },
       };
-    case GET_ITEM:
+    case CHANGE_ITEM_AMOUNT:
       const relevantItem = action.payload.item;
       const amountGained = action.payload.amount;
-      let amountAfter = state[relevantItem].amount + amountGained;
-      if (amountAfter < 0) amountAfter = 0;
-      return {
-        ...state,
-        [relevantItem]: {
-          ...state[relevantItem],
-          amount: amountAfter,
-        },
-      };
+      return changeItemAmount(state, relevantItem, amountGained);
     case EQUIP_WEAPON:
       const weapon = action.payload;
       return {
@@ -308,18 +300,18 @@ export const reducer = (state = initialState, action) => {
         ...equipSpecificWeapon(state, weapon),
       };
     case LOSE_EVERYTHING:
-      return { ...loseAllButWeapon(state) };
+      return loseAllButWeapon(state);
     case LOSE_WEAPON:
-      return { ...loseEquippedWeapon(state) };
+      return loseEquippedWeapon(state);
     case BLUNT_WEAPON:
       const weaponName = action.payload;
-      return { ...bluntWeapon(state, weaponName) };
+      return bluntWeapon(state, weaponName);
     case DRINK_POTION:
       return {
         ...state,
         potion: {
           ...state.potion,
-          own: false,
+          amount: 0,
         },
       };
     default:

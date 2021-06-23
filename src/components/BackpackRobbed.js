@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useRef, useState } from "react";
 import { Container } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { getItems, getOwnedItems, ownItem } from "../redux/items/selectors";
@@ -7,7 +7,7 @@ import ItemRobbed from "./ItemRobbed";
 
 // Used in node 218, arrived from 132,279,353,376,401
 // Tested to be working, with luck amulet included
-const BackpackRobbed = ({ pageNumber, cancelPause }) => {
+const BackpackRobbed = ({ cancelPause }) => {
   const _items = useSelector(getItems);
   const _itemsOwned = useSelector(getOwnedItems);
   const fixedItems = useRef(null);
@@ -24,10 +24,12 @@ const BackpackRobbed = ({ pageNumber, cancelPause }) => {
     }
   };
 
-  useEffect(() => {
+  const [firstRun, setFirstRun] = useState(true);
+  if (firstRun) {
     fixedItems.current = _itemsOwned;
     totalItems.current = fixedItems.current.length;
-  }, [pageNumber]);
+    setFirstRun(false);
+  }
 
   return (
     <Container className="text-center">

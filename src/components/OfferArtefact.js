@@ -1,16 +1,15 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Container } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { getItem, loseEquippedWeapon } from "../redux/items/actions";
-import { getEquippedWeapon, getItems, getOwnedItems } from "../redux/items/selectors";
+import { changeItemAmount } from "../redux/items/actions";
+import { getItems, getOwnedItems } from "../redux/items/selectors";
 import { changeGlandragor } from "../redux/story/actions";
 
 // Used in node 29, arrived from 182
-const OfferArtefact = ({ pageNumber }) => {
+const OfferArtefact = () => {
   const dispatch = useDispatch();
   const _items = useSelector(getItems);
   const _itemsOwned = useSelector(getOwnedItems);
-  const _equippedWeapon = useSelector(getEquippedWeapon);
   const fixedArtefacts = useRef(null);
   const notArtefacts = [
     "gold",
@@ -28,13 +27,14 @@ const OfferArtefact = ({ pageNumber }) => {
   const handleGiveArtefact = (item) => {
     setGaveArtefact(true);
     changeGlandragor(dispatch, "topUnblocked");
-    if (item === _equippedWeapon) loseEquippedWeapon(dispatch)
-    getItem(dispatch, { name: item, amount: -10 });
+    changeItemAmount(dispatch, { name: item, amount: -10 });
   };
 
-  useEffect(() => {
+  const [firstRun, setFirstRun] = useState(true);
+  if (firstRun) {
     fixedArtefacts.current = artefacts;
-  }, [pageNumber]);
+    setFirstRun(false);
+  }
 
   useEffect(() => {
     if (fixedArtefacts.current.length === 0) {

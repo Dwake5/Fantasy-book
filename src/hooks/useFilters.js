@@ -13,9 +13,12 @@ import {
   getSentryLuck,
   getTraderViews,
   getForkDie,
+  getSkunkDie,
   getSeenBox1,
   getSeenBox2,
   getLockStatus,
+  getBypassGoblins,
+  getNightCreatureFight,
 } from "../redux/story/selectors";
 
 const blockAllChoices = (choices) => {
@@ -52,9 +55,12 @@ export function useFilters(choices, luckPassed, pauseChoices) {
   const _sentryLuck = useSelector(getSentryLuck);
   const _doorOpened = useSelector(getDoorOpened);
   const _forkDie = useSelector(getForkDie);
+  const _skunkDie = useSelector(getSkunkDie);
   const _seenBox1 = useSelector(getSeenBox1);
   const _seenBox2 = useSelector(getSeenBox2);
   const _lockStatus = useSelector(getLockStatus);
+  const _bypassGoblins = useSelector(getBypassGoblins);
+  const _nightCreatureFight = useSelector(getNightCreatureFight);
 
   const canAfford = (choice) => {
     const choiceCost = choice.cost;
@@ -132,10 +138,29 @@ export function useFilters(choices, luckPassed, pauseChoices) {
     return choices.map((choice) => checkLuckOptions(choice));
   };
 
+  // Night creatures
+  if (_pageNumber === 123) {
+    if (_nightCreatureFight) {
+      return choices.slice(0,6)
+    } else {
+      return choices.slice(-1)
+    }
+  }
+
   // Do you have Jann?
   if (_pageNumber === 100) {
     _haveJann ? (choices[1].blocked = true) : (choices[0].blocked = true);
     return choices;
+  }
+
+  if (_pageNumber === 407) {
+    const goblinsFlee = _bypassGoblins;
+    if (goblinsFlee === null) return choices;
+    if (goblinsFlee) {
+      return [{ ...choices[0] }, { ...choices[1], blocked: false }]
+    } else {
+      return [{ ...choices[0], blocked: false }, { ...choices[1] }]
+    }
   }
 
   // Has door been tried, has door been opened?
@@ -225,6 +250,14 @@ export function useFilters(choices, luckPassed, pauseChoices) {
       if (i === returnIndex) return { ...choice, blocked: false };
       return choice;
     });
+  }
+
+  if (_pageNumber === 295) {
+    if (_skunkDie === 0) return choices
+    const fightSkunk = true
+    let choice1 = { ...choices[0], blocked: !fightSkunk };
+    let choice2 = { ...choices[1], blocked: fightSkunk };
+    return [{ ...choice1 }, { ...choice2 }];
   }
 
   if (_pageNumber === 258) {

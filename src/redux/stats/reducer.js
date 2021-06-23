@@ -17,10 +17,10 @@ import {
 } from "./action-types";
 
 const initialState = {
-  skill: 12,
-  maxSkill: 12,
-  stamina: 20,
-  maxStamina: 20,
+  skill: 10,
+  maxSkill: 10,
+  stamina: 9,
+  maxStamina: 10,
   luck: 10,
   maxLuck: 10,
   eatenToday: false,

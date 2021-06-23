@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { getItem } from "../redux/items/actions";
+import { changeItemAmount } from "../redux/items/actions";
 import { getItems, getOwnedItems } from "../redux/items/selectors";
 
 // Used in node 48, arrived from 243
-const WitchSteals = ({ pageNumber }) => {
+const WitchSteals = () => {
   const dispatch = useDispatch();
   const _items = useSelector(getItems);
   const _itemsOwned = useSelector(getOwnedItems);
   const magicalItems = [
+    "potion",
+    "pipe",
     "glue",
     "nosePlugs",
     "pebbles",
@@ -18,7 +20,6 @@ const WitchSteals = ({ pageNumber }) => {
     "goblinTeeth",
     "giantsTeeth",
     "snattacatTeeth",
-    "luckAmulet",
     "skullcap",
     "collar",
     "sand",
@@ -27,7 +28,7 @@ const WitchSteals = ({ pageNumber }) => {
     magicalItems.includes(item)
   );
   const [itemsTaken, setItemsTaken] = useState([]);
-  const [firstRun, setFirstRun] = useState(false);
+  const [firstRun, setFirstRun] = useState(true);
 
   const exitFunction = _itemsOwned.includes("spellbookPage")
 
@@ -45,14 +46,14 @@ const WitchSteals = ({ pageNumber }) => {
   };
 
   useEffect(() => {
-    if (firstRun || exitFunction) return;
+    if (!firstRun || exitFunction) return;
     const items = getRandomItems(magicalItemsOwned, 2);
     setItemsTaken(items);
     setFirstRun(false);
     items.forEach((item) => {
-      getItem(dispatch, { name: item, amount: -100 });
+      changeItemAmount(dispatch, { name: item, amount: -100 });
     });
-  }, [pageNumber]);
+  }, []);
 
   if (exitFunction) return null;
   return (

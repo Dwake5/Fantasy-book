@@ -1,13 +1,16 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { Container } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { getItem } from "../redux/items/actions";
-import { getItems, getOwnedItems } from "../redux/items/selectors";
+import { changeItemAmount } from "../redux/items/actions";
+import {
+  getItems,
+  getOwnedItems
+} from "../redux/items/selectors";
 import { passPilferGrass } from "../redux/story/actions";
 
 // Used in node 32, arrived from 105 (-2 items)
 // Used in node 57, arrived from 105 (-1 items)
-const PilferGrass = ({ pageNumber, amount }) => {
+const PilferGrass = ({ amount }) => {
   const dispatch = useDispatch();
   const _items = useSelector(getItems);
   const _itemsOwned = useSelector(getOwnedItems);
@@ -19,19 +22,21 @@ const PilferGrass = ({ pageNumber, amount }) => {
 
   const [lostArtefacts, addLostArtefact] = useState([]);
 
+  const [firstRun, setFirstRun] = useState(true);
+  if (firstRun) {
+    fixedArtefacts.current = _itemsOwned;
+    setFirstRun(false);
+  }
+
   const handleGiveArtefact = (item) => {
     addLostArtefact([...lostArtefacts, item]);
-    getItem(dispatch, { name: item, amount: -100 });
+    changeItemAmount(dispatch, { name: item, amount: -100 });
     let realLostArtefacts = lostArtefacts.length;
-    realLostArtefacts++
+    realLostArtefacts++;
     if (realLostArtefacts >= amount || realArtefacts.length === 0) {
-      passPilferGrass(dispatch)
+      passPilferGrass(dispatch);
     }
   };
-
-  useEffect(() => {
-    fixedArtefacts.current = _itemsOwned;
-  }, [pageNumber]);
 
   const disabledList = (item) => {
     if (lostArtefacts.includes(item)) return true;
@@ -52,7 +57,11 @@ const PilferGrass = ({ pageNumber, amount }) => {
             className="d-flex justify-content-center align-items-center"
             key={item}
           >
-            <p>{_items[item].name}</p>
+            <p
+              className={`${lostArtefacts.includes(item) ? "text-danger" : ""}`}
+            >
+              {_items[item].name}
+            </p>
             <button
               type="button"
               onClick={() => handleGiveArtefact(item)}

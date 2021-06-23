@@ -1,6 +1,7 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "../../assets/css/Stats.css";
+import { getInCombat } from "../../redux/combat/selectors";
 import { drinkPotion } from "../../redux/items/actions";
 import { gainStat } from "../../redux/stats/actions";
 
@@ -15,6 +16,7 @@ const Item = ({
   healthMax,
 }) => {
   const dispatch = useDispatch();
+  const _inCombat = useSelector(getInCombat);
 
   const shouldShow = alwaysShow || amount > 0;
   if (!shouldShow) return null;
@@ -41,7 +43,7 @@ const Item = ({
       {reduxKey === "potion" && (
         <button
           onClick={handleDrinkPotion}
-          disabled={healthMax}
+          disabled={healthMax || _inCombat}
           className="btn btn-info btn-sm"
         >
           Drink

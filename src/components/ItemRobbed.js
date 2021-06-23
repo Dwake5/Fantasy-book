@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { getItem } from "../redux/items/actions";
-import { diceRolls } from "../utils";
+import { Col, Row } from "react-bootstrap";
 import { useDispatch } from "react-redux";
-import { Row, Col } from "react-bootstrap";
+import { changeItemAmount} from "../redux/items/actions";
+import { diceRolls } from "../utils";
 
 // Child of BackpackRobbed, used in 218
 const ItemRobbed = ({ rollNeeded, items, item, itemRolledFor }) => {
@@ -21,7 +21,7 @@ const ItemRobbed = ({ rollNeeded, items, item, itemRolledFor }) => {
     } else {
       setItemKept(false)
       setText(`Rolled a ${rolled}, item lost!`);
-      getItem(dispatch, { name: item, amount: -100 });
+      changeItemAmount(dispatch, { name: item, amount: -100 });
     }
   };
 

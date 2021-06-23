@@ -1,6 +1,7 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "../../assets/css/Stats.css";
+import { getInCombat } from "../../redux/combat/selectors";
 import { equipSpecificWeapon } from "../../redux/items/actions";
 
 const Item = ({
@@ -12,6 +13,7 @@ const Item = ({
   skillLoss,
 }) => {
   const dispatch = useDispatch();
+  const _inCombat = useSelector(getInCombat);
 
   if (!amount) return null;
 
@@ -46,6 +48,7 @@ const Item = ({
           onClick={() => equipWeapon(reduxKey)}
           type="button"
           className="btn btn-primary btn-sm"
+          disabled={_inCombat}
         >
           Equip
         </button>

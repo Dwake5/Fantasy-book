@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import "../assets/css/Story.css";
 import gameData from "../assets/gameData";
 import useFilters from "../hooks/useFilters";
-import { getItem } from "../redux/items/actions";
+import { changeItemAmount } from "../redux/items/actions";
 import { getMoney, getProvisions } from "../redux/items/selectors";
 import {
   changeEatenToday,
@@ -20,7 +20,7 @@ import {
   getSpiritCurse,
 } from "../redux/stats/selectors";
 import { playerLearnsJann, setPage } from "../redux/story/actions";
-import { getPage, getTraderViews } from "../redux/story/selectors";
+import { getNightCreaturePrevious, getPage, getTraderViews } from "../redux/story/selectors";
 import BackpackRobbed from "./BackpackRobbed";
 import BeeStings from "./BeeStings";
 import BreakDoor from "./BreakDoor";
@@ -40,19 +40,21 @@ import TestLuck from "./TestLuck";
 import Trader from "./Trader";
 import TrollDice from "./TrollDice";
 import WitchSteals from "./WitchSteals";
-import Combat from "./Combat";
+import Combat from "./combat/Combat";
 import { getInCombat } from "../redux/combat/selectors";
+import GoblinsFlee from "./GoblinsFlee";
+import NightCreatures from "./NightCreatures";
 
 const StoryMain = () => {
   const dispatch = useDispatch();
   const _pageNumber = useSelector(getPage);
+  const _nightCreaturePrevious = useSelector(getNightCreaturePrevious)
 
   const _money = useSelector(getMoney);
   const _provisions = useSelector(getProvisions);
   const _eatenToday = useSelector(eatenToday);
 
   const [itemVariableCost, setItemVariableCost] = useState(null);
-  const [costChanged, setCostChanged] = useState(null); // This line makes a feature work. Literally no idea why
   const _traderViews = useSelector(getTraderViews);
 
   const [luckPassed, setLuckPassed] = useState(null);
@@ -109,6 +111,10 @@ const StoryMain = () => {
         return <TrollDice cancelPause={cancelPause} />;
       case 165:
         return <KillSnakes cancelPause={cancelPause} />;
+      case 123:
+        return (
+          <NightCreatures key={_nightCreaturePrevious} cancelPause={cancelPause} />
+        );
       default:
     }
     alreadyMapped = true;
@@ -153,11 +159,11 @@ const StoryMain = () => {
       case 257:
         return <BuyProvisions amount={2} cost={2} playerMoney={_money} />;
       case 29:
-        return <OfferArtefact pageNumber={_pageNumber} />;
+        return <OfferArtefact />;
       case 32:
-        return <PilferGrass pageNumber={_pageNumber} amount={2} />;
+        return <PilferGrass amount={2} />;
       case 57:
-        return <PilferGrass pageNumber={_pageNumber} amount={1} />;
+        return <PilferGrass amount={1} />;
       case 48:
         return <WitchSteals pageNumber={_pageNumber} />;
       case 93:
@@ -167,11 +173,15 @@ const StoryMain = () => {
       case 228:
         return <OpenDoor />;
       case 254:
-        return <ForkDie />;
+        return <ForkDie type="regular" />;
+      case 295:
+        return <ForkDie type="skunk" />;
       case 258:
         return <PickpocketBox />;
       case 277:
         return <PitFall />;
+      case 407:
+        return <GoblinsFlee />;
       default:
     }
   };
@@ -185,14 +195,13 @@ const StoryMain = () => {
 
   const addItems = (items) => {
     items.forEach((item) => {
-      getItem(dispatch, item);
+      changeItemAmount(dispatch, item);
     });
   };
 
   useEffect(() => {
     pageChoices[0].cost = itemVariableCost;
-    setCostChanged(itemVariableCost);
-  }, [itemVariableCost]);
+  }, [itemVariableCost, pageChoices]);
 
   const handleNewDay = () => {
     let loseStamina = 0;
@@ -245,7 +254,7 @@ const StoryMain = () => {
   // This is probably a bad way to handle this.
   const availableChoices = useFilters(pageChoices, luckPassed, pauseChoices);
 
-  if (_inCombat) return <Combat />
+  if (_inCombat) return <Combat pageNumber={parseInt(_pageNumber)} />;
   return (
     <Container className="border storyBody">
       <p className="h3 mb-3 text-center">
@@ -268,7 +277,6 @@ const StoryMain = () => {
           eatenToday={_eatenToday}
           food={_provisions}
           money={_money}
-          pageNumber={_pageNumber}
         />
       )}
       {(pauseChoices || stayShowing) && mapWhatToDo()}

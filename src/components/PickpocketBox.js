@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import "../assets/css/Stats.css";
-import { getItem } from "../redux/items/actions";
+import { changeItemAmount } from "../redux/items/actions";
 import { ownItem } from "../redux/items/selectors";
 import { loseStat, scorpionSting } from "../redux/stats/actions";
 import { getStat } from "../redux/stats/selectors";
@@ -34,7 +34,7 @@ const PickpocketBox = () => {
         }`,
       ]);
       if (pass) {
-        getItem(dispatch, { name: item, amount: 1 });
+        changeItemAmount(dispatch, { name: item, amount: 1 });
         setKeyLeft(0);
       }
     }
@@ -48,7 +48,7 @@ const PickpocketBox = () => {
         }`,
       ]);
       if (pass) {
-        getItem(dispatch, { name: item, amount: 1 });
+        changeItemAmount(dispatch, { name: item, amount: 1 });
         setGoldLeft(goldLeft - 1);
       }
     }

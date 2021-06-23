@@ -242,7 +242,7 @@ const gameData = {
     ],
   },
   11: {
-    text: `You pull out your bamboo pipe and begin to play. Somehow the 
+    text: `You pull out your Bamboo Flute and begin to play. Somehow the 
     unseen musicians adapt their tune to accommodate you and play 
     away merrily for half an hour or so. You <b>gain 3 Stamina points 
     and 1 Luck point</b> for your restful encounter. Then you pick yourself 
@@ -339,12 +339,11 @@ const gameData = {
     <p><b>SKUNKBEAR Skill 7 Stamina 5</b></p>
     
     <p>The effect of the smell is so powerful that you lose 2 points 
-    from your dice roll each time you roll for Attack Strength. If you beat 
-    the creature continue on.</p>`, // todo lower your attack roll by 2
+    from your Attack Strength.</p>`,
     choices: [
       {
         goToPage: 193,
-        text: "Fight the skunkbear",
+        text: "Fight the Skunkbear",
         fight: { skill: 7, stamina: 5, name: "Skunkbear" },
       },
     ],
@@ -361,11 +360,11 @@ const gameData = {
   },
   22: {
     text: `Roll 1 die. This is the price, in Gold Pieces, that the merchant is asking 
-    for the pipe. If you will pay this price, purchase the instrument.`,
+    for the Flute. If you will pay this price, purchase the instrument.`,
     choices: [
       {
         goToPage: 280,
-        text: "Buy the pipe, and return to the trader",
+        text: "Buy the Flute, and return to the trader",
         cost: "must roll",
         items: [
           {
@@ -374,7 +373,7 @@ const gameData = {
           },
         ],
       },
-      { goToPage: 280, text: "Do not buy the pipe, return to the trader" },
+      { goToPage: 280, text: "Do not buy the Flute, return to the trader" },
     ],
     extraText: true,
   },
@@ -582,7 +581,7 @@ const gameData = {
     the creature?`,
     choices: [
       { goToPage: 144, text: "Run!" },
-      { goToPage: 285, text: "Fight the ogre" },
+      { goToPage: 285, text: "Fight the Ogre" },
     ],
   },
   40: {
@@ -660,7 +659,7 @@ const gameData = {
       { goToPage: 289, text: "Magic: YAC" },
       {
         goToPage: 186,
-        text: "Fight the goblin",
+        text: "Fight the Goblin",
         fight: { skill: 7, stamina: 6, name: "Goblin" },
       },
     ],
@@ -673,8 +672,8 @@ const gameData = {
     I can count on travellers suspecting my witchcraft!' You are powerless 
     to watch as she goes through your bag looking for magical artefacts. Do 
     you have a page from a Spell Book? Otherwise she will take 
-    any two objects in your bag which you know are useful in magic spells 
-    and then she magically transports you and your miniature companion 
+    any two random objects in your bag which you know are useful in magic spells.
+    Then she magically transports you and your miniature companion 
     (together with the rest of your possessions) out into the woods 
     where the drug eventually wears off.`,
     choices: [
@@ -846,8 +845,8 @@ const gameData = {
     not yet used your call to Libra, you had better do so now.`,
     choices: [
       { goToPage: 366, text: "Magic: ZEN" },
-      { goToPage: 417, text: "Magic: RIS" },
-      { goToPage: 303, text: "Magic: POP" },
+      { goToPage: 417, text: "Magic: RIS", singleUse: true },
+      { goToPage: 303, text: "Magic: POP", singleUse: true },
       { goToPage: 433, text: "Magic: LAW" },
       { goToPage: 344, text: "Magic: FIL" },
       { goToPage: 165, text: "Look for another escape route" },
@@ -881,7 +880,7 @@ const gameData = {
       { goToPage: 329, text: "Magic: HUF" },
       { goToPage: 423, text: "Magic: HOW" },
       { goToPage: 310, text: "Magic: GOP" },
-      { goToPage: 373, text: "Magic: OOP" },
+      { goToPage: 373, text: "Magic: DOP" },
       { goToPage: 350, text: "Magic: DOM" },
       { goToPage: 228, text: "Try breaking the door down" },
     ],
@@ -984,7 +983,7 @@ const gameData = {
       { goToPage: 440, text: "Magic: BAG" },
       {
         goToPage: 50,
-        text: "Fight the wolfhound",
+        text: "Fight the Wolfhound",
         fight: { skill: 7, stamina: 6, name: "Wolfhound" },
       },
     ],
@@ -1134,10 +1133,10 @@ const gameData = {
     back the drapes and enter the small hut. Cushions ring the room and, 
     as you enter, a strange music played on invisible pipes fills the room. 
     The tune is pleasant and relaxing and you sit down on the cushions. 
-    Do you have a musical pipe with you? If so, you may take it out and 
+    Do you have a musical flute with you? If so, you may take it out and 
     play along.`,
     choices: [
-      { goToPage: 11, text: "Play your pipe", requires: "pipe" },
+      { goToPage: 11, text: "Play your Flute", requires: "pipe" },
       { goToPage: 179, text: "Continue.." },
     ],
   },
@@ -1244,7 +1243,7 @@ const gameData = {
     text: `<p>As you pass by the sentry post, the Troll emerges from behind the 
     hut armed with a halberd, and sees you. You will have to fight him or choose a spell:</p>
     
-    <p><b>TROLL SKILL 8 STAMINA 7</b></p>`,
+    <p><b>TROLL Skill 8 Stamina 7</b></p>`,
     choices: [
       { goToPage: 386, text: "Magic: WOK" },
       { goToPage: 363, text: "Magic: SUN" },
@@ -1253,7 +1252,7 @@ const gameData = {
       { goToPage: 317, text: "Magic: DUM" },
       {
         goToPage: 177,
-        text: "Fight the troll",
+        text: "Fight the Troll",
         fight: { skill: 8, stamina: 7, name: "Troll" },
       },
     ],
@@ -1299,17 +1298,18 @@ const gameData = {
     <p><b>First BANDIT Skill 7 Stamina 6</b></p>
     <p><b>Second BANDIT Skill 7 Stamina 5</b></p>`,
     choices: [
-      { goToPage: 288, text: "Magic: FOF" },
-      { goToPage: 308, text: "Magic: JIG" },
-      { goToPage: 327, text: "Magic: BAM" },
-      { goToPage: 348, text: "Magic: LAW" },
+      { goToPage: 288, text: "Magic: FOF" }, // they run
+      { goToPage: 308, text: "Magic: JIG" }, // they dance off (flute)
+      { goToPage: 327, text: "Magic: BAM" }, // not a spell
+      { goToPage: 348, text: "Magic: LAW" }, // they are too smart
       { goToPage: 371, text: "Magic: YAZ" },
       {
         goToPage: 56,
         text: "Fight the Bandits",
-        fight: { skill: 7, stamina: 6, name: "Bandit" },
+        fight: { skill: 7, stamina: 6, name: "Bandit 1" },
+        extraEnemies: [{ skill: 7, stamina: 5, name: "Bandit 2" }],
       },
-    ], // todo add second bandit
+    ],
   },
   105: {
     text: `The going is easy through the grass. You happen across a parting 
@@ -1378,10 +1378,7 @@ const gameData = {
     night's sleep, add 2 Stamina points. If you encountered any night 
     creatures, you may add only 1 Stamina point. You follow a path 
     onwards which climbs steadily up a hill.`,
-    choices: [
-      // todo fight night creatures at 123 first
-      { goToPage: 36, text: "Continue.." },
-    ],
+    choices: [{ goToPage: 123, text: "Check if any creatures attack you" }],
     eatOption: { haveEaten: 1, haveNotEaten: 2 },
   },
   109: {
@@ -1472,11 +1469,11 @@ const gameData = {
     eaten: true,
   },
   117: {
-    text: `<p>You prepare to fight the tall ASSASSIN, or you may cast a spell:</p> 
+    text: `<p>You prepare to fight the tall Assassin, or you may cast a spell:</p> 
 
     <p><b>ASSASSIN Skill 8 Stamina 6</b><p/>
   
-    <p>You may choose to kill him, alternatively you may elect to spare 
+    <p>If you fight the assassin you can choose to kill him, alternatively you may elect to spare 
     his life when he is reduced to 3 Stamina points or less, so long as you 
     are clearly winning (i.e. your own Stamina is at least 6).</p>`,
     choices: [
@@ -1486,12 +1483,11 @@ const gameData = {
       { goToPage: 393, text: "Magic: KIL" },
       { goToPage: 342, text: "Magic: FIX" },
       {
-        goToPage: 187,
-        text: "Fight the assassin",
+        goToPage: 153,
+        text: "Fight the Assassin",
         fight: { skill: 8, stamina: 6, name: "Assassin" },
-      },
-      { goToPage: 153, text: "Kill him" },
-    ], // todo work out how to spare/ kill him
+      }, // He is spared at 187
+    ],
   },
   118: {
     text: `You manage to creep around the creature and, although it snarls 
@@ -1544,24 +1540,18 @@ const gameData = {
     ],
   },
   123: {
-    text: `Roll one die to see whether you encounter any night creatures`,
+    text: `Roll one die to see whether you encounter any night creatures.`,
     choices: [
-      { goToPage: 396, text: "Magic: RAN" },
-      { goToPage: 421, text: "Magic: GUM" },
-      { goToPage: 448, text: "Magic: LAW" },
-      { goToPage: 437, text: "Magic: WIK" },
-      { goToPage: 453, text: "Magic: BIG" },
-      { goToPage: 31, text: "Continue.." },
+      { goToPage: 396, text: "Magic: RAN" }, // not a spell
+      { goToPage: 421, text: "Magic: GUM" }, // need glue??
+      { goToPage: 448, text: "Magic: LAW" }, // Its runs off
+      { goToPage: 437, text: "Magic: WIK" }, // not a spell
+      { goToPage: 453, text: "Magic: BIG" }, // Triple in size (it runs or you double your skill)
+      { fightNC: true, text: "Fight it" },
+      { nightContinue: true, text: "Continue.." },
     ],
-    // todo go to previous reference
-    enemies: [
-      { name: "Giant Bat", skill: "5", stamina: "5" },
-      { name: "Giant Bat", skill: "5", stamina: "5" },
-      { name: "Wolfhound", skill: "7", stamina: "6" },
-      { name: "Werewolf", skill: "8", stamina: "9" },
-      { name: "", skill: "", stamina: "" },
-      { name: "", skill: "", stamina: "" },
-    ],
+    pause: true,
+    extraText: true,
   },
   124: {
     text: `'You cannot escape the Spirit of Mananka!' cries the face. 'And your 
@@ -1598,7 +1588,7 @@ const gameData = {
     choices: [
       { goToPage: 274, text: "View the Potion", requires: "potion" },
       { goToPage: 43, text: "View the Broadsword", requires: "broadsword" },
-      { goToPage: 249, text: "View the Pipe", requires: "pipe" },
+      { goToPage: 249, text: "View the Flute", requires: "pipe" },
       { goToPage: 72, text: "View the Axe", requires: "axe" },
       { goToPage: 190, text: "View the Teeth", requires: "giantsTeeth" },
       { goToPage: 152, text: "View the Jewel", requires: "iceJewel" },
@@ -1946,8 +1936,8 @@ const gameData = {
     ],
   },
   155: {
-    text: `Searching the bodies, you find a miserable 2 Gold Pieces in their 
-    pockets. You also take 8 teeth, which lie on the ground next to 
+    text: `Searching the bodies, you find a miserable <b>2 Gold Pieces</b> in their 
+    pockets. You also take <b>8 teeth</b>, which lie on the ground next to 
     the first Goblin.`,
     choices: [{ goToPage: 202, text: "Continue.." }],
     getItems: [
@@ -2109,7 +2099,7 @@ const gameData = {
     Provisions.</b> You are angry at your own carelessness and set off briskly 
     along the trail again.`,
     choices: [{ goToPage: 210, text: "Continue.." }],
-    getItems: [{ name: "provisions", amount: -100 }], // fix this
+    getItems: [{ name: "provisions", amount: -100 }],
   },
   169: {
     text: `Hurriedly, you leave the house and follow the path back to the 
@@ -2152,11 +2142,11 @@ const gameData = {
     ],
   },
   173: {
-    text: `He is grateful for the help and offers you vegetables to take with you 
-    on your journey - enough for one meal - as payment. Then you leave 
+    text: `He is grateful for the help and <b>offers you vegetables</b> to take with you 
+    on your journey - <b>enough for one meal</b> - as payment. Then you leave 
     him and set off along the path.`,
     choices: [{ goToPage: 46, text: "Continue.." }],
-    getItems: [{ name: "Provisions", amount: 1 }],
+    getItems: [{ name: "provisions", amount: 1 }],
   },
   174: {
     text: `Further along the corridor you come to a door. Will you try the door 
@@ -2487,7 +2477,7 @@ const gameData = {
       { goToPage: 345, text: "Magic: HOP" },
       { goToPage: 415, text: "Magic: FOF" },
       { goToPage: 325, text: "Magic: DOZ" },
-      { goToPage: 227, text: "Fight the creature" },
+      { goToPage: 227, text: "Fight the Manticore" },
     ],
   },
   196: {
@@ -2560,22 +2550,27 @@ const gameData = {
     choices: [{ goToPage: 28, text: "Continue.." }],
   },
   203: {
-    text: `Sensing your attitude, the creature pulls a short sword from its belt. It 
+    text: `<p>Sensing your attitude, the creature pulls a short sword from its belt. It 
     drops sharply out of the air and nips in at you, slashing at your arm 
     with its weapon, its speed astounds you and before you realize what 
-    has happened, the sharp sword has grazed your arm, inflicting 1 
-    Stamina point's worth of damage. You may fight this little ELVIN, 
+    has happened, the sharp sword has grazed your arm, <b>inflicting 1 
+    Stamina point's worth of damage</b>. You may fight this little ELVIN, 
     but during the fight its speed adds two points to its dice roll when 
-    calculating Attack Strength:`,
+    calculating Attack Strength:</p>
+    
+    <p><b>ELVIN Skill 6 Stamina 4</p></b>`,
     choices: [
       { goToPage: 405, text: "Magic: HOT" },
       { goToPage: 294, text: "Magic: ZEL" },
       { goToPage: 441, text: "Magic: WOK" },
       { goToPage: 356, text: "Magic: BIG" },
       { goToPage: 378, text: "Magic: YAZ" },
-      { goToPage: 121, text: "Continue" },
+      {
+        goToPage: 121,
+        text: "Fight the Elvin",
+        fight: { skill: 6, stamina: 4, name: "Elvin" },
+      },
     ],
-    enemies: [{ name: "Elvin", skill: "6", stamina: "4" }], // add + 2 AS
     staminaLoss: 1,
   },
   204: {
@@ -2603,7 +2598,7 @@ const gameData = {
     text: `<p>You are surrounded by dead snakes. Your Luck held out, but your 
     success will not. You have no means of climbing back up to the 
     passage! The rest of your life will now be spent starving to death 
-    although if you can stomach raw snake you will live a little longer . . .</p>
+    although if you can stomach raw snake you will live a little longer . . .</>
     <p>Your only remaining chance is if you have not yet called upon Libra</p>`,
     choices: [
       { goToPage: 273, text: "Call on Libra", needLibra: true },
@@ -2615,7 +2610,7 @@ const gameData = {
     the deeper you go. A little deeper still into the cave you stumble and 
     fall, and as you do so, the whistling stops. To your horror you realize 
     you have tripped over an enormous foot and, in front of you, a 
-    GIANT is rubbing its eyes and looking towards you! It grabs a club 
+    Giant is rubbing its eyes and looking towards you! It grabs a club 
     and picks itself slowly up. You will have to fight it, either with a 
     weapon or magic.</p>
     
@@ -2756,14 +2751,22 @@ const gameData = {
       { goToPage: 428, text: "Magic: HOP" },
       { goToPage: 407, text: "Magic: ZAP" },
       { goToPage: 358, text: "Magic: RAP" },
-      { goToPage: 381, text: "Magic: RAW" },
-      { goToPage: 442, text: "Magic: RAZ" },
+      { goToPage: 381, text: "Magic: RAW", singleUse: true },
+      { goToPage: 442, text: "Magic: RAZ" }, // todo
       {
         goToPage: 155,
-        text: "Fight the goblins",
-        fight: { skill: 5, stamina: 4, name: "Goblin" },
+        text: "Fight the Goblins",
+        fight: {
+          skill: 5,
+          stamina: 4,
+          name: "Goblin 1",
+        },
+        extraEnemies: [
+          { skill: 6, stamina: 4, name: "Goblin 2" },
+          { skill: 5, stamina: 5, name: "Goblin 3" },
+        ],
       },
-    ], // todo fight 3 goblins
+    ],
   },
   218: {
     text: `They have taken your backpack and are sorting through it, taking any 
@@ -2899,12 +2902,12 @@ const gameData = {
   227: {
     text: `<p>Draw your weapon and fight:</p> 
 
-    <p><b>MANTICORE Skill 12 Stamina 18</b></p> 
+    <p><b>MANTICORE Skill 12 Stamina 18</b></p>
     
-    <p>Each time the creature inflicts a wound on you, roll one die. 
+    <p>Each time the creature inflicts a wound on you, one die will be rolled. 
     A roll of a 5 or 6 indicates a hit with its scorpion-like tail containing a 
     poison which will cause 4 extra Stamina points' worth of damage unless 
-    you successfully Test your Luck. If you roll a 1-4, the attack is normal.</p>`,
+    you successfully Test your Luck. If a roll is 1-4, the attack is normal.</p>`,
     choices: [
       {
         goToPage: 456,
@@ -2922,7 +2925,12 @@ const gameData = {
     will be trapped in the cave-in unless you can call for help from your 
     goddess Libra.`,
     choices: [
-      { goToPage: 120, text: "Dice roll - Success", blocked: true },
+      {
+        goToPage: 120,
+        text: "Dice roll - Success",
+        blocked: true,
+        caveIn: true,
+      },
       { goToPage: 0, text: "Dice roll - Fail", blocked: true },
       { goToPage: 160, text: "Call Libra", needLibra: true, blocked: true },
     ],
@@ -3063,7 +3071,7 @@ const gameData = {
     text: `You continue up the hill. The climb is steep, but by mid-afternoon you 
     have reached the top. Continuing over the hill, you travel down a 
     gentle slope for the rest of the afternoon.`,
-    choices: [{ goToPage: 2200, text: "Continue.." }],
+    choices: [{ goToPage: 220, text: "Continue.." }],
   },
   238: {
     text: `Your guess is incorrect. With a wave of the hunchback's hand you feel 
@@ -3196,7 +3204,7 @@ const gameData = {
     ],
   },
   249: {
-    text: `The pipe is made of bamboo and you blow it. It gives off a lively little 
+    text: `The flute is made of bamboo and you blow it. It gives off a lively little 
     note. You take this with you.`,
     choices: [{ goToPage: 126, text: "Continue.." }],
   },
@@ -3379,7 +3387,7 @@ const gameData = {
     choices: [
       { goToPage: 107, text: "Herbalist's potion" },
       { goToPage: 214, text: "Fine-edged broadsword" },
-      { goToPage: 22, text: "Musical pipe" },
+      { goToPage: 22, text: "Musical flute" },
       { goToPage: 141, text: "Axe with strange carvings" },
       { goToPage: 5, text: "Bag containing teeth" },
       { goToPage: 60, text: "Fine, glittering jewel" },
@@ -3388,8 +3396,8 @@ const gameData = {
   },
   265: {
     text: `Exhausted from the battle, you examine the Giant and its domain as 
-    you recover your breath. A pouch around its waist contains 8 Gold 
-    Pieces, You also take some teeth knowing they are useful for spells.
+    you recover your breath. A pouch around its waist <b>contains 8 Gold 
+    Pieces</b>. You also take some teeth knowing they are useful for spells.
     A large loaf in the cave is too large for you to carry, but you 
     may eat from it if you wish or continue your journey.`,
     choices: [
@@ -3397,8 +3405,8 @@ const gameData = {
       { goToPage: 250, text: "Continue" },
     ],
     getItems: [
-      { name: "Gold", amount: 8 },
-      { name: "Giants Teeth", amount: 2 },
+      { name: "gold", amount: 8 },
+      { name: "giantsTeeth", amount: 2 },
     ],
   },
   266: {
@@ -3462,7 +3470,7 @@ const gameData = {
     stung. When you reach the hive, you knock it down to the ground.</p>
     
     <p>Cutting open the hive on the ground, <b>you take with you the wax 
-    and the honey.</b> The honey will provide you with enough nourishment for one meal..</p>`,
+    and the honey.</b> The honey will provide you with enough nourishment for one meal.</p>`,
     choices: [{ goToPage: 9, text: "Continue" }], // todo roll dice take damage + add items
     getItems: [
       { name: "provisions", amount: 1 },
@@ -3583,7 +3591,7 @@ const gameData = {
     choices: [
       { goToPage: 107, text: "Herbalist's potion" },
       { goToPage: 214, text: "Fine-edged broadsword" },
-      { goToPage: 22, text: "Musical pipe" },
+      { goToPage: 22, text: "Musical flute" },
       { goToPage: 141, text: "Axe with strange carvings" },
       { goToPage: 5, text: "Bag containing teeth" },
       { goToPage: 60, text: "Fine, glittering jewel" },
@@ -3623,19 +3631,20 @@ const gameData = {
     choices: [{ goToPage: 71, text: "Continue.." }],
   },
   283: {
-    text: `You settle down to make camp for the night. You may take Provisions 
+    text: `<p>You settle down to make camp for the night. You may take Provisions 
     here and, if you do so, you may add 2 Stamina points if you have not 
     yet eaten since leaving Analand, or 1 Stamina point if you have 
     already eaten on your journey. You may only eat if you have Provisions with you. 
     As you curl up in your blanket to sleep, there is a 
-    chance that you may encounter a wandering night creature.
-    Night creatures are less likely to approach you in your camp, so you 
-    may add 2 points to the die roll you will be required to make. 
+    chance that you may encounter a wandering night creature.</p>
+
+    <p>Night creatures are less likely to approach you in your camp, so 2 points 
+    will be added to the die roll you will be required to make.</p>
     
-    After your night's sleep you may add either 2 Stamina points, if you 
-    encountered no night creatures, or 1 Stamina point if your sleep was 
-    disturbed. Then you set off along the trail.`,
-    choices: [{ goToPage: 31, text: "Continue.." }], // todo fight night creatures
+    <p>After your night's sleep you will gain 2 Stamina points, if you 
+    encountered no night creatures. Or 1 Stamina point if your sleep was 
+    disturbed. Then you set off along the trail.</p>`,
+    choices: [{ goToPage: 123, text: "Check if any creatures attack you" }],
     eatOption: { haveEaten: 1, haveNotEaten: 2 },
   },
   284: {
@@ -3725,13 +3734,14 @@ const gameData = {
     text: `Deduct 2 Stamina points. You cast your spell and, with a flash, five 
     replicas of yourself appear in front of the creature. It chooses one of 
     these images to attack. Roll a die, if it is a one you have been unlucky and 
-    attacks the real you! If it choose the real you fight the monster. If it does not 
+    attacks the real you! If it choose the real you, you must fight the monster. If it does not 
     choose the real you, you may escape from it and continue.`,
     choices: [
-      { goToPage: 20, text: "Roll a 1: Fight" },
-      { goToPage: 193, text: "Roll a 2 - 6: Continue" },
+      { goToPage: 20, text: "Roll a 1: Fight", blocked: true },
+      { goToPage: 193, text: "Roll a 2 - 6: Continue", blocked: true },
     ],
     staminaLoss: 2,
+    extraText: true,
   },
   296: {
     text: `Deduct 1 Stamina point. Do you have a Gold Piece with you? If not, 
@@ -3835,7 +3845,13 @@ const gameData = {
     Minimite screams at you, 'Don't waste your time on spells. Minimites 
     are protected - though it is sometimes a curse - with a protection aura. 
     You cannot cast spells when I am about!' You must fight the assassin.`,
-    choices: [{ goToPage: 117, text: "Continue.." }],
+    choices: [
+      {
+        goToPage: 153,
+        text: "Fight the Assassin",
+        fight: { skill: 8, stamina: 6, name: "Assassin" },
+      },
+    ], // He is spared at 187],
     staminaLoss: 4,
   },
   306: {
@@ -3854,12 +3870,12 @@ const gameData = {
     choices: [{ goToPage: 0, text: "Death" }], // todo you are dead
   },
   308: {
-    text: `Deduct 1 Stamina point. Do you have a bamboo Pipe with you?`,
+    text: `Deduct 1 Stamina point. Do you have a Bamboo Flute with you?`,
     spell: {
       requires: "pipe",
       failText: `If not, you lose a further 3 Stamina points as the Bandits attack.`,
       failDamage: 3,
-      successText: `If you have such a Pipe, you take it from your bag, cast your spell and 
+      successText: `If you have such a Flute, you take it from your bag, cast your spell and 
       play. The angry faces of the Bandits turn to expressions of astonishment 
       as they find their limbs jerking in time to the music, quite out of 
       control they drop their swords and are soon dancing merrily before 
@@ -3926,7 +3942,7 @@ const gameData = {
   },
   317: {
     text: `<p>Deduct 4 Stamina points. You cast the spell and the creature looks 
-    confused. It steps forwards and kicks the staff of the halberd, knocking 
+    confused. It steps forwards and kicks the halberd, knocking 
     it out of its hands. Cursing, it picks the weapon up, merely to drop 
     it again! You may seize your chance and attack. While under the effect 
     of the spell, the Troll will fight at:</p>
@@ -3934,18 +3950,16 @@ const gameData = {
     <p><b>TROLL SENTRY Skill 4 Stamina 7</b></p>
     
     <p>The spell will last for 4 Attack Rounds and will then wear off. Before 
-    each Attack Round after the fourth, roll one die. If the number is odd, 
-    the Troll cannot regain his halberd and will continue fighting with a 
-    Skill of 4. If you roll an even number, it will regain its weapon and 
-    fight with a Skill of 8.</p>`,
+    each Attack Round after the fourth, it will have a 50% chance to pick up 
+    its weapon and regain its initial Skill.</p>`,
     choices: [
       {
         goToPage: 177,
-        text: "Fight the Troll",
-        fight: { skill: 4, stamina: 7, name: "Troll" },
+        text: "Fight the Troll Sentry",
+        fight: { skill: 4, stamina: 17, name: "Troll Sentry" },
       },
     ],
-    staminaLoss: 4, // todo 50% chance after round 4 that it will regain skill to 8
+    staminaLoss: 4,
   },
   318: {
     text: `Deduct 4 Stamina points. You cast the spell and point your finger at 
@@ -4127,9 +4141,9 @@ const gameData = {
     staminaLoss: 4,
   },
   339: {
-    text: `Deduct 1 Stamina point. Do you have a Bamboo Pipe with you? If 
+    text: `Deduct 1 Stamina point. Do you have a Bamboo Flute with you? If 
     not, the Wood Golem attacks for 1 Stamina points' worth of damage 
-    - return and choose again. If you have a Bamboo Pipe, you pull it 
+    - return and choose again. If you have a Bamboo Flute, you pull it 
     out of your backpack, cast your spell and play. The Golem stops and 
     looks at you strangely. Its shoulders shrug and it shivers. It looks 
     around and one leg starts twitching on the floor. Uncontrollably it 
@@ -4138,8 +4152,12 @@ const gameData = {
     a little dance in front of you! You keep it occupied while you back off 
     towards the door.`,
     choices: [
-      { goToPage: 87, text: "Spell fail - Go back and choose again" }, // todo lose 1 hp more
-      { goToPage: 169, text: "Continue.." }, // todo add spell pass/fail
+      {
+        goToPage: 87,
+        text: "Spell Fail - Go back and choose again",
+        blockItem: "pipe",
+      }, // todo lose 1 hp more
+      { goToPage: 169, text: "Continue..", requires: "pipe" },
     ],
     staminaLoss: 1,
   },
@@ -4193,7 +4211,7 @@ const gameData = {
   346: {
     text: `Deduct 4 Stamina points. Your spell creates a large fireball in your 
     hand, which you fling at the beast. It hits the Manticore in the side 
-    and the creature roars out in pain.`,
+    and the creature roars out in pain. Causing it 6 stamina points worth of damage.`,
     choices: [{ goToPage: 420, text: "Finish off the beast" }],
     staminaLoss: 4,
   },
@@ -4209,7 +4227,14 @@ const gameData = {
     spell works only on non-intelligent creatures. The Bandits leap at you 
     and one gashes your arm with his sword, inflicting 2 Stamina points 
     of damage.`,
-    choices: [{ goToPage: 104, text: "Return to fight them" }],
+    choices: [
+      {
+        goToPage: 56,
+        text: "Fight the Bandits",
+        fight: { skill: 7, stamina: 6, name: "Bandit 1" },
+        extraEnemies: [{ skill: 7, stamina: 5, name: "Bandit 2" }],
+      },
+    ],
     staminaLoss: 6,
   },
   349: {
@@ -4245,7 +4270,7 @@ const gameData = {
     text: `Deduct 1 Stamina point. You try the spell, but nothing happens as 
     you do not have the Bracelet of Bone it requires. The Elvins are not 
     impressed and quickly bind your hands again - only this time tighter, 
-    causing you some pain and the loss of another Stamina point.`,
+    causing you some pain and the <b>loss of another 1 Stamina point.</b>`,
     choices: [{ goToPage: 218, text: "Continue.." }],
     staminaLoss: 2,
   },
@@ -4296,7 +4321,21 @@ const gameData = {
     have the Green-Haired Wig it requires. The Goblins spring at you and 
     attack. Lose 2 Stamina points as the first Goblin slashes at you. 
     You may not choose another spell; you must draw your weapon and fight them.`,
-    choices: [{ goToPage: 217, text: "Return and fight" }], // todo must fight, no spell
+    choices: [
+      {
+        goToPage: 155,
+        text: "Fight the Goblins",
+        fight: {
+          skill: 5,
+          stamina: 4,
+          name: "Goblin 1",
+        },
+        extraEnemies: [
+          { skill: 6, stamina: 4, name: "Goblin 2" },
+          { skill: 5, stamina: 5, name: "Goblin 3" },
+        ],
+      },
+    ],
     staminaLoss: 1,
   },
   359: {
@@ -4359,7 +4398,13 @@ const gameData = {
     have the Sun Jewel it requires. As you try to get it to work, the Troll 
     leaps and slashes at your leg, causing 2 Stamina points' worth of 
     damage. You must now fight the Troll.`,
-    choices: [{ goToPage: 99, text: "Fight the troll" }], // todo cant use magic at 99
+    choices: [
+      {
+        goToPage: 177,
+        text: "Fight the Troll",
+        fight: { skill: 8, stamina: 7, name: "Troll" },
+      },
+    ],
     staminaLoss: 1,
   },
   364: {
@@ -4427,7 +4472,7 @@ const gameData = {
     staminaLoss: 5,
   },
   369: {
-    // not to self, it would take 455 goblins to kill the manticore on average, what a useless spell!
+    // note to self, it would take 455 goblins to kill the manticore on average, what a useless spell!
     text: `<p>Do you have any Goblins' teeth with you? If so you may throw as 
     many as you wish on to the ground and cast your spell. Deduct 1 
     Stamina point per tooth. With a cloud of smoke, this number of 
@@ -4457,10 +4502,16 @@ const gameData = {
   },
   371: {
     text: `Deduct 1 Stamina point. You have chosen a spell you are not able to 
-    use as you do not have the Pearl Ring it requires. Lose another 3 
-    Stamina points as the Bandits attack and return and
-    another choice.`,
-    choices: [{ goToPage: 104, text: "Return and fight the bandits" }],
+    use as you do not have the Pearl Ring it requires. You lose another 3 
+    Stamina points as the Bandits attack.`,
+    choices: [
+      {
+        goToPage: 56,
+        text: "Fight the Bandits",
+        fight: { skill: 7, stamina: 6, name: "Bandit 1" },
+        extraEnemies: [{ skill: 7, stamina: 5, name: "Bandit 2" }],
+      },
+    ],
     staminaLoss: 4,
   },
   372: {
@@ -4494,13 +4545,17 @@ const gameData = {
     a step forward, then grunts and steps backwards, thoroughly confused, 
     You may either fight it now in its incapacitated state:</p>
 
-    <p><b>OGRE Skil 4 Stamina 7</b></p> 
+    <p><b>OGRE Skill 4 Stamina 7</b></p> 
 
     <p>Alternatively you may leave the room.</p>`,
     choices: [
-      { goToPage: 15, text: "Fight the Ogre", fight: { skill: 4, stamina: 7, name: "Ogre" } },
+      {
+        goToPage: 15,
+        text: "Fight the Ogre",
+        fight: { skill: 4, stamina: 7, name: "Ogre" },
+      },
       { goToPage: 144, text: "Leave the room" },
-    ], // todo weaken monster
+    ],
     staminaLoss: 2,
   },
   376: {
@@ -4554,7 +4609,13 @@ const gameData = {
     spell. Fight it, but for the first four Attack Rounds it will fight with:
 
     <p><b>WOOD GOLEM Skill 4 Stamina 6</b></p>`,
-    choices: [{ goToPage: 87, text: "Fight the Wood Golem", fight: { skill: 4, stamina: 6, name: "Wood Golem" } }], 
+    choices: [
+      {
+        goToPage: 87,
+        text: "Fight the Wood Golem",
+        fight: { skill: 4, stamina: 60, name: "Wood Golem" },
+      },
+    ],
     staminaLoss: 2,
   },
   384: {
@@ -4585,8 +4646,13 @@ const gameData = {
     Attack Strength. After the fight, you must lose 
     the Gold Piece, which becomes useless metal.</p>`,
     choices: [
-      { goToPage: 99, text: "Spell fail - Choose again" },
-      { goToPage: 177, text: "Fight the Troll Sentry", fight: { skill: 8, stamina: 7, name: "Troll Sentry" } },
+      { goToPage: 99, text: "Spell fail - Choose again", blockItem: "gold" },
+      {
+        requires: "gold",
+        goToPage: 177,
+        text: "Fight the Troll Sentry",
+        fight: { skill: 8, stamina: 7, name: "Troll Sentry" },
+      },
     ], // todo check if have coin and lose coin. Troll loses 2 AS
     staminaLoss: 1,
   },
@@ -4597,7 +4663,8 @@ const gameData = {
     choices: [{ goToPage: 171, text: "Continue.." }],
     staminaLoss: 2,
   },
-  388: { // todo seperate this into two nodes
+  388: {
+    // todo seperate this into two nodes
     text: `<p>Deduct 1 Stamina point. Do you have a Giant's tooth with you?
     If not, you cannot cast this spell you must defend yourself 
     with your weapon.</p> 
@@ -4619,7 +4686,11 @@ const gameData = {
     <p>If the Manticore wins, you may either finish the job off yourself or cast 
     another spell.</p>`,
     choices: [
-      { goToPage: 227, text: "Fight the manticore", fight: { skill: 12, stamina: 18, name: "Manticore" } },
+      {
+        goToPage: 227,
+        text: "Fight the manticore",
+        fight: { skill: 12, stamina: 18, name: "Manticore" },
+      },
       { goToPage: 420, text: "Cast another spell" },
     ],
     staminaLoss: 1,
@@ -4763,8 +4834,14 @@ const gameData = {
     text: `Deduct 1 Stamina point. You cannot use this spell as you do not 
     have the Green-Haired Wig it requires. As you try to cast it, the beast 
     leaps at you and sinks its teeth into your forearm. Deduct 3 Stamina 
-    points. You must now draw your weapon and fight it`,
-    choices: [{ goToPage: 74, text: "Continue.." }],
+    points. You must now draw your weapon and fight it.`,
+    choices: [
+      {
+        goToPage: 50,
+        text: "Fight the Wolfhound",
+        fight: { skill: 7, stamina: 6, name: "Wolfhound" },
+      },
+    ],
     staminaLoss: 4,
   },
   403: {
@@ -4810,17 +4887,18 @@ const gameData = {
     their tracks, deciding whether to continue the attack. Roll two dice for 
     each of the remaining Goblins. If the number rolled for either (or both) 
     of them is equal to or higher than their Skill score, this means it will 
-    turn and flee into the woods. Otherwise it will, continue its attack.</p> 
-    
-    <p>Their scores are:</p> 
-    
-    <p><b>SECOND GOBLIN Skill 6 Stamina 4</b></p>
-    <p><b>THIRD GOBLIN Skill 5 Stamina 5</b></p>`,
+    turn and flee into the woods. Otherwise, it will continue its attack.</p>`,
     choices: [
-      { goToPage: 155, text: "Fight the goblin", fight: { skill: 6, stamina: 4, name: "Goblin" } },
-      { goToPage: 202, text: "They both flee" },
-    ], //todo roll 2 dice for each goblin to see if they flee
+      {
+        goToPage: 155,
+        text: "Fight the Goblin(s)",
+        blocked: true,
+        cameFrom: 407,
+      },
+      { goToPage: 202, text: "They both flee", blocked: true },
+    ],
     staminaLoss: 4,
+    extraText: true,
   },
   408: {
     text: `Deduct 4 Stamina points. You cast your spell and suddenly the 
@@ -4860,7 +4938,13 @@ const gameData = {
     
     <p>But your Skill is doubled while you are under the influence of 
     this spell.</p>`,
-    choices: [{ goToPage: 265, text: "Fight the Golem", fight: { skill: 9, stamina: 11, name: "Hill Giant" }}],
+    choices: [
+      {
+        goToPage: 265,
+        text: "Fight the Golem",
+        fight: { skill: 9, stamina: 11, name: "Hill Giant" },
+      },
+    ],
     staminaLoss: 2,
   },
   412: {
@@ -4900,7 +4984,7 @@ const gameData = {
     1-5, this is the number of Stamina points of damage you must 
     sustain. If you roll a 6, the bites are poisonous and you are now 
     spending your last minutes before the poison takes its deadly effect 
-    ... If you have survived, turn back to 63 and choose again.`,
+    ... If you have survived, choose again.`,
     choices: [
       { goToPage: 63, text: "Roll a 1-5, you survived" }, // todo take roll damage
       { goToPage: 0, text: "Roll a 6, you are dead" },
@@ -4940,7 +5024,7 @@ const gameData = {
     have the vial of glue you need to cast it. Meanwhile the night creature 
     has attacked and inflicted 2 Stamina points' worth of damage.`,
     choices: [{ goToPage: 123, text: "Go back and choose again" }],
-    staminaLoss: 1,
+    staminaLoss: 3,
   },
   422: {
     text: `Deduct 1 Stamina point. You cannot cast this spell as you do not 
@@ -4980,7 +5064,11 @@ const gameData = {
     <p><b>WOLFHOUND Skill 7 Stamina 6</b></p>
     <p><b>GOBLINS Skill 5 Stamina 5</b></p>`,
     choices: [
-      { goToPage: 50, text: "Fight the Wolfhound", fight: { skill: 7, stamina: 6, name: "Wolfhound" } },
+      {
+        goToPage: 50,
+        text: "Fight the Wolfhound",
+        fight: { skill: 7, stamina: 6, name: "Wolfhound" },
+      },
     ], // todo if no goblins teeth 5 damage
   },
   426: {
@@ -4999,13 +5087,13 @@ const gameData = {
     staminaLoss: 5,
   },
   428: {
-    // unique node
+    // todo fix death mechanic
     text: `Deduct 3 Stamina points. There is no such spell as this. The Goblins 
     are quickly on you and attack you for 2 Stamina points' worth of 
     damage. You may, if you wish, Test your Luck and if you are Lucky you 
     avoid this attack.`,
-    choices: [{ goToPage: 217, text: "Fight the goblins or cast a spell" }], // todo test your Luck  + 2 hp if pass
-    staminaLoss: 3, // todo come back to this
+    choices: [{ goToPage: 217, text: "Fight the goblins or cast a spell" }],
+    staminaLoss: 5,
     testLuck: { optional: true },
   },
   429: {
@@ -5038,10 +5126,13 @@ const gameData = {
     text: `Deduct 4 Stamina points. You cast the spell and, commanding the 
     snakes, they back away from you. For the present, you are safe. But 
     how may you escape from the pit? If you have not yet called on help 
-    from , you may call her now. But if you have already used her help, there is 
+    from Libra, you may call her now. But if you have already used her help, there is 
     little you can do but hold the snakes off until your Stamina runs out- 
     your journey has ended here . . . `,
-    choices: [{ goToPage: 273, text: "Call on Libra", needLibra: true }], // todo you are dead
+    choices: [
+      { goToPage: 273, text: "Call on Libra", needLibra: true },
+      { goToPage: 0, text: "Death" },
+    ],
     staminaLoss: 4,
   },
   434: {
@@ -5099,7 +5190,11 @@ const gameData = {
     is no longer usable.`,
     choices: [
       { goToPage: 203, text: "Spell Fail - go back and choose again" },
-      { goToPage: 203, text: "Return and fight the Elvin" }, // todo lose 2 extra hp
+      {
+        goToPage: 203,
+        text: "Fight the Elvin",
+        fight: { skill: 6, stamina: 4, name: "Elvin" },
+      }, // todo lose 2 extra hp
     ],
     staminaLoss: 1,
   },
@@ -5111,8 +5206,32 @@ const gameData = {
     do not have beeswax, you believe your weapon has been sharpened, 
     but it has not and will do only normal damage.`,
     choices: [
-      { goToPage: 217, text: "Fight the goblins with double damage" },
-      { goToPage: 217, text: "Fight the goblins normally" },
+      {
+        goToPage: 155,
+        text: "Fight the Goblins (double damage)",
+        fight: {
+          skill: 5,
+          stamina: 4,
+          name: "Goblin 1",
+        },
+        extraEnemies: [
+          { skill: 6, stamina: 4, name: "Goblin 2" },
+          { skill: 5, stamina: 5, name: "Goblin 3" },
+        ],
+      },
+      {
+        goToPage: 155,
+        text: "Fight the Goblins",
+        fight: {
+          skill: 5,
+          stamina: 4,
+          name: "Goblin 1",
+        },
+        extraEnemies: [
+          { skill: 6, stamina: 4, name: "Goblin 2" },
+          { skill: 5, stamina: 5, name: "Goblin 3" },
+        ],
+      },
     ],
     staminaLoss: 1,
   },
@@ -5151,8 +5270,8 @@ const gameData = {
   448: {
     text: `Deduct 4 Stamina points. The creature stops in its tracks and you 
     order it to return to the woods from where it came. Having escaped 
-    the creature you may return to your original reference.`,
-    choices: [{ goToPage: 123, text: "Continue.." }],
+    the creature you go back to sleep.`,
+    choices: [{ nightContinue: true, text: "Continue.." }],
     staminaLoss: 4,
   },
   449: {
@@ -5238,13 +5357,13 @@ const gameData = {
     given the freedom of the village and decide to stay for the day to 
     recuperate. You visit the Svinn healing-priest who will treat your 
     wounds, cure any diseases and lift curses which you may have. 
-    Restore your Skill, Stamina and Luck points to their Initial values. 
+    <b>Restoring your Skill, Stamina and Luck points to their Initial values.</b> 
     The priest may also rid you of the annoying little Mininmite if he is still 
-    with you.</pHILL>
+    with you.</p>
     
     <p>You sleep heavily that night and rise the next morning to continue on 
     your way. Before you go, the Svinn chief meets you. He hands you 
-    two gifts: a pouch containing 10 Gold Pieces and a large key. I know 
+    two gifts: <b>a pouch containing 10 Gold Pieces</b> and <b>a large key</b>. I know 
     you head for Khare' says the chief, 'but the city is evil and you must 
     be on your guard. Two years ago a traveller passed through here 
     from Khare and gave me this key, saying he would never return. This 
@@ -5253,7 +5372,7 @@ const gameData = {
     you may you wish to use this key.</p>
     
     <p>You thank him and leave Torrepani. You have made friends here and 
-    permanently increase your Initial Luck score by 1 point. Soon the 
+    <b>permanently increase your Initial Luck score by 1 point</b>. Soon the 
     path is leading you on from the Shamutanti Hills down across rice 
     fields towards a great walled city - the Cityport of Khare and on to 
     the next stage of your quest . . .</p>`,

@@ -17,10 +17,14 @@ import {
   LOCKSMASH_PREVIOUS,
   LOCK_OPEN,
   ATTEMPT_LOCKSMASH,
+  SKUNK_DIE,
+  BYPASS_GOBLINS,
+  NIGHT_CREATURE_PREVIOUS,
+  NIGHT_CREATURE_FIGHT,
 } from "./action-types";
 
 const initialState = {
-  page: 47,
+  page: 210,
   traderItemsViewed: [],
   cantUseMagic: false,
   glandragorChoices: "blocked",
@@ -32,10 +36,14 @@ const initialState = {
   sentryLuck: false,
   doorOpen: null,
   forkDie: 0,
+  skunkDie: 0,
   seenBox1: false,
   seenBox2: false,
   lockSmashPrevious: 0,
   lockSmash: { broken: false, tried: false },
+  bypassGoblins: null,
+  nightCreaturePrevious: 0,
+  nightCreatureFight: null,
 };
 
 export const reducer = (state = initialState, action) => {
@@ -105,6 +113,11 @@ export const reducer = (state = initialState, action) => {
         ...state,
         forkDie: action.payload,
       };
+    case SKUNK_DIE:
+      return {
+        ...state,
+        skunkDie: action.payload,
+      };
     case SEEN_BOX1:
       return {
         ...state,
@@ -129,6 +142,21 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         lockSmash: { ...state.lockSmash, tried: true },
+      };
+    case BYPASS_GOBLINS:
+      return {
+        ...state,
+        bypassGoblins: action.payload,
+      };
+    case NIGHT_CREATURE_PREVIOUS:
+      return {
+        ...state,
+        nightCreaturePrevious: action.payload,
+      };
+    case NIGHT_CREATURE_FIGHT:
+      return {
+        ...state,
+        nightCreatureFight: action.payload,
       };
     default:
       return state;

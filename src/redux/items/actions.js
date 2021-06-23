@@ -3,15 +3,15 @@ import {
   EAT_PROVISION,
   EQUIP_WEAPON,
   DRINK_POTION,
-  GET_ITEM,
+  CHANGE_ITEM_AMOUNT,
   LOSE_EVERYTHING,
   LOSE_WEAPON,
   BLUNT_WEAPON,
 } from "./action-types";
 
-export const getItem = (dispatch, { name, amount }) => {
+export const changeItemAmount = (dispatch, { name, amount }) => {
   dispatch({
-    type: GET_ITEM,
+    type: CHANGE_ITEM_AMOUNT,
     payload: { item: name, amount },
   });
 };
@@ -37,9 +37,7 @@ export const equipSpecificWeapon = (dispatch, data) => {
 };
 
 export const drinkPotion = (dispatch) => {
-  dispatch({
-    type: DRINK_POTION,
-  });
+  dispatch({ type: DRINK_POTION });
 };
 
 export const robbedByBandits = (dispatch, equippedWeapon) => {

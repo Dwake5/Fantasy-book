@@ -18,13 +18,12 @@ const LockSmash = () => {
   const dispatch = useDispatch();
   const _skill = useSelector(getSkill);
   const _equippedWeapon = useSelector(getEquippedWeapon);
-  console.log("_equippedWeapon :", _equippedWeapon);
   const _items = useSelector(getItems);
   let weaponName = null;
   if (_equippedWeapon) {
     weaponName = _items[_equippedWeapon].name;
   }
-  console.log("weaponName :", weaponName);
+
   const betterChances = useSelector(getLockSmashPrevious) === 360;
   const [firstTry, setFirstTry] = useState(true);
   const [rollText, setRollText] = useState([]);

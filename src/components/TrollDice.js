@@ -1,14 +1,14 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import "../assets/css/Stats.css";
 import { ownItem } from "../redux/items/selectors";
-import { getStat } from "../redux/stats/selectors";
-import { diceRolls, testYourLuck } from "../utils";
 import { loseStat } from "../redux/stats/actions";
+import { getStat } from "../redux/stats/selectors";
 import { sentryDie, sentryLuck } from "../redux/story/actions";
+import { diceRolls, testYourLuck } from "../utils";
 
-// Used on node 38, which then impacts 23. Lots of places lead here, 27
+// Used on node 38, which then impacts 23. Lots of places lead here, 27 for example
 const TrollDice = ({ cancelPause, pageNumber }) => {
   const dispatch = useDispatch();
 
@@ -40,9 +40,11 @@ const TrollDice = ({ cancelPause, pageNumber }) => {
     sentryLuck(dispatch, pass)
   };
 
-  useEffect(() => {
+  const [firstRun, setFirstRun] = useState(true);
+  if (firstRun) {
     fixedLuckNeeded.current = luckNeedToPass;
-  }, []);
+    setFirstRun(false);
+  }
 
   return (
     <Container className="mb-4">

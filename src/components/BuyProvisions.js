@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Container } from "react-bootstrap";
 import { pluralize } from "../utils";
 import { useDispatch } from "react-redux";
-import { payMoney, getItem } from "../redux/items/actions";
+import { payMoney, changeItemAmount } from "../redux/items/actions";
 
 // Used on node 257. Got here from 81 or 198
 const BuyProvisions = ({ amount, cost, playerMoney }) => {
@@ -11,7 +11,7 @@ const BuyProvisions = ({ amount, cost, playerMoney }) => {
   const [purchased, setPurchased] = useState(false);
 
   const handlePurchase = () => {
-    getItem(dispatch, { name: "provisions", amount });
+    changeItemAmount(dispatch, { name: "provisions", amount });
     payMoney(dispatch, cost);
     setPurchased(true);
   };

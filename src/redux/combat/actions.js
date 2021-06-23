@@ -4,6 +4,9 @@ import {
   ENEMY_STATS,
   DAMAGE_ENEMY,
   NEXT_PAGE,
+  DOUBLE_ENEMY_AS,
+  REMOVE_ENEMY,
+  ADD_EXTRA_ENEMIES,
 } from "./action-types";
 
 export const startCombat = (dispatch) => {
@@ -25,4 +28,16 @@ export const damageEnemy = (dispatch, amount) => {
 
 export const setPageAfterCombat = (dispatch, number) => {
   dispatch({ type: NEXT_PAGE, payload: number });
+};
+
+export const setDoubleEnemySkill = (dispatch, number) => {
+  dispatch({ type: DOUBLE_ENEMY_AS, payload: number });
+};
+
+export const removeEnemyFromQueue = (dispatch) => {
+  dispatch({ type: REMOVE_ENEMY });
+}
+
+export const addExtraEnemies = (dispatch, array) => {
+  dispatch({ type: ADD_EXTRA_ENEMIES, payload: array });
 };

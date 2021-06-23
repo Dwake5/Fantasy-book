@@ -19,3 +19,7 @@ export const SEEN_BOX2 = namespace + 'SEEN_BOX2';
 export const LOCKSMASH_PREVIOUS = namespace + 'LOCKSMASH_PREVIOUS';
 export const ATTEMPT_LOCKSMASH = namespace + 'ATTEMPT_LOCKSMASH';
 export const LOCK_OPEN = namespace + 'LOCK_OPEN';
+export const SKUNK_DIE = namespace + 'SKUNK_DIE';
+export const BYPASS_GOBLINS = namespace + 'BYPASS_GOBLINS';
+export const NIGHT_CREATURE_PREVIOUS = namespace + 'NIGHT_CREATURE_PREVIOUS';
+export const NIGHT_CREATURE_FIGHT = namespace + 'NIGHT_CREATURE_FIGHT';

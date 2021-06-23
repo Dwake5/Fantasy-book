@@ -1,16 +1,30 @@
 .imageContainer {
   width: 200px;
   height: 150px;
+  border: 2px solid black;
 }
 
 img {
-  width: 200px;
-  height: 150px;
-  object-fit: cover;
-  border: 2px solid black;
+  max-width: 100%;
+  height: auto;
+}
+
+.littleContainer {
+  width: 80px;
+  height: 60px;
 }
 
 input.autoCombat {
   width: 15px;
   height: 15px;
+}
+
+.textSmall {
+  font-size: .75rem;
+}
+
+.littleEnemyCont {
+  max-width: 100px;
+  padding-left: 10px !important;
+  padding-right: 10px !important;
 }

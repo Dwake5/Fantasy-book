@@ -1,30 +1,45 @@
 # Things to do
 
 <ul>
-  <li>Integrate combat</li>
   <li>Find a way to adapt story text based on users stats for example when you dont have a magic item</li>
   <li>Add P tags to text to format it better</li>
   <li>Progress bars to combat</li>
-  <li>Find a way to fight night creatures and return to previous node (84, 108, 283 || 396, 421, 437, 453)</li>
+  <li>Find a way to fight night creatures and return to previous node (84, 108 || 283, 396, 421, 437, 453)</li>
   <li>108, 283 adds +2 to night creatures roll</li>
   <li>Get no change for buying with gems (15) might not do this, a lot of work for little payoff, maybe just give 5gp a piece</li>
   <li>Handle death</li>
   <li>Handle spells requiring certain items</li>
   <li>Handle using spells causing extra damage to you if you don't have items</li>
-  <li>Disable swapping weapons or drinking potion in combat</li>
   <li>Workout when the user has to know about Jann... (305, 306, 321, 394, 387, 286 all tell you, but are optional choices except 286!) Requires a lot of testing</li>
   <li>Add bold text to important info the player recieves, and stat loss / increases</li>
   <li>Item furskin boots at 110</li>
-  <li>Handle items changing your AS in combat (passively)</li>
   <li>Write usefilters a lot better</li>
   <li>Handle Bomba</li>
   <li>Bug: What if no items at pilfer Grass</li>
   <li>Add combat config to gamedata</li>
+  <li>Bug: testing luck in combat after you roll equal scores to the enemy does nothing</li>
+  <li>When theres an enemy block same spell being cast twice</li>
+  <li>Make Pilfer grass look more like backpack robbed</li>
+  <li>Go through each spell and see which ones circle back, if they do block them singleUse: true</li>
 </ul>
 
+combat mods
+227: Manticore 1/3 chance of triple damage
+388: Manticore vs Giant. 1/3 chance of triple damage
+407: Goblins You can fight 0, 1 or 2.
+411: Hill Giant, your skill doubled
+442: Can do double damage to goblins
 # Done
 
 <ul>
+  <li>Can only use a magic spell once with singleUse: true</li>
+  <li>Let you spare Flanker</li>
+  <li>Handle the 3 pages that affect yours on the enemies stats</li>
+  <li>Disable swapping weapons or drinking potion in combat</li>
+  <li>Handle items changing your AS in combat (passively)</li>
+  <li>Integrate combat</li>
+  <li>Cant equip/ change weapons in combat</li>
+  <li>(refactor) getItem now unequips your weapon if you lose it</li>
   <li>Seperate the item component into weapons and items then do a weapon subheading</li>
   <li>Horrible Bug: Combat doesnt show death text in auto combat mode. Fixed but the solution is horrible and no idea what was the issue</li>
   <li>Lose 4 skill points if you have no weapon</li>
@@ -174,4 +189,6 @@ Try to prioritize getting items at a node, rather than a choice.
 <li>338: Fight weakened Hill Giant skill 6 stamina 11</li>
 <li>339: requires bamboo flutes dynamic text</li>
 <li>356: Can test luck, if success no fight, if fail fight with double skill.</li>
+<li>366: Take 1d damage, if 6 test luck, if unlucky you die.</li>
+<li>417: Take 1d damage for 1-5, if 6 you die.</li>
 </ul>

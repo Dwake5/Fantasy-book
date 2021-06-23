@@ -1,16 +1,15 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState } from "react";
 import { Container } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import "../assets/css/Stats.css";
-import { getItem, payMoney } from "../redux/items/actions";
+import { changeItemAmount, payMoney } from "../redux/items/actions";
 import { changeEatenToday, gainStat } from "../redux/stats/actions";
 
-const EatOption = ({ eatOptions, eatenToday, food, money, pageNumber }) => {
+const EatOption = ({ eatOptions, eatenToday, food, money }) => {
   const dispatch = useDispatch();
   const fixedFoodHealth = useRef(null);
 
   const [usedOption, setUsedOption] = useState(false);
-  console.log('usedOption :', usedOption);
 
   const firstMealHealth = eatOptions.haveNotEaten;
   const mealHealth = eatOptions.haveEaten;
@@ -26,17 +25,15 @@ const EatOption = ({ eatOptions, eatenToday, food, money, pageNumber }) => {
     if (costsMoney !== undefined) {
       payMoney(dispatch, costsMoney);
     } else {
-      getItem(dispatch, { name: "provisions", amount: -1 });
+      changeItemAmount(dispatch, { name: "provisions", amount: -1 });
     }
   };
 
-  useEffect(() => {
-    fixedFoodHealth.current = foodHeals;
-  }, [pageNumber]);
-  
-  useEffect(() => {
-    fixedFoodHealth.current = foodHeals;
-  }, [pageNumber]);
+  const [firstRun, setFirstRun] = useState(true);
+  if (firstRun) {
+    fixedFoodHealth.current = foodHeals
+    setFirstRun(false);
+  }
 
   return (
     <Container className="mb-4">

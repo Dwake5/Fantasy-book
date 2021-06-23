@@ -3,12 +3,12 @@ import { Container } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import "../assets/css/Stats.css";
 import { ownItem } from "../redux/items/selectors";
-import { loseStat } from "../redux/stats/actions";
+import { gainStat, loseStat } from "../redux/stats/actions";
 import { getStat } from "../redux/stats/selectors";
 import { testYourLuck } from "../utils";
  
 // 236 is a good node to test
-const TestLuck = ({ setLuckPassed, cancelPause }) => {
+const TestLuck = ({ setLuckPassed, cancelPause, pageNumber }) => {
   const dispatch = useDispatch();
   const [luckTested, setLuckTested] = useState(false);
   const [luckSuccess, setLuckSuccess] = useState(false);
@@ -25,6 +25,9 @@ const TestLuck = ({ setLuckPassed, cancelPause }) => {
     setLuckTotal(total);
     setLuckPassed(pass); // Tell the parent if pass/success
     cancelPause(true); // Tell the parent to display options again
+    if (pageNumber === 428 && pass) {
+      gainStat(dispatch, 'stamina', 2)
+    }
   };
 
   useEffect(() => {
