@@ -9,23 +9,22 @@ import {
   endCombat,
   removeEnemyFromQueue,
   setDoubleEnemySkill,
-  setEnemyStats,
+  setEnemyStats
 } from "../../redux/combat/actions";
 import {
   getEnemyStats,
   getExtraEnemies,
-  getNextPage,
+  getNextPage
 } from "../../redux/combat/selectors";
 import { getEquippedWeapon, ownItem } from "../../redux/items/selectors";
 import { gainStat, loseStat } from "../../redux/stats/actions";
 import { getSkill, getStat } from "../../redux/stats/selectors";
 import { setPage } from "../../redux/story/actions";
-import { diceRolls } from "../../utils";
-import PlayerStats from "./PlayerStats";
-import EnemyStats from "./EnemyStats";
-import CombatText from "./CombatText";
 import { getNightCreatureFight, getNightCreaturePrevious } from "../../redux/story/selectors";
-import gameData from "../../assets/gameData";
+import { diceRolls, resetNightCreatures } from "../../utils";
+import CombatText from "./CombatText";
+import EnemyStats from "./EnemyStats";
+import PlayerStats from "./PlayerStats";
 
 const Combat = ({ pageNumber }) => {
   const dispatch = useDispatch();
@@ -68,6 +67,8 @@ const Combat = ({ pageNumber }) => {
   } else if (_equippedWeapon === "axe") {
     playerAttStrModifier--;
   }
+
+  if (pageNumber === 453) damage *= 2
 
   const swordList = ["sword", "craftedSword", "broadsword", "glandragorSword"];
   if (_haveArmband && swordList.includes(_equippedWeapon)) {
@@ -242,7 +243,7 @@ const Combat = ({ pageNumber }) => {
     if (doAddOneHealth) gainStat(dispatch, 'stamina', 1)
     endCombat(dispatch);
     setPage(dispatch, _nextPage);
-    gameData[123].pause = true;
+    resetNightCreatures()
   };
 
   const handleSpareHim = () => {
@@ -261,6 +262,7 @@ const Combat = ({ pageNumber }) => {
           maxStamina={_maxStamina}
           skill={_skill}
           playerAttStrModifier={playerAttStrModifier}
+          damage={damage}
           luck={_luck}
           maxLuck={_maxLuck}
           someoneDead={someoneDead}

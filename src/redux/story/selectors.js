@@ -1,4 +1,5 @@
 export const getPage = (state) => state.story.page;
+export const getPreviousPage = (state) => state.story.previousPage;
 export const getTraderViews = (state) => state.story.traderItemsViewed;
 export const getCantUseMagic = (state) => state.story.cantUseMagic;
 export const getGlandragor = (state) => state.story.glandragorChoices;

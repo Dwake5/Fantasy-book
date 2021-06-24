@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import { Container } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { setEnemyStats } from "../redux/combat/actions";
-import { getStat } from "../redux/stats/selectors";
+import { gainStat } from "../redux/stats/actions";
 import { nightCreatureFight } from "../redux/story/actions";
 import { getNightCreaturePrevious } from "../redux/story/selectors";
 import { diceRolls } from "../utils";
 import NightCreaturesTable from "./NightCreaturesTable";
 
-// Used in node 123, arrived from many places 84, 108, 283
+// Used in node 123, arrived from many places 84, 108, 283, combat leads 396, 421, 437
 const NightCreatures = ({ cancelPause }) => {
   const dispatch = useDispatch();
   const _nightCreaturePrevious = useSelector(getNightCreaturePrevious);
@@ -26,7 +26,7 @@ const NightCreatures = ({ cancelPause }) => {
 
   const handleRoll = () => {
     let dieRoll = diceRolls(1, true);
-    if (doAddTwo) dieRoll = 2;
+    if (doAddTwo) dieRoll = 4;
     setAlreadyRolled(true);
     cancelPause(true);
     if (dieRoll <= 4) {
@@ -44,8 +44,8 @@ const NightCreatures = ({ cancelPause }) => {
       nightCreatureFight(dispatch, false);
       if (doAddTwo) {
         setHealthText("You gain 2 Stamina points for the restful sleep.");
+        gainStat(dispatch, "stamina", 2);
       }
-      getStat(dispatch, "stamina", 2);
     }
   };
 

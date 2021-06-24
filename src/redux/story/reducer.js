@@ -25,6 +25,7 @@ import {
 
 const initialState = {
   page: 210,
+  previousPage: 0,
   traderItemsViewed: [],
   cantUseMagic: false,
   glandragorChoices: "blocked",
@@ -52,6 +53,7 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         page: action.payload,
+        previousPage: state.page,
       };
     case PITFALL_PREVIOUS:
       return {

@@ -845,8 +845,8 @@ const gameData = {
     not yet used your call to Libra, you had better do so now.`,
     choices: [
       { goToPage: 366, text: "Magic: ZEN" },
-      { goToPage: 417, text: "Magic: RIS", singleUse: true },
-      { goToPage: 303, text: "Magic: POP", singleUse: true },
+      { goToPage: 417, text: "Magic: RIS" },
+      { goToPage: 303, text: "Magic: POP" },
       { goToPage: 433, text: "Magic: LAW" },
       { goToPage: 344, text: "Magic: FIL" },
       { goToPage: 165, text: "Look for another escape route" },
@@ -2751,7 +2751,7 @@ const gameData = {
       { goToPage: 428, text: "Magic: HOP" },
       { goToPage: 407, text: "Magic: ZAP" },
       { goToPage: 358, text: "Magic: RAP" },
-      { goToPage: 381, text: "Magic: RAW", singleUse: true },
+      { goToPage: 381, text: "Magic: RAW" },
       { goToPage: 442, text: "Magic: RAZ" }, // todo
       {
         goToPage: 155,
@@ -5311,17 +5311,17 @@ const gameData = {
     not Test your Luck, the creature continues to attack but you may 
     double your Skill score as you attack it.`,
     choices: [
-      { goToPage: 123, text: "The creature fled", luck: "success" },
+      { nightContinue: true, text: "Test your Luck - Success, The creature fled", luck: "success" },
       {
-        goToPage: 123,
-        text: "Fight the creature with double skill",
+        fightNC: true,
+        text: "Test your Luck - Fail, double skill in fight",
         luck: "failed",
-      }, // todo double Skill fight
+      },
       {
-        goToPage: 123,
+        fightNC: true,
         text: "Fight the creature with double skill",
         luck: "blocked",
-      }, // todo double Skill fight
+      },
     ],
     staminaLoss: 2,
     testLuck: { optional: true },

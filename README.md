@@ -5,7 +5,6 @@
   <li>Add P tags to text to format it better</li>
   <li>Progress bars to combat</li>
   <li>Find a way to fight night creatures and return to previous node (84, 108 || 283, 396, 421, 437, 453)</li>
-  <li>108, 283 adds +2 to night creatures roll</li>
   <li>Get no change for buying with gems (15) might not do this, a lot of work for little payoff, maybe just give 5gp a piece</li>
   <li>Handle death</li>
   <li>Handle spells requiring certain items</li>
@@ -18,7 +17,6 @@
   <li>Bug: What if no items at pilfer Grass</li>
   <li>Add combat config to gamedata</li>
   <li>Bug: testing luck in combat after you roll equal scores to the enemy does nothing</li>
-  <li>When theres an enemy block same spell being cast twice</li>
   <li>Make Pilfer grass look more like backpack robbed</li>
   <li>Go through each spell and see which ones circle back, if they do block them singleUse: true</li>
 </ul>
@@ -32,6 +30,8 @@ combat mods
 # Done
 
 <ul>
+  <li>When theres an enemy block same spell being cast twice</li>
+  <li>108, 283 adds +2 to night creatures roll</li>
   <li>Can only use a magic spell once with singleUse: true</li>
   <li>Let you spare Flanker</li>
   <li>Handle the 3 pages that affect yours on the enemies stats</li>

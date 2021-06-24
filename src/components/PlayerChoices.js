@@ -36,6 +36,7 @@ import {
   setPage,
 } from "../redux/story/actions";
 import { getNightCreaturePrevious } from "../redux/story/selectors";
+import { resetNightCreatures } from "../utils";
 
 const PlayerChoices = ({ choices, setStayShowing, pause }) => {
   const dispatch = useDispatch();
@@ -51,6 +52,7 @@ const PlayerChoices = ({ choices, setStayShowing, pause }) => {
     };
     
     // Night creatures lead to a dynamic node so start a fight and check after
+    console.log(choice)
     if (choice.fightNC) {
       startCombat(dispatch)
       return
@@ -66,8 +68,8 @@ const PlayerChoices = ({ choices, setStayShowing, pause }) => {
       const plusOneHealthNodes = [108, 283];
       const doAddOneHealth = plusOneHealthNodes.includes(NCP);
       if (doAddOneHealth) gainStat(dispatch, 'stamina', 1)
-      gameData[123].pause = true;
       setPage(dispatch, nextPage)
+      resetNightCreatures()
       return
     }
 

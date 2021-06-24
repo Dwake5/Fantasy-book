@@ -8,6 +8,7 @@ const PlayerStats = ({
   skill,
   playerAttStrModifier,
   luck,
+  damage,
   maxLuck,
   someoneDead,
   autoFight,
@@ -19,6 +20,13 @@ const PlayerStats = ({
   enemyStamina,
   handleSpareHim,
 }) => {
+  const damageExcess = damage - 2;
+  const excessFunction = (stat) => {
+    if (stat === 0) return;
+    if (stat > 0) return `(+${stat})`;
+    if (stat < 0) return `(-${stat})`;
+  };
+
   return (
     <Col className="border">
       <p className="text-center h3">You</p>
@@ -29,11 +37,9 @@ const PlayerStats = ({
         Stamina: {stamina} / {maxStamina}
       </p>
       <p className="mb-0">
-        Attack Strength: {skill}{" "}
-        {playerAttStrModifier !== 0
-          ? `(${playerAttStrModifier > 0 ? "+" : ""}${playerAttStrModifier})`
-          : ""}
+        Attack Strength: {skill+playerAttStrModifier} {excessFunction(playerAttStrModifier)}
       </p>
+      <p className="mb-0">Damage: {damage} {excessFunction(damageExcess)}</p>
       <p className="mb-3">
         Luck: {luck} / {maxLuck}
       </p>
