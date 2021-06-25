@@ -130,13 +130,13 @@ const gameData = {
     text: `As you draw your weapon, you hear a hissing noise and the body of a 
     huge, two-tailed SERPENT materializes before your eyes. One of its 
     tails is wrapped around your arm and now, with a flick, the creature 
-    sends you flying into the undergrowth. You lose 1 Stamina point. You 
-    pick yourself up and face the creature. Resolve your combat;`,
+    sends you flying into the undergrowth. <b>You lose 1 Stamina point.</b> You 
+    pick yourself up and face the creature. Resolve your combat;
+    
+    <p><b>SERPENT Skill 7 Stamina 8</b></p>`,
     choices: [
-      { goToPage: 105, text: "Continue" },
-      { goToPage: 275, text: "Cast a spell" },
+      { goToPage: 105, text: "Fight the Serpent", fight: { skill: 7, stamina: 8, name: "Serpent" }, },
     ],
-    enemies: [{ name: "Serpent", skill: "7", stamina: "8" }],
     staminaLoss: 1,
   },
   3: {
@@ -561,7 +561,7 @@ const gameData = {
   },
   38: {
     text: `The path drops sharply downhill into the valley and then up the other 
-    side. The going is very tiring and you must lose 2 Stamina points. 
+    side. The going is very tiring and you <b>lose 2 Stamina points.</b> 
     Half-way up the hill is a clearing in which a small wooden hut stands. 
     Throw one die and then Test your Luck if you wish.`,
     choices: [{ goToPage: 23, text: "Continue.." }],
@@ -1948,7 +1948,7 @@ const gameData = {
   156: {
     text: `You climb into the undergrowth from the path and plan a wide sweep 
     around the village. The going is heavy as you climb through the 
-    vegetation Bushes and tall grasses are constant obstacles which catch 
+    vegetation bushes and tall grasses are constant obstacles which catch 
     and scratch you. Suddenly you feel a strong hand on your arm which 
     makes you whirl round - but you can see nothing gripping you! Will 
     you try to continue or prepare to defend yourself?`,
@@ -2602,7 +2602,7 @@ const gameData = {
     <p>Your only remaining chance is if you have not yet called upon Libra</p>`,
     choices: [
       { goToPage: 273, text: "Call on Libra", needLibra: true },
-      { goToPage: 0, text: "Death" },
+      { goToPage: 0, text: "Death", libraBlock: true },
     ],
   },
   207: {
@@ -2769,20 +2769,19 @@ const gameData = {
     ],
   },
   218: {
-    text: `They have taken your backpack and are sorting through it, taking any 
+    text: `<p>They have taken your backpack and are sorting through it, taking any 
     items they wish. Having done this, and regarding you as fairly 
-    harmless, they let you go. 
+    harmless, they let you go.</p>
     
-    To decide which items they want, go through all the items you 
+    <p>To decide which items they want, go through all the items you 
     possess one by one and Test your Luck on each. Each time that you are 
     Lucky, the item in question is no use to them and you may keep it. 
-    Each time you are Unlucky they will steal this item from you and you 
-    must cross it off your Equipment List. Include your Gold - and your 
-    Provisions - as single items. You do not have to deduct Luck points 
-    each time you Test your Luck here. 
+    Each time you are Unlucky they will steal this item from you.
+    Your Gold and Provisions will be classed as single items. 
+    Luck points will not be deducted each time you Test your Luck here.</p>
     
-    When they have ransacked your possessions, they let you go and you 
-    may leave the village.`,
+    <p>When they have ransacked your possessions, they let you go and you 
+    may leave the village.</p>`,
     choices: [{ goToPage: 196, text: "Continue.." }],
     pause: true,
   },
@@ -2920,7 +2919,7 @@ const gameData = {
     text: `You will have to heave with every ounce of strength in your body to 
     force the door open. Throw one die three times. If the total thrown is 
     less than your Skill score, the door breaks open and you may escape 
-    - but you must lose 1 Skill point. If the total thrown 
+    - but you lose 1 Skill point. If the total thrown 
     equals or exceeds your Skill score, the door will not budge and you 
     will be trapped in the cave-in unless you can call for help from your 
     goddess Libra.`,
@@ -3311,7 +3310,7 @@ const gameData = {
     or the key -but only one item at a time (i.e. Gold Pieces one by one). 
     Each time you attempt a grab, Test your Luck. If you are Lucky, you 
     succeed in grabbing an object. If you are Unlucky, you are stung by 
-    the Scorpion and must lose half your Stamina (rounded down).
+    the Scorpion and lose half your Stamina (rounded down).
     When you are finished with this box you may either try the other one or leave the village.`,
     choices: [
       { goToPage: 251, text: "Try the other box" },
@@ -3351,23 +3350,24 @@ const gameData = {
     staminaLoss: 2,
   },
   262: {
-    text: `You are correct. The hunchback stands aside to let you pass. As you 
+    text: `<p>You are correct. The hunchback stands aside to let you pass. As you 
     start across the bridge he wishes you well on your way. You march 
     swiftly across in case he may have some other trap in store. But 
-    instead he calls out a due which may be useful in the journey ahead. 
+    instead he calls out a due which may be useful in the journey ahead.</p> 
 
-    He is a sly old creature and you must be careful to mark his words 
-    well: 
+    <p>He is a sly old creature and you must be careful to mark his words well:</p> 
     
-    'Beware the lair of the cave-demon's maze,
-    For traps as deadly as Medusa's gaze.
-    Greet travellers who, of Luck bereft, 
-    Take passageways not to the left.'
-    
-    You consider these words as you cross the valley. You <b>add 2 
+    <address>
+    'Beware the lair of the cave-demon's maze,<br>
+    For traps as deadly as Medusa's gaze.<br>
+    Greet travellers who, of Luck bereft,<br>
+    Take passageways not to the left.'<br>
+    </address>
+  
+    <p>You consider these words as you cross the valley. You <b>add 2 
     Luck points</b> for your success. On the other side of the bridge you 
     follow the path over the hill and down the other side. It is now late 
-    afternoon.`,
+    afternoon.</p>`,
     choices: [{ goToPage: 220, text: "Continue.." }],
     luckGain: 2,
   },
@@ -3496,11 +3496,11 @@ const gameData = {
     dead: true,
   },
   273: {
-    text: `Before your eyes the snakes form a living ladder, stretching back up to 
+    text: `<p>Before your eyes the snakes form a living ladder, stretching back up to 
     the passage above! When it is formed, you may climb back up and 
     return to the main chamber, where you may take either the right- 
-    hand or the left-hand passage. 
-    You cannot call on Libra again now.`,
+    hand or the left-hand passage.</p> 
+    <p>You cannot call on Libra again now.</p>`,
     choices: [
       { goToPage: 3, text: "Take the right-hand" },
       { goToPage: 6, text: "Take the left-hand" },
@@ -3531,7 +3531,7 @@ const gameData = {
       { goToPage: 334, text: "Magic: GOP" },
       { goToPage: 355, text: "Magic: LAW" },
       { goToPage: 426, text: "Magic: HOW" },
-      { goToPage: 2, text: "Arm yourself" },
+      { goToPage: 105, text: "Arm yourself", fight: { skill: 7, stamina: 8, name: "Serpent" } },
     ],
   },
   276: {
@@ -3769,7 +3769,7 @@ const gameData = {
     effect. Almost immediately, you start to expand. Your whole body 
     begins to grow until you are almost three times your normal size. This 
     allows you to finish the job quite quickly and you manage to get half a 
-    night's sleep. <b>Add 2 Stamina points.</b>`,
+    night's sleep. <b>Add 2 Stamina points.</br>`,
     choices: [{ goToPage: 263, text: "Continue.." }],
     staminaLoss: 2,
     staminaGain: 2,
@@ -3815,7 +3815,7 @@ const gameData = {
     ],
     staminaLoss: 7,
   },
-  303: {
+  303: { // unique node
     text: `Deduct 1 Stamina point. Do you have any small pebbles with you? If 
     not, you must return and choose again quickly. If you have any 
     small pebbles, you cast the spell on them and toss them at the snakes. 
@@ -3827,8 +3827,8 @@ const gameData = {
     is little you can do. Your journey has ended here . . .`,
     choices: [
       { goToPage: 63, text: "No Pebbles: Go back and choose again" },
-      { goToPage: 0, text: "Death" },
-      { goToPage: 273, text: "Call on Libra" },
+      { goToPage: 0, text: "Death", libraBlock: true },
+      { goToPage: 273, text: "Call on Libra", needLibra: true },
     ], // todo you have died
     staminaLoss: 1,
   },
@@ -4008,7 +4008,7 @@ const gameData = {
     text: `Deduct 4 Stamina points. You cast your spell just in time, and your 
     invisible wall blocks off the passage. The great boulder hits it with 
     some considerable force, causing the whole cave to shake. It bounces 
-    off your barrier and rolls back up the slope. You must now continue 
+    off your barrier and rolls back up the slope. You can now continue 
     either by returning to the last junction and taking the other fork 
     or by returning to the main chamber and taking the other passage.`,
     choices: [
@@ -4074,7 +4074,7 @@ const gameData = {
     text: `Deduct 1 Stamina point. Your spell will not work as you do not 
     possess the Jewel-Studded Medallion you need to complete it. You 
     fall down into the pit. Since you have been fumbling unsuccessfully with your 
-    spell, you must add 3 points to the next dice roll.`,
+    spell, 3 points will be added to the next dice roll.`,
     choices: [
       { goToPage: 277, text: "Continue.." }, // todo add +3 to next dice roll
     ],
@@ -4443,11 +4443,11 @@ const gameData = {
     your Luck- if you are Lucky, you survive; if you are Unlucky, you die 
     from the poison.`,
     choices: [
-      { goToPage: 0, text: "Roll a 6 + Test your Luck: Fail" }, // you are dead
-      { goToPage: 63, text: "Go back and choose again" },
+      { goToPage: 0, text: "Roll a 6 + Test your Luck: Fail", blocked: true }, // you are dead
+      { goToPage: 63, text: "Go back and choose again", blocked: true },
     ],
     staminaLoss: 1,
-    testLuck: { optional: true },
+    extraText: true,
   },
   367: {
     text: `Deduct 1 Stamina point. Do you have a vial of glue with you? If not 
@@ -4480,18 +4480,22 @@ const gameData = {
     the Manticore. Resolve the battle (the Goblins will attack one after the 
     other):</p>
     
-    <p></b>MANTICORE Skill 12 Stamina 18</b></p>
-    <p></b>GOBLINS SKILL 5 STAMINA 3</b></p>
+    <p><b>MANTICORE Skill 12 Stamina 18</b></p>
+    <p><b>GOBLINS SKILL 5 STAMINA 3</b></p>
     
+    <p>Each time the creature inflicts a wound, one die will be rolled. 
+    A roll of a 5 or 6 indicates a hit with its scorpion-like tail containing a 
+    poison which will instantly kill a goblin or cause 4 extra Stamina points' worth
+    of damage to you unless you successfully Test your Luck. 
+    If a roll is 1-4, the attack is normal.</p>
+
     <p>Each time the Manticore hits a Goblin, roll one die. On a roll of 5 or 6, it 
     will have stung with its poisonous tail, killing the Goblin. 1-4 is a 
-    normal hit.</p>
+    normal hit. The same will be applied when it fights you, </p>
 
     <p>If the Manticore defeats all your Goblins, you may either finish the job with your sword or cast another spell.</p>`,
     choices: [
-      { goToPage: 456, text: "Goblins have killed the manticore" },
       { goToPage: 227, text: "Finish him with your sword" },
-      { goToPage: 420, text: "Cast another spell" },
     ],
     // todo deduct 1 hp per tooth
   },
@@ -4671,7 +4675,7 @@ const gameData = {
     
     <p>If you do have a Giant's tooth, you place it on the 
     floor and cast your spell, A cloud of smoke appears around the tooth 
-    and, as it dears, a large Giant stands in its place! You command the 
+    and, as it does, a large Giant stands in its place! You command the 
     Giant to attack the Manticore and it turns towards the startled beast. 
     Resolve this battle:</p> 
     
@@ -4680,11 +4684,11 @@ const gameData = {
     
     <p>Each time the Manticore hits the Giant, you must roll one die. A roll of 
     5 or 6 indicates a hit with the sting in its tail, which is poisonous, and 
-    will do 6 Stamina points' worth of damage, A roll of 1-4 indicates 
+    will do 6 Stamina points' worth of damage. A roll of 1-4 indicates 
     normal damage.</p>
 
-    <p>If the Manticore wins, you may either finish the job off yourself or cast 
-    another spell.</p>`,
+    <p>If the Manticore wins, you finish it off yourself. However you
+    can Test your Luck to block the extra 4 points of damage from a poisonious roll.</p>`,
     choices: [
       {
         goToPage: 227,
@@ -4986,10 +4990,11 @@ const gameData = {
     spending your last minutes before the poison takes its deadly effect 
     ... If you have survived, choose again.`,
     choices: [
-      { goToPage: 63, text: "Roll a 1-5, you survived" }, // todo take roll damage
-      { goToPage: 0, text: "Roll a 6, you are dead" },
+      { goToPage: 63, text: "Rolled a 1-5, you survived", blocked: true }, // todo take roll damage
+      { goToPage: 0, text: "Rolled a 6, you are dead", blocked: true },
     ], // todo you are dead
     staminaLoss: 3,
+    pause: true,
   },
   418: {
     text: `Deduct 5 Stamina points. You cast your spell but nothing happens. 
@@ -5131,7 +5136,7 @@ const gameData = {
     your journey has ended here . . . `,
     choices: [
       { goToPage: 273, text: "Call on Libra", needLibra: true },
-      { goToPage: 0, text: "Death" },
+      { goToPage: 0, text: "Death", libraBlock: true },
     ],
     staminaLoss: 4,
   },

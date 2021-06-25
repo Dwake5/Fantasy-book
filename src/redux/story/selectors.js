@@ -7,8 +7,6 @@ export const getPassedPilfer = (state) => state.story.pilferGrass;
 export const getDoorStatus = (state) => state.story.doorBroken;
 export const getPitfallPrevious = (state) => state.story.pitFallPrevious;
 export const getPitfallStatus = (state) => state.story.pitFallStatus;
-export const getSentryDie = (state) => state.story.sentryDie;
-export const getSentryLuck = (state) => state.story.sentryLuck;
 export const getDoorOpened = (state) => state.story.doorOpen;
 export const getForkDie = (state) => state.story.forkDie;
 export const getSeenBox1 = (state) => state.story.seenBox1;

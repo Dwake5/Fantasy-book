@@ -8,8 +8,8 @@ import { loseStat } from "../redux/stats/actions";
 import { getStat } from "../redux/stats/selectors";
 import { diceRolls, testYourLuck } from "../utils";
 
-// Used on node 38, which then impacts 23. Lots of places lead here, 27 for example
-const TrollDice = ({ cancelPause }) => {
+// Used on node 366, came from 63
+const SnakeBites = () => {
   const dispatch = useDispatch();
 
   // handle die state
@@ -17,32 +17,34 @@ const TrollDice = ({ cancelPause }) => {
   const [rolledText, setRolledText] = useState(null);
 
   // handle luck state
-  const [luckTested, setLuckTested] = useState(false);
   const [luckText, setLuckText] = useState(null);
   const _luck = useSelector((state) => getStat(state, "luck"));
   const _haveLuckAmulet = useSelector((state) => ownItem(state, "luckAmulet"));
   const fixedLuckNeeded = useRef(null);
   const luckNeedToPass = _haveLuckAmulet ? _luck + 1 : _luck
+  const [canRoll, setCanRoll] = useState(false)
 
   const handleDieRoll = () => {
-    cancelPause(true);
     setAlreadyRolled(true);
     const rolled = diceRolls(1, true);
-    setRolledText(`You rolled a ${rolled}.`);
-    const unblock = Math.floor(rolled / 2)
-    gameData[23].choices[unblock].blocked = false;
+    if (rolled === 6) {
+      setCanRoll(true)
+    } else {
+      gameData[366].choices[1].blocked = false
+    }
+    setRolledText(`You rolled a ${rolled}, and lost that much Stamina.`);
+    loseStat(dispatch, "stamina", rolled)
   };
 
   const handleTestLuck = () => {
     const [total, pass] = testYourLuck(luckNeedToPass);
     loseStat(dispatch, "luck", 1);
     setLuckText(`Test your Luck: ${pass ? "Success!" : "Failed."} You rolled a ${total}.`)
-    setLuckTested(true);
+    setCanRoll(false);
     if (pass) {
-      gameData[23].choices[0].blocked = true;
-      gameData[23].choices[1].blocked = true;
-      gameData[23].choices[2].blocked = true;
-      gameData[23].choices[3].blocked = false;
+      gameData[366].choices[1].blocked = false;
+    } else {
+      gameData[366].choices[0].blocked = false;
     }
   };
 
@@ -59,7 +61,7 @@ const TrollDice = ({ cancelPause }) => {
           <button
             onClick={handleDieRoll}
             type="button"
-            className="btn btn-info mb-3"
+            className="btn btn-danger mb-3"
             disabled={alreadyRolled}
           >
             Roll 1 Die
@@ -71,7 +73,7 @@ const TrollDice = ({ cancelPause }) => {
             onClick={handleTestLuck}
             type="button"
             className="btn btn-warning mb-3"
-            disabled={luckTested}
+            disabled={!canRoll}
           >
             Test your Luck
           </button>
@@ -86,4 +88,4 @@ const TrollDice = ({ cancelPause }) => {
   );
 };
 
-export default TrollDice;
+export default SnakeBites;

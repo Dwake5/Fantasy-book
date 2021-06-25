@@ -22,7 +22,6 @@ import {
 import { playerLearnsJann, setPage } from "../redux/story/actions";
 import { getNightCreaturePrevious, getPage, getTraderViews } from "../redux/story/selectors";
 import BackpackRobbed from "./BackpackRobbed";
-import BeeStings from "./BeeStings";
 import BreakDoor from "./BreakDoor";
 import BuyProvisions from "./BuyProvisions";
 import CreateStats from "./CreateStats";
@@ -44,6 +43,8 @@ import Combat from "./combat/Combat";
 import { getInCombat } from "../redux/combat/selectors";
 import GoblinsFlee from "./GoblinsFlee";
 import NightCreatures from "./NightCreatures";
+import SnakeBites from "./SnakeBites";
+import RollDie from "./RollDie";
 
 const StoryMain = () => {
   const dispatch = useDispatch();
@@ -104,7 +105,9 @@ const StoryMain = () => {
       case 1002:
         return <CreateStats cancelPause={cancelPause} />;
       case 270:
-        return <BeeStings cancelPause={cancelPause} />;
+        return <RollDie cancelPause={cancelPause} pageType={"beeStings"} />;
+      case 417:
+        return <RollDie cancelPause={cancelPause} pageType={"snakeBites"} />;
       case 218:
         return <BackpackRobbed cancelPause={cancelPause} />;
       case 38:
@@ -180,6 +183,8 @@ const StoryMain = () => {
         return <PickpocketBox />;
       case 277:
         return <PitFall />;
+      case 366:
+        return <SnakeBites />;
       case 407:
         return <GoblinsFlee />;
       default:

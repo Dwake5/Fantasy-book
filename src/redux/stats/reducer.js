@@ -17,7 +17,7 @@ import {
 } from "./action-types";
 
 const initialState = {
-  skill: 10,
+  skill: 12,
   maxSkill: 10,
   stamina: 9,
   maxStamina: 10,

@@ -9,8 +9,6 @@ import {
   getPage,
   getPassedPilfer,
   getPitfallStatus,
-  getSentryDie,
-  getSentryLuck,
   getTraderViews,
   getForkDie,
   getSkunkDie,
@@ -51,8 +49,6 @@ export function useFilters(choices, luckPassed, pauseChoices) {
   const _pilferGrass = useSelector(getPassedPilfer);
   const _doorStatus = useSelector(getDoorStatus);
   const _pitfallStatus = useSelector(getPitfallStatus);
-  const _sentryDie = useSelector(getSentryDie);
-  const _sentryLuck = useSelector(getSentryLuck);
   const _doorOpened = useSelector(getDoorOpened);
   const _forkDie = useSelector(getForkDie);
   const _skunkDie = useSelector(getSkunkDie);
@@ -114,7 +110,14 @@ export function useFilters(choices, luckPassed, pauseChoices) {
     return _haveLibra ? choice : { ...choice, blocked: true };
   };
 
+  const checkLibraBlocked = (choice) => {
+    const blockLibra = choice.libraBlock;
+    if (blockLibra === undefined) return choice;
+    return _haveLibra ? { ...choice, blocked: true } : choice;
+  };
+
   const filterNeedLibra = (choices) => {
+    choices = choices.map((choice) => checkLibraBlocked(choice))
     return choices.map((choice) => needAndHaveLibra(choice));
   };
 
@@ -229,19 +232,6 @@ export function useFilters(choices, luckPassed, pauseChoices) {
       ];
       return filterNeedLibra(newChoices);
     }
-  }
-
-  if (_pageNumber === 23) {
-    let returnIndex;
-    if (_sentryLuck) {
-      returnIndex = 3;
-    } else {
-      returnIndex = Math.ceil(_sentryDie / 2) - 1;
-    }
-    return choices.map((choice, i) => {
-      if (i === returnIndex) return { ...choice, blocked: false };
-      return choice;
-    });
   }
 
   if (_pageNumber === 254) {

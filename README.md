@@ -15,21 +15,20 @@
   <li>Write usefilters a lot better</li>
   <li>Handle Bomba</li>
   <li>Bug: What if no items at pilfer Grass</li>
-  <li>Add combat config to gamedata</li>
-  <li>Bug: testing luck in combat after you roll equal scores to the enemy does nothing</li>
+  <li>Add combat config to gamedata (what?)</li>
   <li>Make Pilfer grass look more like backpack robbed</li>
   <li>Go through each spell and see which ones circle back, if they do block them singleUse: true</li>
+  <li>Refactor so each minigame is more self contained, i.e. get rid of a lot of usefilters and redux</li>
 </ul>
 
 combat mods
 227: Manticore 1/3 chance of triple damage
 388: Manticore vs Giant. 1/3 chance of triple damage
-407: Goblins You can fight 0, 1 or 2.
-411: Hill Giant, your skill doubled
-442: Can do double damage to goblins
+
 # Done
 
 <ul>
+  <li>Bug: testing luck in combat after you roll equal scores to the enemy does nothing</li>
   <li>When theres an enemy block same spell being cast twice</li>
   <li>108, 283 adds +2 to night creatures roll</li>
   <li>Can only use a magic spell once with singleUse: true</li>
@@ -135,7 +134,7 @@ Try to prioritize getting items at a node, rather than a choice.
 <!-- <li>112: Libra choice</li> -->
 <li>117: Fight Assassin skill 8 stamina 6, you can spare him conditionally</li>
 <!-- <li>122: Get item Armband + 2 AS if using sword</li> -->
-<li>123: Go to previous reference, roll to determine who we fight</li>
+<!-- <li>123: Go to previous reference, roll to determine who we fight</li> -->
 <!-- <li>124: Get cursed, from now on lose +1 stamina for all stamina loss actions except magic</li> -->
 <!-- <li>126: Only view purchased items</li> -->
 <!-- 130: Libra option -->
@@ -145,7 +144,7 @@ Try to prioritize getting items at a node, rather than a choice.
 <!-- <li>144: Test luck</li> -->
 <li>151: Get Svinn girl? (maybe)</li>
 <!-- <li>161: You have to pay, so block this option if not enough GP</li> -->
-<li>162: Fight Hill Gaint skill 9 stamina 11</li>
+<!-- <li>162: Fight Hill Gaint skill 9 stamina 11</li> -->
 <!-- <li>165: Keep testing your luck, until success 3 times in a row. -3 hp each time</li> -->
 <!-- <li>168: Lose all provisions </li> -->
 <!-- <li>171: Either option means Jann stays</li> -->
@@ -154,11 +153,11 @@ Try to prioritize getting items at a node, rather than a choice.
 <!-- <li>185: Lose weapon, -4 skill if no weapon</li> -->
 <li>187: Get friend for second book Flanker</li>
 <!-- <li>194: Can take sword and leave the old one behind, does +1 damage. If unwanted you can test your luck, if pass, sell it again.</li> -->
-<li>203: Fight Elvin skill 6+2 stamina 4</li>
+<!-- <li>203: Fight Elvin skill 6+2 stamina 4</li> -->
 <!-- <li>204: Waterfall cures you of all except disease</li> -->
 <!-- <li>205: Lose Jann</li> -->
 <!-- <li>206: Dead if no Libra</li> -->
-<li>207: Fight Hill Giant skill 9 stamina 11</li>
+<!-- <li>207: Fight Hill Giant skill 9 stamina 11</li> -->
 <!-- <li>213: Curse of Alianna -2 skill until removed</li> -->
 <!-- <li>214: Trader broadsword barter</li> -->
 <!-- <li>218: Remove each item based on Test your Luck roll</li> -->

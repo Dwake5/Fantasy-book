@@ -19,6 +19,7 @@ const PlayerStats = ({
   pageNumber,
   enemyStamina,
   handleSpareHim,
+  doubleSkill,
 }) => {
   const damageExcess = damage - 2;
   const excessFunction = (stat) => {
@@ -37,7 +38,7 @@ const PlayerStats = ({
         Stamina: {stamina} / {maxStamina}
       </p>
       <p className="mb-0">
-        Attack Strength: {skill+playerAttStrModifier} {excessFunction(playerAttStrModifier)}
+        Attack Strength: {skill+playerAttStrModifier} {doubleSkill ? `(x2)` : ""} {excessFunction(playerAttStrModifier)}
       </p>
       <p className="mb-0">Damage: {damage} {excessFunction(damageExcess)}</p>
       <p className="mb-3">

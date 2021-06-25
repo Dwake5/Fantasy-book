@@ -31,7 +31,7 @@ const PlayerStats = ({
         {extraEnemies.length > 0 && (
           <>
             <p className="pb-0">Up next:</p>
-            <Row className="border px-2">
+            <Row className="px-2">
               {extraEnemies.map((enemy) => (
                 <FutureEnemy enemy={enemy} />
               ))}

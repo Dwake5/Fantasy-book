@@ -9,18 +9,22 @@ import {
   endCombat,
   removeEnemyFromQueue,
   setDoubleEnemySkill,
-  setEnemyStats
+  setEnemyStats,
 } from "../../redux/combat/actions";
 import {
   getEnemyStats,
   getExtraEnemies,
-  getNextPage
+  getNextPage,
 } from "../../redux/combat/selectors";
 import { getEquippedWeapon, ownItem } from "../../redux/items/selectors";
 import { gainStat, loseStat } from "../../redux/stats/actions";
 import { getSkill, getStat } from "../../redux/stats/selectors";
 import { setPage } from "../../redux/story/actions";
-import { getNightCreatureFight, getNightCreaturePrevious } from "../../redux/story/selectors";
+import {
+  getNightCreatureFight,
+  getNightCreaturePrevious,
+  getPreviousPage,
+} from "../../redux/story/selectors";
 import { diceRolls, resetNightCreatures } from "../../utils";
 import CombatText from "./CombatText";
 import EnemyStats from "./EnemyStats";
@@ -42,8 +46,10 @@ const Combat = ({ pageNumber }) => {
   const enemyName = _enemyStats.name;
   const _extraEnemies = useSelector(getExtraEnemies);
   // Night Creatures
-  const _nightCreatureFight = useSelector(getNightCreatureFight)
-  const _nightCreaturePrevious = useSelector(getNightCreaturePrevious)
+  const _nightCreatureFight = useSelector(getNightCreatureFight);
+  const _nightCreaturePrevious = useSelector(getNightCreaturePrevious);
+
+  const _previousPage = useSelector(getPreviousPage);
 
   let _nextPage = useSelector(getNextPage);
 
@@ -68,7 +74,10 @@ const Combat = ({ pageNumber }) => {
     playerAttStrModifier--;
   }
 
-  if (pageNumber === 453) damage *= 2
+  if (pageNumber === 453) damage *= 2;
+
+  const manticorePages = [227];
+  const onManticorePage = manticorePages.includes(pageNumber);
 
   const swordList = ["sword", "craftedSword", "broadsword", "glandragorSword"];
   if (_haveArmband && swordList.includes(_equippedWeapon)) {
@@ -78,11 +87,13 @@ const Combat = ({ pageNumber }) => {
   // Comabt mods
   let enemyAttStrModifier = 0;
   let enemyDamage = 2;
+  let skill = _skill;
   if (pageNumber === 20) playerAttStrModifier -= 2;
   if (pageNumber === 203) enemyAttStrModifier += 2;
   if (pageNumber === 386) enemyAttStrModifier -= 2;
+  if (pageNumber === 411) skill *= 2;
 
-  const attackStrength = _skill + playerAttStrModifier;
+  const attackStrength = skill + playerAttStrModifier;
   const enemyAS = enemySkill + enemyAttStrModifier;
 
   const handleAttack = () => {
@@ -123,6 +134,9 @@ const Combat = ({ pageNumber }) => {
     if (doubleSkillPages.includes(pageNumber) && !alreadyDoubled && round > 2) {
       doubleEnemySkill(pageNumber);
     }
+    if (_previousPage === 325 && !alreadyDoubled && round > 2) {
+      doubleEnemySkill(pageNumber);
+    }
     setText([...text, newText]);
   };
 
@@ -134,7 +148,7 @@ const Combat = ({ pageNumber }) => {
         setDoubleEnemySkill(dispatch, enemyAS);
       }
     }
-    if (page === 383) {
+    if (page === 383 || page === 227) {
       setAlreadyDoubed(true);
       setDoubleEnemySkill(dispatch, enemyAS);
     }
@@ -154,13 +168,13 @@ const Combat = ({ pageNumber }) => {
         setCanUseLuck(false);
         someoneDead = true;
         newText.line1 = "Oh no, you have died!";
-        newText.line1style += "font-weight-bold";
+        newText.line1style += " font-weight-bold";
       }
       if (enemyStamina <= 0) {
         setCanUseLuck(false);
         someoneDead = true;
         newText.line1 = "You have won, the enemy is dead!";
-        newText.line1style += "font-weight-bold";
+        newText.line1style += " font-weight-bold";
         if (_extraEnemies.length > 0) {
           const nextEnemyName = _extraEnemies[0].name;
           newText.line2 = `${nextEnemyName} steps up to fight you.`;
@@ -234,16 +248,16 @@ const Combat = ({ pageNumber }) => {
       const nightCreatureMap = {
         84: 31,
         108: 36,
-        283: 31
-      }
-      _nextPage = nightCreatureMap[_nightCreaturePrevious]
+        283: 31,
+      };
+      _nextPage = nightCreatureMap[_nightCreaturePrevious];
     }
     const plusOneHealthNodes = [108, 283];
     const doAddOneHealth = plusOneHealthNodes.includes(_nightCreaturePrevious);
-    if (doAddOneHealth) gainStat(dispatch, 'stamina', 1)
+    if (doAddOneHealth) gainStat(dispatch, "stamina", 1);
     endCombat(dispatch);
     setPage(dispatch, _nextPage);
-    resetNightCreatures()
+    resetNightCreatures();
   };
 
   const handleSpareHim = () => {
@@ -260,7 +274,7 @@ const Combat = ({ pageNumber }) => {
         <PlayerStats
           stamina={_stamina}
           maxStamina={_maxStamina}
-          skill={_skill}
+          skill={skill}
           playerAttStrModifier={playerAttStrModifier}
           damage={damage}
           luck={_luck}
@@ -274,6 +288,7 @@ const Combat = ({ pageNumber }) => {
           pageNumber={pageNumber}
           enemyStamina={enemyStamina}
           handleSpareHim={handleSpareHim}
+          doubleSkill={skill / _skill === 2}
         />
 
         <EnemyStats

@@ -8,8 +8,6 @@ import {
   ATTEMPT_DOOR,
   PITFALL_PREVIOUS,
   PITFALL_STATUS,
-  SENTRY_DIE,
-  SENTRY_LUCK,
   DOOR_OPEN,
   FORK_DIE,
   SEEN_BOX1,
@@ -66,14 +64,6 @@ export const pitfallPrevious = (dispatch, number) => {
 
 export const pitfallStatus = (dispatch, data) => {
   dispatch({ type: PITFALL_STATUS, payload: data });
-};
-
-export const sentryDie = (dispatch, number) => {
-  dispatch({ type: SENTRY_DIE, payload: number });
-};
-
-export const sentryLuck = (dispatch, data) => {
-  dispatch({ type: SENTRY_LUCK, payload: data });
 };
 
 export const smashOpenDoor = (dispatch, data) => {

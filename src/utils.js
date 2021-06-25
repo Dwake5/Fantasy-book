@@ -49,3 +49,11 @@ export const resetNightCreatures = () => {
   gameData[123].choices[3].blocked = false;
   gameData[123].choices[4].blocked = false;
 }
+
+export const blockChoice = (page, choice) => {
+  gameData[page].choices[choice].blocked = true;
+}
+
+export const unblockChoice = (page, choice) => {
+  gameData[page].choices[choice].blocked = false;
+}

@@ -6,8 +6,6 @@ import {
   PITFALL_PREVIOUS,
   PITFALL_STATUS,
   PLAYER_LEARNS_JANN,
-  SENTRY_DIE,
-  SENTRY_LUCK,
   SET_PAGE,
   SET_TRADER_VIEWS,
   DOOR_OPEN,
@@ -24,7 +22,7 @@ import {
 } from "./action-types";
 
 const initialState = {
-  page: 210,
+  page: 195,
   previousPage: 0,
   traderItemsViewed: [],
   cantUseMagic: false,
@@ -33,8 +31,6 @@ const initialState = {
   doorBroken: { broken: false, tried: false },
   pitFallPrevious: 0,
   pitFallStatus: null,
-  sentryDie: 0,
-  sentryLuck: false,
   doorOpen: null,
   forkDie: 0,
   skunkDie: 0,
@@ -45,6 +41,7 @@ const initialState = {
   bypassGoblins: null,
   nightCreaturePrevious: 0,
   nightCreatureFight: null,
+  userJourney: []
 };
 
 export const reducer = (state = initialState, action) => {
@@ -54,6 +51,7 @@ export const reducer = (state = initialState, action) => {
         ...state,
         page: action.payload,
         previousPage: state.page,
+        userJourney: [...state.userJourney, action.payload]
       };
     case PITFALL_PREVIOUS:
       return {
@@ -94,16 +92,6 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         pilferGrass: true,
-      };
-    case SENTRY_DIE:
-      return {
-        ...state,
-        sentryDie: action.payload,
-      };
-    case SENTRY_LUCK:
-      return {
-        ...state,
-        sentryLuck: action.payload,
       };
     case DOOR_OPEN:
       return {
