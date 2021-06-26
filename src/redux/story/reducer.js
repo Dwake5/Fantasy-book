@@ -1,23 +1,11 @@
 import {
-  GLANDRAGOR,
-  PILFER_GRASS,
+  ATTEMPT_LOCKSMASH, BYPASS_GOBLINS, DOOR_OPEN, GLANDRAGOR, LOCKSMASH_PREVIOUS,
+  LOCK_OPEN, NIGHT_CREATURE_FIGHT, NIGHT_CREATURE_PREVIOUS, PILFER_GRASS,
   PITFALL_PREVIOUS,
   PITFALL_STATUS,
-  PLAYER_LEARNS_JANN,
-  SET_PAGE,
-  SET_TRADER_VIEWS,
-  DOOR_OPEN,
-  FORK_DIE,
-  SEEN_BOX1,
-  SEEN_BOX2,
-  LOCKSMASH_PREVIOUS,
-  LOCK_OPEN,
-  ATTEMPT_LOCKSMASH,
-  SKUNK_DIE,
-  BYPASS_GOBLINS,
-  NIGHT_CREATURE_PREVIOUS,
-  NIGHT_CREATURE_FIGHT,
-  SWORD_REFUND,
+  PLAYER_LEARNS_JANN, SEEN_BOX1,
+  SEEN_BOX2, SET_PAGE,
+  SET_TRADER_VIEWS, SWORD_REFUND
 } from "./action-types";
 
 const initialState = {
@@ -87,16 +75,6 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         doorOpen: action.payload,
-      };
-    case FORK_DIE:
-      return {
-        ...state,
-        forkDie: action.payload,
-      };
-    case SKUNK_DIE:
-      return {
-        ...state,
-        skunkDie: action.payload,
       };
     case SEEN_BOX1:
       return {

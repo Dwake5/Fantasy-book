@@ -9,8 +9,6 @@ import {
   getPassedPilfer,
   getPitfallStatus,
   getTraderViews,
-  getForkDie,
-  getSkunkDie,
   getSeenBox1,
   getSeenBox2,
   getLockStatus,
@@ -49,8 +47,6 @@ export function useFilters(choices, luckPassed, pauseChoices) {
   const _pilferGrass = useSelector(getPassedPilfer);
   const _pitfallStatus = useSelector(getPitfallStatus);
   const _doorOpened = useSelector(getDoorOpened);
-  const _forkDie = useSelector(getForkDie);
-  const _skunkDie = useSelector(getSkunkDie);
   const _seenBox1 = useSelector(getSeenBox1);
   const _seenBox2 = useSelector(getSeenBox2);
   const _lockStatus = useSelector(getLockStatus);
@@ -239,23 +235,6 @@ export function useFilters(choices, luckPassed, pauseChoices) {
       ];
       return filterNeedLibra(newChoices);
     }
-  }
-
-  // This one also doesnt rerender??
-  if (_pageNumber === 254) {
-    const returnIndex = Math.ceil(_forkDie / 2) - 1;
-    return choices.map((choice, i) => {
-      if (i === returnIndex) return { ...choice, blocked: false };
-      return choice;
-    });
-  }
-
-  if (_pageNumber === 295) {
-    if (_skunkDie === 0) return choices;
-    const fightSkunk = _skunkDie === 1;
-    let choice1 = { ...choices[0], blocked: !fightSkunk };
-    let choice2 = { ...choices[1], blocked: fightSkunk };
-    return [{ ...choice1 }, { ...choice2 }];
   }
 
   if (_pageNumber === 258) {

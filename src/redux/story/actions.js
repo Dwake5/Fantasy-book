@@ -2,7 +2,6 @@ import {
   ATTEMPT_LOCKSMASH,
   BYPASS_GOBLINS,
   DOOR_OPEN,
-  FORK_DIE,
   GLANDRAGOR,
   LOCKSMASH_PREVIOUS,
   LOCK_OPEN,
@@ -16,7 +15,6 @@ import {
   SEEN_BOX2,
   SET_PAGE,
   SET_TRADER_VIEWS,
-  SKUNK_DIE,
   SWORD_REFUND,
 } from "./action-types";
 
@@ -59,15 +57,6 @@ export const pitfallStatus = (dispatch, data) => {
 
 export const smashOpenDoor = (dispatch, data) => {
   dispatch({ type: DOOR_OPEN, payload: data });
-};
-
-export const setForkDie = (dispatch, type, data) => {
-  if (type === "regular") {
-    dispatch({ type: FORK_DIE, payload: data });
-  }
-  if (type === "skunk") {
-    dispatch({ type: SKUNK_DIE, payload: data });
-  }
 };
 
 export const seenBox1 = (dispatch) => {

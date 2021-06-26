@@ -1,21 +1,26 @@
 import React, { useState } from "react";
 import { Container } from "react-bootstrap";
-import { useDispatch } from "react-redux";
-import { setForkDie } from "../redux/story/actions";
-import { diceRolls } from "../utils";
+import { diceRolls, unblockChoice } from "../utils";
 
 // Regular, Used on node 254. Got here from 25.
 // Skunk, Used on node 295. Got here from 166.
 
 // A dice determines which of the routes you take.
-const ForkDie = ({ type }) => {
-  const dispatch = useDispatch();
+const ForkDie = ({ type, setRerender }) => {
   const [rollText, setRollText] = useState(null);
 
   const rollDie = () => {
     const rolled = diceRolls(1, true);
     setRollText(rolled);
-    setForkDie(dispatch, type, rolled);
+    if (type === "regular") {
+      const unblock = Math.ceil(rolled / 2) - 1;
+      unblockChoice(254, unblock);
+    }
+    if (type === "skunk") {
+      const unblock = rolled === 1 ? 0 : 1
+      unblockChoice(295, unblock);
+    }
+    setRerender(true);
   };
 
   return (

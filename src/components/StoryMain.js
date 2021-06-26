@@ -24,7 +24,6 @@ import { getNightCreaturePrevious, getPage, getTraderViews } from "../redux/stor
 import BackpackRobbed from "./BackpackRobbed";
 import BreakDoor from "./BreakDoor";
 import BuyProvisions from "./BuyProvisions";
-import CreateStats from "./CreateStats";
 import EatOption from "./EatOption";
 import ForkDie from "./ForkDie";
 import KillSnakes from "./KillSnakes";
@@ -58,6 +57,7 @@ const StoryMain = () => {
 
   const [itemVariableCost, setItemVariableCost] = useState(null);
   const [, setCostChanged] = useState(); // Leave the line please, it makes trader items block when too expensive
+  const [, setRerender] = useState();
   const _traderViews = useSelector(getTraderViews);
 
   const [luckPassed, setLuckPassed] = useState(null);
@@ -178,9 +178,9 @@ const StoryMain = () => {
       case 228:
         return <OpenDoor />;
       case 254:
-        return <ForkDie type="regular" />;
+        return <ForkDie type="regular" setRerender={setRerender} />;
       case 295:
-        return <ForkDie type="skunk" />;
+        return <ForkDie type="skunk" setRerender={setRerender} />;
       case 258:
         return <PickpocketBox />;
       case 277:

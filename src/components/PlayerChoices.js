@@ -192,6 +192,7 @@ const PlayerChoices = ({ choices, setStayShowing, pause }) => {
   useHandleKeydown(choices, pause, handleChoice);
 
   const displayOptions = () => {
+    console.log("rerender player choices")
     if (pause) return null;
     return choices.map((choice, i) => {
       const dontBlock = choice.blocked !== true;
