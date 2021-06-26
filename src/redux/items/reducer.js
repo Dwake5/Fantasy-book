@@ -107,7 +107,7 @@ const initialState = {
   },
   beeswax: {
     name: "Beeswax",
-    amount: 1,
+    amount: 0,
     info: "Gathered from a beehive. Used in spells.",
   },
   locket: {
@@ -174,7 +174,7 @@ const initialState = {
   },
   sword: {
     name: "Basic Sword",
-    amount: 1,
+    amount: 0,
     singular: true,
     info: "<p>Weak starting sword.</p>",
     equipped: true,
@@ -182,7 +182,7 @@ const initialState = {
   },
   broadsword: {
     name: "Broadsword",
-    amount: 1,
+    amount: 0,
     singular: true,
     info: "<p>+1 Attack Strength when equipped</p> <p>A fine-edged weapon.</p>",
     equipped: false,

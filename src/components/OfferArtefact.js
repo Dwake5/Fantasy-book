@@ -3,10 +3,10 @@ import { Container } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { changeItemAmount } from "../redux/items/actions";
 import { getItems, getOwnedItems } from "../redux/items/selectors";
-import { changeGlandragor } from "../redux/story/actions";
+import { unblockChoice } from "../utils";
 
 // Used in node 29, arrived from 182
-const OfferArtefact = () => {
+const OfferArtefact = ({ setRerender }) => {
   const dispatch = useDispatch();
   const _items = useSelector(getItems);
   const _itemsOwned = useSelector(getOwnedItems);
@@ -21,13 +21,14 @@ const OfferArtefact = () => {
     "bomba",
   ];
   const artefacts = _itemsOwned.filter((item) => !notArtefacts.includes(item));
-  
+
   const [gaveArtefact, setGaveArtefact] = useState(false);
-  
+
   const handleGiveArtefact = (item) => {
     setGaveArtefact(true);
-    changeGlandragor(dispatch, "topUnblocked");
+    unblockChoice(29, 0);
     changeItemAmount(dispatch, { name: item, amount: -10 });
+    setRerender(true);
   };
 
   const [firstRun, setFirstRun] = useState(true);
@@ -38,9 +39,11 @@ const OfferArtefact = () => {
 
   useEffect(() => {
     if (fixedArtefacts.current.length === 0) {
-      changeGlandragor(dispatch, "topBlocked");
+      unblockChoice(29, 1);
+      unblockChoice(29, 2);
+      setRerender(true)
     }
-  }, [artefacts.length, dispatch]);
+  }, [artefacts.length, dispatch, setRerender]);
 
   return (
     <Container className="text-center">

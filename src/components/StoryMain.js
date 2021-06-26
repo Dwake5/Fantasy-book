@@ -164,7 +164,7 @@ const StoryMain = () => {
       case 257:
         return <BuyProvisions amount={2} cost={2} playerMoney={_money} />;
       case 29:
-        return <OfferArtefact />;
+        return <OfferArtefact setRerender={setRerender} />;
       case 32:
         return <PilferGrass amount={2} />;
       case 57:

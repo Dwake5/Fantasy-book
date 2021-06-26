@@ -1,6 +1,6 @@
 import {
-  DOOR_OPEN,
-  GLANDRAGOR, LOCKSMASH_PREVIOUS, NIGHT_CREATURE_FIGHT,
+  DOOR_OPEN, 
+  LOCKSMASH_PREVIOUS, NIGHT_CREATURE_FIGHT,
   NIGHT_CREATURE_PREVIOUS,
   PILFER_GRASS,
   PITFALL_PREVIOUS,
@@ -24,13 +24,6 @@ export const addToTraderItems = (dispatch, number) => {
   dispatch({
     type: SET_TRADER_VIEWS,
     payload: number,
-  });
-};
-
-export const changeGlandragor = (dispatch, data) => {
-  dispatch({
-    type: GLANDRAGOR,
-    payload: data,
   });
 };
 

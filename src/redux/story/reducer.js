@@ -1,5 +1,5 @@
 import {
-  DOOR_OPEN, GLANDRAGOR, LOCKSMASH_PREVIOUS, NIGHT_CREATURE_FIGHT, NIGHT_CREATURE_PREVIOUS, PILFER_GRASS,
+  DOOR_OPEN, LOCKSMASH_PREVIOUS, NIGHT_CREATURE_FIGHT, NIGHT_CREATURE_PREVIOUS, PILFER_GRASS,
   PITFALL_PREVIOUS,
   PITFALL_STATUS,
   PLAYER_LEARNS_JANN, SEEN_BOX1,
@@ -12,7 +12,6 @@ const initialState = {
   previousPage: 0,
   traderItemsViewed: [],
   cantUseMagic: false,
-  glandragorChoices: "blocked",
   pilferGrass: false,
   doorBroken: { broken: false, tried: false },
   pitFallPrevious: 0,
@@ -56,11 +55,6 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         cantUseMagic: true,
-      };
-    case GLANDRAGOR:
-      return {
-        ...state,
-        glandragorChoices: action.payload,
       };
     case PILFER_GRASS:
       return {

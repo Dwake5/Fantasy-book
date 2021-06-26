@@ -477,9 +477,9 @@ const gameData = {
     you cannot offer him an artefact, you must leave immediately and 
     head either for the inn or out of the village.`,
     choices: [
-      { goToPage: 191, text: "Give him an artefact and chat" },
-      { goToPage: 92, text: "Head for the inn" },
-      { goToPage: 21, text: "Leave the village" },
+      { goToPage: 191, text: "Give him an artefact and chat", blocked: true },
+      { goToPage: 92, text: "Head for the inn", blocked: true },
+      { goToPage: 21, text: "Leave the village", blocked: true },
     ],
     extraText: true,
   },

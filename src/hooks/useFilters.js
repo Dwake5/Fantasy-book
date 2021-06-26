@@ -4,33 +4,15 @@ import { getHaveJann, getLibra } from "../redux/stats/selectors";
 import {
   getCantUseMagic,
   getDoorOpened,
-  getGlandragor, getNightCreatureFight,
+  getNightCreatureFight,
   getPage,
   getPassedPilfer,
   getPitfallStatus,
   getSeenBox1,
   getSeenBox2,
   getSwordRefund,
-  getTraderViews
+  getTraderViews,
 } from "../redux/story/selectors";
-
-const blockAllChoices = (choices) => {
-  return choices.map((choice) => {
-    return { ...choice, blocked: true };
-  });
-};
-
-const unblockFirstChoice = (choices) => {
-  return choices.map((choice, i) => {
-    return { ...choice, blocked: i > 0 };
-  });
-};
-
-const blockFirstChoice = (choices) => {
-  return choices.map((choice, i) => {
-    return { ...choice, blocked: i === 0 };
-  });
-};
 
 export function useFilters(choices, luckPassed, pauseChoices) {
   const _pageNumber = useSelector(getPage);
@@ -40,7 +22,6 @@ export function useFilters(choices, luckPassed, pauseChoices) {
   const _money = useSelector(getMoney);
   const _traderViews = useSelector(getTraderViews);
   const _itemsOwned = useSelector(getOwnedItems);
-  const _glandragor = useSelector(getGlandragor);
   const _pilferGrass = useSelector(getPassedPilfer);
   const _pitfallStatus = useSelector(getPitfallStatus);
   const _doorOpened = useSelector(getDoorOpened);
@@ -224,14 +205,6 @@ export function useFilters(choices, luckPassed, pauseChoices) {
   // Pilfer grass
   if (_pageNumber === 32 || _pageNumber === 57) {
     return _pilferGrass ? choices : [{ ...choices[0], blocked: true }];
-  }
-
-  // Glandragor item needed
-  if (_pageNumber === 29) {
-    const value = _glandragor;
-    if (value === "blocked") return blockAllChoices(choices);
-    if (value === "topUnblocked") return unblockFirstChoice(choices);
-    if (value === "topBlocked") return blockFirstChoice(choices);
   }
 
   // Trader 1, player can only see each item once, and 3 items in total (there are 6)
