@@ -2,24 +2,23 @@ import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import useHandleKeydown from "../hooks/useHandleKeydown";
 import {
-  startCombat,
+  addExtraEnemies,
   setEnemyStats,
   setPageAfterCombat,
-  addExtraEnemies,
+  startCombat,
 } from "../redux/combat/actions";
 import {
   changeItemAmount,
-  robbedByBandits,
-  payMoney,
-  loseEquippedWeapon,
   equipSpecificWeapon,
+  loseEquippedWeapon,
+  payMoney,
+  robbedByBandits,
 } from "../redux/items/actions";
 import { getEquippedWeapon } from "../redux/items/selectors";
 import {
   changeEatenToday,
   gainStat,
   loseLibra,
-  loseStat,
   playerGetsJann,
   playerLosesJann,
   visitWaterfall,
@@ -28,8 +27,8 @@ import { eatenToday } from "../redux/stats/selectors";
 import {
   addToTraderItems,
   locksmashPrevious,
-  pitfallPrevious,
   nightCreaturePrevious,
+  pitfallPrevious,
   seenBox1,
   seenBox2,
   setPage,
@@ -139,10 +138,6 @@ const PlayerChoices = ({ choices, setStayShowing, pause }) => {
         pitfallPrevious(dispatch, nodeVisiting);
       }
 
-      if (nodeVisiting === 120 && choice.caveIn) {
-        loseStat(dispatch, "skill", 1);
-      }
-
       if (nodeVisiting === 18) {
         const gainStamina = _eatenToday ? 1 : 2;
         gainStat(dispatch, "stamina", gainStamina);
@@ -192,7 +187,7 @@ const PlayerChoices = ({ choices, setStayShowing, pause }) => {
   useHandleKeydown(choices, pause, handleChoice);
 
   const displayOptions = () => {
-    console.log("rerender player choices")
+    console.log("rerender player choices");
     if (pause) return null;
     return choices.map((choice, i) => {
       const dontBlock = choice.blocked !== true;

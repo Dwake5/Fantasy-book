@@ -174,7 +174,7 @@ const initialState = {
   },
   sword: {
     name: "Basic Sword",
-    amount: 0,
+    amount: 1,
     singular: true,
     info: "<p>Weak starting sword.</p>",
     equipped: true,

@@ -1,14 +1,20 @@
 import {
-  DOOR_OPEN, LOCKSMASH_PREVIOUS, NIGHT_CREATURE_FIGHT, NIGHT_CREATURE_PREVIOUS, PILFER_GRASS,
+  LOCKSMASH_PREVIOUS,
+  NIGHT_CREATURE_FIGHT,
+  NIGHT_CREATURE_PREVIOUS,
+  PILFER_GRASS,
   PITFALL_PREVIOUS,
   PITFALL_STATUS,
-  PLAYER_LEARNS_JANN, SEEN_BOX1,
-  SEEN_BOX2, SET_PAGE,
-  SET_TRADER_VIEWS, SWORD_REFUND
+  PLAYER_LEARNS_JANN,
+  SEEN_BOX1,
+  SEEN_BOX2,
+  SET_PAGE,
+  SET_TRADER_VIEWS,
+  SWORD_REFUND,
 } from "./action-types";
 
 const initialState = {
-  page: 4,
+  page: 66,
   previousPage: 0,
   traderItemsViewed: [],
   cantUseMagic: false,
@@ -16,7 +22,6 @@ const initialState = {
   doorBroken: { broken: false, tried: false },
   pitFallPrevious: 0,
   pitFallStatus: null,
-  doorOpen: null,
   seenBox1: false,
   seenBox2: false,
   lockSmashPrevious: 0,
@@ -34,7 +39,7 @@ export const reducer = (state = initialState, action) => {
         ...state,
         page: action.payload,
         previousPage: state.page,
-        userJourney: [...state.userJourney, action.payload]
+        userJourney: [...state.userJourney, action.payload],
       };
     case PITFALL_PREVIOUS:
       return {
@@ -60,11 +65,6 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         pilferGrass: true,
-      };
-    case DOOR_OPEN:
-      return {
-        ...state,
-        doorOpen: action.payload,
       };
     case SEEN_BOX1:
       return {

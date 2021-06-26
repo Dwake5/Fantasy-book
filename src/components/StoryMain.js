@@ -176,7 +176,7 @@ const StoryMain = () => {
       case 142:
         return <LockSmash setRerender={setRerender} />;
       case 228:
-        return <OpenDoor />;
+        return <OpenDoor setRerender={setRerender} />;
       case 254:
         return <ForkDie type="regular" setRerender={setRerender} />;
       case 295:

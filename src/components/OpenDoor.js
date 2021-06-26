@@ -1,14 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Container } from "react-bootstrap";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { loseStat } from "../redux/stats/actions";
 import { getSkill } from "../redux/stats/selectors";
 import { blockChoice, diceRolls, unblockChoice } from "../utils";
 
 // Used in 228, got here from 66
-const OpenDoor = () => {
+const OpenDoor = ({ setRerender }) => {
+  const dispatch = useDispatch()
   const [rollText, setRollText] = useState([]);
   const [rolls, setRolls] = useState(0);
   const [rollTotal, setRollTotal] = useState(0);
+  const [alreadyRan, setAlreadyRan] = useState(false);
   const [text, setText] = useState("");
   const _skill = useSelector(getSkill);
 
@@ -17,22 +20,27 @@ const OpenDoor = () => {
     setRolls(rolls + 1);
     setRollTotal(rollTotal + rolled);
     setRollText([...rollText, `${rolled}`]);
-    if (rolls === 2) handleFunction();
   };
 
-  const handleFunction = () => {
-    const success = rollTotal < _skill;
-    if (success) {
-      unblockChoice(228, 0);
-      blockChoice(228, 1);
-      blockChoice(228, 2);
-    } else {
-      blockChoice(228, 0);
-      unblockChoice(228, 1);
-      unblockChoice(228, 2);
-    }
-    setText(success ? "Success" : "Fail")
-  };
+  useEffect(() => {
+    const handleFunction = () => {
+      const success = rollTotal < _skill;
+      if (success) {
+        unblockChoice(228, 0);
+        blockChoice(228, 1);
+        blockChoice(228, 2);
+        loseStat(dispatch, "skill", 1)
+      } else {
+        blockChoice(228, 0);
+        unblockChoice(228, 1);
+        unblockChoice(228, 2);
+      }
+      setText(success ? "Success" : "Fail")
+      setAlreadyRan(true)
+      setRerender(true)
+    };
+    if (rolls === 3 && !alreadyRan) handleFunction()
+  }, [_skill, alreadyRan, dispatch, rollTotal, rolls, setRerender])
 
   return (
     <Container>

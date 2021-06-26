@@ -1,6 +1,6 @@
 import {
-  DOOR_OPEN, 
-  LOCKSMASH_PREVIOUS, NIGHT_CREATURE_FIGHT,
+  LOCKSMASH_PREVIOUS,
+  NIGHT_CREATURE_FIGHT,
   NIGHT_CREATURE_PREVIOUS,
   PILFER_GRASS,
   PITFALL_PREVIOUS,
@@ -10,7 +10,7 @@ import {
   SEEN_BOX2,
   SET_PAGE,
   SET_TRADER_VIEWS,
-  SWORD_REFUND
+  SWORD_REFUND,
 } from "./action-types";
 
 export const setPage = (dispatch, number) => {
@@ -41,10 +41,6 @@ export const pitfallPrevious = (dispatch, number) => {
 
 export const pitfallStatus = (dispatch, data) => {
   dispatch({ type: PITFALL_STATUS, payload: data });
-};
-
-export const smashOpenDoor = (dispatch, data) => {
-  dispatch({ type: DOOR_OPEN, payload: data });
 };
 
 export const seenBox1 = (dispatch) => {

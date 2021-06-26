@@ -5,7 +5,6 @@ export const getCantUseMagic = (state) => state.story.cantUseMagic;
 export const getPassedPilfer = (state) => state.story.pilferGrass;
 export const getPitfallPrevious = (state) => state.story.pitFallPrevious;
 export const getPitfallStatus = (state) => state.story.pitFallStatus;
-export const getDoorOpened = (state) => state.story.doorOpen;
 export const getSeenBox1 = (state) => state.story.seenBox1;
 export const getSeenBox2 = (state) => state.story.seenBox2;
 export const getLockSmashPrevious = (state) => state.story.lockSmashPrevious;

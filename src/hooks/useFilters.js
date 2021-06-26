@@ -3,7 +3,6 @@ import { getMoney, getOwnedItems } from "../redux/items/selectors";
 import { getHaveJann, getLibra } from "../redux/stats/selectors";
 import {
   getCantUseMagic,
-  getDoorOpened,
   getNightCreatureFight,
   getPage,
   getPassedPilfer,
@@ -24,7 +23,6 @@ export function useFilters(choices, luckPassed, pauseChoices) {
   const _itemsOwned = useSelector(getOwnedItems);
   const _pilferGrass = useSelector(getPassedPilfer);
   const _pitfallStatus = useSelector(getPitfallStatus);
-  const _doorOpened = useSelector(getDoorOpened);
   const _seenBox1 = useSelector(getSeenBox1);
   const _seenBox2 = useSelector(getSeenBox2);
   const _nightCreatureFight = useSelector(getNightCreatureFight);
@@ -171,25 +169,6 @@ export function useFilters(choices, luckPassed, pauseChoices) {
         { ...choices[0], blocked: false },
         { ...choices[1], blocked: true },
       ];
-  }
-
-  // Leave this for now OpenDoor
-  if (_pageNumber === 228) {
-    if (_doorOpened === null) return choices;
-    if (_doorOpened) {
-      return [
-        { ...choices[0], blocked: false },
-        { ...choices[1] },
-        { ...choices[2] },
-      ];
-    } else {
-      const newChoices = [
-        { ...choices[0] },
-        { ...choices[1], blocked: false },
-        { ...choices[2], blocked: false },
-      ];
-      return filterNeedLibra(newChoices);
-    }
   }
 
   if (_pageNumber === 258) {

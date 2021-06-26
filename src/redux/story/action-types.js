@@ -9,7 +9,6 @@ export const DOOR_BROKEN = namespace + 'DOOR_BROKEN';
 export const ATTEMPT_DOOR = namespace + 'ATTEMPT_DOOR';
 export const PITFALL_PREVIOUS = namespace + 'PITFALL_PREVIOUS';
 export const PITFALL_STATUS = namespace + 'PITFALL_STATUS';
-export const DOOR_OPEN = namespace + 'DOOR_OPEN';
 export const SEEN_BOX1 = namespace + 'SEEN_BOX1';
 export const SEEN_BOX2 = namespace + 'SEEN_BOX2';
 export const NIGHT_CREATURE_PREVIOUS = namespace + 'NIGHT_CREATURE_PREVIOUS';
