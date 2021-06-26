@@ -25,7 +25,7 @@ const PlayerStats = ({
   const excessFunction = (stat) => {
     if (stat === 0) return;
     if (stat > 0) return `(+${stat})`;
-    if (stat < 0) return `(-${stat})`;
+    if (stat < 0) return `(${stat})`;
   };
 
   return (

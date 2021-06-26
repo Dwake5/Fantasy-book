@@ -1,24 +1,23 @@
 import {
-  SET_PAGE,
-  SET_TRADER_VIEWS,
-  PLAYER_LEARNS_JANN,
-  GLANDRAGOR,
-  PILFER_GRASS,
-  DOOR_BROKEN,
-  ATTEMPT_DOOR,
-  PITFALL_PREVIOUS,
-  PITFALL_STATUS,
+  ATTEMPT_LOCKSMASH,
+  BYPASS_GOBLINS,
   DOOR_OPEN,
   FORK_DIE,
+  GLANDRAGOR,
+  LOCKSMASH_PREVIOUS,
+  LOCK_OPEN,
+  NIGHT_CREATURE_FIGHT,
+  NIGHT_CREATURE_PREVIOUS,
+  PILFER_GRASS,
+  PITFALL_PREVIOUS,
+  PITFALL_STATUS,
+  PLAYER_LEARNS_JANN,
   SEEN_BOX1,
   SEEN_BOX2,
-  LOCKSMASH_PREVIOUS,
-  ATTEMPT_LOCKSMASH,
-  LOCK_OPEN,
+  SET_PAGE,
+  SET_TRADER_VIEWS,
   SKUNK_DIE,
-  BYPASS_GOBLINS,
-  NIGHT_CREATURE_PREVIOUS,
-  NIGHT_CREATURE_FIGHT,
+  SWORD_REFUND,
 } from "./action-types";
 
 export const setPage = (dispatch, number) => {
@@ -48,14 +47,6 @@ export const playerLearnsJann = (dispatch) => {
 
 export const passPilferGrass = (dispatch) => {
   dispatch({ type: PILFER_GRASS });
-};
-
-export const breakDoor = (dispatch) => {
-  dispatch({ type: DOOR_BROKEN });
-};
-
-export const attemptDoor = (dispatch) => {
-  dispatch({ type: ATTEMPT_DOOR });
 };
 
 export const pitfallPrevious = (dispatch, number) => {
@@ -109,4 +100,8 @@ export const nightCreaturePrevious = (dispatch, number) => {
 
 export const nightCreatureFight = (dispatch, boolean) => {
   dispatch({ type: NIGHT_CREATURE_FIGHT, payload: boolean });
+};
+
+export const swordRefund = (dispatch, boolean) => {
+  dispatch({ type: SWORD_REFUND, payload: boolean });
 };

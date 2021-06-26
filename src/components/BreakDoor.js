@@ -3,8 +3,7 @@ import { Container } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { loseStat } from "../redux/stats/actions";
 import { getSkill } from "../redux/stats/selectors";
-import { attemptDoor, breakDoor } from "../redux/story/actions";
-import { diceRolls } from "../utils";
+import { blockChoice, diceRolls, unblockChoice } from "../utils";
 
 // Used on node 93. Got here from 268.
 const BreakDoor = () => {
@@ -17,10 +16,11 @@ const BreakDoor = () => {
     const rolled = diceRolls(2, true);
     const success = rolled < _skill;
     loseStat(dispatch, "stamina", 1);
-    attemptDoor(dispatch);
+    unblockChoice(93, 1);
     if (success) {
       setSuccess(true);
-      breakDoor(dispatch);
+      unblockChoice(93, 0);
+      blockChoice(93, 1)
       setRollText([...rollText, `Success: You rolled a ${rolled}!`]);
     } else {
       setRollText([...rollText, `Fail: You rolled a ${rolled}.`]);

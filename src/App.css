@@ -1,3 +1,11 @@
 .storyMain {
   min-height: 800px;
 }
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.progressBar {
+  height: 30px
+}

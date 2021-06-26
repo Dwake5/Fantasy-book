@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Container } from "react-bootstrap";
 import { useDispatch } from "react-redux";
-import gameData from "../assets/gameData";
+import { changeItemAmount } from "../redux/items/actions";
 import { loseStat } from "../redux/stats/actions";
-import { diceRolls, pluralize } from "../utils";
+import { diceRolls, pluralize, unblockChoice } from "../utils";
 
 // Used in node 270, arrived from 200
 // Used on node 417, arrived from 63
@@ -22,22 +22,35 @@ const RollDie = ({ cancelPause, pageType }) => {
         setText(`You rolled a ${dieRoll}, got lucky and avoided any damage!`);
       } else {
         loseStat(dispatch, "stamina", dieRoll);
-        setText(`You rolled a ${dieRoll}, and <b>lost ${dieRoll} Stamina ${pluralize("point", dieRoll)}</b>.`);
+        setText(
+          `You rolled a ${dieRoll}, and <b>lost ${dieRoll} Stamina ${pluralize(
+            "point",
+            dieRoll
+          )}</b>.`
+        );
       }
+      changeItemAmount(dispatch, {name: "provisions", amount: 1})
+      changeItemAmount(dispatch, {name: "beeswax", amount: 1})
     }
+
     if (pageType === "snakeBites") {
       loseStat(dispatch, "stamina", dieRoll);
-      setText(`You rolled a ${dieRoll}, and <b>lost ${dieRoll} Stamina ${pluralize("point", dieRoll)}</b>.`);
+      setText(
+        `You rolled a ${dieRoll}, and <b>lost ${dieRoll} Stamina ${pluralize(
+          "point",
+          dieRoll
+        )}</b>.`
+      );
       if (dieRoll === 6) {
-        gameData[417].choices[1].blocked = false
+        unblockChoice(417, 1);
       } else {
-        gameData[417].choices[0].blocked = false
+        unblockChoice(417, 1);
       }
     }
   };
 
   return (
-    <Container className="text-center">
+    <Container className="text-center px-0">
       <button
         onClick={handleDie}
         type="button"
@@ -46,7 +59,15 @@ const RollDie = ({ cancelPause, pageType }) => {
       >
         Roll die
       </button>
-      {alreadyRolled && <p dangerouslySetInnerHTML={{ __html: text }}></p>}
+      {alreadyRolled && <p className="mb-4" dangerouslySetInnerHTML={{ __html: text }}></p>}
+
+      {alreadyRolled && pageType === "beeStings" && (
+        <p className="text-left">
+          Cutting open the hive on the ground, <b>you take with you the wax and the
+          honey.</b> The honey will provide you with enough nourishment for one
+          meal.
+        </p>
+      )}
     </Container>
   );
 };

@@ -21,3 +21,4 @@ export const SKUNK_DIE = namespace + 'SKUNK_DIE';
 export const BYPASS_GOBLINS = namespace + 'BYPASS_GOBLINS';
 export const NIGHT_CREATURE_PREVIOUS = namespace + 'NIGHT_CREATURE_PREVIOUS';
 export const NIGHT_CREATURE_FIGHT = namespace + 'NIGHT_CREATURE_FIGHT';
+export const SWORD_REFUND = namespace + 'SWORD_REFUND';

@@ -45,6 +45,7 @@ import GoblinsFlee from "./GoblinsFlee";
 import NightCreatures from "./NightCreatures";
 import SnakeBites from "./SnakeBites";
 import RollDie from "./RollDie";
+import CreateStats2 from "./CreateStats2";
 
 const StoryMain = () => {
   const dispatch = useDispatch();
@@ -56,6 +57,7 @@ const StoryMain = () => {
   const _eatenToday = useSelector(eatenToday);
 
   const [itemVariableCost, setItemVariableCost] = useState(null);
+  const [, setCostChanged] = useState(); // Leave the line please, it makes trader items block when too expensive
   const _traderViews = useSelector(getTraderViews);
 
   const [luckPassed, setLuckPassed] = useState(null);
@@ -103,7 +105,7 @@ const StoryMain = () => {
     if (alreadyMapped) return;
     switch (_pageNumber) {
       case 1002:
-        return <CreateStats cancelPause={cancelPause} />;
+        return <CreateStats2 cancelPause={cancelPause} />;
       case 270:
         return <RollDie cancelPause={cancelPause} pageType={"beeStings"} />;
       case 417:
@@ -206,7 +208,8 @@ const StoryMain = () => {
 
   useEffect(() => {
     pageChoices[0].cost = itemVariableCost;
-  }, [itemVariableCost, pageChoices]);
+    setCostChanged(itemVariableCost);
+  }, [itemVariableCost]);
 
   const handleNewDay = () => {
     let loseStamina = 0;
@@ -249,8 +252,9 @@ const StoryMain = () => {
     // does player recieve ailments?
     if (playerGetPlague !== undefined) playerRecievePlague(dispatch);
     if (playerGetCurse !== undefined) playerRecieveCurseSpirit(dispatch);
-    if (playerGetCurseAlianna !== undefined)
+    if (playerGetCurseAlianna !== undefined) {
       playerRecieveCurseAlianna(dispatch);
+    }
 
     // new day
     if (newDay) handleNewDay();

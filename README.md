@@ -18,7 +18,6 @@
   <li>Add combat config to gamedata (what?)</li>
   <li>Make Pilfer grass look more like backpack robbed</li>
   <li>Go through each spell and see which ones circle back, if they do block them singleUse: true</li>
-  <li>Refactor so each minigame is more self contained, i.e. get rid of a lot of usefilters and redux</li>
 </ul>
 
 combat mods
@@ -28,6 +27,7 @@ combat mods
 # Done
 
 <ul>
+  <li>Fixed 194, sword refund</li>
   <li>Bug: testing luck in combat after you roll equal scores to the enemy does nothing</li>
   <li>When theres an enemy block same spell being cast twice</li>
   <li>108, 283 adds +2 to night creatures roll</li>
@@ -98,9 +98,9 @@ Try to prioritize getting items at a node, rather than a choice.
 # Extra content story nodes to do
 
 <ul>
-<li>2: Fight Serpent Skill 7 Stamina 8</li>
+<!-- <li>2: Fight Serpent Skill 7 Stamina 8</li> -->
 <!-- <li>4: Use Key if have it</li> -->
-<li>20: Fight Skunkbear Skill 7 Stamina 5 (you lose 2 AS)</li>
+<!-- <li>20: Fight Skunkbear Skill 7 Stamina 5 (you lose 2 AS)</li> -->
 <!-- <li>21: Add eat food option </li> -->
 <!-- <li>22: Trader Pipe roll </li> -->
 <!-- <li>23: Check if tested luck at node 38</li> -->
@@ -113,12 +113,12 @@ Try to prioritize getting items at a node, rather than a choice.
 <!-- <li>36: Possibly lose 3 hp</li> -->
 <!-- <li>37: Get Jann</li> -->
 <!-- <li>45: Possibly lose 3 hp</li> -->
-<li>47: Fight Goblin Skill 7 Stamina 6</li>
+<!-- <li>47: Fight Goblin Skill 7 Stamina 6</li> -->
 <!-- <li>48: Takes either spell book or 2 magic items</li> -->
 <!-- <li>50: Get collar</li> -->
 <!-- <li>57: Get 12 gold, lose 1 item user chooses</li> -->
 <!-- <li>72: Lose 1 AS when using axe</li> -->
-<li>74: Fight Wolfhound skill 7 stamina 6</li>
+<!-- <li>74: Fight Wolfhound skill 7 stamina 6</li> -->
 <!-- <li>79: Get plague (-3 hp per day)</li> -->
 <!-- <li>82: Test luck</li> -->
 <li>87: Fight Wood Golem skill 8 stamina 6</li>
@@ -128,9 +128,9 @@ Try to prioritize getting items at a node, rather than a choice.
 <!-- <li>100: Options depend on Jann</li> -->
 <!-- <li>101: Nothing leads here</li> -->
 <li>102: Could be free</li>
-<li>104: Fight 2 Bandit's skill 7,7 stamina 6,5</li>
+<!-- <li>104: Fight 2 Bandit's skill 7,7 stamina 6,5</li> -->
 <!-- <li>106: Merchant</li> -->
-<li>108: add +2 to night creatures roll</li>
+<!-- <li>108: add +2 to night creatures roll</li> -->
 <!-- <li>112: Libra choice</li> -->
 <li>117: Fight Assassin skill 8 stamina 6, you can spare him conditionally</li>
 <!-- <li>122: Get item Armband + 2 AS if using sword</li> -->
@@ -181,13 +181,13 @@ Try to prioritize getting items at a node, rather than a choice.
 <ul>
 <li>295: Roll dice, 1 is bad: fight</li>
 <li>303: Need pebbles and dynamic text</li>
-<li>317: Weaken troll skill 4 stamina 7, 50/50 it gets strong after round 4</li>
-<li>325: Fights at half skill for 4 rounds Manticore</li>
+<!-- <li>317: Weaken troll skill 4 stamina 7, 50/50 it gets strong after round 4</li> -->
+<!-- <li>325: Fights at half skill for 4 rounds Manticore</li> -->
 <li>328: Dyanmic text, requires beeswax</li>
-<li>330: Add + 3 to roll at 277</li>
-<li>338: Fight weakened Hill Giant skill 6 stamina 11</li>
+<!-- <li>330: Add + 3 to roll at 277</li> -->
+<!-- <li>338: Fight weakened Hill Giant skill 6 stamina 11</li> -->
 <li>339: requires bamboo flutes dynamic text</li>
-<li>356: Can test luck, if success no fight, if fail fight with double skill.</li>
-<li>366: Take 1d damage, if 6 test luck, if unlucky you die.</li>
-<li>417: Take 1d damage for 1-5, if 6 you die.</li>
+<!-- <li>356: Can test luck, if success no fight, if fail fight with double skill.</li> -->
+<!-- <li>366: Take 1d damage, if 6 test luck, if unlucky you die.</li> -->
+<!-- <li>417: Take 1d damage for 1-5, if 6 you die.</li> -->
 </ul>

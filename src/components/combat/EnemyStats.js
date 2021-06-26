@@ -21,7 +21,7 @@ const PlayerStats = ({
           Stamina: {enemyStamina} / {enemyMaxStamina}
         </p>
         <p className="mb-0">
-          Attack Strength: {enemySkill}{" "}
+          Attack Strength: {enemySkill + enemyAttStrModifier}{" "}
           {enemyAttStrModifier !== 0
             ? `(${enemyAttStrModifier > 0 ? "+" : ""}${enemyAttStrModifier})`
             : ""}

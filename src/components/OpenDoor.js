@@ -1,16 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Container } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { getSkill } from "../redux/stats/selectors";
-import { smashOpenDoor } from "../redux/story/actions";
-import { diceRolls } from "../utils";
+import { blockChoice, diceRolls, unblockChoice } from "../utils";
 
 // Used in 228, got here from 66
 const OpenDoor = () => {
-  const dispatch = useDispatch();
   const [rollText, setRollText] = useState([]);
   const [rolls, setRolls] = useState(0);
   const [rollTotal, setRollTotal] = useState(0);
+  const [text, setText] = useState("");
   const _skill = useSelector(getSkill);
 
   const rollDie = () => {
@@ -18,14 +17,22 @@ const OpenDoor = () => {
     setRolls(rolls + 1);
     setRollTotal(rollTotal + rolled);
     setRollText([...rollText, `${rolled}`]);
+    if (rolls === 2) handleFunction();
   };
 
-  useEffect(() => {
-    if (rolls >= 3) {
-      const success = rollTotal < _skill
-      smashOpenDoor(dispatch, success);
+  const handleFunction = () => {
+    const success = rollTotal < _skill;
+    if (success) {
+      unblockChoice(228, 0);
+      blockChoice(228, 1);
+      blockChoice(228, 2);
+    } else {
+      blockChoice(228, 0);
+      unblockChoice(228, 1);
+      unblockChoice(228, 2);
     }
-  }, [rolls, _skill, rollTotal, dispatch]);
+    setText(success ? "Success" : "Fail")
+  };
 
   return (
     <Container>
@@ -44,6 +51,7 @@ const OpenDoor = () => {
         Need less than {_skill} total to break open the door.
       </p>
       <p>Total: {rollTotal}</p>
+      {text && <p>{text}</p>}
     </Container>
   );
 };

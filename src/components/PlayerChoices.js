@@ -55,6 +55,10 @@ const PlayerChoices = ({ choices, setStayShowing, pause }) => {
         });
       };
 
+      if (choice.cost && !choice.dontPay) {
+        payMoney(dispatch, choice.cost);
+      }
+
       // Night creatures lead to a dynamic node so start a fight and check after
       if (choice.fightNC) {
         startCombat(dispatch);
@@ -78,8 +82,10 @@ const PlayerChoices = ({ choices, setStayShowing, pause }) => {
 
       // Block magic from double casting
       if (choice.text.slice(0, 5) === "Magic") choice.blocked = true;
-      // Block single use nodes
-      if (choice.singleUse) choice.blocked = true;
+      // Block single use nodes, currently unused
+      if (choice.singleUse) {
+        choice.blocked = true;
+      }
 
       const nodeVisiting = choice.goToPage;
 
@@ -149,7 +155,6 @@ const PlayerChoices = ({ choices, setStayShowing, pause }) => {
       }
 
       if (choice === null || choice === undefined) return;
-      if (choice.cost > 0) payMoney(dispatch, choice.cost);
       if (choice.needLibra) loseLibra(dispatch);
       if (choice.items) addItems(choice.items);
 

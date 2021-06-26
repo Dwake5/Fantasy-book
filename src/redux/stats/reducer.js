@@ -17,18 +17,18 @@ import {
 } from "./action-types";
 
 const initialState = {
-  skill: 12,
-  maxSkill: 10,
-  stamina: 9,
-  maxStamina: 10,
-  luck: 10,
-  maxLuck: 10,
+  skill: 0,
+  maxSkill: 0,
+  stamina: 0,
+  maxStamina: 0,
+  luck: 0,
+  maxLuck: 0,
   eatenToday: false,
   libra: true,
   plague: false,
   spiritCurse: false,
   aliannaCurse: false,
-  jann: false,
+  jann: true,
 };
 
 const halfHpRoundDown = (state) => {

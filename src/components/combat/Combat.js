@@ -19,7 +19,7 @@ import {
 import { getEquippedWeapon, ownItem } from "../../redux/items/selectors";
 import { gainStat, loseStat } from "../../redux/stats/actions";
 import { getSkill, getStat } from "../../redux/stats/selectors";
-import { setPage } from "../../redux/story/actions";
+import { nightCreatureFight, setPage } from "../../redux/story/actions";
 import {
   getNightCreatureFight,
   getNightCreaturePrevious,
@@ -74,24 +74,25 @@ const Combat = ({ pageNumber }) => {
     playerAttStrModifier--;
   }
 
-  if (pageNumber === 453) damage *= 2;
-
+  
   const manticorePages = [227];
   const onManticorePage = manticorePages.includes(pageNumber);
-
+  
   const swordList = ["sword", "craftedSword", "broadsword", "glandragorSword"];
   if (_haveArmband && swordList.includes(_equippedWeapon)) {
     playerAttStrModifier += 2;
   }
-
+  
   // Comabt mods
   let enemyAttStrModifier = 0;
   let enemyDamage = 2;
   let skill = _skill;
+  if (pageNumber === 453) skill *= 2;
   if (pageNumber === 20) playerAttStrModifier -= 2;
   if (pageNumber === 203) enemyAttStrModifier += 2;
   if (pageNumber === 386) enemyAttStrModifier -= 2;
   if (pageNumber === 411) skill *= 2;
+  if (pageNumber === 442) damage *= 2;
 
   const attackStrength = skill + playerAttStrModifier;
   const enemyAS = enemySkill + enemyAttStrModifier;
@@ -244,6 +245,7 @@ const Combat = ({ pageNumber }) => {
   useInterval(handleAttack, shouldIntervalRun ? 750 : null);
 
   const handleChoice = () => {
+    console.log('_nightCreatureFight :', _nightCreatureFight);
     if (_nightCreatureFight) {
       const nightCreatureMap = {
         84: 31,
@@ -251,13 +253,14 @@ const Combat = ({ pageNumber }) => {
         283: 31,
       };
       _nextPage = nightCreatureMap[_nightCreaturePrevious];
+      resetNightCreatures();
+      nightCreatureFight(dispatch, false)
     }
     const plusOneHealthNodes = [108, 283];
     const doAddOneHealth = plusOneHealthNodes.includes(_nightCreaturePrevious);
     if (doAddOneHealth) gainStat(dispatch, "stamina", 1);
     endCombat(dispatch);
     setPage(dispatch, _nextPage);
-    resetNightCreatures();
   };
 
   const handleSpareHim = () => {

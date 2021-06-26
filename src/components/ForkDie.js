@@ -4,7 +4,6 @@ import { useDispatch } from "react-redux";
 import { setForkDie } from "../redux/story/actions";
 import { diceRolls } from "../utils";
 
-
 // Regular, Used on node 254. Got here from 25.
 // Skunk, Used on node 295. Got here from 166.
 
@@ -20,7 +19,7 @@ const ForkDie = ({ type }) => {
   };
 
   return (
-    <Container>
+    <Container className="text-center">
       <button
         disabled={rollText !== null}
         type="button"

@@ -2,11 +2,10 @@ import React, { useRef, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import "../assets/css/Stats.css";
-import gameData from "../assets/gameData";
 import { ownItem } from "../redux/items/selectors";
 import { loseStat } from "../redux/stats/actions";
 import { getStat } from "../redux/stats/selectors";
-import { diceRolls, testYourLuck } from "../utils";
+import { diceRolls, testYourLuck, unblockChoice, blockChoice } from "../utils";
 
 // Used on node 38, which then impacts 23. Lots of places lead here, 27 for example
 const TrollDice = ({ cancelPause }) => {
@@ -30,7 +29,7 @@ const TrollDice = ({ cancelPause }) => {
     const rolled = diceRolls(1, true);
     setRolledText(`You rolled a ${rolled}.`);
     const unblock = Math.floor(rolled / 2)
-    gameData[23].choices[unblock].blocked = false;
+    unblockChoice(23, unblock);
   };
 
   const handleTestLuck = () => {
@@ -39,10 +38,10 @@ const TrollDice = ({ cancelPause }) => {
     setLuckText(`Test your Luck: ${pass ? "Success!" : "Failed."} You rolled a ${total}.`)
     setLuckTested(true);
     if (pass) {
-      gameData[23].choices[0].blocked = true;
-      gameData[23].choices[1].blocked = true;
-      gameData[23].choices[2].blocked = true;
-      gameData[23].choices[3].blocked = false;
+      blockChoice(23, 0)
+      blockChoice(23, 1)
+      blockChoice(23, 2)
+      unblockChoice(23, 3)
     }
   };
 
@@ -71,7 +70,7 @@ const TrollDice = ({ cancelPause }) => {
             onClick={handleTestLuck}
             type="button"
             className="btn btn-warning mb-3"
-            disabled={luckTested}
+            disabled={luckTested || !alreadyRolled}
           >
             Test your Luck
           </button>

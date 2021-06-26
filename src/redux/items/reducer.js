@@ -12,7 +12,7 @@ import {
 const initialState = {
   gold: {
     name: "Gold Pieces",
-    amount: 0,
+    amount: 8,
     info: "Basic currency used throughout the land",
     alwaysShow: true,
   },
@@ -24,13 +24,13 @@ const initialState = {
   },
   potion: {
     name: "Blimberry Potion",
-    amount: 1,
+    amount: 0,
     singular: true,
     info: "<p>Replenish 3 Stamina points outside of battle</p> <p>Pungant Blimberry Juice. Useful in magic or to recover Stamina.</p>",
   },
   pipe: {
     name: "Bamboo Flute",
-    amount: 1,
+    amount: 0,
     singular: true,
     info: "A musical flute made of bamboo",
   },
@@ -124,7 +124,7 @@ const initialState = {
   },
   armband: {
     name: "Armband",
-    amount: 1,
+    amount: 0,
     singular: true,
     info: "<p>+2 Attack Strength when a sword is equipped</p> <p>Ragnar's Armband of Swordmastery. A magical armband that improves your combat skill with a sword.</p>",
   },
@@ -177,20 +177,20 @@ const initialState = {
     amount: 0,
     singular: true,
     info: "<p>Weak starting sword.</p>",
-    equipped: false,
+    equipped: true,
     skillLoss: 0,
   },
   broadsword: {
     name: "Broadsword",
-    amount: 1,
+    amount: 0,
     singular: true,
     info: "<p>+1 Attack Strength when equipped</p> <p>A fine-edged weapon.</p>",
-    equipped: true,
+    equipped: false,
     skillLoss: 0,
   },
   axe: {
     name: "Axe",
-    amount: 1,
+    amount: 0,
     singular: true,
     info: `<p>-1 Attack Strength when equipped</p> 
     <p>The carvings read: This axe was crafted in the Year of the Ox for Glandragor the Protector. 
@@ -200,9 +200,9 @@ const initialState = {
   },
   craftedSword: {
     name: "Finely Crafted Sword",
-    amount: 1,
+    amount: 0,
     singular: true,
-    info: "<p>Does 3 damage instead of 2 in combat.</p> <p>A Finely crafted sword with a sharpened blade.</p>",
+    info: "<p>Does 3 damage instead of 2 in combat</p> <p>A Finely crafted sword with a sharpened blade.</p>",
     equipped: false,
     skillLoss: 0,
   },

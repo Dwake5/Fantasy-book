@@ -2,11 +2,10 @@ import React, { useRef, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import "../assets/css/Stats.css";
-import gameData from "../assets/gameData";
 import { ownItem } from "../redux/items/selectors";
 import { loseStat } from "../redux/stats/actions";
 import { getStat } from "../redux/stats/selectors";
-import { diceRolls, testYourLuck } from "../utils";
+import { diceRolls, testYourLuck, unblockChoice } from "../utils";
 
 // Used on node 366, came from 63
 const SnakeBites = () => {
@@ -21,30 +20,32 @@ const SnakeBites = () => {
   const _luck = useSelector((state) => getStat(state, "luck"));
   const _haveLuckAmulet = useSelector((state) => ownItem(state, "luckAmulet"));
   const fixedLuckNeeded = useRef(null);
-  const luckNeedToPass = _haveLuckAmulet ? _luck + 1 : _luck
-  const [canRoll, setCanRoll] = useState(false)
+  const luckNeedToPass = _haveLuckAmulet ? _luck + 1 : _luck;
+  const [canRoll, setCanRoll] = useState(false);
 
   const handleDieRoll = () => {
     setAlreadyRolled(true);
     const rolled = diceRolls(1, true);
     if (rolled === 6) {
-      setCanRoll(true)
+      setCanRoll(true);
     } else {
-      gameData[366].choices[1].blocked = false
+      unblockChoice(366, 1);
     }
     setRolledText(`You rolled a ${rolled}, and lost that much Stamina.`);
-    loseStat(dispatch, "stamina", rolled)
+    // loseStat(dispatch, "stamina", rolled);
   };
 
   const handleTestLuck = () => {
     const [total, pass] = testYourLuck(luckNeedToPass);
     loseStat(dispatch, "luck", 1);
-    setLuckText(`Test your Luck: ${pass ? "Success!" : "Failed."} You rolled a ${total}.`)
+    setLuckText(
+      `Test your Luck: ${pass ? "Success!" : "Failed."} You rolled a ${total}.`
+    );
     setCanRoll(false);
     if (pass) {
-      gameData[366].choices[1].blocked = false;
+      unblockChoice(366, 1);
     } else {
-      gameData[366].choices[0].blocked = false;
+      unblockChoice(366, 0);
     }
   };
 
@@ -78,8 +79,8 @@ const SnakeBites = () => {
             Test your Luck
           </button>
           <p className="mb-1">
-            You would need a {fixedLuckNeeded.current || luckNeedToPass} or lower to
-            pass.
+            You would need a {fixedLuckNeeded.current || luckNeedToPass} or
+            lower to pass.
           </p>
           {luckText && <p>{luckText}</p>}
         </Col>

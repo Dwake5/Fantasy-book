@@ -4,7 +4,7 @@ const gameData = {
     choices: [{ goToPage: 0, text: "Death" }],
   },
   1000: {
-    text: `<p>You are about to embark on an epic adventure a quest for the Crown 
+    text: `<p>You are about to embark on an epic adventure, on a quest for the Crown 
     of Kings. Your journey will take you from Analand, your home, 
     across the unruly territories of Kakhabad to the Mampang Fortress 
     where in lies the treasured crown.</p>
@@ -15,8 +15,8 @@ const gameData = {
     You can however always choose to defeat enemies with combat.</p>
 
     <p>Take time to view your Spell Book now and learn some of the core spells. Due to the dangerous nature of your quest, 
-    viewing it on your journey will be risky and a penalty will be inccured. No wizard would be expected to memorize all of the spells 
-    and a small handful will usually be sufficient.</p>
+    viewing it on your journey will be risky and a penalty will be inccured. No wizard would be expected 
+    to memorize all of the spells and a small handful will usually be sufficient.</p>
 
     <p>Through the multi-choice system, you will choose which 
     paths to take, whether to fight or flee from combat and how you will 
@@ -62,7 +62,7 @@ const gameData = {
     ],
   },
   1002: {
-    text: `Before setting off you roll to determine your starting stats:`,
+    text: `Before setting off you allocate your starting and max stats:`,
     choices: [{ goToPage: 1003, text: "Continue.." }],
     pause: true,
   },
@@ -228,8 +228,8 @@ const gameData = {
     text: `You may continue your journey either by following the path into the 
     valley or by taking the high path up into the hills.`,
     choices: [
-      { goToPage: 157, text: "Take the high way into the hills" },
-      { goToPage: 164, text: "The low way along the valley" },
+      { goToPage: 164, text: "The way along the valley" },
+      { goToPage: 157, text: "Take the high path into the hills" },
     ],
   },
   10: {
@@ -353,7 +353,7 @@ const gameData = {
     of the festival of youth you are able to get a good night's sleep. The 
     Minimite curls up near you. You may eat provisions before you go to 
     sleep and add 2 Stamina points (1 point if you have already eaten). 
-    <b>Gain 3 Stamina points for the rest.</b>`,
+    You <b>gain 3 Stamina points for the rest.</b>`,
     choices: [{ goToPage: 67, text: "Continue.." }],
     eatOption: { haveEaten: 1, haveNotEaten: 2 },
     staminaGain: 3,
@@ -477,7 +477,7 @@ const gameData = {
     you cannot offer him an artefact, you must leave immediately and 
     head either for the inn or out of the village.`,
     choices: [
-      { goToPage: 191, text: "Give him an artefact and chat" }, // to do lose an artefact
+      { goToPage: 191, text: "Give him an artefact and chat" },
       { goToPage: 92, text: "Head for the inn" },
       { goToPage: 21, text: "Leave the village" },
     ],
@@ -615,9 +615,9 @@ const gameData = {
   },
   43: {
     text: `The broadsword is a fine weapon and you are amazed at your 
-    bargain. You may use the sword to fight and may add 1 point to 
-    Attack Strength when in use.`,
-    choices: [{ goToPage: 126, text: "Continue.." }], // todo probably dont need this
+    bargain. You may use the sword to fight and 1 point will be added to 
+    your Attack Strength when in use.`,
+    choices: [{ goToPage: 126, text: "Continue.." }],
   },
   44: {
     text: `The key opens the lock and you open the cage door to release her. She 
@@ -650,13 +650,13 @@ const gameData = {
     text: `<p>The Goblin senses your defiance and rises, with a large stone club in 
     his hand. You may fight him or cast a spell:</p> 
     
-    <p><b>GOBLIN SKILL 7 STAMINA 6</b></p>`,
+    <p><b>GOBLIN Skill 7 Stamina 6</b></p>`,
     choices: [
       { goToPage: 328, text: "Magic: RAZ" },
       { goToPage: 397, text: "Magic: BAM" },
       { goToPage: 309, text: "Magic: TEL" },
       { goToPage: 438, text: "Magic: ZAP" },
-      { goToPage: 289, text: "Magic: YAC" },
+      { goToPage: 289, text: "Magic: YAG" },
       {
         goToPage: 186,
         text: "Fight the Goblin",
@@ -696,7 +696,7 @@ const gameData = {
     if you have not already eaten today but only 1 Stamina point if you 
     have eaten anything. Then you set off. You soon leave the woods 
     following an uphill path and you pause again at daybreak to get your 
-    bearings. You must lose 2 Stamina points for travelling all night 
+    bearings. You <b>lose 2 Stamina points</b> for travelling all night 
     without sleep.`,
     choices: [{ goToPage: 36, text: "Continue.." }],
     eatOption: { haveEaten: 1, haveNotEaten: 2 },
@@ -747,8 +747,8 @@ const gameData = {
     right-hand passage. You may not call upon 
     Libra again during this adventure.`,
     choices: [
-      { goToPage: 16, text: "Take the left-hand paage" },
-      { goToPage: 3, text: "Take the left-right paage" },
+      { goToPage: 16, text: "Take the left-hand passage" },
+      { goToPage: 3, text: "Take the right-hand passage" },
     ],
   },
   54: {
@@ -938,7 +938,7 @@ const gameData = {
     choices: [
       { goToPage: 109, text: "Sleep for the night" },
       { goToPage: 140, text: "Stay awake and keep guard" },
-    ], // todo add eating choice
+    ],
     eatOption: { haveEaten: 1, haveNotEaten: 2 },
   },
   72: {
@@ -989,17 +989,17 @@ const gameData = {
     ],
   },
   75: {
-    text: `You leave in search of the local inn.`,
+    text: `Trader items from 106 now skip this step.`,
     choices: [{ goToPage: 134, text: "Continue.." }],
   },
   76: {
-    text: `You find a suitable shelter in the rocks on the bank of the stream and 
+    text: `<p>You find a suitable shelter in the rocks on the bank of the stream and 
     bed down for the night. If you have not eaten since you left the 
     Outpost Settlement, you may take some Provisions if you have any 
     and add 2 Stamina points. If you have already eaten, you will gain 
-    only 1 Stamina point from the food. 
+    only 1 Stamina point from the food.</p>
     
-    Eventually you drift off to sleep, soothed by the babbling of the 
+    <p>Eventually you drift off to sleep, soothed by the babbling of the 
     stream. A short while later you are awakened by a splashing noise. 
     Looking out from your shelter you see a strange sight. Three small, 
     thin, man-like creatures, glowing with a dull red luminescence, are 
@@ -1007,11 +1007,11 @@ const gameData = {
     as a good shot sends a fish flying into the air. As if pulled by a magical 
     force, each fish floats across the water and lands at their feet. Will you 
     sit tight and hope they don't see you or stand up and hail 
-    them? `,
+    them?</p>`,
     choices: [
       { goToPage: 281, text: "Sit tight" },
       { goToPage: 12, text: "Hail them" },
-    ], // todo add eating
+    ],
     eatOption: { haveEaten: 1, haveNotEaten: 2 },
   },
   77: {
@@ -1089,7 +1089,7 @@ const gameData = {
     staminaLoss: 2,
   },
   85: {
-    text: `You take 3 Stamina points worth of damage as you cover your 
+    text: `You <b>lose 3 Stamina points</b> worth of damage as you cover your 
     head and make your way through this downpour of acorns.`,
     choices: [{ goToPage: 7, text: "Continue.." }],
     staminaLoss: 3,
@@ -1156,7 +1156,8 @@ const gameData = {
   },
   91: {
     text: `You bid the merchant farewell and leave the hut. 
-    You are anxious to look at your new items, but if you bought nothing from him continue onwards`,
+    You are anxious to look at your new items, 
+    but if you bought nothing from him continue onwards`,
     choices: [
       { goToPage: 126, text: "View artefacts" },
       { goToPage: 163, text: "Continue.." },
@@ -1164,7 +1165,7 @@ const gameData = {
   },
   92: {
     text: `The inn is not cheap. A bed for the night is 5 Gold Pieces and a meal is 
-    4, If you eat, pay the price and add 2 Stamina points (1 if you have 
+    4. If you eat, you regain 2 Stamina points (1 if you have 
     already eaten today). Do you want to sleep here? If not you 
     had better leave the village and find a place to bed down.`,
     choices: [
@@ -1180,8 +1181,8 @@ const gameData = {
     each attempt. If you decide to 
     give up on your attempts, you may return to the junction and leave the cave.`,
     choices: [
-      { goToPage: 39, text: "Break down the door - success" },
-      { goToPage: 144, text: "Leave the cave" },
+      { goToPage: 39, text: "Break down the door - success", blocked: true },
+      { goToPage: 144, text: "Leave the cave", blocked: true },
     ],
     extraText: true,
   },
@@ -1230,8 +1231,8 @@ const gameData = {
     ],
   },
   97: {
-    text: `You take these Provisions with you.`,
-    choices: [{ goToPage: 75, text: "Continue.." }],
+    text: `You take these Provisions with you. And leave in search of the local inn`,
+    choices: [{ goToPage: 134, text: "Continue.." }],
     getItems: [{ name: "provisions", amount: 3 }],
   },
   98: {
@@ -1282,7 +1283,7 @@ const gameData = {
         goToPage: 204,
         text: "Visit the waterfall",
         cost: 3,
-        requires: "waterfallPass",
+        waterfall: true,
       }, // or waterfall ticket
       { goToPage: 92, text: "Head to the inn" },
       { goToPage: 21, text: "Onwards out of town" },
@@ -1296,7 +1297,7 @@ const gameData = {
     text: `<p>The bandits growl and advance. Yon may fight them in turn or use magic:</p> 
 
     <p><b>First BANDIT Skill 7 Stamina 6</b></p>
-    <p><b>Second BANDIT Skill 7 Stamina 5</b></p>`,
+    <p><b>Second BANDIT Skill 7 Stamina 8</b></p>`,
     choices: [
       { goToPage: 288, text: "Magic: FOF" }, // they run
       { goToPage: 308, text: "Magic: JIG" }, // they dance off (flute)
@@ -1307,7 +1308,7 @@ const gameData = {
         goToPage: 56,
         text: "Fight the Bandits",
         fight: { skill: 7, stamina: 6, name: "Bandit 1" },
-        extraEnemies: [{ skill: 7, stamina: 5, name: "Bandit 2" }],
+        extraEnemies: [{ skill: 7, stamina: 8, name: "Bandit 2" }],
       },
     ],
   },
@@ -1454,7 +1455,7 @@ const gameData = {
     choices: [
       { goToPage: 232, text: "Keep Jann" },
       { goToPage: 205, text: "Remove Jann" }, // todo remove Jann
-    ], // todo go to reference number
+    ],
   },
   115: {
     text: `You pay the 3 Gold Pieces and settle down for the night. You <b>add 
@@ -1463,7 +1464,7 @@ const gameData = {
     staminaGain: 2,
   },
   116: {
-    text: `The meal is warm and nourishing. <b>Add 2 Stamina points.</b>`,
+    text: `The meal is warm and nourishing. <b>You gain 2 Stamina points.</b>`,
     choices: [{ goToPage: 131, text: "Continue.." }],
     staminaGain: 2,
     eaten: true,
@@ -1528,9 +1529,9 @@ const gameData = {
   },
   122: {
     text: `She hands you Ragnar's Armband of Swordmastery. While wearing 
-    this Item you may add 2 points to your dice roll for Attack Strength if 
+    this Item 2 points will be added to your dice roll for Attack Strength if 
     you are using a sword as a weapon. Your powers will be normal if you 
-    are using any other weapon.`,
+    are using any other or no weapon.`,
     choices: [{ goToPage: 87, text: "Continue.." }], // todo get bracelet
     getItems: [
       {
@@ -1575,7 +1576,7 @@ const gameData = {
     and westwards to Alianna. Will you continue onwards or 
     westwards?`,
     choices: [
-      { goToPage: 54, text: "Continue onwards" },
+      { goToPage: 54, text: "Continue straight" },
       { goToPage: 154, text: "Continue westwards" },
     ],
   },
@@ -1664,7 +1665,7 @@ const gameData = {
     choices: [
       { goToPage: 353, text: "Magic: KID" },
       { goToPage: 376, text: "Magic: JAP" },
-      { goToPage: 292, text: "Magic: DVD" },
+      { goToPage: 292, text: "Magic: DUD" },
       { goToPage: 401, text: "Magic: GOB" },
       { goToPage: 316, text: "Magic: SIX" },
       { goToPage: 218, text: "I don't know any of these" },
@@ -1679,7 +1680,7 @@ const gameData = {
       { goToPage: 89, text: "Test your Luck - Success", luck: "success" },
       { goToPage: 70, text: "Test your Luck - Fail", luck: "failed" },
       { goToPage: 70, text: "Don't test your luck", luck: "blocked" },
-    ], // todo add test your Luck choice
+    ],
     testLuck: { optional: true },
   },
   134: {
@@ -1739,13 +1740,13 @@ const gameData = {
     ],
   },
   139: {
-    text: `When you regain consciousness, you are bound hand and foot. The 
+    text: `When you regain consciousness, <b>you are bound hand and foot.</b> The 
     excited jabberings of a small group of black-skinned HEAD HUNTERS 
     around you make you fear for your life. You may try to cast a spell.
     Or you may wait to see what they intend to do with you.`,
     choices: [
       { goToPage: 357, text: "Magic: RIS" },
-      { goToPage: 406, text: "Magic: RUD" },
+      { goToPage: 406, text: "Magic: DUD" },
       { goToPage: 333, text: "Magic: HOT" },
       { goToPage: 450, text: "Magic: KID" },
       { goToPage: 379, text: "Magic: WIK" },
@@ -1754,7 +1755,7 @@ const gameData = {
   },
   140: {
     text: `You remain diligently awake, watching the door, but no one comes 
-    during the night. Lose 2 Stamina points for not sleeping and a 
+    during the night. <b>You lose 2 Stamina points</b> for not sleeping and a 
     further 3 Stamina points if you did not eat yesterday.`,
     choices: [{ goToPage: 222, text: "Continue.." }],
     staminaLoss: 2,
@@ -1803,16 +1804,16 @@ const gameData = {
     extraText: true,
   },
   143: {
-    text: `The hunchback smiles. 
+    text: `<p>The hunchback smiles.</p>
 
-    'Your answer is correct and true. 
+    <address>
+    'Your answer is correct and true,<br>
+    now you must answer question two:<br>
+    Through villages three you now have passed<br>
+    What was the first, second and last?<br>
+    </address>
     
-    Now you must answer question two: 
-    
-    Through villages three you now have passed 
-    What was the first, second and last? 
-    
-    How will you answer him?`,
+    <p>How will you answer him?</p>`,
     choices: [
       { goToPage: 262, text: "Cantopani, Kristatanti and Dhumpus" },
       { goToPage: 253, text: "Kristatanti, Birritanti and Dhumpus" },
@@ -1833,8 +1834,8 @@ const gameData = {
     text: `Both boxes look like fairly uninteresting wooden cases, each fastened 
     with a catch. Will you try opening the one on the left or the right?`,
     choices: [
-      { goToPage: 251, text: "Open the left box", box1: true }, // Box 1
-      { goToPage: 258, text: "Open the right box", box2: true }, // Box 2
+      { goToPage: 251, text: "Open the left box", box1: true },
+      { goToPage: 258, text: "Open the right box", box2: true },
     ],
   },
   146: {
@@ -2035,8 +2036,8 @@ const gameData = {
       { goToPage: 385, text: "Magic: YOB" },
       { goToPage: 431, text: "Magic: KIL" },
       { goToPage: 337, text: "Magic: DUM" },
-      { goToPage: 413, text: "Magic: BIG" },
-      { goToPage: 299, text: "Magic: YAZ" },
+      { goToPage: 411, text: "Magic: BIG" },
+      { goToPage: 384, text: "Magic: YAZ" },
       {
         goToPage: 265,
         text: "Fight the Hill Giant",
@@ -2224,7 +2225,7 @@ const gameData = {
   180: {
     text: `You pick a clearing where you may open your backpack and get out 
     your Provisions. Your ears are peeled to the sounds around you and 
-    you arc startled when a flock of Woodgulls fly up into the air near by. 
+    you are startled when a flock of Woodgulls fly up into the air nearby. 
     You may, if you wish, pack up your bags and continue your trek or stay to finish your meal.`,
     choices: [
       { goToPage: 133, text: "Pack up and continue" },
@@ -2251,13 +2252,13 @@ const gameData = {
     ],
   },
   183: {
-    text: `<p>You ponder the two trails. As you consider the paths onwards, you 
+    text: `<p>You ponder the two trails. Whilst consider the two paths, you 
     hear weak cries from a large tree ahead of you. Cautiously, you step 
     up to see an old man sitting on the lowest branch, apparently afraid to 
     jump down to the ground, which considering his age is not surprising. 
     He pleads with you to assist and you help him down. It transpires 
     that he has been travelling from Dhumpus and is headed towards the 
-    Outpost Settlement in Analand. His journey had been safe enough 
+    Outpost Settlement in Analand. His journey had been safe enough
     until he was waylaid by Elvins, robbed, and left in the tree. In return 
     for your kindness, he relates a rhyme which he feels may help you;</p> 
     
@@ -2323,7 +2324,7 @@ const gameData = {
     ],
     getItems: [
       {
-        name: "goblinKey",
+        name: "goblinKey", amount: 1
       },
     ],
   },
@@ -2397,8 +2398,7 @@ const gameData = {
     there. The other leads up into the hills to the Lea-Ki, domain of the 
     great ones. I wish you the Luck of Sindla on your journey. Perhaps this 
     will help you on your way. <b>He hands you an apple-like fruit</b> which he 
-    has grown on his farm. It is a nourishing Bomba and, if you eat this 
-    along with a normal meal, it will double your gain in Stamina. You 
+    has grown on his farm, and you add it to your provisions. You 
     thank him and wish him a good night. 
     
     You also <b>gain 2 Luck points</b> for your encounter. Then you must 
@@ -2410,7 +2410,7 @@ const gameData = {
     ],
     getItems: [
       {
-        name: "bomba",
+        name: "provisions",
         amount: 1,
       },
     ],
@@ -2430,12 +2430,13 @@ const gameData = {
     not be able to take this sword if you already have a sword unless you 
     leave your equipped one behind. If you don't consider this new sword is as 
     good as your old one, you can choose to ask the merchant for your money back 
-    (Test your Luck - if you are Lucky he will give you a refund).`,
+    (Test your Luck - if you are Lucky he will give you a refund). 
+    Then you leave in search of the local inn.`,
     choices: [
       {
-        goToPage: 75,
+        goToPage: 4,
         text: "Test your Luck - Success, keep your money and weapon",
-        luck: "success",
+        blocked: true,
         items: [
           {
             name: "gold",
@@ -2444,9 +2445,8 @@ const gameData = {
         ],
       },
       {
-        goToPage: 75,
+        goToPage: 134,
         text: "Continue",
-        luck: "blocked",
         loseWeapon: true,
         items: [
           {
@@ -2580,7 +2580,7 @@ const gameData = {
     Minimite - you take off your clothes and bathe in the waterfall. You 
     begin to glow and the cool water is not only refreshing but also 
     invigorating. You are bathing in a waterfall with magical healing 
-    properties. Your skill, Stamina and Luck scores are restored to 
+    properties. Your Skill, Stamina and Luck scores are restored to 
     their max values for washing away your wounds. The waterfall will 
     also cure you of any diseases you may have picked up (but not 
     curses). Then you return to the village where you pass through the inn.`,
@@ -2664,7 +2664,7 @@ const gameData = {
     text: `The village inn will charge you 3 Gold Pieces for a night's rest and 2 
     Gold Pieces for nourishing food. Do you wish to buy either of these?`,
     choices: [
-      { goToPage: 161, text: "Purchase from the inn", cost: 2 },
+      { goToPage: 161, text: "Purchase from the inn", cost: 2, dontPay: true },
       { goToPage: 62, text: "Decline the sale" },
     ],
   },
@@ -2697,7 +2697,7 @@ const gameData = {
     text: `The sword has a fine cutting edge and has been honed by a master 
     craftsman. Roll two dice. This is the price in Gold Pieces that the 
     merchant requires for the sword. If you are prepared to pay this price 
-    you may purchase it`,
+    you may purchase it.`,
     choices: [
       {
         goToPage: 280,
@@ -2793,7 +2793,7 @@ const gameData = {
   },
   220: {
     text: `Some way down the hill you stop for a rest. You sit on a boulder to 
-    survey what lies ahead. The path leads downwards into a vale. 
+    survey what lies ahead. The path leads downwards into a valley. 
     Cradled between three hills is a village - and quite a large one at that. 
     The sun is falling rapidly and you decide to head downwards towards 
     this settlement. An overhanging branch touches your face and you 
@@ -2835,7 +2835,7 @@ const gameData = {
     five Svinns come in followed by an old man with grey hair and 
     colourful robes. He announces himself as Proseus, the Svinn chief, 
     and apologizes for having captured you. He nods to a menial who 
-    brings in bread and milk. You may eat this meal and <b>recover 2 Stamina 
+    brings in bread and milk. You eat this meal and <b>recover 2 Stamina 
     points.</b></p>
     
     <p>The chief explains that you have a mission of the utmost importance 
@@ -2954,7 +2954,7 @@ const gameData = {
     choices: [
       { goToPage: 191, text: "Buy the drink and talk", cost: 2 },
       { goToPage: 182, text: "I have something for him" },
-      { goToPage: 92, text: "Don't buy a drink" },
+      { goToPage: 92, text: "Don't buy a drink and leave" },
     ],
   },
   231: {
@@ -3157,7 +3157,6 @@ const gameData = {
         name: "khareKey2",
         amount: 1,
       },
-      { name: "gold", amount: -1 },
     ],
   },
   245: {
@@ -3184,8 +3183,9 @@ const gameData = {
   },
   247: {
     text: `The skullcap has been stolen from a priest of Daddu-Ley. It has no 
-    magical properties of its own but may be useful in spells.`,
-    choices: [{ goToPage: 75, text: "Continue.." }],
+    magical properties of its own but may be useful in spells. 
+    Then you leave in search of the local inn.`,
+    choices: [{ goToPage: 134, text: "Continue.." }],
     getItems: [{ name: "skullcap", amount: 1 }],
   },
   248: {
@@ -3287,16 +3287,14 @@ const gameData = {
     you feel yourself gripped between its great thumb and forefinger. The 
     pain is excruciating as the creature squeezes but there is nothing you 
     can do. The Giant crushes you to death . . .`,
-    choices: [{ goToPage: 0, text: "Death" }], // todo you have died
+    choices: [{ goToPage: 0, text: "Death" }],
     dead: true,
   },
   257: {
-    // this buying of provisions is working and fixed (unique node)
     text: `The inn offers hot meals for sale and if you wish to stop and eat the 
     charge will be 1 Gold Piece. Bread and goat's cheese are also available 
     if you wish to buy food to take with you, and the price of two meals
-    worth is 2 Gold Pieces. If you wish to buy Provisions, do so and pay the 2 Gold Pieces. 
-    You can sit down and eat or you can continue.`,
+    worth is 2 Gold Pieces. You can sit down and eat or you can continue.`,
     choices: [
       { goToPage: 116, text: "Sit down and eat", cost: 1 },
       { goToPage: 131, text: "Continue" },
@@ -3342,7 +3340,7 @@ const gameData = {
     text: `As you unstrap the pack, one of the bandits grabs it from your hands 
     while the other leaps at you and clouts you with the hilt of his sword.
     You fall to the ground dazed and the bandits make off with your 
-    belongings. Lose 2 Stamina points. <b>You have now lost everything you 
+    belongings. <b>You Lose 2 Stamina points. You have now lost everything you 
     were carrying in the backpack</b> including gold and Provisions (but not 
     your equipped weapon). Eventually you pick yourself up and continue your 
     journey.`,
@@ -3438,7 +3436,7 @@ const gameData = {
   },
   268: {
     text: `The door is locked. You may try charging the door down
-    or you may cast a spell;`,
+    or cast a spell;`,
     choices: [
       { goToPage: 351, text: "Magic: DOM" },
       { goToPage: 311, text: "Magic: PAP" },
@@ -3467,18 +3465,8 @@ const gameData = {
     as you must use your hands to grip the tree. Throw one die. If you 
     throw a 1-4, then this is the number of Stamina points you lose as 
     the bees sting you. If you roll a 5 or 6, you are lucky and avoid being 
-    stung. When you reach the hive, you knock it down to the ground.</p>
-    
-    <p>Cutting open the hive on the ground, <b>you take with you the wax 
-    and the honey.</b> The honey will provide you with enough nourishment for one meal.</p>`,
-    choices: [{ goToPage: 9, text: "Continue" }], // todo roll dice take damage + add items
-    getItems: [
-      { name: "provisions", amount: 1 },
-      {
-        name: "beeswax",
-        amount: 1,
-      },
-    ],
+    stung. When you reach the hive, you knock it down to the ground.</p>`,
+    choices: [{ goToPage: 9, text: "Continue" }],
     pause: true,
   },
   271: {
@@ -3503,7 +3491,7 @@ const gameData = {
     <p>You cannot call on Libra again now.</p>`,
     choices: [
       { goToPage: 3, text: "Take the right-hand" },
-      { goToPage: 6, text: "Take the left-hand" },
+      { goToPage: 16, text: "Take the left-hand" },
     ],
     usedLibra: true,
   },

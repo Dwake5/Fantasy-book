@@ -1,6 +1,4 @@
 import {
-  ATTEMPT_DOOR,
-  DOOR_BROKEN,
   GLANDRAGOR,
   PILFER_GRASS,
   PITFALL_PREVIOUS,
@@ -19,10 +17,11 @@ import {
   BYPASS_GOBLINS,
   NIGHT_CREATURE_PREVIOUS,
   NIGHT_CREATURE_FIGHT,
+  SWORD_REFUND,
 } from "./action-types";
 
 const initialState = {
-  page: 195,
+  page: 1000,
   previousPage: 0,
   traderItemsViewed: [],
   cantUseMagic: false,
@@ -41,7 +40,8 @@ const initialState = {
   bypassGoblins: null,
   nightCreaturePrevious: 0,
   nightCreatureFight: null,
-  userJourney: []
+  userJourney: [],
+  swordRefund: false,
 };
 
 export const reducer = (state = initialState, action) => {
@@ -62,16 +62,6 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         pitFallStatus: action.payload,
-      };
-    case DOOR_BROKEN:
-      return {
-        ...state,
-        doorBroken: { ...state.doorBroken, broken: true },
-      };
-    case ATTEMPT_DOOR:
-      return {
-        ...state,
-        doorBroken: { ...state.doorBroken, tried: true },
       };
     case SET_TRADER_VIEWS:
       return {
@@ -147,6 +137,11 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         nightCreatureFight: action.payload,
+      };
+    case SWORD_REFUND:
+      return {
+        ...state,
+        swordRefund: true,
       };
     default:
       return state;

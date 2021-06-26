@@ -4,7 +4,6 @@ import { getHaveJann, getLibra } from "../redux/stats/selectors";
 import {
   getCantUseMagic,
   getDoorOpened,
-  getDoorStatus,
   getGlandragor,
   getPage,
   getPassedPilfer,
@@ -17,6 +16,7 @@ import {
   getLockStatus,
   getBypassGoblins,
   getNightCreatureFight,
+  getSwordRefund,
 } from "../redux/story/selectors";
 
 const blockAllChoices = (choices) => {
@@ -47,7 +47,6 @@ export function useFilters(choices, luckPassed, pauseChoices) {
   const _itemsOwned = useSelector(getOwnedItems);
   const _glandragor = useSelector(getGlandragor);
   const _pilferGrass = useSelector(getPassedPilfer);
-  const _doorStatus = useSelector(getDoorStatus);
   const _pitfallStatus = useSelector(getPitfallStatus);
   const _doorOpened = useSelector(getDoorOpened);
   const _forkDie = useSelector(getForkDie);
@@ -57,6 +56,7 @@ export function useFilters(choices, luckPassed, pauseChoices) {
   const _lockStatus = useSelector(getLockStatus);
   const _bypassGoblins = useSelector(getBypassGoblins);
   const _nightCreatureFight = useSelector(getNightCreatureFight);
+  const _swordRefund = useSelector(getSwordRefund);
 
   const canAfford = (choice) => {
     const choiceCost = choice.cost;
@@ -117,7 +117,7 @@ export function useFilters(choices, luckPassed, pauseChoices) {
   };
 
   const filterNeedLibra = (choices) => {
-    choices = choices.map((choice) => checkLibraBlocked(choice))
+    choices = choices.map((choice) => checkLibraBlocked(choice));
     return choices.map((choice) => needAndHaveLibra(choice));
   };
 
@@ -144,10 +144,18 @@ export function useFilters(choices, luckPassed, pauseChoices) {
   // Night creatures
   if (_pageNumber === 123) {
     if (_nightCreatureFight) {
-      return choices.slice(0,6)
+      return choices.slice(0, 6);
     } else {
-      return choices.slice(-1)
+      return choices.slice(-1);
     }
+  }
+
+  if (_pageNumber === 194) {
+    const canRefund = _swordRefund;
+    return [
+      { ...choices[0], blocked: !canRefund },
+      { ...choices[1], blocked: canRefund },
+    ];
   }
 
   // Do you have Jann?
@@ -160,21 +168,10 @@ export function useFilters(choices, luckPassed, pauseChoices) {
     const goblinsFlee = _bypassGoblins;
     if (goblinsFlee === null) return choices;
     if (goblinsFlee) {
-      return [{ ...choices[0] }, { ...choices[1], blocked: false }]
+      return [{ ...choices[0] }, { ...choices[1], blocked: false }];
     } else {
-      return [{ ...choices[0], blocked: false }, { ...choices[1] }]
+      return [{ ...choices[0], blocked: false }, { ...choices[1] }];
     }
-  }
-
-  // Has door been tried, has door been opened?
-  if (_pageNumber === 93) {
-    const doorOpen = _doorStatus.broken;
-    const doorTried = _doorStatus.tried;
-    let canLeave = doorTried;
-    if (doorOpen) canLeave = false;
-    let choice1 = { ...choices[0], blocked: !doorOpen };
-    let choice2 = { ...choices[1], blocked: !canLeave };
-    return [{ ...choice1 }, { ...choice2 }];
   }
 
   // Has door been tried, has door been opened?
@@ -189,9 +186,18 @@ export function useFilters(choices, luckPassed, pauseChoices) {
   }
 
   if (_pageNumber === 91) {
-    const traderItems = ["potion", "broadsword", "pipe", "axe", "goblinTeeth", "jewel"];
-    const haveTraderItem = _itemsOwned.some(item => traderItems.includes(item))
-    
+    const traderItems = [
+      "potion",
+      "broadsword",
+      "pipe",
+      "axe",
+      "goblinTeeth",
+      "jewel",
+    ];
+    const haveTraderItem = _itemsOwned.some((item) =>
+      traderItems.includes(item)
+    );
+
     let choice1 = { ...choices[0], blocked: !haveTraderItem };
     let choice2 = { ...choices[1], blocked: haveTraderItem };
     return [{ ...choice1 }, { ...choice2 }];
@@ -216,6 +222,7 @@ export function useFilters(choices, luckPassed, pauseChoices) {
       ];
   }
 
+  // Leave this for now OpenDoor
   if (_pageNumber === 228) {
     if (_doorOpened === null) return choices;
     if (_doorOpened) {
@@ -234,6 +241,7 @@ export function useFilters(choices, luckPassed, pauseChoices) {
     }
   }
 
+  // This one also doesnt rerender??
   if (_pageNumber === 254) {
     const returnIndex = Math.ceil(_forkDie / 2) - 1;
     return choices.map((choice, i) => {
@@ -243,8 +251,8 @@ export function useFilters(choices, luckPassed, pauseChoices) {
   }
 
   if (_pageNumber === 295) {
-    if (_skunkDie === 0) return choices
-    const fightSkunk = true
+    if (_skunkDie === 0) return choices;
+    const fightSkunk = _skunkDie === 1;
     let choice1 = { ...choices[0], blocked: !fightSkunk };
     let choice2 = { ...choices[1], blocked: fightSkunk };
     return [{ ...choice1 }, { ...choice2 }];

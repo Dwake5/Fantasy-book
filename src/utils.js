@@ -43,11 +43,11 @@ export const uppercase = (word, max) => {
 
 export const resetNightCreatures = () => {
   gameData[123].pause = true;
-  gameData[123].choices[0].blocked = false;
-  gameData[123].choices[1].blocked = false;
-  gameData[123].choices[2].blocked = false;
-  gameData[123].choices[3].blocked = false;
-  gameData[123].choices[4].blocked = false;
+  unblockChoice(123, 0)
+  unblockChoice(123, 1)
+  unblockChoice(123, 2)
+  unblockChoice(123, 3)
+  unblockChoice(123, 4)
 }
 
 export const blockChoice = (page, choice) => {
