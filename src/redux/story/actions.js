@@ -1,6 +1,5 @@
 import {
   ATTEMPT_LOCKSMASH,
-  BYPASS_GOBLINS,
   DOOR_OPEN,
   GLANDRAGOR,
   LOCKSMASH_PREVIOUS,
@@ -77,10 +76,6 @@ export const breakLockSmash = (dispatch) => {
 
 export const attemptLockSmash = (dispatch) => {
   dispatch({ type: ATTEMPT_LOCKSMASH });
-};
-
-export const bypassGoblins = (dispatch, boolean) => {
-  dispatch({ type: BYPASS_GOBLINS, payload: boolean });
 };
 
 export const nightCreaturePrevious = (dispatch, number) => {

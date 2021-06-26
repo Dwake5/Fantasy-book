@@ -12,7 +12,6 @@ import {
   getSeenBox1,
   getSeenBox2,
   getLockStatus,
-  getBypassGoblins,
   getNightCreatureFight,
   getSwordRefund,
 } from "../redux/story/selectors";
@@ -50,7 +49,6 @@ export function useFilters(choices, luckPassed, pauseChoices) {
   const _seenBox1 = useSelector(getSeenBox1);
   const _seenBox2 = useSelector(getSeenBox2);
   const _lockStatus = useSelector(getLockStatus);
-  const _bypassGoblins = useSelector(getBypassGoblins);
   const _nightCreatureFight = useSelector(getNightCreatureFight);
   const _swordRefund = useSelector(getSwordRefund);
 
@@ -158,16 +156,6 @@ export function useFilters(choices, luckPassed, pauseChoices) {
   if (_pageNumber === 100) {
     _haveJann ? (choices[1].blocked = true) : (choices[0].blocked = true);
     return choices;
-  }
-
-  if (_pageNumber === 407) {
-    const goblinsFlee = _bypassGoblins;
-    if (goblinsFlee === null) return choices;
-    if (goblinsFlee) {
-      return [{ ...choices[0] }, { ...choices[1], blocked: false }];
-    } else {
-      return [{ ...choices[0], blocked: false }, { ...choices[1] }];
-    }
   }
 
   // Has door been tried, has door been opened?

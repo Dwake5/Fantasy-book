@@ -1,5 +1,5 @@
 import {
-  ATTEMPT_LOCKSMASH, BYPASS_GOBLINS, DOOR_OPEN, GLANDRAGOR, LOCKSMASH_PREVIOUS,
+  ATTEMPT_LOCKSMASH, DOOR_OPEN, GLANDRAGOR, LOCKSMASH_PREVIOUS,
   LOCK_OPEN, NIGHT_CREATURE_FIGHT, NIGHT_CREATURE_PREVIOUS, PILFER_GRASS,
   PITFALL_PREVIOUS,
   PITFALL_STATUS,
@@ -19,13 +19,10 @@ const initialState = {
   pitFallPrevious: 0,
   pitFallStatus: null,
   doorOpen: null,
-  forkDie: 0,
-  skunkDie: 0,
   seenBox1: false,
   seenBox2: false,
   lockSmashPrevious: 0,
   lockSmash: { broken: false, tried: false },
-  bypassGoblins: null,
   nightCreaturePrevious: 0,
   nightCreatureFight: null,
   userJourney: [],
@@ -100,11 +97,6 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         lockSmash: { ...state.lockSmash, tried: true },
-      };
-    case BYPASS_GOBLINS:
-      return {
-        ...state,
-        bypassGoblins: action.payload,
       };
     case NIGHT_CREATURE_PREVIOUS:
       return {

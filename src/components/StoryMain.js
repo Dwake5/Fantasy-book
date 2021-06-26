@@ -188,7 +188,7 @@ const StoryMain = () => {
       case 366:
         return <SnakeBites />;
       case 407:
-        return <GoblinsFlee />;
+        return <GoblinsFlee setRerender={setRerender} />;
       default:
     }
   };

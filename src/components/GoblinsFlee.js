@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { Row, Col } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import { Col, Row } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { addExtraEnemies, setEnemyStats } from "../redux/combat/actions";
-import { bypassGoblins } from "../redux/story/actions";
-import { diceRolls } from "../utils";
+import { diceRolls, unblockChoice } from "../utils";
 
 // Node 407, came from 217
-const GoblinsFlee = () => {
+const GoblinsFlee = ({ setRerender }) => {
   const dispatch = useDispatch();
   const [goblin1Fled, setGoblin1Fled] = useState(false);
   const [goblin1Rolled, setGoblin1Rolled] = useState(false);
@@ -46,7 +45,9 @@ const GoblinsFlee = () => {
     if (rolledTimes < 2) return;
     const goblin1alive = !goblin1Fled;
     const goblin2alive = !goblin2Fled;
-    if (goblin1alive || goblin2alive) bypassGoblins(dispatch, false);
+    if (goblin1alive || goblin2alive) {
+      unblockChoice(407, 0);
+    }
     if (goblin1alive && goblin2alive) {
       setEnemyStats(dispatch, 6, 4, "Goblin 2");
       addExtraEnemies(dispatch, [{ skill: 5, stamina: 5, name: "Goblin 3" }]);
@@ -55,9 +56,10 @@ const GoblinsFlee = () => {
     } else if (goblin2alive) {
       setEnemyStats(dispatch, 5, 5, "Goblin 3");
     } else {
-      bypassGoblins(dispatch, true);
+      unblockChoice(407, 1);
     }
-  }, [dispatch, goblin1Fled, goblin2Fled, rolledTimes]);
+    setRerender(true);
+  }, [dispatch, goblin1Fled, goblin2Fled, rolledTimes, setRerender]);
 
   return (
     <Row>
