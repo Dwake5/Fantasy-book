@@ -1992,7 +1992,7 @@ const gameData = {
     a previous traveller unaware of the grasses habits. You take this 
     with you. Eventually you reach the river-bank again, well past the 
     village.`,
-    choices: [{ goToPage: 231, text: "Continue.." }], // todo get locket
+    choices: [{ goToPage: 231, text: "Continue.." }],
     getItems: [{ name: "locket", amount: 1 }],
   },
   160: {

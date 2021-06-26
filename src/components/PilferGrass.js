@@ -12,6 +12,7 @@ const PilferGrass = ({ amount, pageNumber, setRerender }) => {
   const _items = useSelector(getItems);
   const _itemsOwned = useSelector(getOwnedItems);
   const fixedArtefacts = useRef(null);
+  const fixedText = useRef(null);
   const notArtefacts = ["gold", "provisions"];
   const realArtefacts = _itemsOwned.filter(
     (item) => !notArtefacts.includes(item)
@@ -19,9 +20,15 @@ const PilferGrass = ({ amount, pageNumber, setRerender }) => {
 
   const [lostArtefacts, addLostArtefact] = useState([]);
 
+  const getText = _itemsOwned.length
+    ? `Pick ${amount === 1 ? "one" : "two"} ${pluralize("artefact", amount)} to
+      lose`
+    : `You have nothing else to give`;
+
   const [firstRun, setFirstRun] = useState(true);
   if (firstRun) {
     fixedArtefacts.current = _itemsOwned;
+    fixedText.current = getText;
     setFirstRun(false);
   }
 
@@ -45,14 +52,7 @@ const PilferGrass = ({ amount, pageNumber, setRerender }) => {
 
   return (
     <Container className="text-center">
-      {_itemsOwned.length ? (
-        <p>
-          Pick {amount === 1 ? "one" : "two"} {pluralize("artefact", amount)} to
-          lose
-        </p>
-      ) : (
-        <p>You have nothing else to give</p>
-      )}
+      <p>{fixedText.current}</p>
       {(fixedArtefacts.current || _itemsOwned).map((item) => {
         return (
           <div
