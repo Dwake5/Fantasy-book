@@ -8,13 +8,12 @@ import {
   getOwnedItems,
 } from "../redux/items/selectors";
 import { getSkill } from "../redux/stats/selectors";
-import { attemptLockSmash, breakLockSmash } from "../redux/story/actions";
 import { getLockSmashPrevious } from "../redux/story/selectors";
-import { diceRolls } from "../utils";
+import { blockChoice, diceRolls, unblockChoice } from "../utils";
 
 // Used on node 142. Got here from 4 or 360.
 // 360 = -2 from roll, if first hit is succesful no skill loss.
-const LockSmash = () => {
+const LockSmash = ({setRerender}) => {
   const dispatch = useDispatch();
   const _skill = useSelector(getSkill);
   const _equippedWeapon = useSelector(getEquippedWeapon);
@@ -42,7 +41,7 @@ const LockSmash = () => {
   const haveAnyWeapon = _itemsOwned.some((item) => weaponList.includes(item));
 
   useEffect(() => {
-    if (!haveAnyWeapon) attemptLockSmash(dispatch);
+    if (!haveAnyWeapon) unblockChoice(142, 1);
     if (weaponName) setNoWeapon(false);
     if (!weaponName) setNoWeapon(true);
   }, [haveAnyWeapon, dispatch, weaponName]);
@@ -55,16 +54,20 @@ const LockSmash = () => {
     if (!betterChances || !firstTry) bluntWeapon(dispatch, _equippedWeapon);
     if (betterChances && firstTry) shouldBluntWeapon = false;
 
-    if (firstTry) {
-      attemptLockSmash(dispatch);
-      setFirstTry(false);
+    if (firstTry && !success) {
+      unblockChoice(142, 1)
+      setRerender(true)
     }
 
+    setFirstTry(false);
+    
     let newRollText = success ? "Success:" : "Fail:";
     newRollText += ` You rolled a ${rolled}.`;
     if (success) {
       setSuccess(true);
-      breakLockSmash(dispatch);
+      unblockChoice(142, 0)
+      blockChoice(142, 1)
+      setRerender(true)
     } else {
     }
     newRollText += shouldBluntWeapon
@@ -94,7 +97,7 @@ const LockSmash = () => {
       <p className="mb-0">Try to smash open the lock.</p>
       {skillNeeded >= 2 && (
         <p className="mb-0">
-          To succeed, you would need to roll a {_skill - 1}{" "}
+          To succeed, you would need to roll a {_skill - 1 + (betterChances ? 2 : 0)}{" "}
           {betterChances ? "(+2)" : ""} or lower.
         </p>
       )}

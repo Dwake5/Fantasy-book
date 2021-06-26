@@ -4,16 +4,14 @@ import { getHaveJann, getLibra } from "../redux/stats/selectors";
 import {
   getCantUseMagic,
   getDoorOpened,
-  getGlandragor,
+  getGlandragor, getNightCreatureFight,
   getPage,
   getPassedPilfer,
   getPitfallStatus,
-  getTraderViews,
   getSeenBox1,
   getSeenBox2,
-  getLockStatus,
-  getNightCreatureFight,
   getSwordRefund,
+  getTraderViews
 } from "../redux/story/selectors";
 
 const blockAllChoices = (choices) => {
@@ -48,7 +46,6 @@ export function useFilters(choices, luckPassed, pauseChoices) {
   const _doorOpened = useSelector(getDoorOpened);
   const _seenBox1 = useSelector(getSeenBox1);
   const _seenBox2 = useSelector(getSeenBox2);
-  const _lockStatus = useSelector(getLockStatus);
   const _nightCreatureFight = useSelector(getNightCreatureFight);
   const _swordRefund = useSelector(getSwordRefund);
 
@@ -156,17 +153,6 @@ export function useFilters(choices, luckPassed, pauseChoices) {
   if (_pageNumber === 100) {
     _haveJann ? (choices[1].blocked = true) : (choices[0].blocked = true);
     return choices;
-  }
-
-  // Has door been tried, has door been opened?
-  if (_pageNumber === 142) {
-    const lockOpen = _lockStatus.broken;
-    const lockTried = _lockStatus.tried;
-    let canLeave = lockTried;
-    if (lockOpen) canLeave = false;
-    let choice1 = { ...choices[0], blocked: !lockOpen };
-    let choice2 = { ...choices[1], blocked: !canLeave };
-    return [{ ...choice1 }, { ...choice2 }];
   }
 
   if (_pageNumber === 91) {

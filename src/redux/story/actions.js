@@ -1,10 +1,6 @@
 import {
-  ATTEMPT_LOCKSMASH,
   DOOR_OPEN,
-  GLANDRAGOR,
-  LOCKSMASH_PREVIOUS,
-  LOCK_OPEN,
-  NIGHT_CREATURE_FIGHT,
+  GLANDRAGOR, LOCKSMASH_PREVIOUS, NIGHT_CREATURE_FIGHT,
   NIGHT_CREATURE_PREVIOUS,
   PILFER_GRASS,
   PITFALL_PREVIOUS,
@@ -14,7 +10,7 @@ import {
   SEEN_BOX2,
   SET_PAGE,
   SET_TRADER_VIEWS,
-  SWORD_REFUND,
+  SWORD_REFUND
 } from "./action-types";
 
 export const setPage = (dispatch, number) => {
@@ -68,14 +64,6 @@ export const seenBox2 = (dispatch) => {
 
 export const locksmashPrevious = (dispatch, number) => {
   dispatch({ type: LOCKSMASH_PREVIOUS, payload: number });
-};
-
-export const breakLockSmash = (dispatch) => {
-  dispatch({ type: LOCK_OPEN });
-};
-
-export const attemptLockSmash = (dispatch) => {
-  dispatch({ type: ATTEMPT_LOCKSMASH });
 };
 
 export const nightCreaturePrevious = (dispatch, number) => {

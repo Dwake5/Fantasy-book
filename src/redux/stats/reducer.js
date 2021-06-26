@@ -17,8 +17,8 @@ import {
 } from "./action-types";
 
 const initialState = {
-  skill: 0,
-  maxSkill: 0,
+  skill: 8,
+  maxSkill: 8,
   stamina: 0,
   maxStamina: 0,
   luck: 0,

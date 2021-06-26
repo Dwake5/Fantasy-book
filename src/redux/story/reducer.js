@@ -1,6 +1,5 @@
 import {
-  ATTEMPT_LOCKSMASH, DOOR_OPEN, GLANDRAGOR, LOCKSMASH_PREVIOUS,
-  LOCK_OPEN, NIGHT_CREATURE_FIGHT, NIGHT_CREATURE_PREVIOUS, PILFER_GRASS,
+  DOOR_OPEN, GLANDRAGOR, LOCKSMASH_PREVIOUS, NIGHT_CREATURE_FIGHT, NIGHT_CREATURE_PREVIOUS, PILFER_GRASS,
   PITFALL_PREVIOUS,
   PITFALL_STATUS,
   PLAYER_LEARNS_JANN, SEEN_BOX1,
@@ -9,7 +8,7 @@ import {
 } from "./action-types";
 
 const initialState = {
-  page: 1000,
+  page: 4,
   previousPage: 0,
   traderItemsViewed: [],
   cantUseMagic: false,
@@ -87,16 +86,6 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         lockSmashPrevious: action.payload,
-      };
-    case LOCK_OPEN:
-      return {
-        ...state,
-        lockSmash: { ...state.lockSmash, broken: true },
-      };
-    case ATTEMPT_LOCKSMASH:
-      return {
-        ...state,
-        lockSmash: { ...state.lockSmash, tried: true },
       };
     case NIGHT_CREATURE_PREVIOUS:
       return {

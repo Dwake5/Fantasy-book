@@ -174,7 +174,7 @@ const StoryMain = () => {
       case 93:
         return <BreakDoor />;
       case 142:
-        return <LockSmash />;
+        return <LockSmash setRerender={setRerender} />;
       case 228:
         return <OpenDoor />;
       case 254:

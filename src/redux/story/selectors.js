@@ -10,7 +10,6 @@ export const getDoorOpened = (state) => state.story.doorOpen;
 export const getSeenBox1 = (state) => state.story.seenBox1;
 export const getSeenBox2 = (state) => state.story.seenBox2;
 export const getLockSmashPrevious = (state) => state.story.lockSmashPrevious;
-export const getLockStatus = (state) => state.story.lockSmash;
 export const getNightCreaturePrevious = (state) => state.story.nightCreaturePrevious;
 export const getNightCreatureFight = (state) => state.story.nightCreatureFight;
 export const getSwordRefund = (state) => state.story.swordRefund;
