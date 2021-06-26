@@ -3545,8 +3545,8 @@ const gameData = {
     throw a double six then you have landed on your head, breaking your 
     neck in the fall and your adventure ends here.`,
     choices: [
-      { goToPage: 110, text: "Continue.." },
-      { goToPage: 0, text: "Rolled double six" },
+      { goToPage: 110, text: "Continue..", blocked: true },
+      { goToPage: 0, text: "Rolled double six", blocked: true },
     ],
     extraText: true,
   },
@@ -5036,8 +5036,8 @@ const gameData = {
   },
   424: {
     text: `Deduct 2 stamina points. You fall down into the pit, but your body 
-    moves in the air as if to anticipate your landing. Because of your spell, you 
-    may deduct 3 points from the following dice roll and you may ignore the extra 
+    moves in the air as if to anticipate your landing. Because of your spell, 
+    3 points will be deducted from the following dice roll and you may ignore the extra 
     penalty on a roll of double 6.`,
     choices: [{ goToPage: 277, text: "Continue.." }], // todo reduce following die roll and it cant kill you
     staminaLoss: 2,

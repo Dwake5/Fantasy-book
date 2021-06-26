@@ -39,10 +39,6 @@ export const pitfallPrevious = (dispatch, number) => {
   dispatch({ type: PITFALL_PREVIOUS, payload: number });
 };
 
-export const pitfallStatus = (dispatch, data) => {
-  dispatch({ type: PITFALL_STATUS, payload: data });
-};
-
 export const seenBox1 = (dispatch) => {
   dispatch({ type: SEEN_BOX1 });
 };

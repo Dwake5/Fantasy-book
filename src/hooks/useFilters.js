@@ -6,7 +6,6 @@ import {
   getNightCreatureFight,
   getPage,
   getPassedPilfer,
-  getPitfallStatus,
   getSeenBox1,
   getSeenBox2,
   getSwordRefund,
@@ -22,7 +21,6 @@ export function useFilters(choices, luckPassed, pauseChoices) {
   const _traderViews = useSelector(getTraderViews);
   const _itemsOwned = useSelector(getOwnedItems);
   const _pilferGrass = useSelector(getPassedPilfer);
-  const _pitfallStatus = useSelector(getPitfallStatus);
   const _seenBox1 = useSelector(getSeenBox1);
   const _seenBox2 = useSelector(getSeenBox2);
   const _nightCreatureFight = useSelector(getNightCreatureFight);
@@ -150,25 +148,6 @@ export function useFilters(choices, luckPassed, pauseChoices) {
     let choice1 = { ...choices[0], blocked: !haveTraderItem };
     let choice2 = { ...choices[1], blocked: haveTraderItem };
     return [{ ...choice1 }, { ...choice2 }];
-  }
-
-  // Has door been tried, has door been opened?
-  if (_pageNumber === 277) {
-    if (_pitfallStatus === null)
-      return [
-        { ...choices[0], blocked: true },
-        { ...choices[1], blocked: true },
-      ];
-    if (_pitfallStatus === "dead")
-      return [
-        { ...choices[0], blocked: true },
-        { ...choices[1], blocked: false },
-      ];
-    if (_pitfallStatus === "passed")
-      return [
-        { ...choices[0], blocked: false },
-        { ...choices[1], blocked: true },
-      ];
   }
 
   if (_pageNumber === 258) {

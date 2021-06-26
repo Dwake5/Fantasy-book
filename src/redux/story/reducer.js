@@ -14,18 +14,15 @@ import {
 } from "./action-types";
 
 const initialState = {
-  page: 66,
+  page: 24,
   previousPage: 0,
   traderItemsViewed: [],
   cantUseMagic: false,
   pilferGrass: false,
-  doorBroken: { broken: false, tried: false },
   pitFallPrevious: 0,
-  pitFallStatus: null,
   seenBox1: false,
   seenBox2: false,
   lockSmashPrevious: 0,
-  lockSmash: { broken: false, tried: false },
   nightCreaturePrevious: 0,
   nightCreatureFight: null,
   userJourney: [],
@@ -45,11 +42,6 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         pitFallPrevious: action.payload,
-      };
-    case PITFALL_STATUS:
-      return {
-        ...state,
-        pitFallStatus: action.payload,
       };
     case SET_TRADER_VIEWS:
       return {

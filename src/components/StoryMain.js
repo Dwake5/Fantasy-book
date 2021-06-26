@@ -184,7 +184,7 @@ const StoryMain = () => {
       case 258:
         return <PickpocketBox />;
       case 277:
-        return <PitFall />;
+        return <PitFall setRerender={setRerender} />;
       case 366:
         return <SnakeBites />;
       case 407:
