@@ -2,9 +2,7 @@ import {
   LOCKSMASH_PREVIOUS,
   NIGHT_CREATURE_FIGHT,
   NIGHT_CREATURE_PREVIOUS,
-  PILFER_GRASS,
   PITFALL_PREVIOUS,
-  PITFALL_STATUS,
   PLAYER_LEARNS_JANN,
   SEEN_BOX1,
   SEEN_BOX2,
@@ -29,10 +27,6 @@ export const addToTraderItems = (dispatch, number) => {
 
 export const playerLearnsJann = (dispatch) => {
   dispatch({ type: PLAYER_LEARNS_JANN });
-};
-
-export const passPilferGrass = (dispatch) => {
-  dispatch({ type: PILFER_GRASS });
 };
 
 export const pitfallPrevious = (dispatch, number) => {

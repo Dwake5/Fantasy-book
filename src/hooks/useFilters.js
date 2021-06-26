@@ -5,7 +5,6 @@ import {
   getCantUseMagic,
   getNightCreatureFight,
   getPage,
-  getPassedPilfer,
   getSeenBox1,
   getSeenBox2,
   getSwordRefund,
@@ -20,7 +19,6 @@ export function useFilters(choices, luckPassed, pauseChoices) {
   const _money = useSelector(getMoney);
   const _traderViews = useSelector(getTraderViews);
   const _itemsOwned = useSelector(getOwnedItems);
-  const _pilferGrass = useSelector(getPassedPilfer);
   const _seenBox1 = useSelector(getSeenBox1);
   const _seenBox2 = useSelector(getSeenBox2);
   const _nightCreatureFight = useSelector(getNightCreatureFight);
@@ -158,11 +156,6 @@ export function useFilters(choices, luckPassed, pauseChoices) {
   if (_pageNumber === 403) {
     if (!_seenBox2) return choices;
     else return [{ ...choices[0], blocked: true }, { ...choices[1] }];
-  }
-
-  // Pilfer grass
-  if (_pageNumber === 32 || _pageNumber === 57) {
-    return _pilferGrass ? choices : [{ ...choices[0], blocked: true }];
   }
 
   // Trader 1, player can only see each item once, and 3 items in total (there are 6)

@@ -2,15 +2,12 @@ import React, { useRef, useState } from "react";
 import { Container } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { changeItemAmount } from "../redux/items/actions";
-import {
-  getItems,
-  getOwnedItems
-} from "../redux/items/selectors";
-import { passPilferGrass } from "../redux/story/actions";
+import { getItems, getOwnedItems } from "../redux/items/selectors";
+import { pluralize, unblockChoice } from "../utils";
 
 // Used in node 32, arrived from 105 (-2 items)
 // Used in node 57, arrived from 105 (-1 items)
-const PilferGrass = ({ amount }) => {
+const PilferGrass = ({ amount, pageNumber, setRerender }) => {
   const dispatch = useDispatch();
   const _items = useSelector(getItems);
   const _itemsOwned = useSelector(getOwnedItems);
@@ -34,7 +31,8 @@ const PilferGrass = ({ amount }) => {
     let realLostArtefacts = lostArtefacts.length;
     realLostArtefacts++;
     if (realLostArtefacts >= amount || realArtefacts.length === 0) {
-      passPilferGrass(dispatch);
+      unblockChoice(pageNumber, 0);
+      setRerender(true);
     }
   };
 
@@ -44,10 +42,14 @@ const PilferGrass = ({ amount }) => {
     if (notArtefacts.includes(item) && realArtefacts.length !== 0) return true;
     return false;
   };
+
   return (
     <Container className="text-center">
       {_itemsOwned.length ? (
-        <p>Pick {amount === 1 ? "one" : "two"} artefacts to lose</p>
+        <p>
+          Pick {amount === 1 ? "one" : "two"} {pluralize("artefact", amount)} to
+          lose
+        </p>
       ) : (
         <p>You have nothing else to give</p>
       )}

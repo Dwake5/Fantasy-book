@@ -166,9 +166,9 @@ const StoryMain = () => {
       case 29:
         return <OfferArtefact setRerender={setRerender} />;
       case 32:
-        return <PilferGrass amount={2} />;
+        return <PilferGrass amount={2} pageNumber={32} setRerender={setRerender} />;
       case 57:
-        return <PilferGrass amount={1} />;
+        return <PilferGrass amount={1} pageNumber={57} setRerender={setRerender} />;
       case 48:
         return <WitchSteals pageNumber={_pageNumber} />;
       case 93:

@@ -2,9 +2,7 @@ import {
   LOCKSMASH_PREVIOUS,
   NIGHT_CREATURE_FIGHT,
   NIGHT_CREATURE_PREVIOUS,
-  PILFER_GRASS,
   PITFALL_PREVIOUS,
-  PITFALL_STATUS,
   PLAYER_LEARNS_JANN,
   SEEN_BOX1,
   SEEN_BOX2,
@@ -14,11 +12,10 @@ import {
 } from "./action-types";
 
 const initialState = {
-  page: 24,
+  page: 105,
   previousPage: 0,
   traderItemsViewed: [],
   cantUseMagic: false,
-  pilferGrass: false,
   pitFallPrevious: 0,
   seenBox1: false,
   seenBox2: false,
@@ -52,11 +49,6 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         cantUseMagic: true,
-      };
-    case PILFER_GRASS:
-      return {
-        ...state,
-        pilferGrass: true,
       };
     case SEEN_BOX1:
       return {
