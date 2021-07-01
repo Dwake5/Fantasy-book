@@ -11,3 +11,4 @@ export const NIGHT_CREATURE_PREVIOUS = namespace + 'NIGHT_CREATURE_PREVIOUS';
 export const NIGHT_CREATURE_FIGHT = namespace + 'NIGHT_CREATURE_FIGHT';
 export const SWORD_REFUND = namespace + 'SWORD_REFUND';
 export const LOCKSMASH_PREVIOUS = namespace + 'LOCKSMASH_PREVIOUS';
+export const FIREBALL_MANTICORE = namespace + 'FIREBALL_MANTICORE'

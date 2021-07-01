@@ -24,6 +24,7 @@ import {
   getNightCreatureFight,
   getNightCreaturePrevious,
   getPreviousPage,
+  getFireball,
 } from "../../redux/story/selectors";
 import { diceRolls, resetNightCreatures } from "../../utils";
 import CombatText from "./CombatText";
@@ -38,6 +39,10 @@ const Combat = ({ pageNumber }) => {
   const _maxStamina = useSelector((state) => getStat(state, "maxStamina"));
   const _luck = useSelector((state) => getStat(state, "luck"));
   const _maxLuck = useSelector((state) => getStat(state, "maxLuck"));
+
+  // Are you dead but TYL will revive you?
+  const [lastLife, setLastLife] = useState(false);
+
   // Enemy stats
   const _enemyStats = useSelector(getEnemyStats);
   const enemySkill = _enemyStats.skill;
@@ -48,6 +53,16 @@ const Combat = ({ pageNumber }) => {
   // Night Creatures
   const _nightCreatureFight = useSelector(getNightCreatureFight);
   const _nightCreaturePrevious = useSelector(getNightCreaturePrevious);
+
+  // Manticore
+  const [manticorePoison, setManticorePoison] = useState(false);
+  const [fireballDamage, setFireballDamage] = useState(false);
+  const _fireball = useSelector(getFireball);
+  // This gets doubled for some reason, its supposed to be 6
+  if (_fireball && !fireballDamage) {
+    setFireballDamage(true);
+    damageEnemy(dispatch, 6); // apparently this will only do 6 (not 12) in production
+  }
 
   const _previousPage = useSelector(getPreviousPage);
 
@@ -74,15 +89,14 @@ const Combat = ({ pageNumber }) => {
     playerAttStrModifier--;
   }
 
-  
   const manticorePages = [227];
   const onManticorePage = manticorePages.includes(pageNumber);
-  
+
   const swordList = ["sword", "craftedSword", "broadsword", "glandragorSword"];
   if (_haveArmband && swordList.includes(_equippedWeapon)) {
     playerAttStrModifier += 2;
   }
-  
+
   // Comabt mods
   let enemyAttStrModifier = 0;
   let enemyDamage = 2;
@@ -99,7 +113,9 @@ const Combat = ({ pageNumber }) => {
 
   const handleAttack = () => {
     setCanUseLuck(true);
+    setManticorePoison(false);
     setRound((r) => r + 1);
+    let localPoison = false;
     const playerRoll = diceRolls(2, true);
     const enemyRoll = diceRolls(2, true);
 
@@ -119,9 +135,30 @@ const Combat = ({ pageNumber }) => {
       newText.line2 = `You damaged the enemy for ${damage} points!`;
       newText.line2style += "text-success";
     } else if (enemyTotal > playerTotal) {
+      if (onManticorePage) {
+        const roll = Math.ceil(Math.random() * 3);
+        if (roll === 1) {
+          enemyDamage = 2;
+          localPoison = true;
+          setManticorePoison(true);
+        }
+      }
+
+      const healthAfter = _stamina - enemyDamage;
+      if (healthAfter <= 0) {
+        // about to die
+        const luckHeal = enemyDamage === 6 ? 4 : 1;
+        if (luckHeal + healthAfter > 0) {
+          // luck will revive player
+          setLastLife(true);
+        }
+      }
+
       loseStat(dispatch, "stamina", enemyDamage);
       setWhoWasDamaged("player");
-      newText.line2 = `The ${enemyName} damaged you for ${enemyDamage} points.`;
+      let textToAdd = `The ${enemyName} damaged you for ${enemyDamage} points.`;
+      if (localPoison) textToAdd += " Critical hit, you've been poisoned!";
+      newText.line2 = textToAdd;
       newText.line2style += "text-danger";
     } else {
       setCanUseLuck(false);
@@ -165,8 +202,13 @@ const Combat = ({ pageNumber }) => {
       };
 
       let someoneDead = false;
-      if (_stamina <= 0) {
+      if (lastLife) {
+        newText.line1 =
+          "The enemy has killed you unless you succesfully test your luck!";
+        newText.line1style += " font-weight-bold";
+      } else if (_stamina <= 0) {
         setCanUseLuck(false);
+        setSomeoneDead(true);
         someoneDead = true;
         newText.line1 = "Oh no, you have died!";
         newText.line1style += " font-weight-bold";
@@ -186,7 +228,7 @@ const Combat = ({ pageNumber }) => {
         }
       }
 
-      if (someoneDead) {
+      if (someoneDead || lastLife) {
         setText((text) => [...text, newText]);
       }
     };
@@ -201,7 +243,7 @@ const Combat = ({ pageNumber }) => {
     };
 
     checkDeath();
-  }, [_enemyStats, _extraEnemies, _stamina, dispatch, enemyStamina]);
+  }, [_enemyStats, _extraEnemies, _stamina, dispatch, enemyStamina, lastLife]);
 
   const handleLuck = () => {
     setCanUseLuck(false);
@@ -215,14 +257,27 @@ const Combat = ({ pageNumber }) => {
     };
 
     if (whoWasDamaged === "player") {
-      if (rollPassed) {
-        newText.line1 =
-          "Test your Luck - Success. The enemy merely grazed you and you recover 1 Stamina.";
-        gainStat(dispatch, "stamina", 1);
-      } else {
-        newText.line1 =
-          "Test your Luck - Fail: The enemy hit an artery, you lose an additional point of damage.";
-        loseStat(dispatch, "stamina", 1);
+      if (manticorePoison) {
+        if (rollPassed) {
+          newText.line1 =
+            "Test your Luck - Success. The Manticore only scores a normal attack and you recover 4 Stamina.";
+          newText.line1style = " mb-0";
+          gainStat(dispatch, "stamina", 4);
+        } else {
+          newText.line1 = "Test your Luck - Fail. You take the full damage.";
+        }
+      }
+
+      if (!manticorePoison) {
+        if (rollPassed) {
+          newText.line1 =
+            "Test your Luck - Success. The enemy merely grazed you and you recover 1 Stamina.";
+          gainStat(dispatch, "stamina", 1);
+        } else {
+          newText.line1 =
+            "Test your Luck - Fail: The enemy hit an artery, you lose an additional point of damage.";
+          loseStat(dispatch, "stamina", 1);
+        }
       }
     }
 
@@ -238,6 +293,7 @@ const Combat = ({ pageNumber }) => {
       }
     }
 
+    setLastLife(false);
     setText([...text, newText]);
   };
 
@@ -245,7 +301,6 @@ const Combat = ({ pageNumber }) => {
   useInterval(handleAttack, shouldIntervalRun ? 750 : null);
 
   const handleChoice = () => {
-    console.log('_nightCreatureFight :', _nightCreatureFight);
     if (_nightCreatureFight) {
       const nightCreatureMap = {
         84: 31,
@@ -254,7 +309,7 @@ const Combat = ({ pageNumber }) => {
       };
       _nextPage = nightCreatureMap[_nightCreaturePrevious];
       resetNightCreatures();
-      nightCreatureFight(dispatch, false)
+      nightCreatureFight(dispatch, false);
     }
     const plusOneHealthNodes = [108, 283];
     const doAddOneHealth = plusOneHealthNodes.includes(_nightCreaturePrevious);
@@ -270,7 +325,10 @@ const Combat = ({ pageNumber }) => {
 
   const choices = [{ text: "Continue" }];
   useHandleKeyDown(choices, !someoneDead, handleChoice);
-
+  
+  const skillDifference = attackStrength - enemyAS;
+  console.log('enemyAS :', enemyAS);
+  console.log('attackStrength :', attackStrength);
   return (
     <Container>
       <Row>
@@ -292,6 +350,8 @@ const Combat = ({ pageNumber }) => {
           enemyStamina={enemyStamina}
           handleSpareHim={handleSpareHim}
           doubleSkill={skill / _skill === 2}
+          lastLife={lastLife}
+          skillDifference={skillDifference}
         />
 
         <EnemyStats
@@ -301,6 +361,7 @@ const Combat = ({ pageNumber }) => {
           enemyAttStrModifier={enemyAttStrModifier}
           enemyMaxStamina={enemyMaxStamina}
           extraEnemies={_extraEnemies}
+          skillDifference={-skillDifference}
         />
       </Row>
       {text.slice(-5).map((text, i) => (

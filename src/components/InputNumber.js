@@ -26,7 +26,6 @@ const InputNumber = ({
     if (stat + increment <= maxStat && statPoints > 0) {
       let newStat = stat;
       const difference = maxStat - stat
-      console.log('difference :', difference);
       if (difference <= (statPoints * increment)) {
         newStat += difference;
       } else {

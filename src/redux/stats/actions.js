@@ -13,6 +13,7 @@ import {
   GAIN_CURSE_ALIANNA,
   GAIN_PLAGUE,
   SCORPION_STING,
+  FULL_RESTORE,
 } from "./action-types";
 
 export const setMaxStat = (dispatch, stat, number) => {
@@ -83,4 +84,8 @@ export const playerLosesJann = (dispatch) => {
 
 export const scorpionSting = (dispatch) => {
   dispatch({ type: SCORPION_STING })
+}
+
+export const fullRestore = (dispatch) => {
+  dispatch({ type: FULL_RESTORE })
 }

@@ -30,3 +30,5 @@ export const LOSE_JANN = namespace + 'LOSE_JANN';
 
 export const SCORPION_STING = namespace + 'SCORPION_STING';
 
+export const FULL_RESTORE = namespace + 'FULL_RESTORE';
+

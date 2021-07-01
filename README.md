@@ -4,29 +4,35 @@
   <li>Find a way to adapt story text based on users stats for example when you dont have a magic item</li>
   <li>Add P tags to text to format it better</li>
   <li>Progress bars to combat</li>
-  <li>Find a way to fight night creatures and return to previous node (84, 108 || 283, 396, 421, 437, 453)</li>
   <li>Get no change for buying with gems (15) might not do this, a lot of work for little payoff, maybe just give 5gp a piece</li>
   <li>Handle death</li>
   <li>Handle spells requiring certain items</li>
   <li>Handle using spells causing extra damage to you if you don't have items</li>
-  <li>Workout when the user has to know about Jann... (305, 306, 321, 394, 387, 286 all tell you, but are optional choices except 286!) Requires a lot of testing</li>
+  <li>Workout when the user has to know about Jann... (305, 306, 321, 394, 387, 286) all tell you, but are optional choices except 286!) Requires a lot of testing</li>
   <li>Add bold text to important info the player recieves, and stat loss / increases</li>
-  <li>Item furskin boots at 110</li>
-  <li>Write usefilters a lot better</li>
-  <li>Handle Bomba</li>
-  <li>Bug: What if no items at pilfer Grass</li>
-  <li>Add combat config to gamedata (what?)</li>
   <li>Make Pilfer grass look more like backpack robbed</li>
-  <li>Go through each spell and see which ones circle back, if they do block them singleUse: true</li>
+  <li>Handle YOB, 361, 388 (S8 HP9)</li>
+  <li>Handle GOB, 425, 369 (S5 HP5)</li>
+  <li>Handle using Libra during combat</li>
 </ul>
 
 combat mods
-227: Manticore 1/3 chance of triple damage
 388: Manticore vs Giant. 1/3 chance of triple damage
 
 # Done
 
 <ul>
+  <li>Item furskin boots at 110</li>
+  <li>Fireball manticore now working (its doubled though?)</li>
+  <li>Fixed the combat, last chance luck issue, health can go negative</li>
+  <li>All minigames complete</li>
+  <li>Full restore and + 1 luck at 456 / end</li>
+  <li>Bug Fixed: What if no items at pilfer Grass</li>
+  <li>Waterfall ticket now accepted</li>
+  <li>Find a way to fight night creatures and return to previous node (84, 108 || 283, 396, 421, 437, 453)</li>
+  <li>Go through each spell and see which ones circle back. All magic is now blocked.</li>
+  <li>Handle Bomba. Now just gives 1 provision</li>
+  <li>Write usefilters a lot better</li>
   <li>Fixed 194, sword refund</li>
   <li>Bug: testing luck in combat after you roll equal scores to the enemy does nothing</li>
   <li>When theres an enemy block same spell being cast twice</li>

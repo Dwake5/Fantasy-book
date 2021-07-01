@@ -1,5 +1,6 @@
 import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import gameData from "../assets/gameData";
 import useHandleKeydown from "../hooks/useHandleKeydown";
 import {
   addExtraEnemies,
@@ -14,7 +15,7 @@ import {
   payMoney,
   robbedByBandits,
 } from "../redux/items/actions";
-import { getEquippedWeapon } from "../redux/items/selectors";
+import { getEquippedWeapon, ownItem } from "../redux/items/selectors";
 import {
   changeEatenToday,
   gainStat,
@@ -32,6 +33,7 @@ import {
   seenBox1,
   seenBox2,
   setPage,
+  usedFireball,
 } from "../redux/story/actions";
 import {
   getNightCreaturePrevious,
@@ -46,16 +48,31 @@ const PlayerChoices = ({ choices, setStayShowing, pause }) => {
   const _nightCreaturePrevious = useSelector(getNightCreaturePrevious);
   const _previousPage = useSelector(getPreviousPage);
 
+  const _haveWaterfallPass = useSelector((state) =>
+    ownItem(state, "waterfallPass")
+  );
+
   const handleChoice = useCallback(
-    (choice, NCP, previous) => {
+    (choice, NCP, previous, waterfallPass) => {
+
       const addItems = (items) => {
         items.forEach((item) => {
           changeItemAmount(dispatch, item);
         });
       };
 
+      const nodeVisiting = choice.goToPage;
+
       if (choice.cost && !choice.dontPay) {
-        payMoney(dispatch, choice.cost);
+        if (nodeVisiting === 204 && waterfallPass) {
+          changeItemAmount(dispatch, { name: "waterfallPass", amount: -1 });
+          gameData[204].text = gameData[204].text.replace(
+            "3 Gold Pieces",
+            "Waterfall Pass"
+          );
+        } else {
+          payMoney(dispatch, choice.cost);
+        }
       }
 
       // Night creatures lead to a dynamic node so start a fight and check after
@@ -86,8 +103,6 @@ const PlayerChoices = ({ choices, setStayShowing, pause }) => {
         choice.blocked = true;
       }
 
-      const nodeVisiting = choice.goToPage;
-
       // night creatures
       const leadsToNightCreatures = [84, 108, 283];
       if (leadsToNightCreatures.includes(nodeVisiting)) {
@@ -113,10 +128,15 @@ const PlayerChoices = ({ choices, setStayShowing, pause }) => {
         return;
       }
 
-      // Has to be done dynamically because you can fight 0,1 or 2 enemies
+      // Has to be done dynamically because you can fight 0, 1 or 2 enemies
       if (nodeVisiting === 155 && choice.cameFrom === 407) {
         startCombat(dispatch, true);
         setPageAfterCombat(dispatch, 155);
+      }
+
+      // Cast fireball at Manticore
+      if (nodeVisiting === 346) {
+        usedFireball(dispatch);
       }
 
       const oneTimeNodes = [107, 214, 22, 141, 5, 60]; // trader 1 items
@@ -187,7 +207,6 @@ const PlayerChoices = ({ choices, setStayShowing, pause }) => {
   useHandleKeydown(choices, pause, handleChoice);
 
   const displayOptions = () => {
-    console.log("rerender player choices");
     if (pause) return null;
     return choices.map((choice, i) => {
       const dontBlock = choice.blocked !== true;
@@ -197,7 +216,12 @@ const PlayerChoices = ({ choices, setStayShowing, pause }) => {
           className={`${dontBlock ? "userChoice" : "blockedChoice"}`}
           onClick={() =>
             dontBlock
-              ? handleChoice(choice, _nightCreaturePrevious, _previousPage)
+              ? handleChoice(
+                  choice,
+                  _nightCreaturePrevious,
+                  _previousPage,
+                  _haveWaterfallPass
+                )
               : null
           }
         >

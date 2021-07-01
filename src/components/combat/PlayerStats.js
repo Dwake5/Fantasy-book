@@ -1,6 +1,7 @@
 import SpareAssassin from "./SpareAssassin";
 import knight from "../../assets/images/knight.jpeg";
 import { Col } from "react-bootstrap";
+import { chanceToHit } from "../../utils";
 
 const PlayerStats = ({
   stamina,
@@ -20,7 +21,10 @@ const PlayerStats = ({
   enemyStamina,
   handleSpareHim,
   doubleSkill,
+  lastLife,
+  skillDifference,
 }) => {
+  console.log('skillDifference :', skillDifference);
   const damageExcess = damage - 2;
   const excessFunction = (stat) => {
     if (stat === 0) return;
@@ -38,9 +42,15 @@ const PlayerStats = ({
         Stamina: {stamina} / {maxStamina}
       </p>
       <p className="mb-0">
-        Attack Strength: {skill+playerAttStrModifier} {doubleSkill ? `(x2)` : ""} {excessFunction(playerAttStrModifier)}
+        Attack Strength: {skill + playerAttStrModifier}{" "}
+        {doubleSkill ? `(x2)` : ""} {excessFunction(playerAttStrModifier)}
       </p>
-      <p className="mb-0">Damage: {damage} {excessFunction(damageExcess)}</p>
+      <p className="mb-0">
+        Accuracy: {chanceToHit(skillDifference).toFixed(2)}%
+      </p>
+      <p className="mb-0">
+        Damage: {damage} {excessFunction(damageExcess)}
+      </p>
       <p className="mb-3">
         Luck: {luck} / {maxLuck}
       </p>
@@ -48,7 +58,7 @@ const PlayerStats = ({
       <div className="d-flex flex-column">
         <div>
           <button
-            disabled={someoneDead || autoFight}
+            disabled={someoneDead || autoFight || lastLife}
             onClick={handleAttack}
             className="btn btn-danger mb-4 mr-3"
           >
@@ -68,7 +78,7 @@ const PlayerStats = ({
             <button
               className="mr-2 btn border"
               onClick={() => setAutoFight((auto) => !auto)}
-              disabled={someoneDead}
+              disabled={someoneDead || lastLife}
             >
               Auto Fight
             </button>

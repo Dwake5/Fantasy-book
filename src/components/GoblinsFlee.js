@@ -5,7 +5,7 @@ import { addExtraEnemies, setEnemyStats } from "../redux/combat/actions";
 import { diceRolls, unblockChoice } from "../utils";
 
 // Node 407, came from 217
-const GoblinsFlee = ({ setRerender }) => {
+const GoblinsFlee = ({ rerender }) => {
   const dispatch = useDispatch();
   const [goblin1Fled, setGoblin1Fled] = useState(false);
   const [goblin1Rolled, setGoblin1Rolled] = useState(false);
@@ -58,8 +58,8 @@ const GoblinsFlee = ({ setRerender }) => {
     } else {
       unblockChoice(407, 1);
     }
-    setRerender(true);
-  }, [dispatch, goblin1Fled, goblin2Fled, rolledTimes, setRerender]);
+    rerender(true);
+  }, [dispatch, goblin1Fled, goblin2Fled, rolledTimes, rerender]);
 
   return (
     <Row>

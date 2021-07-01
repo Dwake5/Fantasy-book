@@ -1,5 +1,6 @@
 export const getPage = (state) => state.story.page;
 export const getPreviousPage = (state) => state.story.previousPage;
+export const getUserJourney = (state) => state.story.userJourney;
 export const getTraderViews = (state) => state.story.traderItemsViewed;
 export const getCantUseMagic = (state) => state.story.cantUseMagic;
 export const getPitfallPrevious = (state) => state.story.pitFallPrevious;
@@ -9,3 +10,4 @@ export const getLockSmashPrevious = (state) => state.story.lockSmashPrevious;
 export const getNightCreaturePrevious = (state) => state.story.nightCreaturePrevious;
 export const getNightCreatureFight = (state) => state.story.nightCreatureFight;
 export const getSwordRefund = (state) => state.story.swordRefund;
+export const getFireball = (state) => state.story.fireball;

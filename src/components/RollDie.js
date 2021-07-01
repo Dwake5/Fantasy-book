@@ -29,8 +29,8 @@ const RollDie = ({ cancelPause, pageType }) => {
           )}</b>.`
         );
       }
-      changeItemAmount(dispatch, {name: "provisions", amount: 1})
-      changeItemAmount(dispatch, {name: "beeswax", amount: 1})
+      changeItemAmount(dispatch, { name: "provisions", amount: 1 });
+      changeItemAmount(dispatch, { name: "beeswax", amount: 1 });
     }
 
     if (pageType === "snakeBites") {
@@ -59,13 +59,15 @@ const RollDie = ({ cancelPause, pageType }) => {
       >
         Roll die
       </button>
-      {alreadyRolled && <p className="mb-4" dangerouslySetInnerHTML={{ __html: text }}></p>}
+      {alreadyRolled && (
+        <p className="mb-4" dangerouslySetInnerHTML={{ __html: text }}></p>
+      )}
 
       {alreadyRolled && pageType === "beeStings" && (
         <p className="text-left">
-          Cutting open the hive on the ground, <b>you take with you the wax and the
-          honey.</b> The honey will provide you with enough nourishment for one
-          meal.
+          Cutting open the hive on the ground,{" "}
+          <b>you take with you the wax and the honey.</b> The honey will provide
+          you with enough nourishment for one meal.
         </p>
       )}
     </Container>

@@ -6,7 +6,7 @@ import { diceRolls, unblockChoice } from "../utils";
 // Skunk, Used on node 295. Got here from 166.
 
 // A dice determines which of the routes you take.
-const ForkDie = ({ type, setRerender }) => {
+const ForkDie = ({ type, rerender }) => {
   const [rollText, setRollText] = useState(null);
 
   const rollDie = () => {
@@ -20,7 +20,7 @@ const ForkDie = ({ type, setRerender }) => {
       const unblock = rolled === 1 ? 0 : 1
       unblockChoice(295, unblock);
     }
-    setRerender(true);
+    rerender(true);
   };
 
   return (

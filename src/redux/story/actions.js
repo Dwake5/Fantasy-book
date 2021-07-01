@@ -9,6 +9,7 @@ import {
   SET_PAGE,
   SET_TRADER_VIEWS,
   SWORD_REFUND,
+  FIREBALL_MANTICORE,
 } from "./action-types";
 
 export const setPage = (dispatch, number) => {
@@ -55,4 +56,8 @@ export const nightCreatureFight = (dispatch, boolean) => {
 
 export const swordRefund = (dispatch, boolean) => {
   dispatch({ type: SWORD_REFUND, payload: boolean });
+};
+
+export const usedFireball = (dispatch) => {
+  dispatch({ type: FIREBALL_MANTICORE });
 };

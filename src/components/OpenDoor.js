@@ -6,7 +6,7 @@ import { getSkill } from "../redux/stats/selectors";
 import { blockChoice, diceRolls, unblockChoice } from "../utils";
 
 // Used in 228, got here from 66
-const OpenDoor = ({ setRerender }) => {
+const OpenDoor = ({ rerender }) => {
   const dispatch = useDispatch()
   const [rollText, setRollText] = useState([]);
   const [rolls, setRolls] = useState(0);
@@ -37,10 +37,10 @@ const OpenDoor = ({ setRerender }) => {
       }
       setText(success ? "Success" : "Fail")
       setAlreadyRan(true)
-      setRerender(true)
+      rerender(true)
     };
     if (rolls === 3 && !alreadyRan) handleFunction()
-  }, [_skill, alreadyRan, dispatch, rollTotal, rolls, setRerender])
+  }, [_skill, alreadyRan, dispatch, rollTotal, rolls, rerender])
 
   return (
     <Container>

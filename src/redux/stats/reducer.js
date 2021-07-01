@@ -14,13 +14,14 @@ import {
   GAIN_CURSE_ALIANNA,
   GAIN_PLAGUE,
   SCORPION_STING,
+  FULL_RESTORE,
 } from "./action-types";
 
 const initialState = {
-  skill: 8,
-  maxSkill: 8,
-  stamina: 0,
-  maxStamina: 0,
+  skill: 10,
+  maxSkill: 10,
+  stamina: 24,
+  maxStamina: 24,
   luck: 10,
   maxLuck: 10,
   eatenToday: false,
@@ -28,7 +29,7 @@ const initialState = {
   plague: false,
   spiritCurse: false,
   aliannaCurse: false,
-  jann: true,
+  jann: false,
 };
 
 const halfHpRoundDown = (state) => {
@@ -46,7 +47,7 @@ export const reducer = (state = initialState, action) => {
       currentAmountOfStat = state[action.payload.stat];
 
       newStat = currentAmountOfStat - amount;
-      if (newStat < 0) newStat = 0;
+      if (newStat < 0 && stat !== "stamina") newStat = 0;
 
       return {
         ...state,
@@ -136,6 +137,20 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         stamina: halfHpRoundDown(state),
+      };
+    case FULL_RESTORE:
+      return {
+        ...state,
+        stamina: state.maxStamina,
+        skill: state.maxSkill,
+        luck: state.maxLuck + 1,
+        maxLuck: state.maxLuck + 1,
+        eatenToday: true,
+        libra: true,
+        plague: false,
+        spiritCurse: false,
+        aliannaCurse: false,
+        jann: false,
       };
     default:
       return state;

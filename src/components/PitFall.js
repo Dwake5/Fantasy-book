@@ -9,7 +9,7 @@ import { diceRolls, unblockChoice } from "../utils";
 // Used on node 277. Got here from 24,290,439,330,424.
 // 330 + 3 to die roll
 // 424 - 3 to die roll + can't die
-const PitFall = ({ setRerender }) => {
+const PitFall = ({ rerender }) => {
   const dispatch = useDispatch();
   const _luck = useSelector((state) => getStat(state, "luck"));
   const [rollText, setRollText] = useState([]);
@@ -53,7 +53,7 @@ const PitFall = ({ setRerender }) => {
       setRollText(getText("doubleSix", rolled, rollChange));
       loseStat(dispatch, "stamina", 24);
       unblockChoice(277, 1);
-      setRerender(true);
+      rerender(true);
     } else if (success) {
       setRollText(getText("highScore", rolled, rollChange));
       loseStat(dispatch, "stamina", 1);

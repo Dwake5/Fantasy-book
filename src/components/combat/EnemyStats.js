@@ -1,14 +1,16 @@
 import { Row, Col } from "react-bootstrap";
 import wolf from "../../assets/images/wolf.jpeg";
+import { chanceToHit } from "../../utils";
 import FutureEnemy from "./FutureEnemy";
 
-const PlayerStats = ({
+const EnemyStats = ({
   enemyName,
   enemyStamina,
   enemySkill,
   enemyAttStrModifier,
   enemyMaxStamina,
   extraEnemies,
+  skillDifference,
 }) => {
   return (
     <Col className="border">
@@ -25,6 +27,9 @@ const PlayerStats = ({
           {enemyAttStrModifier !== 0
             ? `(${enemyAttStrModifier > 0 ? "+" : ""}${enemyAttStrModifier})`
             : ""}
+        </p>
+        <p className="mb-0">
+          Accuracy: {chanceToHit(skillDifference).toFixed(2)}%
         </p>
       </div>
       <div>
@@ -43,4 +48,4 @@ const PlayerStats = ({
   );
 };
 
-export default PlayerStats;
+export default EnemyStats;

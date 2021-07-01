@@ -4,10 +4,16 @@ import { useDispatch, useSelector } from "react-redux";
 import "../assets/css/Story.css";
 import gameData from "../assets/gameData";
 import useFilters from "../hooks/useFilters";
+import { getInCombat } from "../redux/combat/selectors";
 import { changeItemAmount } from "../redux/items/actions";
-import { getMoney, getProvisions } from "../redux/items/selectors";
+import {
+  getMoney,
+  getOwnedItems,
+  getProvisions,
+} from "../redux/items/selectors";
 import {
   changeEatenToday,
+  fullRestore,
   gainStat,
   loseStat,
   playerRecieveCurseAlianna,
@@ -20,36 +26,40 @@ import {
   getSpiritCurse,
 } from "../redux/stats/selectors";
 import { playerLearnsJann, setPage } from "../redux/story/actions";
-import { getNightCreaturePrevious, getPage, getTraderViews } from "../redux/story/selectors";
+import {
+  getNightCreaturePrevious,
+  getPage,
+  getTraderViews,
+} from "../redux/story/selectors";
 import BackpackRobbed from "./BackpackRobbed";
 import BreakDoor from "./BreakDoor";
 import BuyProvisions from "./BuyProvisions";
+import Combat from "./combat/Combat";
+import CreateStats2 from "./CreateStats2";
 import EatOption from "./EatOption";
 import ForkDie from "./ForkDie";
+import GoblinsFlee from "./GoblinsFlee";
 import KillSnakes from "./KillSnakes";
 import LockSmash from "./LockSmash";
+import NightCreatures from "./NightCreatures";
 import OfferArtefact from "./OfferArtefact";
 import OpenDoor from "./OpenDoor";
 import PickpocketBox from "./PickpocketBox";
 import PilferGrass from "./PilferGrass";
 import PitFall from "./PitFall";
 import PlayerChoices from "./PlayerChoices";
+import RollDie from "./RollDie";
+import SnakeBites from "./SnakeBites";
 import TestLuck from "./TestLuck";
 import Trader from "./Trader";
 import TrollDice from "./TrollDice";
 import WitchSteals from "./WitchSteals";
-import Combat from "./combat/Combat";
-import { getInCombat } from "../redux/combat/selectors";
-import GoblinsFlee from "./GoblinsFlee";
-import NightCreatures from "./NightCreatures";
-import SnakeBites from "./SnakeBites";
-import RollDie from "./RollDie";
-import CreateStats2 from "./CreateStats2";
 
 const StoryMain = () => {
+  console.log("running story main");
   const dispatch = useDispatch();
   const _pageNumber = useSelector(getPage);
-  const _nightCreaturePrevious = useSelector(getNightCreaturePrevious)
+  const _nightCreaturePrevious = useSelector(getNightCreaturePrevious);
 
   const _money = useSelector(getMoney);
   const _provisions = useSelector(getProvisions);
@@ -69,8 +79,13 @@ const StoryMain = () => {
   const _havePlague = useSelector(getPlague);
   const _haveSpiritCurse = useSelector(getSpiritCurse);
 
+  const _itemsOwned = useSelector(getOwnedItems);
   const pageData = gameData[_pageNumber];
-  let pageChoices = pageData.choices;
+
+  // Handling spells fail success on a node
+  const spellOptions = pageData.spellOptions;
+  let spellText = "";
+  let pageChoices = pageData.choices; // spellsOptions will change this
   const pageText = pageData.text;
   let pauseChoices = pageData.pause;
   const extraText = pageData.extraText;
@@ -85,14 +100,40 @@ const StoryMain = () => {
   const testLuck = pageData.testLuck;
   const newDay = pageData.newDay;
   const eaten = pageData.eaten;
+  const winGame = pageData.winGame;
 
   const playerGetPlague = pageData.plague;
   const playerGetCurse = pageData.curse;
   const playerGetCurseAlianna = pageData.curseOfAlianna;
+  
+  const [loseItem, setLoseItem] = useState(false);
+  const loseSpellItem = (item) => {
+    if (loseItem) return
+    setLoseItem(true)
+    changeItemAmount(dispatch, { name: item, amount: -1 });
+  }
+
+  if (spellOptions !== undefined) {
+    const neededItem = spellOptions.requires;
+    const success = _itemsOwned.includes(neededItem);
+    if (success) {
+      if (spellOptions.loseItem) loseSpellItem(neededItem)
+      spellText = spellOptions.success.text;
+      pageChoices = spellOptions.success.choices;
+    } else {
+      spellText = spellOptions.fail.text;
+      pageChoices = spellOptions.fail.choices;
+      const extraStaminaLoss = spellOptions.fail.extraStaminaLoss
+      if (extraStaminaLoss !== undefined) {
+        staminaLoss += extraStaminaLoss;
+      }
+    }
+  }
 
   const [stayShowing, setStayShowing] = useState(false);
 
-  const discoverJannSecret = [286, 305, 306, 321, 394, 387];
+  // In manticore cave, assasin, meet jann spell * 2, lotus * 2
+  const discoverJannSecret = [286, 305, 306, 387, 321, 394];
 
   const cancelPause = (keepShowing) => {
     pageData.pause = false;
@@ -118,7 +159,10 @@ const StoryMain = () => {
         return <KillSnakes cancelPause={cancelPause} />;
       case 123:
         return (
-          <NightCreatures key={_nightCreaturePrevious} cancelPause={cancelPause} />
+          <NightCreatures
+            key={_nightCreaturePrevious}
+            cancelPause={cancelPause}
+          />
         );
       default:
     }
@@ -164,31 +208,35 @@ const StoryMain = () => {
       case 257:
         return <BuyProvisions amount={2} cost={2} playerMoney={_money} />;
       case 29:
-        return <OfferArtefact setRerender={setRerender} />;
+        return <OfferArtefact rerender={setRerender} />;
       case 32:
-        return <PilferGrass amount={2} pageNumber={32} setRerender={setRerender} />;
+        return (
+          <PilferGrass amount={2} pageNumber={32} rerender={setRerender} />
+        );
       case 57:
-        return <PilferGrass amount={1} pageNumber={57} setRerender={setRerender} />;
+        return (
+          <PilferGrass amount={1} pageNumber={57} rerender={setRerender} />
+        );
       case 48:
         return <WitchSteals pageNumber={_pageNumber} />;
       case 93:
         return <BreakDoor />;
       case 142:
-        return <LockSmash setRerender={setRerender} />;
+        return <LockSmash rerender={setRerender} />;
       case 228:
-        return <OpenDoor setRerender={setRerender} />;
+        return <OpenDoor rerender={setRerender} />;
       case 254:
-        return <ForkDie type="regular" setRerender={setRerender} />;
+        return <ForkDie type="regular" rerender={setRerender} />;
       case 295:
-        return <ForkDie type="skunk" setRerender={setRerender} />;
+        return <ForkDie type="skunk" rerender={setRerender} />;
       case 258:
         return <PickpocketBox />;
       case 277:
-        return <PitFall setRerender={setRerender} />;
+        return <PitFall rerender={setRerender} />;
       case 366:
         return <SnakeBites />;
       case 407:
-        return <GoblinsFlee setRerender={setRerender} />;
+        return <GoblinsFlee rerender={setRerender} />;
       default:
     }
   };
@@ -202,6 +250,7 @@ const StoryMain = () => {
 
   const addItems = (items) => {
     items.forEach((item) => {
+      console.log('please not here')
       changeItemAmount(dispatch, item);
     });
   };
@@ -227,6 +276,8 @@ const StoryMain = () => {
     if (discoverJannSecret.includes(_pageNumber)) {
       playerLearnsJann(dispatch);
     }
+
+    if (winGame !== undefined) fullRestore(dispatch);
 
     if (playerGetsItems !== undefined) addItems(playerGetsItems);
 
@@ -272,6 +323,7 @@ const StoryMain = () => {
       <label>Go to page:</label>
       <input type="text" onKeyDown={handleKeyDown}></input>
       <p dangerouslySetInnerHTML={{ __html: pageText }}></p>
+      {spellText && <p dangerouslySetInnerHTML={{ __html: spellText }}></p>}
       {testLuck && (
         <TestLuck
           setLuckPassed={setLuckPassed}

@@ -9,10 +9,11 @@ import {
   SET_PAGE,
   SET_TRADER_VIEWS,
   SWORD_REFUND,
+  FIREBALL_MANTICORE,
 } from "./action-types";
 
 const initialState = {
-  page: 105,
+  page: 231,
   previousPage: 0,
   traderItemsViewed: [],
   cantUseMagic: false,
@@ -24,6 +25,7 @@ const initialState = {
   nightCreatureFight: null,
   userJourney: [],
   swordRefund: false,
+  fireball: false,
 };
 
 export const reducer = (state = initialState, action) => {
@@ -79,6 +81,11 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         swordRefund: true,
+      };
+    case   FIREBALL_MANTICORE:
+      return {
+        ...state,
+        fireball: true,
       };
     default:
       return state;

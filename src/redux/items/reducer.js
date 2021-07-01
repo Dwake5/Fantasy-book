@@ -12,7 +12,7 @@ import {
 const initialState = {
   gold: {
     name: "Gold Pieces",
-    amount: 8,
+    amount: 20,
     info: "Basic currency used throughout the land",
     alwaysShow: true,
   },
@@ -172,9 +172,16 @@ const initialState = {
     singular: true,
     info: "A collar studded with green gems and looks quite valuable. Looted from a wolfhound.",
   },
+  furskinBoots: {
+    name: "Furskin boots",
+    amount: 0,
+    singular: true,
+    info: "A pair of boots made of Borrinskin",
+  },
+  // weapons below
   sword: {
     name: "Basic Sword",
-    amount: 1,
+    amount: 0,
     singular: true,
     info: "<p>Weak starting sword.</p>",
     equipped: true,
@@ -190,7 +197,7 @@ const initialState = {
   },
   axe: {
     name: "Axe",
-    amount: 0,
+    amount: 1,
     singular: true,
     info: `<p>-1 Attack Strength when equipped</p> 
     <p>The carvings read: This axe was crafted in the Year of the Ox for Glandragor the Protector. 

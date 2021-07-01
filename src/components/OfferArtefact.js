@@ -6,7 +6,7 @@ import { getItems, getOwnedItems } from "../redux/items/selectors";
 import { unblockChoice } from "../utils";
 
 // Used in node 29, arrived from 182
-const OfferArtefact = ({ setRerender }) => {
+const OfferArtefact = ({ rerender }) => {
   const dispatch = useDispatch();
   const _items = useSelector(getItems);
   const _itemsOwned = useSelector(getOwnedItems);
@@ -28,7 +28,7 @@ const OfferArtefact = ({ setRerender }) => {
     setGaveArtefact(true);
     unblockChoice(29, 0);
     changeItemAmount(dispatch, { name: item, amount: -10 });
-    setRerender(true);
+    rerender(true);
   };
 
   const [firstRun, setFirstRun] = useState(true);
@@ -41,9 +41,9 @@ const OfferArtefact = ({ setRerender }) => {
     if (fixedArtefacts.current.length === 0) {
       unblockChoice(29, 1);
       unblockChoice(29, 2);
-      setRerender(true)
+      rerender(true)
     }
-  }, [artefacts.length, dispatch, setRerender]);
+  }, [artefacts.length, dispatch, rerender]);
 
   return (
     <Container className="text-center">

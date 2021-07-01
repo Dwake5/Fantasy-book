@@ -13,7 +13,7 @@ import { blockChoice, diceRolls, unblockChoice } from "../utils";
 
 // Used on node 142. Got here from 4 or 360.
 // 360 = -2 from roll, if first hit is succesful no skill loss.
-const LockSmash = ({setRerender}) => {
+const LockSmash = ({rerender}) => {
   const dispatch = useDispatch();
   const _skill = useSelector(getSkill);
   const _equippedWeapon = useSelector(getEquippedWeapon);
@@ -56,7 +56,7 @@ const LockSmash = ({setRerender}) => {
 
     if (firstTry && !success) {
       unblockChoice(142, 1)
-      setRerender(true)
+      rerender(true)
     }
 
     setFirstTry(false);
@@ -67,7 +67,7 @@ const LockSmash = ({setRerender}) => {
       setSuccess(true);
       unblockChoice(142, 0)
       blockChoice(142, 1)
-      setRerender(true)
+      rerender(true)
     } else {
     }
     newRollText += shouldBluntWeapon

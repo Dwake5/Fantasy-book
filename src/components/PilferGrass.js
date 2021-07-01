@@ -7,7 +7,7 @@ import { pluralize, unblockChoice } from "../utils";
 
 // Used in node 32, arrived from 105 (-2 items)
 // Used in node 57, arrived from 105 (-1 items)
-const PilferGrass = ({ amount, pageNumber, setRerender }) => {
+const PilferGrass = ({ amount, pageNumber, rerender }) => {
   const dispatch = useDispatch();
   const _items = useSelector(getItems);
   const _itemsOwned = useSelector(getOwnedItems);
@@ -23,7 +23,7 @@ const PilferGrass = ({ amount, pageNumber, setRerender }) => {
   const getText = _itemsOwned.length
     ? `Pick ${amount === 1 ? "one" : "two"} ${pluralize("artefact", amount)} to
       lose`
-    : `You have nothing else to give`;
+    : `You have nothing to give`;
 
   const [firstRun, setFirstRun] = useState(true);
   if (firstRun) {
@@ -39,7 +39,7 @@ const PilferGrass = ({ amount, pageNumber, setRerender }) => {
     realLostArtefacts++;
     if (realLostArtefacts >= amount || realArtefacts.length === 0) {
       unblockChoice(pageNumber, 0);
-      setRerender(true);
+      rerender(true);
     }
   };
 

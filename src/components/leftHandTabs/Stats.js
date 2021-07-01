@@ -18,6 +18,7 @@ const Stats = ({ skill, maxSkill, stamina, maxStamina, luck, maxLuck }) => {
   const _weaponSkillLoss = useSelector(getWeaponSkillLoss);
   const totalSkillLoss = _weaponSkillLoss + _haveAliannaCurse;
 
+  const staminaDisplay = stamina >= 0 ? stamina : 0
   return (
     <Container className="border text-center statsBox mb-2">
       <p className="h3 text-center">Stats</p>
@@ -29,7 +30,7 @@ const Stats = ({ skill, maxSkill, stamina, maxStamina, luck, maxLuck }) => {
           <ProgressBar
             variant="danger"
             className="mb-2"
-            now={(stamina / maxStamina) * 100}
+            now={(staminaDisplay / maxStamina) * 100}
           />
         </>
       )}
