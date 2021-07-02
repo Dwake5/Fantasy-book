@@ -24,7 +24,6 @@ const PlayerStats = ({
   lastLife,
   skillDifference,
 }) => {
-  console.log('skillDifference :', skillDifference);
   const damageExcess = damage - 2;
   const excessFunction = (stat) => {
     if (stat === 0) return;
@@ -48,8 +47,9 @@ const PlayerStats = ({
       <p className="mb-0">
         Accuracy: {chanceToHit(skillDifference).toFixed(2)}%
       </p>
+      {/* Might want to rewrite damage */}
       <p className="mb-0">
-        Damage: {damage} {excessFunction(damageExcess)}
+        Damage: {damage} {excessFunction(damageExcess)} 
       </p>
       <p className="mb-3">
         Luck: {luck} / {maxLuck}

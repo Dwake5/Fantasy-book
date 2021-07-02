@@ -20,8 +20,8 @@ import {
 const initialState = {
   skill: 10,
   maxSkill: 10,
-  stamina: 24,
-  maxStamina: 24,
+  stamina: 10,
+  maxStamina: 10,
   luck: 10,
   maxLuck: 10,
   eatenToday: false,

@@ -1869,7 +1869,11 @@ const gameData = {
         text: "I have a Spell Book page",
         requires: "spellbookPage",
       },
-      { goToPage: 219, text: "I do not have a Spell Book page" },
+      {
+        goToPage: 219,
+        text: "I do not have a Spell Book page",
+        blockItem: "spellbookPage",
+      },
     ],
     staminaGain: 1,
     luckGain: 1,
@@ -3755,7 +3759,7 @@ const gameData = {
     staminaLoss: 1,
     spellOptions: {
       requires: "gold",
-      loseItem: true,
+      loseItem: 1,
       success: {
         text: `You place it on your wrist and cast your spell. An invisible shield forms 
         around it, large enough for you to hide behind. You are able to pass 
@@ -3797,7 +3801,7 @@ const gameData = {
     staminaLoss: 1,
     spellOptions: {
       requires: "potion",
-      loseItem: true,
+      loseItem: 1,
       success: {
         text: `You cast the 
         spell over the Blimberry potion, and then sprinkle the enchanted juice 
@@ -3846,11 +3850,11 @@ const gameData = {
   },
   303: {
     // unique node
-    text: `Deduct 1 Stamina point. Do you have any small pebbles with you?`,
+    text: `Deduct 1 Stamina point. Do you have any small Pebbles with you?`,
     staminaLoss: 1,
     spellOptions: {
       requires: "pebbles",
-      loseItem: true,
+      loseItem: 3,
       success: {
         text: `You cast the spell on the pebbles and toss them at the snakes. 
         They explode on impact, killing several of them and frightening 
@@ -3924,11 +3928,11 @@ const gameData = {
         control they drop their swords and are soon dancing merrily before 
         you. Piping loudly, you direct them back to the village and, as they 
         dance off, you continue your journey.`,
-        choices: [{ goToPage: 104, text: "Spell Fail - return to fight" }],
+        choices: [{ goToPage: 131, text: "Spell Success: Continue" }],
       },
       fail: {
         text: "As you do not, go back and choose another option.",
-        choices: [{ goToPage: 131, text: "Spell Success - continue" }],
+        choices: [{ goToPage: 104, text: "Spell Fail: Choose again" }],
       },
     },
   },
@@ -3978,7 +3982,7 @@ const gameData = {
     front of them! The leader laughs - or rather all six of them laugh 
     together - and the sight is most amusing. Soon all the Elvins are 
     laughing and the leader and his replicas hold out their hands to shake 
-    with their comrades. Five of the other Eivins, of course, grasp thin air. 
+    with their comrades. Five of the other Elvins, of course, grasp thin air. 
     The spell soon wears off and the creatures congratulate you, returning 
     your backpack and allowing you to leave the village.`,
     choices: [{ goToPage: 196, text: "Continue.." }],
@@ -4095,17 +4099,30 @@ const gameData = {
     text: `Deduct 1 Stamina point. Do you have any beeswax with you?`,
     staminaLoss: 1,
     spellOptions: {
-      requires: "gold",
-      loseItem: true, // Just half though
+      requires: "beeswax",
+      loseItem: 0.5,
       success: {
         text: `You rub it on your sword. Fight the Goblin as normal, but any
         damage you inflict on the Goblin while your sword has been magically sharpened will be doubled. 
         The effect will only last for this fight, and you have used up half your beeswax.`,
-        choices: [{ goToPage: 47, text: "Spell Success: Fight the goblins" }], // todo double damage
+        choices: [
+          {
+            goToPage: 186,
+            text: "Spell Success: Fight the goblins",
+            appliedBeeswax: true,
+            fight: { skill: 7, stamina: 6, name: "Goblin" },
+          },
+        ],
       },
       fail: {
-        text: "If not, you must deduct 3 extra Stamina points as the Goblin attacks.",
-        choices: [{ goToPage: 47, text: "Spell Success: Fight the goblins" }],
+        text: "As you do not, <b>you lose 3 extra Stamina points</b> as the Goblin attacks.",
+        choices: [
+          {
+            goToPage: 186,
+            text: "Spell Fail: Fight the goblins",
+            fight: { skill: 7, stamina: 6, name: "Goblin" },
+          },
+        ],
       },
     },
   },
@@ -4199,14 +4216,14 @@ const gameData = {
         it cannot understand what is happening! The bulky creature is doing 
         a little dance in front of you! You keep it occupied while you back off 
         towards the door.`,
-        choices: [{ goToPage: 169, text: "Continue.." }],
+        choices: [{ goToPage: 169, text: "Spell Success: Continue.." }],
       },
       fail: {
         text: "If not, the Wood Golem attacks for 1 Stamina points' worth of damage",
         choices: [
           {
             goToPage: 87,
-            text: "Spell Fail - Go back and choose again",
+            text: "Spell Fail: Go back and choose again",
           },
         ],
         extraStaminaLoss: 1,
@@ -4400,7 +4417,8 @@ const gameData = {
     text: `<p>Deduct 1 Stamina point. Do you have any beeswax with you?</p>`,
     staminaLoss: 1,
     spellOptions: {
-      requires: "pipe",
+      requires: "beeswax",
+      loseItem: 0.5,
       success: {
         text: `<p>If you have beeswax, you wipe half a portion of it on to your weapon to enhance its effect.</p> 
 
@@ -4409,7 +4427,7 @@ const gameData = {
         choices: [
           {
             goToPage: 142,
-            text: "Spell success - Try smashing the lock",
+            text: "Spell Success: Try smashing the lock",
             requires: "beeswax",
             cameFrom: 360,
           },
@@ -4430,7 +4448,8 @@ const gameData = {
     text: `<p>Deduct 1 Stamina point. Do you have a Giant's tooth?</p>`,
     staminaLoss: 1,
     spellOptions: {
-      requires: "giantsTooth",
+      requires: "giantsTeeth",
+      loseItem: 1,
       success: {
         text: `<p>You drop one on to the floor 
         and cast your spell on it. The great creature watches inquisitively, 
@@ -4445,10 +4464,10 @@ const gameData = {
         have to finish the battle off yourself.</p>`,
         choices: [
           {
-            goToPage: 142,
-            text: "Spell success - Try smashing the lock",
-            requires: "beeswax",
-            cameFrom: 360,
+            goToPage: 265,
+            text: "Spell Success: Fight the Hill Giant",
+            fight: { skill: 9, stamina: 11, name: "Hill Giant" },
+            allies: [{ skill: 8, stamina: 9, name: "Magical Giant" }],
           },
         ],
       },
@@ -4529,7 +4548,7 @@ const gameData = {
     staminaLoss: 1,
     spellOptions: {
       requires: "glue",
-      loseItem: true,
+      loseItem: 1,
       success: {
         text: `You cast your spell and fling the vial at the passage floor in 
         front of the boulder. Sweating with anxiety, you breathe a sigh of 
@@ -4538,8 +4557,8 @@ const gameData = {
         to the junction in the passage and take the other fork or 
         return to the main chamber and take the other passage.`,
         choices: [
-          { goToPage: 63, text: "Take the other fork" },
-          { goToPage: 16, text: "Take the other passage" },
+          { goToPage: 63, text: "Spell Success: Take the other fork" },
+          { goToPage: 16, text: "Spell Success: Take the other passage" },
         ],
       },
       fail: {
@@ -4561,26 +4580,43 @@ const gameData = {
   },
   369: {
     // Ran a thousand simulations of this: most gobs needed was 941, min was 92, average 362
-    text: `<p>Do you have any Goblins' teeth with you? If so you may throw as 
-    many as you wish on to the ground and cast your spell. Deduct 1 
-    Stamina point per tooth. With a cloud of smoke, this number of 
-    Goblins now stand before you and you may command them to attack 
-    the Manticore. Resolve the battle (the Goblins will attack one after the 
-    other):</p>
+    text: `<p>Do you have any Goblins' teeth with you?</p>`,
+    staminaLoss: 1,
+    spellOptions: {
+      requires: "goblinTeeth",
+      loseItem: 1,
+      success: {
+        text: `If so you may throw as 
+        many as you wish on to the ground and cast your spell. Deduct 1 
+        Stamina point per tooth. With a cloud of smoke, this number of 
+        Goblins now stand before you and you may command them to attack 
+        the Manticore. Resolve the battle (the Goblins will attack one after the 
+        other):</p>
+        
+        <p><b>MANTICORE Skill 12 Stamina 18</b></p>
+        <p><b>GOBLINS Skill 5 Stamina 5</b></p>
     
-    <p><b>MANTICORE Skill 12 Stamina 18</b></p>
-    <p><b>GOBLINS Skill 5 Stamina 5</b></p>
-
-    <p>Each time the Manticore hits a Goblin, one die will be rolled. On a roll of 5 or 6, it 
-    will have stung with its poisonous tail, killing the Goblin. 1-4 is a 
-    normal hit. The same will be applied when it fights you with slightly different rules.
-    A roll of 5 or 6 will inflict an extra 4 damage, but this can be blocked by succesfully testing your luck.
-    A roll of 1-4 will do the normal 2 damage.</p>
-    
-    <p>If the Manticore defeats all your Goblins, you try to finish the job with your sword.</p>`,
-    choices: [{ goToPage: 227, text: "Finish him with your sword" }],
-    // If no teeth go to page x
-    // todo deduct 1 hp per tooth
+        <p>Each time the Manticore hits a Goblin, one die will be rolled. On a roll of 5 or 6, it 
+        will have stung with its poisonous tail, killing the Goblin. 1-4 is a 
+        normal hit. The same will be applied when it fights you with slightly different rules.
+        A roll of 5 or 6 will inflict an extra 4 damage, but this can be blocked by succesfully testing your luck.
+        A roll of 1-4 will do the normal 2 damage.</p>
+        
+        <p>If the Manticore defeats all your Goblins, you try to finish it off with your sword.</p>`,
+        pause: true,
+        choices: [
+          {
+            goToPage: 456,
+            text: `Continue..`,
+            fight: { skill: 12, stamina: 18, name: "Manticore" },
+          },
+        ],
+      },
+      fail: {
+        text: "As you do not your spell fails and you must choose another option.",
+        choices: [{ goToPage: 420, text: "Spell Fail: Choose another spell" }],
+      },
+    },
   },
   370: {
     text: `Deduct 3 Stamina points. There is no such spell as this.`,
@@ -4724,8 +4760,8 @@ const gameData = {
     text: `<p>Deduct 1 Stamina point. Do you have a Gold Piece with you?</p>`,
     staminaLoss: 1,
     spellOptions: {
-      requires: "glue",
-      loseItem: true,
+      requires: "gold",
+      loseItem: 1,
       success: {
         text: `<p>If you do have such a coin, you place it 
         on your wrist and cast your spell. The coin sticks and you can feel an 
@@ -4740,14 +4776,14 @@ const gameData = {
         choices: [
           {
             goToPage: 177,
-            text: "Fight the Troll Sentry",
+            text: "Spell Success: Fight the Troll Sentry",
             fight: { skill: 8, stamina: 7, name: "Troll Sentry" },
           },
         ],
       },
       fail: {
         text: "If not your spell fails and you must choose another option.",
-        choices: [{ goToPage: 99, text: "Spell fail - Choose again" }],
+        choices: [{ goToPage: 99, text: "Spell Fail: Choose again" }],
       },
     },
   },
@@ -4762,8 +4798,8 @@ const gameData = {
     text: `<p>Deduct 1 Stamina point. Do you have a Giant's tooth with you?</p>`,
     staminaLoss: 1,
     spellOptions: {
-      requires: "glue",
-      loseItem: true,
+      requires: "giantsTooth",
+      loseItem: 1,
       success: {
         text: `<p>If you do have a Giant's tooth, you place it on the 
         floor and cast your spell, A cloud of smoke appears around the tooth 
@@ -4786,12 +4822,13 @@ const gameData = {
             goToPage: 277,
             text: "Spell Success: Fight the Manticore",
             fight: { skill: 12, stamina: 18, name: "Manticore" },
+            allies: [{ skill: 8, stamina: 9, name: "Magical Giant" }],
           },
         ],
       },
       fail: {
         text: "If not, you cannot cast this spell you must defend yourself with your weapon.",
-        choices: [{ goToPage: 227, text: "Spell fail: Fight the Manticore" }],
+        choices: [{ goToPage: 227, text: "Spell Fail: Fight the Manticore" }],
       },
     },
   },
@@ -4901,7 +4938,7 @@ const gameData = {
     staminaLoss: 1,
     spellOptions: {
       requires: "gold",
-      loseItem: true,
+      loseItem: 1,
       success: {
         text: `If you do 
         have a coin, you place it on your wrist and cast the spell. You can feel 
@@ -4922,7 +4959,7 @@ const gameData = {
         text: `As you don't, you <b>lose 2 extra Stamina points</b> when the Ogre leaps at you and 
         attacks while you fumble with your spell.`,
         extraStaminaLoss: 2,
-        choices: [{ goToPage: 285, text: "Spell fail: Fight the Ogre" }],
+        choices: [{ goToPage: 285, text: "Spell Fail: Fight the Ogre" }],
       },
     },
   },
@@ -4930,8 +4967,8 @@ const gameData = {
     text: `Do you have a Goblin's tooth with you?`,
     staminaLoss: 1,
     spellOptions: {
-      requires: "goblinTooth",
-      loseItem: true,
+      requires: "goblinTeeth",
+      loseItem: 1,
       success: {
         text: `As you do 
         have a tooth, you cast your spell over it (deduct 1 Stamina point) and 
@@ -4946,9 +4983,9 @@ const gameData = {
         choices: [{ goToPage: 196, text: "Spell Success: Continue.." }],
       },
       fail: {
-        text: `If not, you try in vain to cast 
-        the spell and the Eivins are not impressed, tying your hands and 
-        kicking you angrily (lose 2 Stamina points).`,
+        text: `As you do not, you try in vain to cast 
+        the spell and the Elvins are not impressed, tying your hands and 
+        kicking you angrily <b>(you lose 2 Stamina points)</b>.`,
         extraStaminaLoss: 1,
         choices: [{ goToPage: 218, text: "Spell Fail: Continue.." }],
       },
@@ -5178,16 +5215,16 @@ const gameData = {
   425: {
     text: `<p>Do you have any Goblins' teeth with you?</p>`,
     spellOptions: {
-      requires: "goblinTooth",
-      loseItem: true,
+      requires: "goblinTeeth",
       success: {
         text: `<p>If so, you may throw as 
         many as you want on to the floor and cast your spell on them. You 
         lose 1 Stamina point per Goblin you create. 
-        If your goblins dont win, finish it off yourself.</p>
+        If your goblins don't win, finish it off yourself.</p>
         
         <p><b>WOLFHOUND Skill 7 Stamina 6</b></p>
         <p><b>GOBLINS Skill 5 Stamina 5</b></p>`,
+        pause: true,
         choices: [
           {
             goToPage: 50,
@@ -5199,7 +5236,7 @@ const gameData = {
       fail: {
         text: `<p>If you do not have any Goblins' teeth, then you try in vain 
         to cast the spell and the Wolfhound leaps at your throat, causing you 
-        5 Stamina points worth of damage - you will have to fight it:</p> `,
+        5 Stamina points worth of damage - you will have to fight it.</p> `,
         extraStaminaLoss: 5,
         choices: [
           {
@@ -5322,8 +5359,8 @@ const gameData = {
     text: `Deduct 1 Stamina point. Do you have a Gold Piece with you?`,
     staminaLoss: 1,
     spellOptions: {
-      requires: "goblinTooth",
-      loseItem: true,
+      requires: "gold",
+      loseItem: 1,
       success: {
         text: `If you have a coin, you place it on your wrist and cast 
         the spell. An invisible shield forms around your forearm, and you 
@@ -5356,16 +5393,17 @@ const gameData = {
     text: `Deduct 1 Stamina point and cast your spell. Do you have any beeswax with you?`,
     staminaLoss: 1,
     spellOptions: {
-      requires: "beezwax",
-      loseItem: true,
+      requires: "beeswax",
+      loseItem: 0.5,
       success: {
         text: `If so, you have rubbed it on your sword and it now 
-        has been magically enhanced, using half a beezwax. Return and fight the Goblins but, 
+        has been magically enhanced, using half a beeswax. Return and fight the Goblins but, 
         each time you hit a Goblin, you may double the damage you do.`,
         choices: [
           {
             goToPage: 155,
             text: "Fight the Goblins (double damage)",
+            appliedBeeswax: true,
             fight: {
               skill: 5,
               stamina: 4,

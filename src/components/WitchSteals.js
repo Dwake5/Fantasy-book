@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { changeItemAmount } from "../redux/items/actions";
 import { getItems, getOwnedItems } from "../redux/items/selectors";
 
-// Used in node 48, arrived from 243
+// Used in node 48, arrived from 243 choice 1
 const WitchSteals = () => {
   const dispatch = useDispatch();
   const _items = useSelector(getItems);
@@ -53,7 +53,7 @@ const WitchSteals = () => {
     items.forEach((item) => {
       changeItemAmount(dispatch, { name: item, amount: -100 });
     });
-  }, []);
+  }, [dispatch, exitFunction, firstRun, magicalItemsOwned]);
 
   if (exitFunction) return null;
   return (
@@ -64,7 +64,7 @@ const WitchSteals = () => {
       {itemsTaken.length > 0 &&
         itemsTaken.map((item) => {
           return (
-            <p className="mb-0" key={item}>
+            <p className="mb-0 text-danger" key={item}>
               {_items[item].name}
             </p>
           );

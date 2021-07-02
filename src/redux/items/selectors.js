@@ -2,6 +2,7 @@ export const getItems = (state) => state.items;
 export const getMoney = (state) => state.items.gold.amount;
 export const getProvisions = (state) => state.items.provisions.amount;
 export const ownItem = (state, item) => state.items[item].amount > 0;
+export const howManyItem = (state, item) => state.items[item].amount;
 
 export const getEquippedWeapon = (state) => {
   const weapon = Object.entries(state.items).find((item) => item[1].equipped);

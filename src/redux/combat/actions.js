@@ -7,6 +7,9 @@ import {
   DOUBLE_ENEMY_AS,
   REMOVE_ENEMY,
   ADD_EXTRA_ENEMIES,
+  APPLY_BEESWAX,
+  ADD_ALLY,
+  DAMAGE_ALLY,
 } from "./action-types";
 
 export const startCombat = (dispatch) => {
@@ -36,8 +39,23 @@ export const setDoubleEnemySkill = (dispatch, number) => {
 
 export const removeEnemyFromQueue = (dispatch) => {
   dispatch({ type: REMOVE_ENEMY });
-}
+};
 
 export const addExtraEnemies = (dispatch, array) => {
   dispatch({ type: ADD_EXTRA_ENEMIES, payload: array });
+};
+
+export const addAllies = (dispatch, array) => {
+  for (const monster of array) {
+    monster.maxStamina = monster.stamina
+  }
+  dispatch({ type: ADD_ALLY, payload: array });
+};
+
+export const damageAlly = (dispatch, number) => {
+  dispatch({ type: DAMAGE_ALLY, payload: number });
+};
+
+export const applyBeeswax = (dispatch, boolean) => {
+  dispatch({ type: APPLY_BEESWAX, payload: boolean });
 };

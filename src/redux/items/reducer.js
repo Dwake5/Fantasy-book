@@ -12,7 +12,7 @@ import {
 const initialState = {
   gold: {
     name: "Gold Pieces",
-    amount: 20,
+    amount: 0,
     info: "Basic currency used throughout the land",
     alwaysShow: true,
   },
@@ -84,19 +84,19 @@ const initialState = {
   },
   glue: {
     name: "Vial of Glue",
-    amount: 0,
+    amount: 1,
     singular: true,
     info: "Used in spells.",
   },
   nosePlugs: {
     name: "Noseplugs",
-    amount: 0,
+    amount: 1,
     singular: true,
     info: "Used in spells.",
   },
   pebbles: {
     name: "Pebbles",
-    amount: 0,
+    amount: 50,
     info: "Small round pebbles, useful for spells.",
   },
   spellbookPage: {
@@ -137,12 +137,12 @@ const initialState = {
   apeTeeth: { name: "Apes Teeth", amount: 0, info: "Ape Teeth" },
   goblinTeeth: {
     name: "Goblins Teeth",
-    amount: 0,
+    amount: 20,
     info: "Goblin Teeth, used in magic",
   },
   giantsTeeth: {
     name: "Giants Teeth",
-    amount: 0,
+    amount: 1,
     info: "Giant Teeth, used in magic",
   },
   snattacatTeeth: {

@@ -1,17 +1,14 @@
 # Things to do
 
 <ul>
-  <li>Find a way to adapt story text based on users stats for example when you dont have a magic item</li>
   <li>Add P tags to text to format it better</li>
   <li>Progress bars to combat</li>
   <li>Get no change for buying with gems (15) might not do this, a lot of work for little payoff, maybe just give 5gp a piece</li>
   <li>Handle death</li>
-  <li>Handle spells requiring certain items</li>
   <li>Handle using spells causing extra damage to you if you don't have items</li>
   <li>Workout when the user has to know about Jann... (305, 306, 321, 394, 387, 286) all tell you, but are optional choices except 286!) Requires a lot of testing</li>
   <li>Add bold text to important info the player recieves, and stat loss / increases</li>
   <li>Make Pilfer grass look more like backpack robbed</li>
-  <li>Handle YOB, 361, 388 (S8 HP9)</li>
   <li>Handle GOB, 425, 369 (S5 HP5)</li>
   <li>Handle using Libra during combat</li>
 </ul>
@@ -22,6 +19,10 @@ combat mods
 # Done
 
 <ul>
+  <li>Handle YOB, 361, 388 (S8 HP9)</li>
+  <li>Find a way to adapt story text based on users stats for example when you dont have a magic item</li>
+  <li>Handle spells requiring certain items</li>
+  <li>Fixed: Spells fail if you have exactly the right amount of items needed</li>
   <li>Item furskin boots at 110</li>
   <li>Fireball manticore now working (its doubled though?)</li>
   <li>Fixed the combat, last chance luck issue, health can go negative</li>
@@ -186,13 +187,13 @@ Try to prioritize getting items at a node, rather than a choice.
 
 <ul>
 <li>295: Roll dice, 1 is bad: fight</li>
-<li>303: Need pebbles and dynamic text</li>
+<!-- <li>303: Need pebbles and dynamic text</li> -->
 <!-- <li>317: Weaken troll skill 4 stamina 7, 50/50 it gets strong after round 4</li> -->
 <!-- <li>325: Fights at half skill for 4 rounds Manticore</li> -->
-<li>328: Dyanmic text, requires beeswax</li>
+<!-- <li>328: Dyanmic text, requires beeswax</li> -->
 <!-- <li>330: Add + 3 to roll at 277</li> -->
 <!-- <li>338: Fight weakened Hill Giant skill 6 stamina 11</li> -->
-<li>339: requires bamboo flutes dynamic text</li>
+<!-- <li>339: requires bamboo flutes dynamic text</li> -->
 <!-- <li>356: Can test luck, if success no fight, if fail fight with double skill.</li> -->
 <!-- <li>366: Take 1d damage, if 6 test luck, if unlucky you die.</li> -->
 <!-- <li>417: Take 1d damage for 1-5, if 6 you die.</li> -->

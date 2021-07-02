@@ -13,7 +13,7 @@ import {
 } from "./action-types";
 
 const initialState = {
-  page: 231,
+  page: 369,
   previousPage: 0,
   traderItemsViewed: [],
   cantUseMagic: false,

@@ -7,6 +7,8 @@ import {
   setEnemyStats,
   setPageAfterCombat,
   startCombat,
+  applyBeeswax,
+  addAllies,
 } from "../redux/combat/actions";
 import {
   changeItemAmount,
@@ -41,7 +43,7 @@ import {
 } from "../redux/story/selectors";
 import { resetNightCreatures } from "../utils";
 
-const PlayerChoices = ({ choices, setStayShowing, pause }) => {
+const PlayerChoices = ({ choices, setStayShowing, pause, clearSpellState }) => {
   const dispatch = useDispatch();
   const _eatenToday = useSelector(eatenToday);
   const _equippedWeapon = useSelector(getEquippedWeapon);
@@ -54,7 +56,6 @@ const PlayerChoices = ({ choices, setStayShowing, pause }) => {
 
   const handleChoice = useCallback(
     (choice, NCP, previous, waterfallPass) => {
-
       const addItems = (items) => {
         items.forEach((item) => {
           changeItemAmount(dispatch, item);
@@ -62,6 +63,8 @@ const PlayerChoices = ({ choices, setStayShowing, pause }) => {
       };
 
       const nodeVisiting = choice.goToPage;
+
+      if (choice.appliedBeeswax) applyBeeswax(dispatch);
 
       if (choice.cost && !choice.dontPay) {
         if (nodeVisiting === 204 && waterfallPass) {
@@ -115,11 +118,11 @@ const PlayerChoices = ({ choices, setStayShowing, pause }) => {
         const enemyName = choice.fight.name;
         const pageAfter = choice.goToPage;
         const extraEnemies = choice.extraEnemies;
-        if (extraEnemies !== undefined) {
-          addExtraEnemies(dispatch, extraEnemies);
-        }
+        const allies = choice.allies;
+        if (extraEnemies !== undefined) addExtraEnemies(dispatch, extraEnemies);
+        if (allies !== undefined) addAllies(dispatch, allies);
 
-        if (previous === 325) enemySkill /= 2; // Half manticore skill
+        if (previous === 325) enemySkill /= 2; // Half Manticore skill
 
         // set stats, start combat and exit this function
         setEnemyStats(dispatch, enemySkill, enemyStamina, enemyName);
@@ -220,7 +223,7 @@ const PlayerChoices = ({ choices, setStayShowing, pause }) => {
                   choice,
                   _nightCreaturePrevious,
                   _previousPage,
-                  _haveWaterfallPass
+                  _haveWaterfallPass,
                 )
               : null
           }

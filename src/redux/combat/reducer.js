@@ -7,13 +7,29 @@ import {
   DOUBLE_ENEMY_AS,
   REMOVE_ENEMY,
   ADD_EXTRA_ENEMIES,
+  ADD_ALLY,
+  APPLY_BEESWAX,
+  DAMAGE_ALLY,
 } from "./action-types";
 
 const initialState = {
   inCombat: false,
   enemyStats: { skill: 0, maxStamina: 0, stamina: 0, name: "" },
   extraEnemies: [],
+  allies: [],
   pageAfterCombat: 0,
+  appliedBeeswax: false,
+};
+
+const damageFirstAlly = (state, damage) => {
+  let moreAllies = state.allies.slice(1);
+  let ally = state.allies[0];
+  ally.stamina -= damage;
+  if (ally.stamina <= 0) {
+    if (moreAllies) return [...moreAllies]
+    return
+  };
+  return [ally, ...moreAllies]
 };
 
 export const reducer = (state = initialState, action) => {
@@ -27,6 +43,7 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         inCombat: false,
+        appliedBeeswax: false,
       };
     case ENEMY_STATS:
       return {
@@ -63,6 +80,21 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         extraEnemies: action.payload,
+      };
+    case ADD_ALLY:
+      return {
+        ...state,
+        allies: action.payload,
+      };
+    case DAMAGE_ALLY:
+      return {
+        ...state,
+        allies: damageFirstAlly(state, action.payload)
+      };
+    case APPLY_BEESWAX:
+      return {
+        ...state,
+        appliedBeeswax: true,
       };
     default:
       return state;
