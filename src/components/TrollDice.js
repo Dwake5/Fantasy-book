@@ -24,7 +24,7 @@ const TrollDice = ({ cancelPause }) => {
   const luckNeedToPass = _haveLuckAmulet ? _luck + 1 : _luck
 
   const handleDieRoll = () => {
-    cancelPause(true);
+    cancelPause();
     setAlreadyRolled(true);
     const rolled = diceRolls(1, true);
     setRolledText(`You rolled a ${rolled}.`);

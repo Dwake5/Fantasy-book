@@ -4531,7 +4531,7 @@ const gameData = {
     // unique node
     text: `Deduct 1 Stamina point. You cannot use this spell as you do not 
     have the Jewel-Studded Medallion it requires. While you are trying to 
-    cast it, the snakes have taken an interest in you. Roll one die, This is 
+    cast it, the snakes have taken an interest in you. Roll one die, this is 
     the number of Stamina points that you lose when they bite you. If 
     you roll a six, one of the bites has been poisonous and you must Test 
     your Luck- if you are Lucky, you survive; if you are Unlucky, you die 

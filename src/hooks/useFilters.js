@@ -24,6 +24,8 @@ export function useFilters(choices, luckPassed, pauseChoices) {
   const _nightCreatureFight = useSelector(getNightCreatureFight);
   const _swordRefund = useSelector(getSwordRefund);
 
+  if (pauseChoices) return [];
+
   const canAfford = (choice) => {
     const choiceCost = choice.cost;
     if (choiceCost === undefined) return choice;

@@ -14,7 +14,7 @@ const RollDie = ({ cancelPause, pageType }) => {
 
   const handleDie = () => {
     setAlreadyRolled(true);
-    cancelPause(true);
+    cancelPause();
     const dieRoll = diceRolls(1, true);
 
     if (pageType === "beeStings") {

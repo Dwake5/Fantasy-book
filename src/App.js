@@ -6,7 +6,6 @@ import Stats from "./components/leftHandTabs/Stats";
 import Items from "./components/leftHandTabs/Items";
 import StoryMain from "./components/StoryMain";
 import Title from "./components/Title";
-// import Combat from "./components/Combat";
 import Libra from "./components/leftHandTabs/Libra";
 import { useSelector } from "react-redux";
 import { getSkill, getStat } from "./redux/stats/selectors";
@@ -15,14 +14,19 @@ import { Provider } from "react-redux";
 import { store } from "./redux/store";
 import Tutorial from "./components/tutorial/Tutorial";
 import Ailments from "./components/leftHandTabs/Ailments";
+import Combat from "./components/combat/Combat";
+import { getInCombat } from "./redux/combat/selectors";
+import { getPage } from "./redux/story/selectors";
 
 const App = () => {
-  const skill = useSelector(getSkill)
-  const maxSkill = useSelector((state) => getStat(state, "maxSkill"));
-  const stamina = useSelector((state) => getStat(state, "stamina"));
-  const maxStamina = useSelector((state) => getStat(state, "maxStamina"));
-  const luck = useSelector((state) => getStat(state, "luck"));
-  const maxLuck = useSelector((state) => getStat(state, "maxLuck"));
+  const _skill = useSelector(getSkill);
+  const _maxSkill = useSelector((state) => getStat(state, "maxSkill"));
+  const _stamina = useSelector((state) => getStat(state, "stamina"));
+  const _maxStamina = useSelector((state) => getStat(state, "maxStamina"));
+  const _luck = useSelector((state) => getStat(state, "luck"));
+  const _maxLuck = useSelector((state) => getStat(state, "maxLuck"));
+  const _inCombat = useSelector(getInCombat);
+  const _pageNumber = useSelector(getPage);
 
   return (
     <div className="main">
@@ -32,23 +36,33 @@ const App = () => {
         <Row>
           <Col className="p-0" xs={2}>
             <Stats
-              skill={skill}
-              maxSkill={maxSkill}
-              stamina={stamina}
-              maxStamina={maxStamina}
-              luck={luck}
-              maxLuck={maxLuck}
+              skill={_skill}
+              maxSkill={_maxSkill}
+              stamina={_stamina}
+              maxStamina={_maxStamina}
+              luck={_luck}
+              maxLuck={_maxLuck}
             />
             <Items />
-            <Ailments />
           </Col>
           <Col className="p-0 storyMain" xs={8}>
-            <StoryMain />
+            {!_inCombat && <StoryMain pageNumber={parseInt(_pageNumber)}/>}
+            {_inCombat && (
+              <Combat
+                pageNumber={parseInt(_pageNumber)}
+                skill={_skill}
+                stamina={_stamina}
+                maxStamina={_maxStamina}
+                luck={_luck}
+                maxLuck={_maxLuck}
+              />
+            )}
           </Col>
           <Col className="p-0" xs={2}>
             <Magic />
             <Tutorial />
             <Libra />
+            <Ailments />
           </Col>
         </Row>
       </Container>

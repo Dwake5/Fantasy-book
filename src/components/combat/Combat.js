@@ -21,7 +21,6 @@ import {
 } from "../../redux/combat/selectors";
 import { getEquippedWeapon, ownItem } from "../../redux/items/selectors";
 import { gainStat, loseStat } from "../../redux/stats/actions";
-import { getSkill, getStat } from "../../redux/stats/selectors";
 import { nightCreatureFight, setPage } from "../../redux/story/actions";
 import {
   getNightCreatureFight,
@@ -35,14 +34,8 @@ import CombatText from "./CombatText";
 import EnemyStats from "./EnemyStats";
 import PlayerStats from "./PlayerStats";
 
-const Combat = ({ pageNumber, clearSpellState }) => {
+const Combat = ({ pageNumber, skill, stamina, maxStamina, luck, maxLuck }) => {
   const dispatch = useDispatch();
-  // Player stats
-  const _skill = useSelector(getSkill);
-  const _stamina = useSelector((state) => getStat(state, "stamina"));
-  const _maxStamina = useSelector((state) => getStat(state, "maxStamina"));
-  const _luck = useSelector((state) => getStat(state, "luck"));
-  const _maxLuck = useSelector((state) => getStat(state, "maxLuck"));
 
   // Are you dead but TYL will revive you?
   const [lastLife, setLastLife] = useState(false);
@@ -58,10 +51,10 @@ const Combat = ({ pageNumber, clearSpellState }) => {
   // allies
   const _allies = useSelector(getAllies);
   const currentAlly = _allies[0];
-  let playerFighting = true
+  let playerFighting = true;
   if (_allies.length > 0) playerFighting = false;
 
-  let allyName, allyStamina, allyMaxStamina, allySkill
+  let allyName, allyStamina, allyMaxStamina, allySkill;
   if (_allies.length) {
     allyName = currentAlly.name;
     allyStamina = currentAlly.stamina;
@@ -71,23 +64,23 @@ const Combat = ({ pageNumber, clearSpellState }) => {
 
   useEffect(() => {
     if (_allies.length === 0) {
-      setAutoFight(false)
-      setCanUseLuck(false)
+      setAutoFight(false);
+      setCanUseLuck(false);
     }
-  }, [_allies.length])
+  }, [_allies.length]);
 
   // Night Creatures
   const _nightCreatureFight = useSelector(getNightCreatureFight);
   const _nightCreaturePrevious = useSelector(getNightCreaturePrevious);
 
-  const _beeswax = useSelector(getAppliedBeeswax)
+  const _beeswax = useSelector(getAppliedBeeswax);
   // Manticore
   const [manticorePoison, setManticorePoison] = useState(false);
   const [fireballDamage, setFireballDamage] = useState(false);
   const _fireball = useSelector(getFireball);
   if (_fireball && !fireballDamage) {
     setFireballDamage(true);
-    damageEnemy(dispatch, 6); // apparently this will only do 6 (not 12) in production
+    damageEnemy(dispatch, 6);
   }
 
   const _previousPage = useSelector(getPreviousPage);
@@ -127,12 +120,12 @@ const Combat = ({ pageNumber, clearSpellState }) => {
   // Comabt mods
   let enemyAttStrModifier = 0;
   let enemyDamage = 2;
-  let skill = _skill;
-  if (pageNumber === 453) skill *= 2;
+  let playerSkill = skill;
+  if (pageNumber === 453) playerSkill *= 2;
   if (pageNumber === 20) playerAttStrModifier -= 2;
   if (pageNumber === 203) enemyAttStrModifier += 2;
   if (pageNumber === 386) enemyAttStrModifier -= 2;
-  if (pageNumber === 411) skill *= 2;
+  if (pageNumber === 411) playerSkill *= 2;
   if (pageNumber === 442 && _beeswax) damage *= 2;
   if (pageNumber === 328 && _beeswax) damage *= 2;
 
@@ -147,8 +140,8 @@ const Combat = ({ pageNumber, clearSpellState }) => {
     const playerRoll = diceRolls(2, true);
     const enemyRoll = diceRolls(2, true);
 
-    let playerTotal = playerRoll 
-    playerTotal += playerFighting ? attackStrength : allySkill
+    let playerTotal = playerRoll;
+    playerTotal += playerFighting ? attackStrength : allySkill;
     const enemyTotal = enemyRoll + enemyAS;
 
     let newText = {
@@ -164,10 +157,8 @@ const Combat = ({ pageNumber, clearSpellState }) => {
       newText.line2 = `Damaged the enemy for ${damage} points!`;
       newText.line2style += "text-success";
     } else if (enemyTotal > playerTotal) {
-      console.log('onManticorePage :', onManticorePage);
       if (onManticorePage) {
         const roll = Math.ceil(Math.random() * 3);
-        console.log('roll :', roll);
         if (roll === 1) {
           enemyDamage = 6;
           localPoison = true;
@@ -176,7 +167,7 @@ const Combat = ({ pageNumber, clearSpellState }) => {
       }
 
       if (playerFighting) {
-        const healthAfter = _stamina - enemyDamage;
+        const healthAfter = stamina - enemyDamage;
         if (healthAfter <= 0) {
           // about to die
           const luckHeal = enemyDamage === 6 ? 4 : 1;
@@ -190,22 +181,22 @@ const Combat = ({ pageNumber, clearSpellState }) => {
       if (playerFighting) {
         loseStat(dispatch, "stamina", enemyDamage);
         setWhoWasDamaged("player");
-      } else {        
+      } else {
         damageAlly(dispatch, enemyDamage);
         setWhoWasDamaged("ally");
       }
-      const whoWasHurt = playerFighting ? "you" : "your champion"
+      const whoWasHurt = playerFighting ? "you" : "your champion";
       let textToAdd = `The ${enemyName} damaged ${whoWasHurt} for ${enemyDamage} points.`;
-      let critText = playerFighting ? ", you've been poisoned!" : "."
+      let critText = playerFighting ? ", you've been poisoned!" : ".";
       if (localPoison) textToAdd += ` Critical hit${critText}`;
       newText.line2 = textToAdd;
       newText.line2style += "text-danger";
     } else {
       setCanUseLuck(false);
-      const whoClashes = playerFighting ? "You" : "They"
+      const whoClashes = playerFighting ? "You" : "They";
       newText.line2 = `${whoClashes} clash in battle and do no damage to each other.`;
     }
-    const whoRolled = playerFighting ? "You" : "Your champion"
+    const whoRolled = playerFighting ? "You" : "Your champion";
     newText.line1 = `${whoRolled} rolled a ${playerRoll} (+${attackStrength}), for a total of: ${playerTotal}. The
     ${enemyName} rolled a ${enemyRoll} (+${enemyAS}), for a total of: ${enemyTotal}.`;
     newText.line1style = "mb-0 mt-3";
@@ -248,7 +239,7 @@ const Combat = ({ pageNumber, clearSpellState }) => {
         newText.line1 =
           "The enemy has killed you unless you succesfully test your luck!";
         newText.line1style += " font-weight-bold";
-      } else if (_stamina <= 0) {
+      } else if (stamina <= 0) {
         setCanUseLuck(false);
         setSomeoneDead(true);
         someoneDead = true;
@@ -285,12 +276,12 @@ const Combat = ({ pageNumber, clearSpellState }) => {
     };
 
     checkDeath();
-  }, [_enemyStats, _extraEnemies, _stamina, dispatch, enemyStamina, lastLife]);
+  }, [_enemyStats, _extraEnemies, stamina, dispatch, enemyStamina, lastLife]);
 
   const handleLuck = () => {
     setCanUseLuck(false);
     const luckRoll = diceRolls(2, true);
-    const rollPassed = luckRoll <= _luck;
+    const rollPassed = luckRoll <= luck;
     loseStat(dispatch, "luck", 1);
 
     let newText = {
@@ -367,47 +358,50 @@ const Combat = ({ pageNumber, clearSpellState }) => {
 
   const choices = [{ text: "Continue.." }];
   useHandleKeyDown(choices, !someoneDead, handleChoice);
-  
+
   const getSkillDifference = () => {
     if (playerFighting) return attackStrength - enemyAS;
     return allySkill - enemyAS;
-  }
+  };
 
   return (
     <Container>
       <Row>
-        {playerFighting && <PlayerStats
-          stamina={_stamina}
-          maxStamina={_maxStamina}
-          skill={skill}
-          playerAttStrModifier={playerAttStrModifier}
-          damage={damage}
-          luck={_luck}
-          maxLuck={_maxLuck}
-          someoneDead={someoneDead}
-          autoFight={autoFight}
-          handleAttack={handleAttack}
-          handleLuck={handleLuck}
-          canUseLuck={canUseLuck}
-          setAutoFight={setAutoFight}
-          pageNumber={pageNumber}
-          enemyStamina={enemyStamina}
-          handleSpareHim={handleSpareHim}
-          doubleSkill={skill / _skill === 2}
-          lastLife={lastLife}
-          skillDifference={getSkillDifference()}
-        />}
+        {playerFighting && (
+          <PlayerStats
+            stamina={stamina}
+            maxStamina={maxStamina}
+            skill={skill}
+            playerAttStrModifier={playerAttStrModifier}
+            damage={damage}
+            luck={luck}
+            maxLuck={maxLuck}
+            someoneDead={someoneDead}
+            autoFight={autoFight}
+            handleAttack={handleAttack}
+            handleLuck={handleLuck}
+            canUseLuck={canUseLuck}
+            setAutoFight={setAutoFight}
+            pageNumber={pageNumber}
+            enemyStamina={enemyStamina}
+            handleSpareHim={handleSpareHim}
+            doubleSkill={playerSkill / skill === 2}
+            lastLife={lastLife}
+            skillDifference={getSkillDifference()}
+          />
+        )}
 
-        {!playerFighting && 
+        {!playerFighting && (
           <AllyStats
-          name={allyName}
-          stamina={allyStamina}
-          maxStamina={allyMaxStamina}
-          skill={allySkill}
-          autoFight={autoFight}
-          setAutoFight={setAutoFight}
-          skillDifference={getSkillDifference()} 
-        />}
+            name={allyName}
+            stamina={allyStamina}
+            maxStamina={allyMaxStamina}
+            skill={allySkill}
+            autoFight={autoFight}
+            setAutoFight={setAutoFight}
+            skillDifference={getSkillDifference()}
+          />
+        )}
 
         <EnemyStats
           enemyName={enemyName}

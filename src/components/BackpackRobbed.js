@@ -20,7 +20,7 @@ const BackpackRobbed = ({ cancelPause }) => {
   const itemTested = () => {
     testedItems.current++;
     if (testedItems.current >= totalItems.current) {
-      cancelPause(true);
+      cancelPause();
     }
   };
 

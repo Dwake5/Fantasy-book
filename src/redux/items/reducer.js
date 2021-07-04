@@ -12,7 +12,7 @@ import {
 const initialState = {
   gold: {
     name: "Gold Pieces",
-    amount: 0,
+    amount: 40,
     info: "Basic currency used throughout the land",
     alwaysShow: true,
   },

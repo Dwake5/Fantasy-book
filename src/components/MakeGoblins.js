@@ -27,7 +27,7 @@ const MakeGoblins = ({ cancelPause }) => {
 
   const makeTheGoblins = () => {
     setMadeGoblins(true);
-    cancelPause(true);
+    cancelPause();
     loseStat(dispatch, "stamina", goblinsSelected)
     changeItemAmount(dispatch, { name: "goblinTeeth", amount: -goblinsSelected });
     let newAllies = []

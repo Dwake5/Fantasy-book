@@ -24,7 +24,7 @@ const CreateStats2 = ({ cancelPause }) => {
     setMaxStat(dispatch, "stamina", stamina);
     setMaxStat(dispatch, "skill", skill);
     setMaxStat(dispatch, "luck", luck);
-    cancelPause(true)
+    cancelPause()
   };
 
   const autoAssign = () => {
@@ -32,7 +32,7 @@ const CreateStats2 = ({ cancelPause }) => {
     setMaxStat(dispatch, "stamina", 20);
     setMaxStat(dispatch, "skill", 10);
     setMaxStat(dispatch, "luck", 10);
-    cancelPause(true)
+    cancelPause()
   }
 
   return (

@@ -48,7 +48,7 @@ const CreateStats = ({ cancelPause }) => {
     setMaxStat(dispatch, stat, rolled);
     changeStep(step + 1);
 
-    if (step === 3) cancelPause(true);
+    if (step === 3) cancelPause();
   };
 
   return (

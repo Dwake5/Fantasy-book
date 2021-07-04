@@ -26,7 +26,7 @@ const TestLuck = ({ setLuckPassed, cancelPause, pageNumber }) => {
     setLuckTested(true);
     setLuckTotal(total);
     setLuckPassed(pass); // Tell the parent if pass/success
-    cancelPause(true); // Tell the parent to display options again
+    cancelPause(); // Tell the parent to display options again
     if (pageNumber === 428 && pass) {
       gainStat(dispatch, "stamina", 2);
     }

@@ -28,7 +28,7 @@ const NightCreatures = ({ cancelPause }) => {
     let dieRoll = diceRolls(1, true);
     if (doAddTwo) dieRoll = 4;
     setAlreadyRolled(true);
-    cancelPause(true);
+    cancelPause();
     if (dieRoll <= 4) {
       const monster = nightCreatures[dieRoll - 1];
       setEnemyStats(dispatch, monster.skill, monster.stamina, monster.name);

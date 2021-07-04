@@ -28,7 +28,7 @@ const KillSnakes = ({ cancelPause }) => {
       loseStat(dispatch, 'stamina', 3)
       setLuckText([...luckText, `Fail. You rolled a ${rolled} and lost 3 Stamina points.`])
     }
-    if (newSuccess >= 3) cancelPause(true)
+    if (newSuccess >= 3) cancelPause()
   };
 
   return (
