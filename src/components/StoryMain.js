@@ -65,6 +65,7 @@ const StoryMain = ({ pageNumber }) => {
     eaten,
     winGame,
   } = pageData;
+
   let spellText = "";
   let pageChoices = pageData.choices; // spellsOptions will change this
   const pageText = pageData.text;
@@ -209,7 +210,7 @@ const StoryMain = ({ pageNumber }) => {
 
     // new day
     if (newDay) handleNewDay();
-  }, [pageNumber]);
+  }, [pageNumber, dispatch]);
 
   return (
     <Container className="border storyBody">

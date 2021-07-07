@@ -5,12 +5,11 @@
   <li>Progress bars to combat</li>
   <li>Get no change for buying with gems (15) might not do this, a lot of work for little payoff, maybe just give 5gp a piece</li>
   <li>Handle death</li>
-  <li>Handle using spells causing extra damage to you if you don't have items</li>
   <li>Workout when the user has to know about Jann... (305, 306, 321, 394, 387, 286) all tell you, but are optional choices except 286!) Requires a lot of testing</li>
   <li>Add bold text to important info the player recieves, and stat loss / increases</li>
   <li>Make Pilfer grass look more like backpack robbed</li>
-  <li>Handle GOB, 425, 369 (S5 HP5)</li>
   <li>Handle using Libra during combat</li>
+  <li>Convert to magic damage and regular damage, purpose of this is for the curse and to handle death when a node kills and then heals you</li>
 </ul>
 
 combat mods
@@ -19,6 +18,8 @@ combat mods
 # Done
 
 <ul>
+  <li>Handle using spells causing extra damage to you if you don't have items</li>
+  <li>Handle GOB, 425, 369 (S5 HP5)</li>
   <li>Handle YOB, 361, 388 (S8 HP9)</li>
   <li>Find a way to adapt story text based on users stats for example when you dont have a magic item</li>
   <li>Handle spells requiring certain items</li>
