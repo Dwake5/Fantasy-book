@@ -14,6 +14,8 @@ import {
   GAIN_PLAGUE,
   SCORPION_STING,
   FULL_RESTORE,
+  DAMAGE,
+  PURE_DAMAGE,
 } from "./action-types";
 
 export const setMaxStat = (dispatch, stat, number) => {
@@ -21,6 +23,14 @@ export const setMaxStat = (dispatch, stat, number) => {
     type: MAX_STAT,
     payload: { stat, number },
   });
+};
+
+export const takeDamage = (dispatch, number) => {
+  dispatch({ type: DAMAGE, payload: number });
+};
+
+export const takePureDamage = (dispatch, number) => {
+  dispatch({ type: PURE_DAMAGE, payload: number });
 };
 
 export const loseStat = (dispatch, stat, amount) => {

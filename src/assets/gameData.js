@@ -4889,7 +4889,7 @@ const gameData = {
     the boulder is on you, crushing you beneath it. Your journey has 
     ended here . . . `,
     choices: [{ goToPage: 0, text: "Death" }],
-    staminaLoss: 5,
+    magicCost: 5,
   },
   392: {
     text: `Deduct 2 Stamina points. You cast your spell but nothing happens. 
@@ -4898,12 +4898,12 @@ const gameData = {
     Unfortunately it is a little too late to learn this, as the lightning 
     blast hits you. Your journey ends here . . .`,
     choices: [{ goToPage: 0, text: "Death" }],
-    staminaLoss: 2,
+    magicCost: 2,
   },
   393: {
     text: `Deduct 5 Stamina points. You cast the spell but nothing happens.`,
     choices: [{ goToPage: 117, text: "Go back and choose again" }],
-    staminaLoss: 5,
+    magicCost: 5,
   },
   394: {
     text: `Deduct 2 Stamina points. You cast your spell, but nothing happens! 
@@ -4914,37 +4914,37 @@ const gameData = {
       { goToPage: 73, text: "Continue down the path" },
       { goToPage: 51, text: "Return and take the other path" },
     ],
-    staminaLoss: 2,
+    magicCost: 2,
   },
   395: {
     text: `Deduct 3 Stamina points. There is no such spell as this.`,
     choices: [{ goToPage: 364, text: "Go back and try again" }],
-    staminaLoss: 3,
+    magicCost: 3,
   },
   396: {
     text: `Deduct 5 Stamina points. There is no such spell as this.`,
     choices: [{ goToPage: 123, text: "Go back and try again" }],
-    staminaLoss: 5,
+    magicCost: 5,
   },
   397: {
     text: `Deduct 5 Stamina points. There is no such spell as this.`,
     choices: [{ goToPage: 47, text: "Go back and try again" }],
-    staminaLoss: 5,
+    magicCost: 5,
   },
   398: {
     text: `Deduct 5 Stamina points. There is no such spell as this.`,
     choices: [{ goToPage: 239, text: "Go back and try again" }],
-    staminaLoss: 5,
+    magicCost: 5,
   },
   399: {
     text: `Deduct 2 Stamina points. Your fall is broken and you float gently 
     down to the ground below, landing softly on your knees.`,
     choices: [{ goToPage: 110, text: "Continue.." }],
-    staminaLoss: 5,
+    magicCost: 5,
   },
   400: {
     text: `Deduct 1 Stamina point. Do you have a Gold Piece with you?`,
-    staminaLoss: 1,
+    magicCost: 1,
     spellOptions: {
       requires: "gold",
       loseItem: 1,
@@ -4974,10 +4974,8 @@ const gameData = {
   },
   401: {
     text: `Do you have a Goblin's tooth with you?`,
-    staminaLoss: 1,
     spellOptions: {
       requires: "goblinTeeth",
-      loseItem: 1,
       success: {
         text: `As you do 
         have a tooth, you cast your spell over it (deduct 1 Stamina point) and 
@@ -4995,7 +4993,7 @@ const gameData = {
         text: `As you do not, you try in vain to cast 
         the spell and the Elvins are not impressed, tying your hands and 
         kicking you angrily <b>(you lose 2 Stamina points)</b>.`,
-        extraStaminaLoss: 1,
+        extraStaminaLoss: 2,
         choices: [{ goToPage: 218, text: "Spell Fail: Continue.." }],
       },
     },
@@ -5012,7 +5010,8 @@ const gameData = {
         fight: { skill: 7, stamina: 6, name: "Wolfhound" },
       },
     ],
-    staminaLoss: 4,
+    staminaLoss: 3,
+    magicCost: 1,
   },
   403: {
     text: `Deduct 2 Stamina points. You cast the spell and an expression of 
@@ -5026,14 +5025,15 @@ const gameData = {
       { goToPage: 258, text: "Try the other box" },
       { goToPage: 196, text: "Leave the village" },
     ],
-    staminaLoss: 2,
+    magicCost: 2,
   },
   404: {
     text: `Deduct 1 Stamina point. You cannot use this spell as you do not 
     have the Sun Jewel it requires. While you are trying in vain to make it 
     work, the Serpent strikes. <b>Causing another 2 Stamina points.</b>`,
     choices: [{ goToPage: 275, text: "Go back and choose again" }],
-    staminaLoss: 3,
+    staminaLoss: 2,
+    magicCost: 1,
   },
   405: {
     text: `Deduct 4 Stamina points. Hinging your hand forward and casting 
@@ -5041,14 +5041,14 @@ const gameData = {
     Elvin. Several of them hit the creature, burning its wings and causing 
     it to drop from the air like a flaming torch.`,
     choices: [{ goToPage: 121, text: "Continue.." }],
-    staminaLoss: 4,
+    magicCost: 4,
   },
   406: {
     text: `Deduct 2 Stamina points. You will now learn an important rule: you 
     cannot cast spells while your hands are bound! You have wasted your 
     efforts.`,
     choices: [{ goToPage: 112, text: "Continue.." }],
-    staminaLoss: 2,
+    magicCost: 2,
   },
   407: {
     text: `<p>Deduct 4 Stamina points. You cast the spell and point at the first 
@@ -5067,7 +5067,7 @@ const gameData = {
       },
       { goToPage: 202, text: "They both flee", blocked: true },
     ],
-    staminaLoss: 4,
+    magicCost: 4,
     extraText: true,
   },
   408: {
@@ -5076,7 +5076,7 @@ const gameData = {
     bounce off an invisible shield. You move smartly onwards until the 
     spell wears off.`,
     choices: [{ goToPage: 7, text: "Continue.." }],
-    staminaLoss: 4,
+    magicCost: 4,
   },
   409: {
     text: `Deduct 2 Stamina points. You cast the spell at the lock. It begins to 
@@ -5088,7 +5088,7 @@ const gameData = {
       { goToPage: 248, text: "A magical item" },
       { goToPage: 122, text: "An aid in combat" },
     ],
-    staminaLoss: 2,
+    magicCost: 2,
   },
   410: {
     text: `Deduct 1 Stamina point. You fumble with your spell, which does not 
@@ -5096,7 +5096,8 @@ const gameData = {
     Stamina points' worth of damage.</b> You cannot use this spell as you 
     do not have the Gold-Backed Mirror it requires.`,
     choices: [{ goToPage: 87, text: "Go back and choose again" }],
-    staminaLoss: 3,
+    magicCost: 1,
+    staminaLoss: 2,
   },
   411: {
     text: `<p>Deduct 2 Stamina points. You cast the spell and wait. Slowly, the 
@@ -5115,22 +5116,22 @@ const gameData = {
         fight: { skill: 9, stamina: 11, name: "Hill Giant" },
       },
     ],
-    staminaLoss: 2,
+    magicCost: 2,
   },
   412: {
     text: `Deduct 5 Stamina points. There is no such spell as this.`,
     choices: [{ goToPage: 201, text: "Go back and choose again" }],
-    staminaLoss: 5,
+    magicCost: 5,
   },
   413: {
     text: `Deduct 5 Stamina points. There is no such spell as this.`,
     choices: [{ goToPage: 158, text: "Go back and choose again" }],
-    staminaLoss: 5,
+    magicCost: 5,
   },
   414: {
     text: `Deduct 5 Stamina points. There is no such spell as this.`,
     choices: [{ goToPage: 99, text: "Go back and choose again" }],
-    staminaLoss: 5,
+    magicCost: 5,
   },
   415: {
     text: `Deduct 4 Stamina points. The creature makes a half turn and swings 
@@ -5141,12 +5142,12 @@ const gameData = {
       { goToPage: 364, text: "Choose an attacking spell" },
       { goToPage: 227, text: "Draw your weapon and fight" },
     ],
-    staminaLoss: 4,
+    magicCost: 4,
   },
   416: {
     text: `Deduct 5 Stamina points. There is no such spell as this.`,
     choices: [{ goToPage: 64, text: "Go back and choose again" }],
-    staminaLoss: 5,
+    magicCost: 5,
   },
   417: {
     text: `Deduct 3 Stamina points. There is no such spell as this. The snakes 
@@ -5159,7 +5160,7 @@ const gameData = {
       { goToPage: 63, text: "Rolled a 1-5, you survived", blocked: true }, // todo take roll damage
       { goToPage: 0, text: "Rolled a 6, you are dead", blocked: true },
     ], // todo you are dead
-    staminaLoss: 3,
+    magicCost: 3,
     pause: true,
   },
   418: {
@@ -5167,7 +5168,7 @@ const gameData = {
     The blast hits you in the chest, killing you instantly. Your journey 
     ends here . . .`,
     choices: [{ goToPage: 0, text: "Death" }], // todo you are dead
-    staminaLoss: 5,
+    magicCost: 5,
   },
   419: {
     text: `Deduct 1 Stamina point. You cast your spell but nothing happens. 
@@ -5176,7 +5177,7 @@ const gameData = {
       { goToPage: 73, text: "Continue through the flowers" },
       { goToPage: 51, text: "Return and take the other path" },
     ],
-    staminaLoss: 1,
+    magicCost: 1,
   },
   420: {
     text: `You may turn and fight the creature with your weapon. Otherwise, choose 
@@ -5196,14 +5197,16 @@ const gameData = {
     have the Vial of Glue you need to cast it. Meanwhile the night creature 
     has attacked and inflicted 2 Stamina points' worth of damage.`,
     choices: [{ goToPage: 123, text: "Go back and choose again" }],
-    staminaLoss: 3,
+    magicCost: 1,
+    staminaLoss: 2,
   },
   422: {
     text: `Deduct 1 Stamina point. You cannot cast this spell as you do not 
     have the Staff of Oak Sapling it requires. You are damaged by a <b>further 2 Stamina 
     points</b> as you try without success to make it work.`,
     choices: [{ goToPage: 239, text: "Go back and choose again" }],
-    staminaLoss: 3,
+    magicCost: 1,
+    staminaLoss: 2,
   },
   423: {
     text: `Deduct 2 Stamina points. You cast your spell. From somewhere 
@@ -5211,7 +5214,7 @@ const gameData = {
     the door. This is your only hope unless you are strong enough to 
     break down the door.`,
     choices: [{ goToPage: 66, text: "Go back and choose again" }],
-    staminaLoss: 2,
+    magicCost: 2,
   },
   424: {
     text: `Deduct 2 stamina points. You fall down into the pit, but your body 
@@ -5219,7 +5222,7 @@ const gameData = {
     3 points will be deducted from the following dice roll and you may ignore the extra 
     penalty on a roll of double 6.`,
     choices: [{ goToPage: 277, text: "Continue.." }], // todo reduce following die roll and it cant kill you
-    staminaLoss: 2,
+    magicCost: 2,
   },
   425: {
     text: `<p>Do you have any Goblins' teeth with you?</p>`,
@@ -5265,40 +5268,41 @@ const gameData = {
     vanished. It still grips your arm, and pulls you. You decide to 
     continue your journey.`,
     choices: [{ goToPage: 94, text: "Continue.." }],
-    staminaLoss: 2,
+    magicCost: 2,
   },
   427: {
     text: `Deduct 5 Stamina points. There is no such spell as this.`,
     choices: [{ goToPage: 166, text: "Continue.." }],
-    staminaLoss: 5,
+    magicCost: 5,
   },
   428: {
     // todo fix death mechanic
+    // todo is this done?? 
     text: `Deduct 3 Stamina points. There is no such spell as this. The Goblins 
-    are quickly on you and attack you for 2 Stamina points' worth of 
+    are quickly on you and attack for 2 Stamina points' worth of 
     damage. You may, if you wish, Test your Luck and if you are Lucky you 
     avoid this attack.`,
     choices: [{ goToPage: 217, text: "Fight the goblins or cast a spell" }],
-    staminaLoss: 5,
+    magicCost: 3,
     testLuck: { optional: true },
   },
   429: {
     text: `Deduct 1 Stamina point. You cannot use this spell as you do not 
     have the Potion of Fire Water it requires.`,
     choices: [{ goToPage: 4, text: "Go back and choose again" }],
-    staminaLoss: 1,
+    magicCost: 1,
   },
   430: {
     text: `Deduct 3 Stamina points. There is no such spell as this.`,
     choices: [{ goToPage: 256, text: "Continue" }],
-    staminaLoss: 3,
+    magicCost: 3,
   },
   431: {
     text: `Deduct 4 Stamina points. You cast the spell and a protective force- 
     field surrounds your body. No harm will befall you as there will be no contact
     between you and any of the villagers.`,
     choices: [{ goToPage: 79, text: "Continue.." }],
-    staminaLoss: 4, // todo protect from disease coming up?
+    magicCost: 4, // todo protect from disease coming up?
   },
   432: {
     text: `Deduct 5 Stamina points. There is no such spell as this. While you 
@@ -5306,7 +5310,7 @@ const gameData = {
     the floor. Before you can rise, the creature is on you, sinking its slimy 
     teeth into your throat. Your journey has ended here . . .`,
     choices: [{ goToPage: 0, text: "Death" }],
-    staminaLoss: 5,
+    magicCost: 5,
   },
   433: {
     text: `Deduct 4 Stamina points. You cast the spell and, commanding the 
@@ -5319,14 +5323,14 @@ const gameData = {
       { goToPage: 273, text: "Call on Libra", needLibra: true },
       { goToPage: 0, text: "Death", libraBlock: true },
     ],
-    staminaLoss: 4,
+    magicCost: 4,
   },
   434: {
     text: `Deduct 1 Stamina point. You cast the spell but nothing happens. 
     You panic, but there is little you can do to avoid the deadly blast. Your 
     journey is over . . .`,
     choices: [{ goToPage: 0, text: "Death" }],
-    staminaLoss: 1,
+    magicCost: 1,
   },
   435: {
     text: `Deduct 5 Stamina points. You cast your spell, but nothing happens.
@@ -5335,38 +5339,38 @@ const gameData = {
       { goToPage: 73, text: "Continue through the flowers" },
       { goToPage: 51, text: "Go back and take the other path" },
     ],
-    staminaLoss: 5,
+    magicCost: 5,
   },
   436: {
     text: `Deduct 5 Stamina points. There is no such spell as this.`,
     choices: [{ goToPage: 307, text: "Continue.." }],
-    staminaLoss: 5,
+    magicCost: 5,
   },
   437: {
     text: `Deduct 5 Stamina points. There is no such spell as this.`,
     choices: [{ goToPage: 123, text: "Go back and choose again" }],
-    staminaLoss: 5,
+    magicCost: 5,
   },
   438: {
     text: `Deduct 4 Stamina points. You cast the spell and a bolt of lightning 
     shoots from your fingertip at the creature, hitting it square in the 
     chest. It reels and falls backwards, dead, on to the floor.`,
     choices: [{ goToPage: 186, text: "Continue.." }],
-    staminaLoss: 4,
+    magicCost: 4,
   },
   439: {
     text: `Deduct 5 Stamina points. There is no such spell as this. You fall down into the pit.`,
     choices: [{ goToPage: 277, text: "Continue.." }],
-    staminaLoss: 5,
+    magicCost: 5,
   },
   440: {
     text: `Deduct 5 Stamina points. There is no such spell as this.`,
     choices: [{ goToPage: 74, text: "Go back and choose again" }],
-    staminaLoss: 5,
+    magicCost: 5,
   },
   441: {
     text: `Deduct 1 Stamina point. Do you have a Gold Piece with you?`,
-    staminaLoss: 1,
+    magicCost: 1,
     spellOptions: {
       requires: "gold",
       loseItem: 1,
@@ -5399,8 +5403,8 @@ const gameData = {
     },
   },
   442: {
-    text: `Deduct 1 Stamina point and cast your spell. Do you have any beeswax with you?`,
-    staminaLoss: 1,
+    text: `Deduct 1 Stamina point as you cast your spell. Do you have any beeswax with you?`,
+    magicCost: 1,
     spellOptions: {
       requires: "beeswax",
       loseItem: 0.5,
@@ -5449,17 +5453,17 @@ const gameData = {
   443: {
     text: `Deduct 5 Stamina points. There is no such spell as this.`,
     choices: [{ goToPage: 4, text: "Go back and choose again" }],
-    staminaLoss: 5,
+    magicCost: 5,
   },
   444: {
     text: `Deduct 5 Stamina points. There is no such spell as this.`,
     choices: [{ goToPage: 201, text: "Go back and choose again" }],
-    staminaLoss: 5,
+    magicCost: 5,
   },
   445: {
     text: `Deduct 5 Stamina points. There is no such spell as this.`,
     choices: [{ goToPage: 64, text: "Go back and choose again" }],
-    staminaLoss: 5,
+    magicCost: 5,
   },
   446: {
     text: `Deduct 5 Stamina points. Unfortunately, there is no such spell as 
@@ -5467,7 +5471,7 @@ const gameData = {
     plan another escape. The boulder crushes you. Your journey has 
     ended here . . .`,
     choices: [{ goToPage: 0, text: "Death" }], // todo you are dead
-    staminaLoss: 5,
+    magicCost: 5,
   },
   447: {
     text: `Deduct 4 Stamina points. The Manticore is in the opposite passage 
@@ -5476,14 +5480,14 @@ const gameData = {
     you fence it in securely, allowing you to grab the Svinn girl and run 
     from the cave.`,
     choices: [{ goToPage: 456, text: "Continue.." }],
-    staminaLoss: 4,
+    magicCost: 4,
   },
   448: {
     text: `Deduct 4 Stamina points. The creature stops in its tracks and you 
     order it to return to the woods from where it came. Having escaped 
     the creature you go back to sleep.`,
     choices: [{ nightContinue: true, text: "Continue.." }],
-    staminaLoss: 4,
+    magicCost: 4,
   },
   449: {
     text: `Deduct 2 Stamina points. You wait for the spell to take effect and 
@@ -5495,24 +5499,24 @@ const gameData = {
       { goToPage: 144, text: "Listen to the voice - Leave the mine" },
       { goToPage: 268, text: "Ignore the voice - Continue trying the door" },
     ],
-    staminaLoss: 2,
+    magicCost: 2,
   },
   450: {
     text: `Deduct 1 Stamina point. You cannot cast this spell as you do not 
     have the Bracelet of Bone it requires. In actual fact, you cannot cast any 
     spell when your hands are bound (remember this in future).`,
     choices: [{ goToPage: 112, text: "Continue.." }],
-    staminaLoss: 1,
+    magicCost: 1,
   },
   451: {
     text: `Deduct 5 Stamina points. You cast the spell but nothing happens.`,
     choices: [{ goToPage: 220, text: "Go back and choose again" }],
-    staminaLoss: 5,
+    magicCost: 5,
   },
   452: {
     text: `Deduct 5 Stamina points. You cast the spell but nothing happens.`,
     choices: [{ goToPage: 117, text: "Go back and choose again" }],
-    staminaLoss: 5,
+    magicCost: 5,
   },
   453: {
     text: `Deduct 2 Stamina points. You cast the spell and begin to grow to 
@@ -5538,7 +5542,7 @@ const gameData = {
         luck: "blocked",
       },
     ],
-    staminaLoss: 2,
+    magicCost: 2,
     testLuck: { optional: true },
   },
   454: {
@@ -5553,7 +5557,7 @@ const gameData = {
       { goToPage: 6, text: "Through the door" },
       { goToPage: 120, text: "Through the room" },
     ],
-    staminaLoss: 2,
+    magicCost: 2,
   },
   455: {
     text: `Deduct 2 Stamina points. You cast the spell and a darkness descends 
@@ -5561,7 +5565,7 @@ const gameData = {
     me, mortal!' But under the cover of darkness, you have slipped out of 
     the hut. You leave the village.`,
     choices: [{ goToPage: 196, text: "Continue.." }],
-    staminaLoss: 2,
+    magicCost: 2,
   },
   456: {
     text: `<p>You leave the Manticore's chamber and follow the path to the source 

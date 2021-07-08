@@ -15,6 +15,8 @@ import {
   GAIN_PLAGUE,
   SCORPION_STING,
   FULL_RESTORE,
+  DAMAGE,
+  PURE_DAMAGE,
 } from "./action-types";
 
 const initialState = {
@@ -26,9 +28,9 @@ const initialState = {
   maxLuck: 10,
   eatenToday: false,
   libra: true,
-  plague: false,
-  spiritCurse: false,
-  aliannaCurse: false,
+  plague: false, // -3 stamina per day
+  spiritCurse: false, // + 1 to all stam loss (except magic)
+  aliannaCurse: false, // -2 skill
   jann: false,
 };
 
@@ -39,8 +41,20 @@ const halfHpRoundDown = (state) => {
 };
 
 export const reducer = (state = initialState, action) => {
-  let stat, amount, currentAmountOfStat, maxStat, newStat;
+  let stat, amount, currentAmountOfStat, maxStat, newStat, stamLoss;
   switch (action.type) {
+    case DAMAGE:
+      stamLoss = action.payload;
+      if (state.spiritCurse) stamLoss++;
+      return {
+        ...state,
+        stamina: state.stamina - stamLoss,
+      };
+    case PURE_DAMAGE:
+      return {
+        ...state,
+        stamina: state.stamina - action.payload,
+      };
     case STAT_LOSS:
       stat = action.payload.stat;
       amount = action.payload.amount;

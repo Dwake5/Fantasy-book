@@ -15,6 +15,8 @@ export const GAIN_PLAGUE = namespace + 'GAIN_PLAGUE';
 
 export const STAT_LOSS = namespace + 'STAT_LOSS';
 export const STAT_GAIN = namespace + 'STAT_GAIN';
+export const DAMAGE = namespace + 'DAMAGE';
+export const PURE_DAMAGE = namespace + 'PURE_DAMAGE';
 
 export const EATEN_TODAY = namespace + 'EATEN_TODAY';
 

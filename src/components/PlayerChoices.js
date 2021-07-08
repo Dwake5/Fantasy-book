@@ -181,6 +181,8 @@ const PlayerChoices = ({ choices, setStayShowing, pause, clearSpellState }) => {
           visitWaterfall(dispatch);
           break;
         case 37:
+          playerGetsJann(dispatch);
+          break;
         case 111:
           playerGetsJann(dispatch);
           break;
@@ -223,7 +225,7 @@ const PlayerChoices = ({ choices, setStayShowing, pause, clearSpellState }) => {
                   choice,
                   _nightCreaturePrevious,
                   _previousPage,
-                  _haveWaterfallPass,
+                  _haveWaterfallPass
                 )
               : null
           }
