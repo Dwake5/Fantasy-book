@@ -10,11 +10,13 @@ import {
   SET_TRADER_VIEWS,
   SWORD_REFUND,
   FIREBALL_MANTICORE,
+  KILL_PLAYER,
 } from "./action-types";
 
 const initialState = {
-  page: 1000,
+  page: 227,
   previousPage: 0,
+  dead: false,
   traderItemsViewed: [],
   cantUseMagic: false,
   pitFallPrevious: 0,
@@ -82,10 +84,15 @@ export const reducer = (state = initialState, action) => {
         ...state,
         swordRefund: true,
       };
-    case   FIREBALL_MANTICORE:
+    case FIREBALL_MANTICORE:
       return {
         ...state,
         fireball: true,
+      };
+    case KILL_PLAYER:
+      return {
+        ...state,
+        dead: true,
       };
     default:
       return state;

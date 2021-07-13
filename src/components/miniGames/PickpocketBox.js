@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import "../assets/css/Stats.css";
-import { changeItemAmount } from "../redux/items/actions";
-import { ownItem } from "../redux/items/selectors";
-import { loseStat, scorpionSting } from "../redux/stats/actions";
-import { getStat } from "../redux/stats/selectors";
-import { testYourLuck } from "../utils";
+import "../../assets/css/Stats.css";
+import { changeItemAmount } from "../../redux/items/actions";
+import { ownItem } from "../../redux/items/selectors";
+import { loseStat, scorpionSting } from "../../redux/stats/actions";
+import { getStat } from "../../redux/stats/selectors";
+import { testYourLuck } from "../../utils";
 
 // Used on node 258, arrived from 145, 403
 const PickpocketBox = () => {

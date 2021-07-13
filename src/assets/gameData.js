@@ -15,13 +15,13 @@ const gameData = {
     You can however always choose to defeat enemies with combat.</p>
 
     <p>Take time to view your Spell Book now and learn some of the core spells. Due to the dangerous nature of your quest, 
-    viewing it on your journey will be risky and a penalty will be inccured. No wizard would be expected 
+    viewing it on your journey will be risky and a penalty will be incurred. No wizard would be expected 
     to memorize all of the spells and a small handful will usually be sufficient.</p>
 
     <p>Through the multi-choice system, you will choose which 
     paths to take, whether to fight or flee from combat and how you will 
     solve problems. If death takes you, you will have to begin your 
-    adventure again. But if your Skill is great and if Luck and your god are 
+    adventure again. But if your Skill is great and if Luck, and your God are 
     with you, you may survive your overland journey to the Mampang 
     Fortress.</p>`,
     choices: [
@@ -422,7 +422,7 @@ const gameData = {
     sensing something supernatural, have scattered into the woods and 
     you are now free to escape. But you may not call on Libra again in this 
     part of your adventure to help you. Not until you reach the city of 
-    Khare will she listen to you.</p<
+    Khare will she listen to you.</p>
     
     <p>You collect your belongings and run off into the woods.</p>`,
     choices: [{ goToPage: 254, text: "Continue.." }],
@@ -481,7 +481,7 @@ const gameData = {
   },
   29: {
     text: `If you offer him an artefact which you have found on your travels, he 
-    will accept it, offer you a mug of ale and chat to you, If 
+    will accept it, offer you a mug of ale and chat to you. If 
     you cannot offer him an artefact, you must leave immediately and 
     head either for the inn or out of the village.`,
     choices: [
@@ -497,8 +497,7 @@ const gameData = {
   },
   31: {
     text: `Did you eat at all on the first day of your journey since you left 
-    Analand? If not, you are feeling very hungry and must lose 3 
-    Stamina points.`,
+    Analand? If not, you are feeling very hungry and lose 3 Stamina points.`,
     choices: [{ goToPage: 246, text: "Continue.." }],
     newDay: true,
   },
@@ -554,7 +553,7 @@ const gameData = {
     eatOption: { haveEaten: 1, haveNotEaten: 2 },
   },
   36: {
-    text: `Did you eat at all yesterday? If not, you must lose 3 Stamina points as 
+    text: `Did you eat at all yesterday? If not, you lose 3 Stamina points as 
     you are now very hungry.`,
     choices: [{ goToPage: 147, text: "Continue.." }],
     newDay: true,
@@ -642,7 +641,7 @@ const gameData = {
   45: {
     text: `<p>Did you eat at all yesterday? If you ate at the inn or took Provisions, 
     you suffer no penalty, but if you have not eaten during the day you 
-    are now hungry and must lose 3 Stamina points.</p>
+    are now hungry and lose 3 Stamina points.</p>
     
     <p>There are two ways on from the village of Kristatanti. Choose your 
     path by turning either left or right.</p>`,
@@ -784,18 +783,20 @@ const gameData = {
     choices: [{ goToPage: 183, text: "Continue.." }],
   },
   57: {
-    text: `Your brisk walk through the grass ends when your foot kicks a small 
+    text: `<p>Your brisk walk through the grass ends when your foot kicks a small 
     sack of some kind. Bending down to pick it up, you find it is <b>a pouch 
     containing 12 Gold Pieces!</b> You put this in your backpack. But as you 
-    do so, you find you have lost one item that you were carrying. Choose 
-    which item you have lost - it may only be gold or Provisions if you had 
-    nothing else to lose. As you 
-    search your pack for this missing object, you notice that the grass is 
+    do so, you find you have lost one item that you were carrying.</p> 
+    
+    <p>Choose which item you have lost - it may only be gold or Provisions if you had 
+    nothing else to lose.</p> 
+    
+    <p>As you search your pack for this missing object, you notice that the grass is 
     bending towards you and trying to wrap itself round parts of your 
     equipment! You are standing in a meadow of PILFER GRASS and, 
     unless you are careful, it will attempt to steal any items it may pick 
     from your pack. Since you are now aware of this, you may guard your 
-    belongings and continue.`,
+    belongings and continue.</p>`,
     choices: [{ goToPage: 159, text: "Continue.." }],
     getItems: [{ name: "gold", amount: 12 }],
     extraText: true,
@@ -1094,7 +1095,7 @@ const gameData = {
     choices: [{ goToPage: 0, text: "Death" }],
   },
   84: {
-    text: `You lose 2 Stamina points for going without sleep. As you 
+    text: `You <b>lose 2 Stamina points</b> for going without sleep. As you 
     make your way onwards, there is a chance that your noises will attract 
     night creatures.`,
     choices: [{ goToPage: 123, text: "Check if any creatures attack you" }],
@@ -1149,7 +1150,7 @@ const gameData = {
     play along.`,
     choices: [
       { goToPage: 11, text: "Play your Flute", requires: "pipe" },
-      { goToPage: 179, text: "Continue.." },
+      { goToPage: 179, text: "Continue..", blockItem: "pipe" },
     ],
   },
   89: {
@@ -1190,8 +1191,8 @@ const gameData = {
     text: `Roll two dice. If the number rolled is less than your Skill score, you 
     succeed in breaking the door open. If not, then you may try again. 
     Whether or not you succeed, you must deduct 1 Stamina point at 
-    each attempt. If you decide to 
-    give up on your attempts, you may return to the junction and leave the cave.`,
+    each attempt. If you decide to give up on your attempts, 
+    you may return to the junction and leave the cave.`,
     choices: [
       { goToPage: 39, text: "Break down the door - success", blocked: true },
       { goToPage: 144, text: "Leave the cave", blocked: true },
@@ -1379,7 +1380,7 @@ const gameData = {
   108: {
     text: `<p>You find a suitable spot in the woods to make your camp.
     You may stop and eat provisions if you have any.
-    You will gain 2 Stamina points if its the first meal of the day. 
+    You will gain 2 Stamina points if it's the first meal of the day. 
     If you have already eaten today you will gain only 1 Stamina point instead.</p> 
     
     <p>You settle down and sleep, but there is a chance that you may be 
@@ -1388,28 +1389,28 @@ const gameData = {
     approach a camp.</p> 
     
     <p>You set off again the next morning. If you have had a peaceful 
-    night's sleep, add 2 Stamina points. If you encountered any night 
-    creatures, you may add only 1 Stamina point. You follow a path 
+    night's sleep, you will gain 2 Stamina points. If you encountered any night 
+    creatures, you gain only 1 Stamina point. You follow a path 
     onwards which climbs steadily up a hill.</p>`,
     choices: [{ goToPage: 123, text: "Check if any creatures attack you" }],
     eatOption: { haveEaten: 1, haveNotEaten: 2 },
   },
   109: {
     text: `You <b>add 2 Stamina points</b> for your rest. If you did not eat at 
-    all yesterday you must deduct 3 Stamina points. You wake early the 
+    all yesterday you lose 3 Stamina points. You wake early the 
     next morning.`,
     choices: [{ goToPage: 222, text: "Continue.." }],
     staminaGain: 2,
     newDay: true,
   },
   110: {
-    text: `You pick yourself up off the floor and look around, A shaft of light 
+    text: `You pick yourself up off the floor and look around. A shaft of light 
     penetrates the pit and you are relieved to see a passage leading to the 
     daylight outside. Your hand is resting on a furry object which at first 
     you thought was some kind of creature, but now you are able to see 
     that it is a dusty boot. Not far from it is another, and you collect the 
     pair and dust them clean. You now own a pair of fur-skinned boots, 
-    which may take with you. The fur is Borrinskin, and you put the 
+    which you take with you. The fur is Borrinskin, and you put the 
     boots in your backpack. Following the passage, you emerge from the 
     mine into the woods by a pathway that runs downhill.`,
     choices: [{ goToPage: 202, text: "Continue.." }],
@@ -1473,7 +1474,7 @@ const gameData = {
     ],
   },
   115: {
-    text: `You pay the 3 Gold Pieces and settle down for the night. You <b>add 
+    text: `You pay the 3 Gold Pieces and settle down for the night. You <b>gain 
     2 Stamina points</b> for a refreshing night's sleep.`,
     choices: [{ goToPage: 30, text: "Continue.." }],
     staminaGain: 2,
@@ -1511,16 +1512,17 @@ const gameData = {
     choices: [{ goToPage: 193, text: "Continue.." }],
   },
   119: {
-    text: `You open the door. The hut is neatly laid out inside; obviously the 
+    text: `<p>You open the door. The hut is neatly laid out inside; obviously the 
     touch of a fastidious woman. Chairs are around a table. A mattress 
     lies in one corner and a large kitchen area indicates that whoever lives 
     here is fond of cooking. You hear a cry from a corner hidden by a large 
     cupboard, and as you move over to look you can see a large cage in 
-    which a young woman - and quite a pretty one at that - is imprisoned, 
-    "Good stranger" she pleads, "let me out of this cage! I have been 
+    which a young woman - and quite a pretty one at that - is imprisoned.</p>
+
+    <p>"Good stranger" she pleads, "let me out of this cage! I have been 
     locked in here for two days by those mischievous Elvins. Can you 
     please help me?" Will you help her, ask what's in it for you 
-    or look around the hut for goods to steal? `,
+    or look around the hut for goods to steal?</p>`,
     choices: [
       { goToPage: 4, text: "Help her" },
       { goToPage: 78, text: "Ask: Whats in it for me?" },
@@ -1558,10 +1560,10 @@ const gameData = {
   123: {
     text: `Roll one die to see whether you encounter any night creatures.`,
     choices: [
-      { goToPage: 396, text: "Magic: RAN" }, // not a spell
+      { goToPage: 396, text: "Magic: RAN" }, // NAS
       { goToPage: 421, text: "Magic: GUM" }, // need glue??
-      { goToPage: 448, text: "Magic: LAW" }, // Its runs off
-      { goToPage: 437, text: "Magic: WIK" }, // not a spell
+      { goToPage: 448, text: "Magic: LAW" }, // It runs off
+      { goToPage: 437, text: "Magic: WIK" }, // NAS
       { goToPage: 453, text: "Magic: BIG" }, // Triple in size (it runs or you double your skill)
       { fightNC: true, text: "Fight it" },
       { nightContinue: true, text: "Continue.." },
@@ -1580,7 +1582,7 @@ const gameData = {
     of the Spirit's curse, but until you do, you are more vulnerable to 
     dangers. You may now leave the hut and continue your journey 
     onwards.`,
-    choices: [{ goToPage: 196, text: "Continue.." }], // todo cursed lose 1 extra Stamina always
+    choices: [{ goToPage: 196, text: "Continue.." }],
     curse: true,
   },
   125: {
@@ -1597,7 +1599,7 @@ const gameData = {
   },
   126: {
     text: `<p>You may investigate your purchases now. 
-    But a brief description can be seen by hovering over the item in the item box.</p>
+    Bear in mind a brief description can be seen by hovering over the item in the item box.</p>
     
     <p>You will return here after investigating all your new acquisitions.
     Continue onwards, once you are ready.</p>`,
@@ -1637,7 +1639,7 @@ const gameData = {
   },
   129: {
     text: `The driver is a cheerful fellow and prefers company to travelling 
-    alone. You may <b>add 1 Luck point</b> for getting this lift. You travel for 
+    alone. You <b>recover 1 Luck point</b> for getting this lift. You travel for 
     most of the morning at a pace not much faster than you could walk 
     until he finally reaches a field where he is collecting vegetables. You 
     may offer to help him for an hour or so in return for the lift or you may 
@@ -1703,10 +1705,9 @@ const gameData = {
     text: `The inn charges 3 Gold Pieces for a hearty meal and 3 Gold Pieces for a 
     bed. If you can afford it, you may eat. The meal (Hillfox broth and rice) 
     will restore 3 Stamina points if you have not yet eaten today or 2 
-    Stamina points if you have. You can stay at the 
-    inn for the night, or if you cannot afford it or will not pay, 
-    you may leave the village in search of a suitable place to camp for the 
-    night.`,
+    Stamina points if you have. You can stay at the inn for the night, 
+    or if you cannot afford it or will not pay, you may leave the village in 
+    search of a suitable place to camp for the night.`,
     choices: [
       { goToPage: 115, text: "Sleep at the inn" },
       { goToPage: 14, text: "Find a place to camp" },
@@ -1803,16 +1804,18 @@ const gameData = {
     extraText: true,
   },
   142: {
-    text: `You draw your weapon and try to smash the lock. Roll two dice and 
-    compare the total with your Skill score. If the roll is lower than your 
-    skill, you succeed in breaking the lock and releasing the woman, 
-    If the roll equals or exceeds your skill, the lock remains 
-    intact. Each time you try, the blow blunts your weapon and you must 
-    deduct 1 point from your Skill when you use this weapon. If you 
-    have multiple weapons, you may equip the less favoured one so as to suffer 
+    text: `<p>You draw your weapon and try to smash the lock. Roll two dice and 
+    compare the total with your Skill score.</p>
+    
+    <p>If the roll is lower than your skill, you succeed in breaking 
+    the lock and releasing the woman. If the roll equals or exceeds your skill, 
+    the lock remains intact. Each time you try, the blow blunts your weapon and 
+    1 point will be deducted from your Skill when you use this weapon.</p>
+    
+    <p>If you have multiple weapons, you may equip the less favoured one so as to suffer 
     no penalty when using your preffered one. You must try at least 
     once but, after this, you may stop at any time, give up and leave the 
-    house.`,
+    house.</p>`,
     choices: [
       { goToPage: 90, text: "Successful roll - Break the lock", blocked: true },
       { goToPage: 278, text: "Give up and leave the house", blocked: true },
@@ -1879,15 +1882,16 @@ const gameData = {
     luckGain: 1,
   },
   147: {
-    text: `The gentle upward slope becomes a steep climb and you must rest 
+    text: `<p>The gentle upward slope becomes a steep climb and you must rest 
     several times during the morning. Finally you reach the top and can 
     look over the hill to see that the path leads into a small settlement of 
     crudely made huts. You follow the path down and into the village. As 
     you arrive, the villagers notice you and make for their huts, almost as 
     if in fear. They are a sorry looking bunch, short and squat with tough, 
     leathery skin. Several of them are missing limbs and some are only 
-    able to drag themselves along with their hands. Will you try to talk 
-    with the villagers or continue onwards through the village?`,
+    able to drag themselves along with their hands.</p>
+    
+    <p>Will you try to talk with the villagers or continue onwards through the village?`,
     choices: [
       { goToPage: 61, text: "Talk to the villagers" },
       { goToPage: 220, text: "Continue onwards" },
@@ -1928,7 +1932,7 @@ const gameData = {
   },
   151: {
     text: `Some way down the corridor you hear whimpering and your torch 
-    lights up a frail shape. Hiding in the shadows is the young Svinn girl! 
+    lights up a frail shape. Hiding in the shadows is <b>the young Svinn girl!</b> 
     You take her up and comfort her, and she clings to you for safety. 
     Now all you have to do is escape!`,
     choices: [{ goToPage: 195, text: "Continue.." }],
@@ -2032,7 +2036,7 @@ const gameData = {
     choices: [{ goToPage: 120, text: "Continue.." }],
   },
   161: {
-    text: `The meal is just being served. If you wish to sit down to eat, pay the 2 
+    text: `The meal is just being served. If you wish to sit down to eat, you pay 2 
     Gold Pieces and have your bowl of Skunkbear stew. You may add 3 
     Stamina points if you eat. You will not be able to eat your own 
     Provisions at the inn. If you wish to rest for the night, it will cost you 3 Gold 
@@ -2094,8 +2098,7 @@ const gameData = {
     pause: true,
   },
   166: {
-    text: `Which spell will you choose?
-    You can use your weapon if you prefer.`,
+    text: `Which spell will you choose? You can use your weapon if you prefer.`,
     choices: [
       { goToPage: 332, text: "Magic: NAP" },
       { goToPage: 295, text: "Magic: SIX" },
@@ -2130,7 +2133,7 @@ const gameData = {
   170: {
     text: `Your relief is somewhat premature, however, as you discover when 
     you take your next step forward. Your foot triggers a release 
-    mechanism and three saplings snap up In front of you. Each is fitted with 
+    mechanism and three saplings snap up in front of you. Each is fitted with 
     sharpened stakes which whip towards you at heart level. You are 
     impaled on this fiendish device and your journey has ended here. 
     Your head will soon join the others on the posts you have just 
@@ -2138,13 +2141,14 @@ const gameData = {
     choices: [{ goToPage: 0, text: "Death" }],
   },
   171: {
-    text: `The creature is a MINIMITE and calls itself Jann. It is very friendly 
+    text: `<p>The creature is a MINIMITE and calls itself <b>Jann.</b> It is very friendly 
     and tells you you are looking down on Birritanti, the largest village 
     in the Shamutanti Hills. Birritanti is a friendly village, where all 
     travellers spend at least one night. Consequently, prices are a little on 
-    the high side. The Minimite would like to come with you. Will you 
-    allow it to stay on your shoulder and follow the path down into 
-    Birritanti or will you tell it you would rather travel alone?`,
+    the high side. The Minimite would like to come with you.</p>
+    
+    <p>Will you allow it to stay on your shoulder and follow the path down into 
+    Birritanti or will you tell it you would rather travel alone?</p>`,
     choices: [
       { goToPage: 111, text: "Allow Jann to stay" },
       { goToPage: 37, text: "Say you'd rather travel alone" },
@@ -2199,8 +2203,8 @@ const gameData = {
     text: `You search the Troll's body and hut. Inside the hut you <b>find a pouch 
     containing 3 Gold Pieces</b>, around the Troll's neck is a small amulet 
     made of twisted metal. This is a <b>Lucky Charm</b> - although it brought 
-    little Luck to the Troll. While wearing this charm, you may subtract 
-    one point from your dice roll each time you Test your Luck`,
+    little Luck to the Troll. While carrying this charm, each time you Test your Luck,
+    you will succed on rolling up to your Luck plus one, increasing your odds.`,
     choices: [{ goToPage: 237, text: "Continue.." }],
     getItems: [
       { name: "gold", amount: 3 },
@@ -2227,8 +2231,9 @@ const gameData = {
     and stands before you. He is five feet tall with thick-set arms and 
     thighs half clothed in tattered breeches. His eyes are wild and his long 
     red hair and beard stand out on his face in a wiry tangle. "Halt, 
-    stranger!" he commands. "What business have you in Cantopani?" 
-    What is your response?</p>`,
+    stranger!" he commands. "What business have you in Cantopani?"</p>
+
+    <p>What is your response?</p>`,
     choices: [
       { goToPage: 264, text: "Tell him you are a trader" },
       { goToPage: 33, text: "Ask for directions onwards" },
@@ -2263,8 +2268,7 @@ const gameData = {
   },
   182: {
     text: `What will you give the man? If you have an axe, you give it to him. 
-    If you do not have an axe, you will now have to give 
-    him something else.`,
+    If you do not have an axe, you will now have to give him something else.`,
     choices: [
       { goToPage: 233, text: "Give him the axe", requires: "axe" },
       { goToPage: 29, text: "I don't have an axe", blockItem: "axe" },
@@ -2329,7 +2333,7 @@ const gameData = {
     
     <p>You must now continue weaponless and, unless you 
     have a reserve in your pack, you must <b>deduct 4 Skill points until you 
-    find another weapon.</b></p>`,
+    equip another weapon.</b></p>`,
     choices: [{ goToPage: 14, text: "Continue.." }],
     gainLuck: 2,
   },
@@ -2383,8 +2387,7 @@ const gameData = {
   190: {
     text: `The teeth in the bag are indeed from various creatures: several from 
     Death-hounds, three from an Ape, four from a Goblin, two from a 
-    Snattacat and a large molar from a Giant. You take all of 
-    these and continue.`,
+    Snattacat and a large molar from a Giant. You take these and continue.`,
     choices: [{ goToPage: 126, text: "Continue.." }],
   },
   191: {
@@ -2405,10 +2408,10 @@ const gameData = {
     luckGain: 1,
   },
   192: {
-    text: `You sit down and mutter some comment about the mud on the trails 
+    text: `<p>You sit down and mutter some comment about the mud on the trails 
     at this time of year. The old man grunts in agreement. Eventually the 
-    silence gives way to noisy chatter once more and you talk to the old 
-    man. He is a hill farmer on the outskirts of the village and sees much 
+    silence gives way to noisy chatter once more and you talk to him.
+    He is a hill farmer on the outskirts of the village and sees much 
     of what comes and goes in Kristatanti. He has heard of the capture of 
     the Crown of Kings but has little interest in world affairs. You tell him 
     a little of yourself and soon you are both laughing heartily as you 
@@ -2419,11 +2422,11 @@ const gameData = {
     great ones. I wish you the Luck of Sindla on your journey. Perhaps this 
     will help you on your way." <b>He hands you an apple-like fruit</b> which he 
     has grown on his farm, and you add it to your provisions. You 
-    thank him and wish him a good night. 
+    thank him and wish him a good night.</p>
     
-    You also <b>gain 2 Luck points</b> for your encounter. Then you must 
+    <p>You also <b>gain 2 Luck points</b> for your encounter. Then you must 
     decide whether to spend the night in the inn or wander 
-    off into the woods outside the village to sleep rough.`,
+    off into the woods outside the village to sleep rough.</p>`,
     choices: [
       { goToPage: 211, text: "Spend the night in the inn" },
       { goToPage: 62, text: "Sleep rough" },
@@ -2447,9 +2450,9 @@ const gameData = {
     // unique node
     text: `The sword has a specially sharpened blade and will inflict 3 Stamina 
     points' worth of damage instead of the normal 2. However, you will 
-    not be able to take this sword if you already have a sword unless you 
-    leave your equipped one behind. If you don't consider this new sword is as 
-    good as your old one, you can choose to ask the merchant for your money back 
+    not be able to take this sword unless you leave your equipped one behind. 
+    If you don't consider this new sword is as 
+    good as your current one, you can choose to ask the merchant for your money back 
     (Test your Luck - if you are Lucky he will give you a refund). 
     Then you leave in search of the local inn.`,
     choices: [
@@ -2479,18 +2482,18 @@ const gameData = {
     testLuck: { optional: true },
   },
   195: {
-    text: `Behind you a roaring puts you on your guard. The walls of the 
+    text: `<p>Behind you a roaring puts you on your guard. The walls of the 
     corridor begin to shake and crumble and you are forced to venture 
     further to avoid the collapse which is sealing off your exit. Ahead of 
     you now, a narrow shaft of light gives you cause for hope. Perhaps 
     this is another exit? The roaring sound gets louder as you step from 
     the corridor into a large cavern. Suddenly you gasp as you back 
-    against the wall, shielding the child from the sight you have seen. 
+    against the wall, shielding the child from the sight you have seen.</p> 
     
-    Standing before you on four legs is a huge MANTICORE a hybrid 
+    <p>Standing before you on four legs is a huge MANTICORE a hybrid 
     creature with a lion's body and a scorpion's tail. Its face is that of an 
     old man and as it sees you it rears back, flapping two great wings. Will 
-    you fight the creature or cast a spell? `,
+    you fight the creature or cast a spell?</p>`,
     choices: [
       { goToPage: 302, text: "Magic: PEP" }, // No item
       { goToPage: 389, text: "Magic: BAG" }, // NAS
@@ -2515,10 +2518,10 @@ const gameData = {
     ],
   },
   198: {
-    text: `He motions on ahead, telling you that you will find the village inn 
-    shortly on the right. 
+    text: `<p>He motions on ahead, telling you that you will find the village inn 
+    shortly on the right.</p> 
     
-    By choosing this option, you will now discover one of the rules of the 
+    <p>By choosing this option, you will now discover one of the rules of the 
     game which you will otherwise only discover by trial and error. The
     adventure is divided into days and each day you will need to eat one 
     meal, otherwise you will lose Stamina points due to undernourishment. 
@@ -2530,9 +2533,9 @@ const gameData = {
     day, although taking a night's rest will usually replenish your 
     stamina. But you will have to choose your times to eat and sleep 
     carefully as sometimes a seemingly 'safe' place to rest and eat may 
-    hold hidden dangers! 
+    hold hidden dangers!</p> 
     
-    You walk on ahead as the villager indicated.`,
+    <p>You walk on ahead as the villager indicated.</p>`,
     choices: [{ goToPage: 257, text: "Continue.." }],
   },
   199: {
@@ -2550,7 +2553,7 @@ const gameData = {
   201: {
     text: `The job is indeed unpleasant. The villager feeds you <b>(gain 2 Stamina 
       points)</b> but you <b>lose 3 Stamina points</b> for missing a night's sleep. 
-      You may, if you wish, use your magic to help you with the job`,
+      You may, if you wish, use your magic to help you with the job:`,
     choices: [
       { goToPage: 298, text: "Magic: BIG" },
       { goToPage: 444, text: "Magic: DIP" },
@@ -2560,8 +2563,7 @@ const gameData = {
       { goToPage: 263, text: "Don't use magic" },
     ],
     eaten: true,
-    staminaGain: 2,
-    staminaLoss: 3,
+    staminaLoss: 1,
   },
   202: {
     text: `You leave the mine along the path downwards through the woods. 
@@ -5100,10 +5102,10 @@ const gameData = {
     staminaLoss: 2,
   },
   411: {
-    text: `<p>Deduct 2 Stamina points. You cast the spell and wait. Slowly, the 
-    ground moves further from you. You are growing larger! The Hill 
-    Giant watches in disbelief while you grow to his size. You may now 
-    fight the Giant:</p> 
+    text: `<p>Deduct 2 Stamina points. You cast the spell and wait. Slowly, the
+    ground moves further from you. You are growing larger! The Hill
+    Giant watches in disbelief while you grow to his size. You may now
+    fight the Giant:</p>
     
     <p><b>HILL GIANT Skill 9 Stamina 11</b></p>
     
@@ -5277,7 +5279,7 @@ const gameData = {
   },
   428: {
     // todo fix death mechanic
-    // todo is this done?? 
+    // todo is this done??
     text: `Deduct 3 Stamina points. There is no such spell as this. The Goblins 
     are quickly on you and attack for 2 Stamina points' worth of 
     damage. You may, if you wish, Test your Luck and if you are Lucky you 

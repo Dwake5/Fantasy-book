@@ -11,3 +11,4 @@ export const getNightCreaturePrevious = (state) => state.story.nightCreaturePrev
 export const getNightCreatureFight = (state) => state.story.nightCreatureFight;
 export const getSwordRefund = (state) => state.story.swordRefund;
 export const getFireball = (state) => state.story.fireball;
+export const getPlayerDead = (state) => state.story.dead;

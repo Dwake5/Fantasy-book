@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Container } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { loseStat } from "../redux/stats/actions";
-import { getSkill } from "../redux/stats/selectors";
-import { blockChoice, diceRolls, unblockChoice } from "../utils";
+import { takeDamage } from "../../redux/stats/actions";
+import { getSkill } from "../../redux/stats/selectors";
+import { blockChoice, diceRolls, unblockChoice } from "../../utils";
 
 // Used on node 93. Got here from 268.
 const BreakDoor = () => {
@@ -15,7 +15,7 @@ const BreakDoor = () => {
   const tryToBreakDoor = () => {
     const rolled = diceRolls(2, true);
     const success = rolled < _skill;
-    loseStat(dispatch, "stamina", 1);
+    takeDamage(dispatch, 1);
     unblockChoice(93, 1);
     if (success) {
       setSuccess(true);

@@ -1,8 +1,8 @@
 import React, { useRef, useState } from "react";
 import { Container } from "react-bootstrap";
 import { useSelector } from "react-redux";
-import { getItems, getOwnedItems, ownItem } from "../redux/items/selectors";
-import { getStat } from "../redux/stats/selectors";
+import { getItems, getOwnedItems, ownItem } from "../../redux/items/selectors";
+import { getStat } from "../../redux/stats/selectors";
 import ItemRobbed from "./ItemRobbed";
 
 // Used in node 218, arrived from 132,279,353,376,401

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import { useDispatch } from "react-redux";
-import { changeItemAmount} from "../redux/items/actions";
-import { diceRolls } from "../utils";
+import { changeItemAmount} from "../../redux/items/actions";
+import { diceRolls } from "../../utils";
 
 // Child of BackpackRobbed, used in 218
 const ItemRobbed = ({ rollNeeded, items, item, itemRolledFor }) => {

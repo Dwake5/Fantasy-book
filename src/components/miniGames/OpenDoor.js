@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Container } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { loseStat } from "../redux/stats/actions";
-import { getSkill } from "../redux/stats/selectors";
-import { blockChoice, diceRolls, unblockChoice } from "../utils";
+import { loseStat } from "../../redux/stats/actions";
+import { getSkill } from "../../redux/stats/selectors";
+import { blockChoice, diceRolls, unblockChoice } from "../../utils";
 
 // Used in 228, got here from 66
 const OpenDoor = ({ rerender }) => {

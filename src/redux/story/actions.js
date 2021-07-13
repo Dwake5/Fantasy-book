@@ -10,6 +10,7 @@ import {
   SET_TRADER_VIEWS,
   SWORD_REFUND,
   FIREBALL_MANTICORE,
+  KILL_PLAYER,
 } from "./action-types";
 
 export const setPage = (dispatch, number) => {
@@ -60,4 +61,8 @@ export const swordRefund = (dispatch, boolean) => {
 
 export const usedFireball = (dispatch) => {
   dispatch({ type: FIREBALL_MANTICORE });
+};
+
+export const killPlayer = (dispatch) => {
+  dispatch({ type: KILL_PLAYER });
 };

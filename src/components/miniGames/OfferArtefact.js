@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Container } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { changeItemAmount } from "../redux/items/actions";
-import { getItems, getOwnedItems } from "../redux/items/selectors";
-import { unblockChoice } from "../utils";
+import { changeItemAmount } from "../../redux/items/actions";
+import { getItems, getOwnedItems } from "../../redux/items/selectors";
+import { unblockChoice } from "../../utils";
 
 // Used in node 29, arrived from 182
 const OfferArtefact = ({ rerender }) => {

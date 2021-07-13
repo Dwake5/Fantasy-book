@@ -1,6 +1,7 @@
 import React from "react";
 import { InputGroup, FormControl } from "react-bootstrap";
 
+// Used in createStats
 const InputNumber = ({
   stat,
   maxStat,

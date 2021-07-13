@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Container } from "react-bootstrap";
 import { useDispatch } from "react-redux";
-import { changeItemAmount } from "../redux/items/actions";
-import { loseStat } from "../redux/stats/actions";
-import { diceRolls, pluralize, unblockChoice } from "../utils";
+import { changeItemAmount } from "../../redux/items/actions";
+import { takeDamage } from "../../redux/stats/actions";
+import { diceRolls, pluralize, unblockChoice } from "../../utils";
 
 // Used in node 270, arrived from 200
 // Used on node 417, arrived from 63
@@ -21,7 +21,7 @@ const RollDie = ({ cancelPause, pageType }) => {
       if (dieRoll > 4) {
         setText(`You rolled a ${dieRoll}, got lucky and avoided any damage!`);
       } else {
-        loseStat(dispatch, "stamina", dieRoll);
+        takeDamage(dispatch, dieRoll);
         setText(
           `You rolled a ${dieRoll}, and <b>lost ${dieRoll} Stamina ${pluralize(
             "point",
@@ -34,7 +34,7 @@ const RollDie = ({ cancelPause, pageType }) => {
     }
 
     if (pageType === "snakeBites") {
-      loseStat(dispatch, "stamina", dieRoll);
+      takeDamage(dispatch, dieRoll);
       setText(
         `You rolled a ${dieRoll}, and <b>lost ${dieRoll} Stamina ${pluralize(
           "point",

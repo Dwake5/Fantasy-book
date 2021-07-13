@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Container } from "react-bootstrap";
-import { diceRolls } from "../../src/utils";
+import { diceRolls } from "../../utils";
 
 const Trader = ({ itemViews, dice, changeCost, optional, itemName }) => {
   const [haveRolled, setHaveRolled] = useState(false);

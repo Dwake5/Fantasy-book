@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { changeItemAmount } from "../redux/items/actions";
-import { getItems, getOwnedItems } from "../redux/items/selectors";
+import { changeItemAmount } from "../../redux/items/actions";
+import { getItems, getOwnedItems } from "../../redux/items/selectors";
 
 // Used in node 48, arrived from 243 choice 1
 const WitchSteals = () => {

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Container } from "react-bootstrap";
-import { pluralize } from "../utils";
+import { pluralize } from "../../utils";
 import { useDispatch } from "react-redux";
-import { payMoney, changeItemAmount } from "../redux/items/actions";
+import { payMoney, changeItemAmount } from "../../redux/items/actions";
 
 // Used on node 257. Got here from 81 or 198
 const BuyProvisions = ({ amount, cost, playerMoney }) => {

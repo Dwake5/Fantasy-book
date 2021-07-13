@@ -20,16 +20,16 @@ import {
 } from "./action-types";
 
 const initialState = {
-  skill: 10,
-  maxSkill: 10,
+  skill: 1,
+  maxSkill: 1,
   stamina: 10,
   maxStamina: 10,
-  luck: 10,
-  maxLuck: 10,
+  luck: 5,
+  maxLuck: 5,
   eatenToday: false,
   libra: true,
   plague: false, // -3 stamina per day
-  spiritCurse: false, // + 1 to all stam loss (except magic)
+  spiritCurse: true, // + 1 to all stam loss (except magic)
   aliannaCurse: false, // -2 skill
   jann: false,
 };

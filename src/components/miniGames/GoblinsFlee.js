@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import { useDispatch } from "react-redux";
-import { addExtraEnemies, setEnemyStats } from "../redux/combat/actions";
-import { diceRolls, unblockChoice } from "../utils";
+import { addExtraEnemies, setEnemyStats } from "../../redux/combat/actions";
+import { diceRolls, unblockChoice } from "../../utils";
 
 // Node 407, came from 217
 const GoblinsFlee = ({ rerender }) => {

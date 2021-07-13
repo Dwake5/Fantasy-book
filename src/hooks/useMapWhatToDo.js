@@ -1,11 +1,11 @@
 import { useSelector } from "react-redux";
-import BackpackRobbed from "../components/BackpackRobbed";
+import BackpackRobbed from "../components/miniGames/BackpackRobbed";
 import CreateStats2 from "../components/CreateStats2";
-import KillSnakes from "../components/KillSnakes";
-import MakeGoblins from "../components/MakeGoblins";
-import NightCreatures from "../components/NightCreatures";
-import RollDie from "../components/RollDie";
-import TrollDice from "../components/TrollDice";
+import KillSnakes from "../components/miniGames/KillSnakes";
+import MakeGoblins from "../components/miniGames/MakeGoblins";
+import NightCreatures from "../components/miniGames/NightCreatures";
+import RollDie from "../components/miniGames/RollDie";
+import TrollDice from "../components/miniGames/TrollDice";
 import { getNightCreaturePrevious } from "../redux/story/selectors";
 
 export function useMapWhatToDo(

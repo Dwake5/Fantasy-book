@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Container } from "react-bootstrap";
-import { diceRolls, unblockChoice } from "../utils";
+import { diceRolls, unblockChoice } from "../../utils";
 
 // Regular, Used on node 254. Got here from 25.
 // Skunk, Used on node 295. Got here from 166.

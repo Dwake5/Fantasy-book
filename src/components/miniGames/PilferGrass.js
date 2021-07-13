@@ -1,9 +1,9 @@
 import React, { useRef, useState } from "react";
 import { Container } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { changeItemAmount } from "../redux/items/actions";
-import { getItems, getOwnedItems } from "../redux/items/selectors";
-import { pluralize, unblockChoice } from "../utils";
+import { changeItemAmount } from "../../redux/items/actions";
+import { getItems, getOwnedItems } from "../../redux/items/selectors";
+import { pluralize, unblockChoice } from "../../utils";
 
 // Used in node 32, arrived from 105 (-2 items)
 // Used in node 57, arrived from 105 (-1 items)

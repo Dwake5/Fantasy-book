@@ -1,38 +1,44 @@
 import React, { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { howManyItem } from "../redux/items/selectors";
-import { loseStat } from "../redux/stats/actions";
-import { getStat } from "../redux/stats/selectors";
-import { changeItemAmount } from "../redux/items/actions";
-import { addAllies } from "../redux/combat/actions";
+import { addAllies } from "../../redux/combat/actions";
+import { changeItemAmount } from "../../redux/items/actions";
+import { howManyItem } from "../../redux/items/selectors";
+import { takeDamage } from "../../redux/stats/actions";
+import { getSpiritCurse, getStat } from "../../redux/stats/selectors";
 
-// Used in node 425 and 369
+// Used on node 425 and 369
 const MakeGoblins = ({ cancelPause }) => {
   const dispatch = useDispatch();
   const _goblinTeethAmount = useSelector((state) =>
     howManyItem(state, "goblinTeeth")
   );
   const _stamina = useSelector((state) => getStat(state, "stamina"));
+  const _curse = useSelector(getSpiritCurse);
 
   const [maxGoblins, setMaxGoblins] = useState(1);
   const [goblinsSelected, setGoblinsSelected] = useState(1);
   const [madeGoblins, setMadeGoblins] = useState(false);
 
   useEffect(() => {
-    const HPamount = _stamina - 1;
-    const max = Math.min(HPamount, _goblinTeethAmount);
+    let hpAmount = _stamina - 1;
+    if (_curse) hpAmount -= 1
+    const max = Math.min(hpAmount, _goblinTeethAmount);
     setMaxGoblins(max);
-  }, [_goblinTeethAmount, _stamina]);
+  }, [_goblinTeethAmount, _stamina, _curse]);
 
+  // todo implement spirit curse here
   const makeTheGoblins = () => {
     setMadeGoblins(true);
     cancelPause();
-    loseStat(dispatch, "stamina", goblinsSelected)
-    changeItemAmount(dispatch, { name: "goblinTeeth", amount: -goblinsSelected });
-    let newAllies = []
+    takeDamage(dispatch, goblinsSelected);
+    changeItemAmount(dispatch, {
+      name: "goblinTeeth",
+      amount: -goblinsSelected,
+    });
+    let newAllies = [];
     for (let i = 1; i <= goblinsSelected; i++) {
-      newAllies.push({ skill: 5, stamina: 5, name: `Goblin ${i}`})
+      newAllies.push({ skill: 5, stamina: 5, name: `Goblin ${i}` });
     }
     addAllies(dispatch, newAllies);
   };

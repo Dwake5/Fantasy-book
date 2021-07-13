@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { Container } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { bluntWeapon } from "../redux/items/actions";
+import { bluntWeapon } from "../../redux/items/actions";
 import {
   getEquippedWeapon,
   getItems,
   getOwnedItems,
-} from "../redux/items/selectors";
-import { getSkill } from "../redux/stats/selectors";
-import { getLockSmashPrevious } from "../redux/story/selectors";
-import { blockChoice, diceRolls, unblockChoice } from "../utils";
+} from "../../redux/items/selectors";
+import { getSkill } from "../../redux/stats/selectors";
+import { getLockSmashPrevious } from "../../redux/story/selectors";
+import { blockChoice, diceRolls, unblockChoice } from "../../utils";
 
 // Used on node 142. Got here from 4 or 360.
 // 360 = -2 from roll, if first hit is succesful no skill loss.

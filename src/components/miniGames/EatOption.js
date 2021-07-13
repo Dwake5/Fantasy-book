@@ -1,9 +1,9 @@
 import React, { useRef, useState } from "react";
 import { Container } from "react-bootstrap";
 import { useDispatch } from "react-redux";
-import "../assets/css/Stats.css";
-import { changeItemAmount, payMoney } from "../redux/items/actions";
-import { changeEatenToday, gainStat } from "../redux/stats/actions";
+import "../../assets/css/Stats.css";
+import { changeItemAmount, payMoney } from "../../redux/items/actions";
+import { changeEatenToday, gainStat } from "../../redux/stats/actions";
 
 const EatOption = ({ eatOptions, eatenToday, food, money }) => {
   const dispatch = useDispatch();

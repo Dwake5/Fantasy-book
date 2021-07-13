@@ -20,7 +20,6 @@ const TestLuck = ({ setLuckPassed, cancelPause, pageNumber }) => {
 
   const testLuck = () => {
     let [total, pass] = testYourLuck(_luck, _haveLuckAmulet);
-    pass = true;
     loseStat(dispatch, "luck", 1);
     setLuckSuccess(pass);
     setLuckTested(true);

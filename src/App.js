@@ -13,10 +13,11 @@ import { getSkill, getStat } from "./redux/stats/selectors";
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
 import Tutorial from "./components/tutorial/Tutorial";
+import Death from "./components/Death";
 import Ailments from "./components/leftHandTabs/Ailments";
 import Combat from "./components/combat/Combat";
 import { getInCombat } from "./redux/combat/selectors";
-import { getPage } from "./redux/story/selectors";
+import { getPage, getPlayerDead } from "./redux/story/selectors";
 
 const App = () => {
   const _skill = useSelector(getSkill);
@@ -27,6 +28,24 @@ const App = () => {
   const _maxLuck = useSelector((state) => getStat(state, "maxLuck"));
   const _inCombat = useSelector(getInCombat);
   const _pageNumber = useSelector(getPage);
+  const _playerDead = useSelector(getPlayerDead);
+
+  const getComponent = () => {
+    if (_playerDead) return <Death />;
+    if (!_inCombat) return <StoryMain pageNumber={parseInt(_pageNumber)} />;
+    if (_inCombat) {
+      return (
+        <Combat
+          pageNumber={parseInt(_pageNumber)}
+          skill={_skill}
+          stamina={_stamina}
+          maxStamina={_maxStamina}
+          luck={_luck}
+          maxLuck={_maxLuck}
+        />
+      );
+    }
+  };
 
   return (
     <div className="main">
@@ -46,17 +65,7 @@ const App = () => {
             <Items />
           </Col>
           <Col className="p-0 storyMain" xs={8}>
-            {!_inCombat && <StoryMain pageNumber={parseInt(_pageNumber)}/>}
-            {_inCombat && (
-              <Combat
-                pageNumber={parseInt(_pageNumber)}
-                skill={_skill}
-                stamina={_stamina}
-                maxStamina={_maxStamina}
-                luck={_luck}
-                maxLuck={_maxLuck}
-              />
-            )}
+            {getComponent()}
           </Col>
           <Col className="p-0" xs={2}>
             <Magic />

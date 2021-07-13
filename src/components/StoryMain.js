@@ -10,7 +10,7 @@ import { changeItemAmount } from "../redux/items/actions";
 import {
   getMoney,
   getOwnedItems,
-  getProvisions
+  getProvisions,
 } from "../redux/items/selectors";
 import {
   changeEatenToday,
@@ -19,15 +19,13 @@ import {
   loseStat,
   playerRecieveCurseAlianna,
   playerRecieveCurseSpirit,
-  playerRecievePlague
+  playerRecievePlague,
+  takeDamage,
+  takePureDamage,
 } from "../redux/stats/actions";
-import {
-  eatenToday,
-  getPlague,
-  getSpiritCurse
-} from "../redux/stats/selectors";
+import { eatenToday, getPlague } from "../redux/stats/selectors";
 import { playerLearnsJann, setPage } from "../redux/story/actions";
-import EatOption from "./EatOption";
+import EatOption from "./miniGames/EatOption";
 import PlayerChoices from "./PlayerChoices";
 import TestLuck from "./TestLuck";
 
@@ -46,7 +44,6 @@ const StoryMain = ({ pageNumber }) => {
 
   // Ailments
   const _havePlague = useSelector(getPlague);
-  const _haveSpiritCurse = useSelector(getSpiritCurse);
 
   const _itemsOwned = useSelector(getOwnedItems);
   const pageData = gameData[pageNumber];
@@ -64,6 +61,7 @@ const StoryMain = ({ pageNumber }) => {
     newDay,
     eaten,
     winGame,
+    magicCost,
   } = pageData;
 
   let spellText = "";
@@ -163,13 +161,8 @@ const StoryMain = ({ pageNumber }) => {
   }, [itemVariableCost]);
 
   const handleNewDay = () => {
-    let loseStamina = 0;
-    if (!_eatenToday) loseStamina += 3;
-    if (_havePlague) loseStamina += 3;
-    if (loseStamina > 0) {
-      if (_haveSpiritCurse) loseStamina++;
-      loseStat(dispatch, "stamina", loseStamina);
-    }
+    if (!_eatenToday) takeDamage(dispatch, 3);
+    if (_havePlague) takeDamage(dispatch, 3);
     changeEatenToday(dispatch, false);
   };
 
@@ -181,16 +174,12 @@ const StoryMain = ({ pageNumber }) => {
 
     if (winGame !== undefined) fullRestore(dispatch);
     if (playerGetsItems !== undefined) addItems(playerGetsItems);
-
+    
     // stats loss
+    // Ensure magic cost is at the 
+    if (magicCost !== undefined) takePureDamage(dispatch, magicCost);
     if (skillLoss !== undefined) loseStat(dispatch, "skill", skillLoss);
-    if (staminaLoss !== undefined) {
-      if (_haveSpiritCurse) {
-        const magicStart = 287;
-        if (pageNumber < magicStart) staminaLoss++;
-      }
-      loseStat(dispatch, "stamina", staminaLoss);
-    }
+    if (staminaLoss !== undefined) takeDamage(dispatch, staminaLoss);
     if (luckLoss !== undefined) loseStat(dispatch, "luck", luckLoss);
 
     // The player ate at this node

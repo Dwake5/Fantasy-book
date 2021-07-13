@@ -1,14 +1,14 @@
 import React, { useRef, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import "../assets/css/Stats.css";
-import { ownItem } from "../redux/items/selectors";
-import { loseStat } from "../redux/stats/actions";
-import { getStat } from "../redux/stats/selectors";
-import { diceRolls, testYourLuck, unblockChoice, blockChoice } from "../utils";
+import "../../assets/css/Stats.css";
+import { ownItem } from "../../redux/items/selectors";
+import { loseStat, takeDamage } from "../../redux/stats/actions";
+import { getStat } from "../../redux/stats/selectors";
+import { diceRolls, testYourLuck, unblockChoice } from "../../utils";
 
-// Used on node 38, which then impacts 23. Lots of places lead here, 27 for example
-const TrollDice = ({ cancelPause }) => {
+// Used on node 366, came from 63
+const SnakeBites = () => {
   const dispatch = useDispatch();
 
   // handle die state
@@ -16,33 +16,33 @@ const TrollDice = ({ cancelPause }) => {
   const [rolledText, setRolledText] = useState(null);
 
   // handle luck state
-  const [luckTested, setLuckTested] = useState(false);
   const [luckText, setLuckText] = useState(null);
   const _luck = useSelector((state) => getStat(state, "luck"));
   const _haveLuckAmulet = useSelector((state) => ownItem(state, "luckAmulet"));
   const fixedLuckNeeded = useRef(null);
-  const luckNeedToPass = _haveLuckAmulet ? _luck + 1 : _luck
+  const luckNeedToPass = _haveLuckAmulet ? _luck + 1 : _luck;
+  const [canRoll, setCanRoll] = useState(false);
 
   const handleDieRoll = () => {
-    cancelPause();
     setAlreadyRolled(true);
     const rolled = diceRolls(1, true);
-    setRolledText(`You rolled a ${rolled}.`);
-    const unblock = Math.floor(rolled / 2)
-    unblockChoice(23, unblock);
+    if (rolled === 6) {
+      setCanRoll(true);
+    } else {
+      unblockChoice(366, 1);
+    }
+    setRolledText(`You rolled a ${rolled}, and lost that much Stamina.`);
+    takeDamage(dispatch, rolled);
   };
 
   const handleTestLuck = () => {
     const [total, pass] = testYourLuck(luckNeedToPass);
     loseStat(dispatch, "luck", 1);
-    setLuckText(`Test your Luck: ${pass ? "Success!" : "Failed."} You rolled a ${total}.`)
-    setLuckTested(true);
-    if (pass) {
-      blockChoice(23, 0)
-      blockChoice(23, 1)
-      blockChoice(23, 2)
-      unblockChoice(23, 3)
-    }
+    setLuckText(
+      `Test your Luck: ${pass ? "Success!" : "Failed."} You rolled a ${total}.`
+    );
+    setCanRoll(false);
+    unblockChoice(366, pass | 0); // Bitwise OR, 1 or 0
   };
 
   const [firstRun, setFirstRun] = useState(true);
@@ -58,7 +58,7 @@ const TrollDice = ({ cancelPause }) => {
           <button
             onClick={handleDieRoll}
             type="button"
-            className="btn btn-info mb-3"
+            className="btn btn-danger mb-3"
             disabled={alreadyRolled}
           >
             Roll 1 Die
@@ -70,13 +70,13 @@ const TrollDice = ({ cancelPause }) => {
             onClick={handleTestLuck}
             type="button"
             className="btn btn-warning mb-3"
-            disabled={luckTested || !alreadyRolled}
+            disabled={!canRoll}
           >
             Test your Luck
           </button>
           <p className="mb-1">
-            You would need a {fixedLuckNeeded.current || luckNeedToPass} or lower to
-            pass.
+            You would need a {fixedLuckNeeded.current || luckNeedToPass} or
+            lower to pass.
           </p>
           {luckText && <p>{luckText}</p>}
         </Col>
@@ -85,4 +85,4 @@ const TrollDice = ({ cancelPause }) => {
   );
 };
 
-export default TrollDice;
+export default SnakeBites;

@@ -20,7 +20,8 @@ import {
   getAllies,
 } from "../../redux/combat/selectors";
 import { getEquippedWeapon, ownItem } from "../../redux/items/selectors";
-import { gainStat, loseStat } from "../../redux/stats/actions";
+import { gainStat, loseStat, takeDamage } from "../../redux/stats/actions";
+import { getSpiritCurse } from "../../redux/stats/selectors";
 import { nightCreatureFight, setPage } from "../../redux/story/actions";
 import {
   getNightCreatureFight,
@@ -40,6 +41,9 @@ const Combat = ({ pageNumber, skill, stamina, maxStamina, luck, maxLuck }) => {
   // Are you dead but TYL will revive you?
   const [lastLife, setLastLife] = useState(false);
 
+  // + 1 damage, this is done in the redux, but needs to be displyed visually to the user
+  const _curse = useSelector(getSpiritCurse);
+
   // Enemy stats
   const _enemyStats = useSelector(getEnemyStats);
   const enemySkill = _enemyStats.skill;
@@ -48,7 +52,7 @@ const Combat = ({ pageNumber, skill, stamina, maxStamina, luck, maxLuck }) => {
   const enemyName = _enemyStats.name;
   const _extraEnemies = useSelector(getExtraEnemies);
 
-  // allies
+  // Allies
   const _allies = useSelector(getAllies);
   const currentAlly = _allies[0];
   let playerFighting = true;
@@ -62,8 +66,11 @@ const Combat = ({ pageNumber, skill, stamina, maxStamina, luck, maxLuck }) => {
     allySkill = currentAlly.skill;
   }
 
+  const curseText = playerFighting && _curse ? "(+1)" : "";
+
   useEffect(() => {
     if (_allies.length === 0) {
+      // All allies have died so reset some stats
       setAutoFight(false);
       setCanUseLuck(false);
     }
@@ -167,7 +174,9 @@ const Combat = ({ pageNumber, skill, stamina, maxStamina, luck, maxLuck }) => {
       }
 
       if (playerFighting) {
-        const healthAfter = stamina - enemyDamage;
+        let cursedDamage = enemyDamage;
+        if (_curse) cursedDamage++
+        const healthAfter = stamina - cursedDamage;
         if (healthAfter <= 0) {
           // about to die
           const luckHeal = enemyDamage === 6 ? 4 : 1;
@@ -179,14 +188,14 @@ const Combat = ({ pageNumber, skill, stamina, maxStamina, luck, maxLuck }) => {
       }
 
       if (playerFighting) {
-        loseStat(dispatch, "stamina", enemyDamage);
+        takeDamage(dispatch, enemyDamage);
         setWhoWasDamaged("player");
       } else {
         damageAlly(dispatch, enemyDamage);
         setWhoWasDamaged("ally");
       }
       const whoWasHurt = playerFighting ? "you" : "your champion";
-      let textToAdd = `The ${enemyName} damaged ${whoWasHurt} for ${enemyDamage} points.`;
+      let textToAdd = `The ${enemyName} damaged ${whoWasHurt} for ${enemyDamage}${curseText} points.`;
       let critText = playerFighting ? ", you've been poisoned!" : ".";
       if (localPoison) textToAdd += ` Critical hit${critText}`;
       newText.line2 = textToAdd;
@@ -293,7 +302,7 @@ const Combat = ({ pageNumber, skill, stamina, maxStamina, luck, maxLuck }) => {
       if (manticorePoison) {
         if (rollPassed) {
           newText.line1 =
-            "Test your Luck - Success. The Manticore only scores a normal attack and you recover 4 Stamina.";
+            "Test your Luck - Success. The Manticore only scored a normal attack and you recover 4 Stamina.";
           newText.line1style = " mb-0";
           gainStat(dispatch, "stamina", 4);
         } else {
@@ -309,7 +318,7 @@ const Combat = ({ pageNumber, skill, stamina, maxStamina, luck, maxLuck }) => {
         } else {
           newText.line1 =
             "Test your Luck - Fail: The enemy hit an artery, you lose an additional point of damage.";
-          loseStat(dispatch, "stamina", 1);
+          takeDamage(dispatch, 1);
         }
       }
     }

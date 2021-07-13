@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Container } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { setEnemyStats } from "../redux/combat/actions";
-import { gainStat } from "../redux/stats/actions";
-import { nightCreatureFight } from "../redux/story/actions";
-import { getNightCreaturePrevious } from "../redux/story/selectors";
-import { diceRolls } from "../utils";
+import { setEnemyStats } from "../../redux/combat/actions";
+import { gainStat } from "../../redux/stats/actions";
+import { nightCreatureFight } from "../../redux/story/actions";
+import { getNightCreaturePrevious } from "../../redux/story/selectors";
+import { diceRolls } from "../../utils";
 import NightCreaturesTable from "./NightCreaturesTable";
 
 // Used in node 123, arrived from many places 84, 108, 283, combat leads 396, 421, 437

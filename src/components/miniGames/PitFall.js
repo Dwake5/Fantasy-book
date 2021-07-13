@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Container } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { loseStat } from "../redux/stats/actions";
-import { getStat } from "../redux/stats/selectors";
-import { getPitfallPrevious } from "../redux/story/selectors";
-import { diceRolls, unblockChoice } from "../utils";
+import { loseStat, takeDamage } from "../../redux/stats/actions";
+import { getStat } from "../../redux/stats/selectors";
+import { getPitfallPrevious } from "../../redux/story/selectors";
+import { diceRolls, unblockChoice } from "../../utils";
 
 // Used on node 277. Got here from 24,290,439,330,424.
 // 330 + 3 to die roll
@@ -51,16 +51,17 @@ const PitFall = ({ rerender }) => {
 
     if (doubleSix && _cameFrom !== 424) {
       setRollText(getText("doubleSix", rolled, rollChange));
+      // todo lose all hp
       loseStat(dispatch, "stamina", 24);
       unblockChoice(277, 1);
       rerender(true);
     } else if (success) {
       setRollText(getText("highScore", rolled, rollChange));
-      loseStat(dispatch, "stamina", 1);
+      takeDamage(dispatch, 1);
       unblockChoice(277, 0);
     } else {
       setRollText(getText("lowScore", rolled, rollChange))
-      loseStat(dispatch, "stamina", 3);
+      takeDamage(dispatch, 3);
       unblockChoice(277, 0);
     }
   };

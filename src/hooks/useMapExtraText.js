@@ -1,19 +1,19 @@
 import { useSelector } from "react-redux";
-import BreakDoor from "../components/BreakDoor";
-import Trader from "../components/Trader";
+import BreakDoor from "../components/miniGames/BreakDoor";
+import Trader from "../components/miniGames/Trader";
 import { getMoney } from "../redux/items/selectors";
 import { getTraderViews } from "../redux/story/selectors";
-import ForkDie from "../components/ForkDie";
-import GoblinsFlee from "../components/GoblinsFlee";
-import LockSmash from "../components/LockSmash";
-import OfferArtefact from "../components/OfferArtefact";
-import OpenDoor from "../components/OpenDoor";
-import PickpocketBox from "../components/PickpocketBox";
-import PilferGrass from "../components/PilferGrass";
-import PitFall from "../components/PitFall";
-import SnakeBites from "../components/SnakeBites";
-import WitchSteals from "../components/WitchSteals";
-import BuyProvisions from "../components/BuyProvisions";
+import ForkDie from "../components/miniGames/ForkDie";
+import GoblinsFlee from "../components/miniGames/GoblinsFlee";
+import LockSmash from "../components/miniGames/LockSmash";
+import OfferArtefact from "../components/miniGames/OfferArtefact";
+import OpenDoor from "../components/miniGames/OpenDoor";
+import PickpocketBox from "../components/miniGames/PickpocketBox";
+import PilferGrass from "../components/miniGames/PilferGrass";
+import PitFall from "../components/miniGames/PitFall";
+import SnakeBites from "../components/miniGames/SnakeBites";
+import WitchSteals from "../components/miniGames/WitchSteals";
+import BuyProvisions from "../components/miniGames/BuyProvisions";
 
 export function useMapExtraText(
   pageNumber,

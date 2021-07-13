@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { diceRolls } from "../utils";
+import { diceRolls } from "../../utils";
 import { useDispatch, useSelector } from "react-redux";
 import { Container } from "react-bootstrap";
-import { getStat } from "../redux/stats/selectors";
-import { ownItem } from "../redux/items/selectors";
-import { loseStat } from "../redux/stats/actions";
+import { getStat } from "../../redux/stats/selectors";
+import { ownItem } from "../../redux/items/selectors";
+import { loseStat } from "../../redux/stats/actions";
 
 // Used in 165, got here from 63
 const KillSnakes = ({ cancelPause }) => {
