@@ -2,12 +2,15 @@ import React, { useState } from "react";
 import { Container, Modal, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { loseStat } from "../../redux/stats/actions";
+import { getStat } from "../../redux/stats/selectors";
 import { getPage } from "../../redux/story/selectors";
 import MagicModal from "./MagicModel";
 
 const Magic = () => {
   const dispatch = useDispatch();
   const _pageNumber = useSelector(getPage);
+  const _stamina = useSelector((state) => getStat(state, "stamina"));
+  const spellbookViewPenalty = 2;
 
   const [show, setShow] = useState(false);
 
@@ -15,7 +18,7 @@ const Magic = () => {
   const handleShow = () => {
     setShow(true);
     if (leftTutorialPages()) {
-      loseStat(dispatch, "stamina", 2);
+      loseStat(dispatch, "stamina", spellbookViewPenalty);
     }
   };
 
@@ -27,7 +30,11 @@ const Magic = () => {
   return (
     <Container className="border text-center mb-2">
       <p className="h3 text-center">Magic</p>
-      <Button onClick={handleShow} className={`mb-3 ${leftTutorialPages() ? "hoverWarning" : ""}`}>
+      <Button
+          onClick={handleShow}
+          className={`mb-3 ${leftTutorialPages() ? "hoverWarning" : ""}`}
+          disabled={_stamina <= spellbookViewPenalty}
+      >
         View Spell Book
       </Button>
 
