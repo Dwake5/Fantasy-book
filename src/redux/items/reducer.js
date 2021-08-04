@@ -12,7 +12,7 @@ import {
 const initialState = {
   gold: {
     name: "Gold Pieces",
-    amount: 40,
+    amount: 0,
     info: "Basic currency used throughout the land",
     alwaysShow: true,
   },
@@ -84,19 +84,19 @@ const initialState = {
   },
   glue: {
     name: "Vial of Glue",
-    amount: 1,
+    amount: 0,
     singular: true,
     info: "Used in spells.",
   },
   nosePlugs: {
     name: "Noseplugs",
-    amount: 1,
+    amount: 0,
     singular: true,
     info: "Used in spells.",
   },
   pebbles: {
     name: "Pebbles",
-    amount: 50,
+    amount: 0,
     info: "Small round pebbles, useful for spells.",
   },
   spellbookPage: {
@@ -137,12 +137,12 @@ const initialState = {
   apeTeeth: { name: "Apes Teeth", amount: 0, info: "Ape Teeth" },
   goblinTeeth: {
     name: "Goblins Teeth",
-    amount: 20,
+    amount: 0,
     info: "Goblin Teeth, used in magic",
   },
   giantsTeeth: {
     name: "Giants Teeth",
-    amount: 1,
+    amount: 0,
     info: "Giant Teeth, used in magic",
   },
   snattacatTeeth: {
@@ -197,7 +197,7 @@ const initialState = {
   },
   axe: {
     name: "Axe",
-    amount: 1,
+    amount: 0,
     singular: true,
     info: `<p>-1 Attack Strength when equipped</p> 
     <p>The carvings read: This axe was crafted in the Year of the Ox for Glandragor the Protector. 

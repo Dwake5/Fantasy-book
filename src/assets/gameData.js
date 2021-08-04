@@ -119,7 +119,7 @@ const gameData = {
     and the rising sun paints the hills in colours of natural beauty which 
     conceal the devilry ahead.</p>
     
-    <p><strong>Note: From here on out it will cost you 2 Stamina to view your spellbook!</strong></p>
+    <p><strong>Note: From beyond here it will cost you 2 Stamina to view your spellbook!</strong></p>
 
     <p>Setting off determinedly, you follow the path. Your quest has begun!</p>`,
     choices: [{ goToPage: 178, text: "Start the adventure!" }],

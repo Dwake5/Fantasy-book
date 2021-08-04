@@ -20,12 +20,12 @@ import {
 } from "./action-types";
 
 const initialState = {
-  skill: 1,
-  maxSkill: 1,
-  stamina: 10,
-  maxStamina: 10,
-  luck: 5,
-  maxLuck: 5,
+  skill: 0,
+  maxSkill: 0,
+  stamina: 0,
+  maxStamina: 0,
+  luck: 0,
+  maxLuck: 0,
   eatenToday: false,
   libra: true,
   plague: false, // -3 stamina per day

@@ -141,12 +141,12 @@ const StoryMain = ({ pageNumber }) => {
   };
 
   // Remove this in production
-  const handleKeyDown = (event) => {
-    if (event.key === "Enter") {
-      const page = event.target.value;
-      setPage(dispatch, page);
-    }
-  };
+  // const handleKeyDown = (event) => {
+  //   if (event.key === "Enter") {
+  //     const page = event.target.value;
+  //     setPage(dispatch, page);
+  //   }
+  // };
 
   const addItems = (items) => {
     items.forEach((item) => {
@@ -203,11 +203,11 @@ const StoryMain = ({ pageNumber }) => {
 
   return (
     <Container>
-      <p className="h3 mb-3 text-center">
+      {/* <p className="h3 mb-3 text-center">
         Adventure! Current Page: {pageNumber}
       </p>
       <label>Go to page:</label>
-      <input type="text" onKeyDown={handleKeyDown}></input>
+      <input type="text" onKeyDown={handleKeyDown}></input> */}
       <p dangerouslySetInnerHTML={{ __html: pageText }}></p>
       {spellText && <p dangerouslySetInnerHTML={{ __html: spellText }}></p>}
       {testLuck && (

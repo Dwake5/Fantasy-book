@@ -25,7 +25,7 @@ const Stats = () => {
         <div className="d-flex flex-column">
           <p className="mb-3">Libra is with you!</p>
           <p className="mb-1 textSmall">
-            Use Libra to:
+            Use her to:
           </p>
           <Button
             onClick={() => handleLibra("restore")}

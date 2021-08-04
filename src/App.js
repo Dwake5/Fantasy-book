@@ -64,7 +64,7 @@ const App = () => {
             />
             <Items />
           </Col>
-          <Col className="storyMain p-3" xs={8}>
+          <Col className="storyMain p-4" xs={8}>
             {getComponent()}
           </Col>
           <Col className="px-1" xs={2}>

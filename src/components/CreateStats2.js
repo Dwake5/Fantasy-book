@@ -27,17 +27,18 @@ const CreateStats2 = ({ cancelPause }) => {
     cancelPause()
   };
 
-  const autoAssign = () => {
-    setPage(dispatch, 1003)
-    setMaxStat(dispatch, "stamina", 20);
-    setMaxStat(dispatch, "skill", 10);
-    setMaxStat(dispatch, "luck", 10);
-    cancelPause()
-  }
+  // Remove this in production
+  // const autoAssign = () => {
+  //   setPage(dispatch, 1003)
+  //   setMaxStat(dispatch, "stamina", 20);
+  //   setMaxStat(dispatch, "skill", 10);
+  //   setMaxStat(dispatch, "luck", 10);
+  //   cancelPause()
+  // }
 
   return (
     <Container>
-      <button className="btn btn-lg btn-info mb-3" onClick={autoAssign}>Auto assign it</button>
+      {/* <button className="btn btn-lg btn-info mb-3" onClick={autoAssign}>Auto assign it</button> */}
 
       <p className="h4">Stamina</p>
       <p>Represents your overall health and ability to survive.</p>

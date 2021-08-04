@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Container, Modal, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { takePureDamage } from "../../redux/stats/actions";
-import { loseStat } from "../../redux/stats/actions";
 import { getStat } from "../../redux/stats/selectors";
 import { getPage } from "../../redux/story/selectors";
 import MagicModal from "./MagicModel";
@@ -11,12 +10,12 @@ const Magic = () => {
   const dispatch = useDispatch();
   const _pageNumber = useSelector(getPage);
   const _stamina = useSelector((state) => getStat(state, "stamina"));
+  console.log('_stamina :', _stamina);
   const spellbookViewPenalty = 2;
+  console.log("render")
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
-
-  setShow(true);
   
   const hasLeftTutorialPages = () => {
     const acceptablePages = [1000, 1001, 1002, 1003];
@@ -24,10 +23,6 @@ const Magic = () => {
   };
 
   const leftTutorial = hasLeftTutorialPages();
-  
-  if (leftTutorial) {
-    loseStat(dispatch, "stamina", spellbookViewPenalty);
-  }
 
   const handleShow = () => {
     setShow(true);
