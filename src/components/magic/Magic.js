@@ -2,23 +2,33 @@ import React, { useState } from "react";
 import { Container, Modal, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { takePureDamage } from "../../redux/stats/actions";
+import { loseStat } from "../../redux/stats/actions";
+import { getStat } from "../../redux/stats/selectors";
 import { getPage } from "../../redux/story/selectors";
 import MagicModal from "./MagicModel";
 
 const Magic = () => {
   const dispatch = useDispatch();
   const _pageNumber = useSelector(getPage);
+  const _stamina = useSelector((state) => getStat(state, "stamina"));
+  const spellbookViewPenalty = 2;
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
+
+  setShow(true);
   
-  const leftTheTutorialPages = () => {
+  const hasLeftTutorialPages = () => {
     const acceptablePages = [1000, 1001, 1002, 1003];
     return !acceptablePages.includes(_pageNumber);
   };
+
+  const leftTutorial = hasLeftTutorialPages();
   
-  const leftTutorial = leftTheTutorialPages();
-  
+  if (leftTutorial) {
+    loseStat(dispatch, "stamina", spellbookViewPenalty);
+  }
+
   const handleShow = () => {
     setShow(true);
     if (leftTutorial) takePureDamage(dispatch, 2);
@@ -27,7 +37,11 @@ const Magic = () => {
   return (
     <Container className="customBorder sideBox text-center mb-2">
       <p className="h3 text-center">Magic</p>
-      <Button onClick={handleShow} className={`mb-3 ${leftTutorial ? "hoverWarning" : ""}`}>
+      <Button
+        onClick={handleShow}
+        className={`mb-3 ${leftTutorial ? "hoverWarning" : ""}`}
+        disabled={_stamina <= spellbookViewPenalty}
+      >
         View Spell Book
       </Button>
 
