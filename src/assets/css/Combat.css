@@ -28,3 +28,7 @@ input.autoCombat {
   padding-left: 10px !important;
   padding-right: 10px !important;
 }
+
+.borderBottom {
+  border-bottom: 1px solid gray;
+}

@@ -29,7 +29,7 @@ const initialState = {
   eatenToday: false,
   libra: true,
   plague: false, // -3 stamina per day
-  spiritCurse: true, // + 1 to all stam loss (except magic)
+  spiritCurse: false, // + 1 to all stam loss (except magic)
   aliannaCurse: false, // -2 skill
   jann: false,
 };

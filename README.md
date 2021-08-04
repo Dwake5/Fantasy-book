@@ -10,6 +10,7 @@
   <li>Make Pilfer grass look more like backpack robbed</li>
   <li>Handle using Libra during combat</li>
   <li>Fix right hand tooltips going to the right and off the screen</li>
+  <li>Create a well done screen after game completion</li>
 </ul>
 
 combat mods

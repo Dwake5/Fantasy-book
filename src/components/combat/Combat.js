@@ -375,7 +375,7 @@ const Combat = ({ pageNumber, skill, stamina, maxStamina, luck, maxLuck }) => {
 
   return (
     <Container>
-      <Row>
+      <Row className="borderBottom">
         {playerFighting && (
           <PlayerStats
             stamina={stamina}

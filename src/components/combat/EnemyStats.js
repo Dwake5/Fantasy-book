@@ -13,7 +13,7 @@ const EnemyStats = ({
   skillDifference,
 }) => {
   return (
-    <Col className="border">
+    <Col>
       <p className="text-center h3">{enemyName}</p>
       <div className="imageContainer d-flex ml-auto mb-3">
         <img src={wolf} alt="Your enemy" />

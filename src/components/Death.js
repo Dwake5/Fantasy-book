@@ -3,10 +3,12 @@ import { Container } from "react-bootstrap";
 
 // Handle death
 const Death = () => {
-
   return (
     <Container>
-      <p>You have died</p>
+      <div className="text-center mt-5">
+        <h3 className="mb-4">You have died!</h3>
+        <button>Restart</button>
+      </div>
     </Container>
   );
 };

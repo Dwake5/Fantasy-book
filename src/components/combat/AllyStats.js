@@ -14,7 +14,7 @@ const AllyStats = ({
 }) => {
 
   return (
-    <Col className="border">
+    <Col>
       <p className="text-center h3">{name}</p>
       <div className="imageContainer mb-3">
         <img src={giant} alt="You're allie fighting the enemy" />

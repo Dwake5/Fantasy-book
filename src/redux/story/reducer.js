@@ -14,7 +14,7 @@ import {
 } from "./action-types";
 
 const initialState = {
-  page: 227,
+  page: 143,
   previousPage: 0,
   dead: false,
   traderItemsViewed: [],

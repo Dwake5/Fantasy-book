@@ -20,7 +20,7 @@ const Stats = ({ skill, maxSkill, stamina, maxStamina, luck, maxLuck }) => {
 
   const staminaDisplay = stamina >= 0 ? stamina : 0
   return (
-    <Container className="border text-center statsBox mb-2">
+    <Container className="customBorder text-center statsBox sideBox mb-2">
       <p className="h3 text-center">Stats</p>
       {maxStamina > 0 && (
         <>
@@ -29,7 +29,7 @@ const Stats = ({ skill, maxSkill, stamina, maxStamina, luck, maxLuck }) => {
           </p>
           <ProgressBar
             variant="danger"
-            className="mb-2"
+            className="mb-2 statsProgressBar"
             now={(staminaDisplay / maxStamina) * 100}
           />
         </>
@@ -40,7 +40,7 @@ const Stats = ({ skill, maxSkill, stamina, maxStamina, luck, maxLuck }) => {
             Skill: {skill} / {maxSkill}
             {totalSkillLoss > 0 && ` (-${totalSkillLoss})`}
           </p>
-          <ProgressBar className="mb-2" now={(skill / maxSkill) * 100} />
+          <ProgressBar className="mb-2 statsProgressBar" now={(skill / maxSkill) * 100} />
         </>
       )}
       {maxLuck > 0 && (
@@ -50,7 +50,7 @@ const Stats = ({ skill, maxSkill, stamina, maxStamina, luck, maxLuck }) => {
           </p>
           <ProgressBar
             variant="warning"
-            className="mb-2"
+            className="mb-2 statsProgressBar"
             now={(luck / maxLuck) * 100}
           />
         </>

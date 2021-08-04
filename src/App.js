@@ -53,7 +53,7 @@ const App = () => {
 
       <Container>
         <Row>
-          <Col className="p-0" xs={2}>
+          <Col className="px-1" xs={2}>
             <Stats
               skill={_skill}
               maxSkill={_maxSkill}
@@ -64,10 +64,10 @@ const App = () => {
             />
             <Items />
           </Col>
-          <Col className="p-0 storyMain" xs={8}>
+          <Col className="storyMain p-3" xs={8}>
             {getComponent()}
           </Col>
-          <Col className="p-0" xs={2}>
+          <Col className="px-1" xs={2}>
             <Magic />
             <Tutorial />
             <Libra />

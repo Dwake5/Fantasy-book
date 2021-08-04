@@ -15,7 +15,7 @@ const Items = () => {
   const haveWeapon = _itemsOwned.some(item => weaponList.includes(item))
 
   return (
-    <Container className="border text-center itemsBox mb-2">
+    <Container className="customBorder text-center itemsBox sideBox mb-2">
       <div>
         <p className="h3 text-center">Items</p>
         {Object.keys(_items).map((key) => {

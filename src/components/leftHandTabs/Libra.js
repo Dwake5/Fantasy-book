@@ -19,7 +19,7 @@ const Stats = () => {
   };
 
   return (
-    <Container className="border text-center mb-2">
+    <Container className="customBorder sideBox text-center mb-2">
       <p className="h3 text-center">Libra</p>
       {_haveLibra && (
         <div className="d-flex flex-column">

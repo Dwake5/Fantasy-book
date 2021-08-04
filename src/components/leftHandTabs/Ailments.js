@@ -16,7 +16,7 @@ const Ailments = () => {
 
   if (!haveAilment) return null;
   return (
-    <Container className="border text-center">
+    <Container className="customBorder sideBox text-center">
       <p className="h3">Ailments</p>
       {_havePlague && (
         <div className="mb-1 hoverItem">

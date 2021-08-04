@@ -453,10 +453,12 @@ const gameData = {
     hunch-backed creature emerges and stands between you and the 
     bridge, barring your way. In a gruff voice he speaks to you:</p> 
     
-    <address>
-    "Halt stranger. If you wish to pass<br>
-    Two answers must you give Vancass."<br>
-    </address>
+    <div class="dFlex">
+      <address>
+        <q>Halt stranger. If you wish to pass,<br>
+        Two answers must you give Vancass.</q><br>
+      </address>
+    </div>
 
     <p>The guardian of the bridge has dark, glaring eyes but looks no match 
     for you physically, although you suspect he may have magical 
@@ -603,11 +605,13 @@ const gameData = {
     // riddle question 1
     text: `<p>The hunchback chuckles and asks his first question:</p> 
 
-    <address>
-    "A witch held in captivity lives in the woods.<br>
-    First tell to me if you know of this cunning dame.<br>
-    How is she known, what is her name?"<br>
-    </address>`,
+    <div class="dFlex">
+      <address>
+        <q>A witch held in captivity lives in the woods.<br>
+        First tell to me if you know of this cunning dame.<br>
+        How is she known, what is her name?</q><br>
+      </address>
+    </div>`,
     choices: [
       { goToPage: 238, text: "Allina" },
       { goToPage: 253, text: "Allanna" },
@@ -1826,12 +1830,14 @@ const gameData = {
     // riddle question 1 success
     text: `<p>The hunchback smiles.</p>
 
-    <address>
-    'Your answer is correct and true,<br>
-    now you must answer question two:<br>
-    Through villages three you now have passed<br>
-    What was the first, second and last?<br>
-    </address>
+    <div class="dFlex">
+      <address>
+        <q>Your answer is correct and true,<br>
+        now you must answer question two:<br>
+        Through villages three you now have passed,<br>
+        What was the first, second and last?</q><br>
+      </address>
+    </div>
     
     <p>How will you answer him?</p>`,
     choices: [
@@ -2285,12 +2291,14 @@ const gameData = {
     until he was waylaid by Elvins, robbed, and left in the tree. In return 
     for your kindness, he relates a rhyme which he feels may help you;</p> 
     
-    <address>
-    See him though he sees you not;<br>
-    The black-eyed creature creeps.<br>
-    A guardian once, but now his lot:<br>
-    The key to freedom keeps.<br>
-    </address>
+    <div class="dFlex">
+      <address>
+        <q>See him though he sees you not;<br>
+        The black-eyed creature creeps.<br>
+        A guardian once, but now his lot:<br>
+        The key to freedom keeps.</q><br>
+      </address>
+    </div>
     
     <p>He is not sure exactly what the rhyme signifies, but he knows that the 
     Elvins are particularly keen on finding the key in question. He also 
@@ -3376,12 +3384,14 @@ const gameData = {
 
     <p>He is a sly old creature and you must be careful to mark his words well:</p> 
     
-    <address>
-    'Beware the lair of the cave-demon's maze,<br>
-    For traps as deadly as Medusa's gaze.<br>
-    Greet travellers who, of Luck bereft,<br>
-    Take passageways not to the left.'<br>
-    </address>
+    <div class="dFlex">
+      <address>
+        <q>Beware the lair of the cave-demon's maze,<br>
+        For traps as deadly as Medusa's gaze.<br>
+        Greet travellers who, of Luck bereft,<br>
+        Take passageways not to the left.</q><br>
+      </address>
+    </div>
   
     <p>You consider these words as you cross the valley. You <b>you gain 2 
     Luck points</b> for your success. On the other side of the bridge you 

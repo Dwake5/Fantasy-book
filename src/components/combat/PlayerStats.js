@@ -32,7 +32,7 @@ const PlayerStats = ({
   };
 
   return (
-    <Col className="border">
+    <Col>
       <p className="text-center h3">You</p>
       <div className="imageContainer mb-3">
         <img src={knight} alt="You fighting the enemy" />

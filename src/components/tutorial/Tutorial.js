@@ -10,7 +10,7 @@ const Tutorial = () => {
   const handleShow = () => setShow(true);
 
   return (
-    <Container className="border text-center mb-2">
+    <Container className="customBorder sideBox text-center mb-2">
       <p className="h3 text-center">Tutorial</p>
       <Button onClick={handleShow} className="mb-3">
         View

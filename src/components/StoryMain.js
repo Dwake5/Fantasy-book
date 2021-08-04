@@ -202,7 +202,7 @@ const StoryMain = ({ pageNumber }) => {
   }, [pageNumber, dispatch]);
 
   return (
-    <Container className="border storyBody">
+    <Container>
       <p className="h3 mb-3 text-center">
         Adventure! Current Page: {pageNumber}
       </p>
