@@ -1,5 +1,6 @@
-body, html { 
-  font-family: 'Sherwood';
+body,
+html {
+  font-family: "Sherwood";
 }
 
 .storyMain {
@@ -14,7 +15,17 @@ body, html {
 }
 
 .progressBar {
-  height: 30px
+  height: 30px;
+  border: 2px solid black;
+  border-radius: 20px;
+}
+
+.progress-bar-striped {
+  border-right: 2px solid black;
+}
+
+.progress-max .progress-bar {
+  border-right: 0px;
 }
 
 .customBorder {

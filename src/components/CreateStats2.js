@@ -41,7 +41,7 @@ const CreateStats2 = ({ cancelPause }) => {
       {/* <button className="btn btn-lg btn-info mb-3" onClick={autoAssign}>Auto assign it</button> */}
 
       <p className="h4">Stamina</p>
-      <p>Represents your overall health and ability to survive.</p>
+      <p>Represents your overall health and ability to survive. (2 per point)</p>
 
       <Row className="mb-4 d-flex align-items-center">
         <Col md={5}>
@@ -59,7 +59,7 @@ const CreateStats2 = ({ cancelPause }) => {
           <ProgressBar
             striped
             variant="danger"
-            className="progressBar"
+            className={`progressBar ${stamina === maxStamina ? "progress-max" : ""}`} 
             min={minStamina - 2}
             max={maxStamina}
             now={stamina}
@@ -84,7 +84,7 @@ const CreateStats2 = ({ cancelPause }) => {
         <Col>
           <ProgressBar
             striped
-            className="progressBar"
+            className={`progressBar ${skill === maxSkill ? "progress-max" : ""}`} 
             min={minSkill - 1}
             max={maxSkill}
             now={skill}
@@ -114,7 +114,7 @@ const CreateStats2 = ({ cancelPause }) => {
           <ProgressBar
             striped
             variant="warning"
-            className="progressBar"
+            className={`progressBar ${luck === maxLuck ? "progress-max" : ""}`} 
             min={minLuck - 1}
             max={maxLuck}
             now={luck}

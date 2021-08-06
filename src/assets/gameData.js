@@ -87,9 +87,11 @@ const gameData = {
     master Sergeant. For the last time he glances at the look-out atop the 
     gate, who signals the all-clear. The Sergeant orders the bolt to be 
     withdrawn. A doorway opens up in front of you and you get your first 
-    view of the Shamutanti foothills, the first stage of your journey.</p>
-    
-    <p>The Sight master Sergeant strides over and grasps your hand. I will 
+    view of the Shamutanti foothills, the first stage of your journey.</p>`,
+    choices: [{ goToPage: 1004, text: "Continue.." }],
+  },
+  1004: {
+    text: `<p>The Sight master Sergeant strides over and grasps your hand. I will 
     not wish you a safe journey, for the way ahead will not be safe. 
     Kakhabad is a treacherous land inhabited by devils. But this you 
     already know.</p> 

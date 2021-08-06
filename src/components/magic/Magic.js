@@ -10,19 +10,14 @@ const Magic = () => {
   const dispatch = useDispatch();
   const _pageNumber = useSelector(getPage);
   const _stamina = useSelector((state) => getStat(state, "stamina"));
-  console.log('_stamina :', _stamina);
   const spellbookViewPenalty = 2;
-  console.log("render")
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
-  
-  const hasLeftTutorialPages = () => {
-    const acceptablePages = [1000, 1001, 1002, 1003];
-    return !acceptablePages.includes(_pageNumber);
-  };
 
-  const leftTutorial = hasLeftTutorialPages();
+  // Numbers greater than 1000 are starting / tutorial pages
+  const tutorialStart = 1000;
+  const leftTutorial = _pageNumber < tutorialStart;
 
   const handleShow = () => {
     setShow(true);
@@ -31,13 +26,13 @@ const Magic = () => {
 
   return (
     <Container className="customBorder sideBox text-center mb-2">
-      <p className="h3 text-center">Magic</p>
+      <p className="h3 text-center">Spell Book</p>
       <Button
         onClick={handleShow}
         className={`mb-3 ${leftTutorial ? "hoverWarning" : ""}`}
-        disabled={_stamina <= spellbookViewPenalty}
+        disabled={leftTutorial && _stamina <= spellbookViewPenalty}
       >
-        View Spell Book
+        View
       </Button>
 
       <Modal show={show} onHide={handleClose} className="tutorialModal">
