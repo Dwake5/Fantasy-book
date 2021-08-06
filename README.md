@@ -1,24 +1,22 @@
 # Things to do
 
 <ul>
-  <li>Add P tags to text to format it better</li>
-  <li>Progress bars to combat</li>
+  <li>Add P tags to text to format it better (done?)</li>
+  <li>Progress bars to combat (maybe)</li>
   <li>Get no change for buying with gems (15) might not do this, a lot of work for little payoff, maybe just give 5gp a piece</li>
   <li>Handle death</li>
   <li>Workout when the user has to know about Jann... (305, 306, 321, 394, 387, 286) all tell you, but are optional choices except 286!) Requires a lot of testing (I think its fine though, based on base story path)</li>
   <li>Add bold text to important info the player recieves, and stat loss / increases</li>
-  <li>Make Pilfer grass look more like backpack robbed</li>
+  <li>Make Pilfer grass look more like backpack robbed (possibly unneccessary</li>
   <li>Handle using Libra during combat</li>
   <li>Fix right hand tooltips going to the right and off the screen</li>
   <li>Create a well done screen after game completion</li>
 </ul>
 
-combat mods
-388: Manticore vs Giant. 1/3 chance of triple damage
-
 # Done
 
 <ul>
+  <li>Improve progress bars styling</li>
   <li>Handle spirit curse in combat</li>
   <li>Convert to magic damage and regular damage, purpose of this is for the spirit curse and to handle death when a node kills and then heals you</li>
   <li>Handle using spells causing extra damage to you if you don't have items</li>

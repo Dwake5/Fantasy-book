@@ -13,7 +13,7 @@ const initialState = {
   gold: {
     name: "Gold Pieces",
     amount: 0,
-    info: "Basic currency used throughout the land",
+    info: "Basic currency used throughout the land.",
     alwaysShow: true,
   },
   provisions: {
@@ -32,19 +32,13 @@ const initialState = {
     name: "Bamboo Flute",
     amount: 0,
     singular: true,
-    info: "A musical flute made of bamboo",
+    info: "A musical flute made of bamboo.",
   },
   iceJewel: {
     name: "Ice Jewel",
     amount: 0,
     singular: true,
-    info: "A mounted Ice Jewel",
-  },
-  bomba: {
-    name: "Bomba Fruit",
-    amount: 0,
-    info: "<p>Double Stamina gain from next meal</p> A nourishing Bomba. Given to you by a friendly hill farmer.",
-    use: false,
+    info: "A mounted Ice Jewel.",
   },
   oldKey: {
     name: "Old Key",
@@ -138,22 +132,22 @@ const initialState = {
   goblinTeeth: {
     name: "Goblins Teeth",
     amount: 0,
-    info: "Goblin Teeth, used in magic",
+    info: "Goblin Teeth, used in magic.",
   },
   giantsTeeth: {
     name: "Giants Teeth",
     amount: 0,
-    info: "Giant Teeth, used in magic",
+    info: "Giant Teeth, used in magic.",
   },
   snattacatTeeth: {
     name: "Snattacat Teeth",
     amount: 0,
-    info: "Snattacat Teeth, used in magic",
+    info: "Snattacat Teeth, used in magic.",
   },
   deathhoundTeeth: {
-    name: "Deathhound Teeth",
+    name: "Death-hound Teeth",
     amount: 0,
-    info: "Death-hound Teeth, used in magic",
+    info: "Death-hound Teeth, used in magic.",
   },
   gems: {
     name: "Black Gems",

@@ -68,8 +68,8 @@ const App = () => {
             {getComponent()}
           </Col>
           <Col className="px-1" xs={2}>
-            <Magic />
             <Tutorial />
+            <Magic />
             <Libra />
             <Ailments />
           </Col>

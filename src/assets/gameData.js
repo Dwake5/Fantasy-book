@@ -21,7 +21,7 @@ const gameData = {
     <p>Through the multi-choice system, you will choose which 
     paths to take, whether to fight or flee from combat and how you will 
     solve problems. If death takes you, you will have to begin your 
-    adventure again. But if your Skill is great and if Luck, and your God are 
+    adventure again. But if your Skill is great and if Luck, and your God, are 
     with you, you may survive your overland journey to the Mampang 
     Fortress.</p>`,
     choices: [
@@ -91,7 +91,7 @@ const gameData = {
     choices: [{ goToPage: 1004, text: "Continue.." }],
   },
   1004: {
-    text: `<p>The Sight master Sergeant strides over and grasps your hand. I will 
+    text: `<p>The Sight-master Sergeant strides over and grasps your hand. I will 
     not wish you a safe journey, for the way ahead will not be safe. 
     Kakhabad is a treacherous land inhabited by devils. But this you 
     already know.</p> 

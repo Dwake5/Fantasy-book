@@ -2,7 +2,6 @@
   visibility: hidden;
   position: absolute;
   z-index: 2;
-  border: 1px;
   background-color: black;
   color: white;
   border-style: solid;
@@ -12,6 +11,13 @@
   width: 250px;
   max-width: 400px;
   top: -3px;
+  left: 95%;
+  border: 2px solid rgb(190, 169, 74);
+}
+
+.hoverLeft {
+  right: 95% !important;
+  left: revert;
 }
 
 .hoverItem:hover span.hoverText {
