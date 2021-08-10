@@ -342,7 +342,13 @@ const Combat = ({ pageNumber, skill, stamina, maxStamina, luck, maxLuck }) => {
   const shouldIntervalRun = autoFight && !someoneDead;
   useInterval(handleAttack, shouldIntervalRun ? 750 : null);
 
+  const playerDead = stamina <= 0;
+
   const handleChoice = () => {
+    if (playerDead) {
+      handleDeath();
+      return;
+    }
     if (_nightCreatureFight) {
       const nightCreatureMap = {
         84: 31,
@@ -365,7 +371,12 @@ const Combat = ({ pageNumber, skill, stamina, maxStamina, luck, maxLuck }) => {
     setPage(dispatch, 187);
   };
 
-  const choices = [{ text: "Continue.." }];
+  const handleDeath = () => {
+    endCombat(dispatch);
+    setPage(dispatch, 0);
+  };
+
+  const choices = [{ text: `${playerDead ? "Death" : "Continue"}` }];
   useHandleKeyDown(choices, !someoneDead, handleChoice);
 
   const getSkillDifference = () => {
@@ -429,7 +440,7 @@ const Combat = ({ pageNumber, skill, stamina, maxStamina, luck, maxLuck }) => {
         <Row>
           <Col className="text-center">
             <p className="userChoice" onClick={handleChoice}>
-              1: Continue
+              {`1: ${choices[0].text}`}
             </p>
           </Col>
         </Row>
