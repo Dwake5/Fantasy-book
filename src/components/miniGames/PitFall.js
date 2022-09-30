@@ -24,7 +24,7 @@ const PitFall = ({ rerender }) => {
     const newRolled = rolled.toString().replace(",", ", ");
     const textMap = {
       doubleSix: `Broken Neck. <br> You rolled a ${newRolled} ${modifierText(rollChange)}`,
-      highScore: `Minor Brusing. <br> You rolled a ${newRolled} ${modifierText(rollChange)} and <b>lost 1 Stamina Point.</b>`,
+      highScore: `Minor Bruising. <br> You rolled a ${newRolled} ${modifierText(rollChange)} and <b>lost 1 Stamina Point.</b>`,
       lowScore: `Twisted Arm. <br> You rolled a ${newRolled} ${modifierText(rollChange)} and <b>lost 3 Stamina Points.</b>`
     };
 
@@ -32,7 +32,7 @@ const PitFall = ({ rerender }) => {
   };
 
   const checkDamage = () => {
-    let rolled = diceRolls(2);
+    const rolled = diceRolls(2);
     let rollTotal = rolled.reduce((a, b) => a + b);
     const doubleSix = rollTotal === 12;
     setAlreadyFell(true);
@@ -55,13 +55,14 @@ const PitFall = ({ rerender }) => {
       loseStat(dispatch, "stamina", 24);
       unblockChoice(277, 1);
       rerender(true);
-    } else if (success) {
-      setRollText(getText("highScore", rolled, rollChange));
-      takeDamage(dispatch, 1);
-      unblockChoice(277, 0);
     } else {
-      setRollText(getText("lowScore", rolled, rollChange))
-      takeDamage(dispatch, 3);
+      if (success) {
+        setRollText(getText("highScore", rolled, rollChange));
+        takeDamage(dispatch, 1);
+      } else {
+        setRollText(getText("lowScore", rolled, rollChange))
+        takeDamage(dispatch, 3);
+      }
       unblockChoice(277, 0);
     }
   };
@@ -83,7 +84,7 @@ const PitFall = ({ rerender }) => {
         Check Fall Damage
       </button>
       {rollText.length > 0 && (
-        <p dangerouslySetInnerHTML={{ __html: rollText }}></p>
+        <p dangerouslySetInnerHTML={{ __html: rollText }} />
       )}
     </Container>
   );

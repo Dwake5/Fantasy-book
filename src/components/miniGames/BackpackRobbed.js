@@ -36,16 +36,14 @@ const BackpackRobbed = ({ cancelPause }) => {
       <p className="mb-0">Test to see what items they take,</p>
       <p>roll {rollNeeded} or lower to keep the item</p>
       {(fixedItems.current || _itemsOwned).length > 0 &&
-        (fixedItems.current || _itemsOwned).map((item) => {
-          return (
-            <ItemRobbed
-              rollNeeded={rollNeeded}
-              items={_items}
-              item={item}
-              itemRolledFor={itemTested}
-            />
-          );
-        })}
+        (fixedItems.current || _itemsOwned).map((item) => (
+          <ItemRobbed
+            rollNeeded={rollNeeded}
+            items={_items}
+            item={item}
+            itemRolledFor={itemTested}
+          />
+        ))}
     </Container>
   );
 };

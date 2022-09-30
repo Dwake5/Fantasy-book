@@ -117,8 +117,7 @@ const PlayerChoices = ({ choices, setStayShowing, pause, clearSpellState }) => {
         const enemyStamina = choice.fight.stamina;
         const enemyName = choice.fight.name;
         const pageAfter = choice.goToPage;
-        const extraEnemies = choice.extraEnemies;
-        const allies = choice.allies;
+        const { extraEnemies, allies } = choice;
         if (extraEnemies !== undefined) addExtraEnemies(dispatch, extraEnemies);
         if (allies !== undefined) addAllies(dispatch, allies);
 

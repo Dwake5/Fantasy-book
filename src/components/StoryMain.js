@@ -10,21 +10,21 @@ import { changeItemAmount } from "../redux/items/actions";
 import {
   getMoney,
   getOwnedItems,
-  getProvisions,
+  getProvisions
 } from "../redux/items/selectors";
 import {
   changeEatenToday,
   fullRestore,
   gainStat,
   loseStat,
-  playerRecieveCurseAlianna,
-  playerRecieveCurseSpirit,
-  playerRecievePlague,
+  playerReceiveCurseAlianna,
+  playerReceiveCurseSpirit,
+  playerReceivePlague,
   takeDamage,
-  takePureDamage,
+  takePureDamage
 } from "../redux/stats/actions";
 import { eatenToday, getPlague } from "../redux/stats/selectors";
-import { playerLearnsJann, setPage } from "../redux/story/actions";
+import { playerLearnsJann } from "../redux/story/actions";
 import EatOption from "./miniGames/EatOption";
 import PlayerChoices from "./PlayerChoices";
 import TestLuck from "./TestLuck";
@@ -174,9 +174,9 @@ const StoryMain = ({ pageNumber }) => {
 
     if (winGame !== undefined) fullRestore(dispatch);
     if (playerGetsItems !== undefined) addItems(playerGetsItems);
-    
+
     // stats loss
-    // Ensure magic cost is at the 
+    // Ensure magic cost is at the
     if (magicCost !== undefined) takePureDamage(dispatch, magicCost);
     if (skillLoss !== undefined) loseStat(dispatch, "skill", skillLoss);
     if (staminaLoss !== undefined) takeDamage(dispatch, staminaLoss);
@@ -190,11 +190,11 @@ const StoryMain = ({ pageNumber }) => {
     if (staminaGain !== undefined) gainStat(dispatch, "stamina", staminaGain);
     if (luckGain !== undefined) gainStat(dispatch, "luck", luckGain);
 
-    // does player recieve ailments?
-    if (playerGetPlague !== undefined) playerRecievePlague(dispatch);
-    if (playerGetCurse !== undefined) playerRecieveCurseSpirit(dispatch);
+    // does player receive ailments?
+    if (playerGetPlague !== undefined) playerReceivePlague(dispatch);
+    if (playerGetCurse !== undefined) playerReceiveCurseSpirit(dispatch);
     if (playerGetCurseAlianna !== undefined) {
-      playerRecieveCurseAlianna(dispatch);
+      playerReceiveCurseAlianna(dispatch);
     }
 
     // new day
@@ -208,7 +208,7 @@ const StoryMain = ({ pageNumber }) => {
       </p>
       <label>Go to page:</label>
       <input type="text" onKeyDown={handleKeyDown}></input> */}
-      <p dangerouslySetInnerHTML={{ __html: pageText }}></p>
+      <p dangerouslySetInnerHTML={{ __html: pageText }} />
       {spellText && <p dangerouslySetInnerHTML={{ __html: spellText }}></p>}
       {testLuck && (
         <TestLuck

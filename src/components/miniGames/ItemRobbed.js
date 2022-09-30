@@ -18,11 +18,11 @@ const ItemRobbed = ({ rollNeeded, items, item, itemRolledFor }) => {
     setItemTested(true);
     if (success) {
       setText(`Rolled a ${rolled}, item kept`);
-    } else {
-      setItemKept(false)
-      setText(`Rolled a ${rolled}, item lost!`);
-      changeItemAmount(dispatch, { name: item, amount: -100 });
+      return;
     }
+    setItemKept(false)
+    setText(`Rolled a ${rolled}, item lost!`);
+    changeItemAmount(dispatch, { name: item, amount: -100 });
   };
 
   return (

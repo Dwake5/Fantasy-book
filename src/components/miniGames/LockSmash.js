@@ -12,7 +12,7 @@ import { getLockSmashPrevious } from "../../redux/story/selectors";
 import { blockChoice, diceRolls, unblockChoice } from "../../utils";
 
 // Used on node 142. Got here from 4 or 360.
-// 360 = -2 from roll, if first hit is succesful no skill loss.
+// 360 = -2 from roll, if first hit is successful no skill loss.
 const LockSmash = ({rerender}) => {
   const dispatch = useDispatch();
   const _skill = useSelector(getSkill);
@@ -68,7 +68,6 @@ const LockSmash = ({rerender}) => {
       unblockChoice(142, 0)
       blockChoice(142, 1)
       rerender(true)
-    } else {
     }
     newRollText += shouldBluntWeapon
       ? ` -1 Skill when using ${weaponName}.`
@@ -103,7 +102,7 @@ const LockSmash = ({rerender}) => {
       )}
       {skillNeeded < 2 && (
         <b className="mb-0">
-          It is impossible for you to succedd with this weapon.
+          It is impossible for you to succeed with this weapon.
         </b>
       )}
       <p>Currently equipped: {weaponName}</p>

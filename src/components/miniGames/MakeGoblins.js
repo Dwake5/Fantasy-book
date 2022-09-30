@@ -36,7 +36,7 @@ const MakeGoblins = ({ cancelPause }) => {
       name: "goblinTeeth",
       amount: -goblinsSelected,
     });
-    let newAllies = [];
+    const newAllies = [];
     for (let i = 1; i <= goblinsSelected; i++) {
       newAllies.push({ skill: 5, stamina: 5, name: `Goblin ${i}` });
     }

@@ -6,7 +6,7 @@ const TestLuckTable = () => {
     <Table>
       <thead>
         <tr>
-          <th></th>
+          <th />
           <th>0</th>
           <th>1</th>
           <th>2</th>

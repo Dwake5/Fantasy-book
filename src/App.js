@@ -1,22 +1,21 @@
 import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
+import { useSelector, Provider } from "react-redux";
 import "./App.css";
-import Magic from "./components/magic/Magic";
-import Stats from "./components/leftHandTabs/Stats";
 import Items from "./components/leftHandTabs/Items";
+import Libra from "./components/leftHandTabs/Libra";
+import Stats from "./components/leftHandTabs/Stats";
+import Magic from "./components/magic/Magic";
 import StoryMain from "./components/StoryMain";
 import Title from "./components/Title";
-import Libra from "./components/leftHandTabs/Libra";
-import { useSelector } from "react-redux";
 import { getSkill, getStat } from "./redux/stats/selectors";
 
-import { Provider } from "react-redux";
-import { store } from "./redux/store";
-import Tutorial from "./components/tutorial/Tutorial";
+import Combat from "./components/combat/Combat";
 import Death from "./components/Death";
 import Ailments from "./components/leftHandTabs/Ailments";
-import Combat from "./components/combat/Combat";
+import Tutorial from "./components/tutorial/Tutorial";
 import { getInCombat } from "./redux/combat/selectors";
+import { store } from "./redux/store";
 import { getPage, getPlayerDead } from "./redux/story/selectors";
 
 const App = () => {
@@ -79,12 +78,10 @@ const App = () => {
   );
 };
 
-const AppWrapper = () => {
-  return (
-    <Provider store={store}>
-      <App />
-    </Provider>
-  );
-};
+const AppWrapper = () => (
+  <Provider store={store}>
+    <App />
+  </Provider>
+);
 
 export default AppWrapper;

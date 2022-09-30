@@ -33,10 +33,8 @@ const Item = ({
         {name}
         {amount !== undefined && singular !== true && `: ${amount}`}
         {info && (
-          <span
-            className="hoverText"
-            dangerouslySetInnerHTML={{ __html: info }}
-          ></span>
+          <span className="hoverText"
+          dangerouslySetInnerHTML={{ __html: info }} />
         )}
       </p>
       {/* Drink potion */}

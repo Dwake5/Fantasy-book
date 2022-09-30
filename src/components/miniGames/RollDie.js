@@ -41,6 +41,7 @@ const RollDie = ({ cancelPause, pageType }) => {
           dieRoll
         )}</b>.`
       );
+      // TODO check why this is done like this.
       if (dieRoll === 6) {
         unblockChoice(417, 1);
       } else {

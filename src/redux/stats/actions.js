@@ -49,15 +49,15 @@ export const gainStat = (dispatch, stat, amount) => {
   });
 };
 
-export const playerRecieveCurseSpirit = (dispatch) => {
+export const playerReceiveCurseSpirit = (dispatch) => {
   dispatch({ type: GAIN_CURSE_SPIRIT })
 }
 
-export const playerRecieveCurseAlianna = (dispatch) => {
+export const playerReceiveCurseAlianna = (dispatch) => {
   dispatch({ type: GAIN_CURSE_ALIANNA })
 }
 
-export const playerRecievePlague = (dispatch) => {
+export const playerReceivePlague = (dispatch) => {
   dispatch({ type: GAIN_PLAGUE })
 }
 
