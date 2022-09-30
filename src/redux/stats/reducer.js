@@ -29,19 +29,23 @@ const initialState = {
   eatenToday: false,
   libra: true,
   plague: true, // -3 stamina per day
-  spiritCurse: true, // + 1 to all stam loss (except magic)
+  spiritCurse: true, // + 1 to all stamina loss (except magic)
   aliannaCurse: true, // -2 skill
   jann: false,
 };
 
 const halfHpRoundDown = (state) => {
   const currentHp = state.stamina;
-  const newHp = Math.floor(currentHp / 2);
-  return newHp;
+  return Math.floor(currentHp / 2);
 };
 
 export const reducer = (state = initialState, action) => {
-  let stat, amount, currentAmountOfStat, maxStat, newStat, stamLoss;
+  let stat;
+  let amount;
+  let currentAmountOfStat;
+  let maxStat;
+  let newStat;
+  let stamLoss;
   switch (action.type) {
     case DAMAGE:
       stamLoss = action.payload;

@@ -41,7 +41,7 @@ const Combat = ({ pageNumber, skill, stamina, maxStamina, luck, maxLuck }) => {
   // Are you dead but TYL will revive you?
   const [lastLife, setLastLife] = useState(false);
 
-  // + 1 damage, this is done in the redux, but needs to be displyed visually to the user
+  // + 1 damage, this is done in the redux, but needs to be displayed visually to the user
   const _curse = useSelector(getSpiritCurse);
 
   // Enemy stats
@@ -99,7 +99,7 @@ const Combat = ({ pageNumber, skill, stamina, maxStamina, luck, maxLuck }) => {
   const [canUseLuck, setCanUseLuck] = useState(false);
   const [someoneDead, setSomeoneDead] = useState(false);
   const [round, setRound] = useState(0);
-  const [alreadyDoubled, setAlreadyDoubed] = useState(false);
+  const [alreadyDoubled, setAlreadyDoubled] = useState(false);
   const [autoFight, setAutoFight] = useState(false);
 
   const _haveArmband = useSelector((state) => ownItem(state, "armband"));
@@ -124,7 +124,7 @@ const Combat = ({ pageNumber, skill, stamina, maxStamina, luck, maxLuck }) => {
     playerAttStrModifier += 2;
   }
 
-  // Comabt mods
+  // Combat mods
   let enemyAttStrModifier = 0;
   let enemyDamage = 2;
   let playerSkill = skill;
@@ -151,7 +151,7 @@ const Combat = ({ pageNumber, skill, stamina, maxStamina, luck, maxLuck }) => {
     playerTotal += playerFighting ? attackStrength : allySkill;
     const enemyTotal = enemyRoll + enemyAS;
 
-    let newText = {
+    const newText = {
       line1: "",
       line2: "",
       line1style: "",
@@ -224,12 +224,12 @@ const Combat = ({ pageNumber, skill, stamina, maxStamina, luck, maxLuck }) => {
     if (page === 317) {
       const shouldDouble = Math.ceil(Math.random() * 2) === 2;
       if (shouldDouble) {
-        setAlreadyDoubed(true);
+        setAlreadyDoubled(true);
         setDoubleEnemySkill(dispatch, enemyAS);
       }
     }
     if (page === 383 || page === 227) {
-      setAlreadyDoubed(true);
+      setAlreadyDoubled(true);
       setDoubleEnemySkill(dispatch, enemyAS);
     }
   };
@@ -246,7 +246,7 @@ const Combat = ({ pageNumber, skill, stamina, maxStamina, luck, maxLuck }) => {
       let someoneDead = false;
       if (lastLife) {
         newText.line1 =
-          "The enemy has killed you unless you succesfully test your luck!";
+          "The enemy has killed you unless you successfully test your luck!";
         newText.line1style += " font-weight-bold";
       } else if (stamina <= 0) {
         setCanUseLuck(false);
@@ -326,7 +326,7 @@ const Combat = ({ pageNumber, skill, stamina, maxStamina, luck, maxLuck }) => {
     if (whoWasDamaged === "enemy") {
       if (rollPassed) {
         newText.line1 =
-          "Test your Luck - Success: You land a devestating blow on the enemy, scoring an extra point of damage!";
+          "Test your Luck - Success: You land a devastating blow on the enemy, scoring an extra point of damage!";
         damageEnemy(dispatch, 1);
       } else {
         newText.line1 =

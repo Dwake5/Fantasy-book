@@ -60,11 +60,9 @@ const TestLuck = ({ setLuckPassed, cancelPause, pageNumber }) => {
         </p>
       )}
       {luckTested && (
-        <>
-          <p className="mb-1">
-            {luckSuccess ? "Success!" : "Fail:"} You rolled a {luckTotal}.
-          </p>
-        </>
+        <p className="mb-1">
+          {luckSuccess ? "Success!" : "Fail:"} You rolled a {luckTotal}.
+        </p>
       )}
     </Container>
   );

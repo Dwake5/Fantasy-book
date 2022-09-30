@@ -4,7 +4,7 @@ export const getStat = (state, stat) => state.stats[stat];
 
 export const getSkill = (state) => {
   const haveAlianna = getAliannaCurse(state);
-  const skill = state.stats.skill;
+  const { skill } = state.stats;
 
   const equippedWeapon = Object.values(state.items).find(
     (item) => item.equipped
@@ -12,7 +12,7 @@ export const getSkill = (state) => {
 
   const skillLoss = equippedWeapon ? equippedWeapon.skillLoss : 4;
 
-  let actualSkill = skill - skillLoss;
+  const actualSkill = skill - skillLoss;
   return haveAlianna ? actualSkill - 2 : actualSkill;
 };
 

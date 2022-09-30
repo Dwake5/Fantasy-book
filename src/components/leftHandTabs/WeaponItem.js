@@ -31,16 +31,14 @@ const Item = ({
       <p className="mb-1 hoverItem">
         {name}
         {info && (
-          <span
-            className="hoverText"
-            dangerouslySetInnerHTML={{ __html: info }}
-          ></span>
+          <span className="hoverText"
+          dangerouslySetInnerHTML={{ __html: info }} />
         )}
       </p>
       {/* Weapons */}
       {equipped !== "undefined" && equipped && (
         <button type="button" className="btn btn-secondary btn-sm">
-          Equiped
+          Equipped
         </button>
       )}
       {equipped !== "undefined" && equipped === false && (

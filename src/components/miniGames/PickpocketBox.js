@@ -30,7 +30,7 @@ const PickpocketBox = () => {
         `${pass ? "Success!" : "Fail."} You rolled ${total} and ${
           pass
             ? "took the key."
-            : "were stung by the scorpon, losing half your Stamina!"
+            : "were stung by the Scorpion, losing half your Stamina!"
         }`,
       ]);
       if (pass) {
@@ -44,7 +44,7 @@ const PickpocketBox = () => {
         `${pass ? "Success!" : "Fail."} You rolled ${total} and ${
           pass
             ? "took a gold piece."
-            : "were stung by the scorpon, losing half your Stamina!"
+            : "were stung by the Scorpion, losing half your Stamina!"
         }`,
       ]);
       if (pass) {

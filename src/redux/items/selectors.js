@@ -19,7 +19,7 @@ export const getWeaponSkillLoss = (state) => {
 };
 
 export const getOwnedItems = (state) => {
-  let itemsOwned = [];
+  const itemsOwned = [];
   Object.keys(state.items).forEach((key) => {
     const item = state.items[key];
     if (item.amount > 0) itemsOwned.push(key);

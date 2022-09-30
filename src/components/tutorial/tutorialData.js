@@ -190,7 +190,7 @@ const tutorialData = [
     and you should study this before you set off on your adventure.</p>
     
     <p>All spells are coded with a three-letter code and you must learn and 
-    practise your spells until you are able to identify a reasonable number 
+    practice your spells until you are able to identify a reasonable number 
     of them from their codes. Casting a spell drains your stamina and 
     each has a cost, in stamina points, for its use. Recommended basic 
     spells will get you started quickly, but are very uneconomical; an 

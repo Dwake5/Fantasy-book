@@ -6,8 +6,8 @@
   <li>Get no change for buying with gems (15) might not do this, a lot of work for little payoff, maybe just give 5gp a piece</li>
   <li>Handle death</li>
   <li>Workout when the user has to know about Jann... (305, 306, 321, 394, 387, 286) all tell you, but are optional choices except 286!) Requires a lot of testing (I think its fine though, based on base story path)</li>
-  <li>Add bold text to important info the player recieves, and stat loss / increases</li>
-  <li>Make Pilfer grass look more like backpack robbed (possibly unneccessary</li>
+  <li>Add bold text to important info the player receives, and stat loss / increases</li>
+  <li>Make Pilfer grass look more like backpack robbed (possibly unnecessary</li>
   <li>Handle using Libra during combat</li>
   <li>Fix right hand tooltips going to the right and off the screen</li>
   <li>Create a well done screen after game completion</li>
@@ -89,7 +89,7 @@
   <li>Write list of all items, because current item implementation is bad.</li>
   <li>Rewrite item implementation, will be more manageable going forwards</li>
   <li>Can now equip a weapon and change weapon</li>
-  <li>Can drink blimberry potion, gaining health and using it up. Doesnt let user drink if they are at max health.</li>
+  <li>Can drink blimberry potion, gaining health and using it up. Doesn't let user drink if they are at max health.</li>
   <li>Put a requires on choices, and filter them based on if user has that item i.e. need provisions to eat</li>
   <li>Used a useRef hook to store a value so EatOption has a fixed health after clicking it.</li>
   <li>Implement have eaten today (fully)</li>
@@ -97,7 +97,7 @@
   <li>Waterfall at 204 removes disease(s) and restores all stats to max</li>
   <li>Block magic if both the player has Jann and knows she blocks magic.</li>
   <li>Can't cast spells if Jann is with you (and the player knows Jann is anti magic)</li>
-  <li>Actually recieve curses and disease when going to nodes 123, 213, 79</li>
+  <li>Actually receive curses and disease when going to nodes 123, 213, 79</li>
   <li>Implement test luck</li>
 </ul>
 

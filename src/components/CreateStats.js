@@ -9,35 +9,26 @@ const CreateStats = ({ cancelPause }) => {
   const [step, changeStep] = useState(1);
   const [rolls, updateRolls] = useState([]);
 
-  const weightedDice = () => {
-    const sixth = 1 / 6;
-    const weights = [
-      0,
-      sixth * 0.4,
-      sixth * 0.7,
-      sixth * 1,
-      sixth * 1.4,
-      sixth * 1.3,
-      sixth * 1.2,
-    ];
-    const sumWeights = weights.map(
-      (
-        (sum) => (value) =>
-          (sum += value)
-      )(0)
-    );
-    const random = Math.random();
-    return sumWeights.filter((el) => random >= el).length;
+  const getWeightedDiceRoll = () => {
+    const array = [4, 7, 10, 14, 13, 12];
+    const arrayTotal = array.reduce((a, b) => a + b);
+    const randomNumber = Math.random() * arrayTotal;
+  
+    let totalTraversed = 0;
+    for (let i = 0; i < array.length; i++) {
+      if (randomNumber < array[i] + totalTraversed) return i + 1;
+      totalTraversed += array[i];
+    }
   };
 
   const handleDice = (stat) => {
     let rolled;
     if (stat === "skill" || stat === "luck") {
-      rolled = weightedDice();
+      rolled = getWeightedDiceRoll();
     }
     if (stat === "stamina") {
-      const roll1 = weightedDice();
-      const roll2 = weightedDice();
+      const roll1 = getWeightedDiceRoll();
+      const roll2 = getWeightedDiceRoll();
       rolled = roll1 + roll2;
     }
 

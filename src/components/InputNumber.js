@@ -27,11 +27,7 @@ const InputNumber = ({
     if (stat + increment <= maxStat && statPoints > 0) {
       let newStat = stat;
       const difference = maxStat - stat
-      if (difference <= (statPoints * increment)) {
-        newStat += difference;
-      } else {
-        newStat += statPoints * increment;
-      }
+      newStat += difference <= (statPoints * increment) ? difference : statPoints * increment;
       const pointsSpent = (newStat - stat) / increment
       setStatPoints((p) => p - pointsSpent);
       onChange(newStat);
@@ -68,7 +64,6 @@ const InputNumber = ({
       </InputGroup.Prepend>
 
       <FormControl
-
         plainText
         readOnly
         value={`${stat} / ${maxStat}`}

@@ -27,10 +27,10 @@ export function useFilters(choices, luckPassed, pauseChoices) {
   if (pauseChoices) return [];
 
   const canAfford = (choice) => {
-    const choiceCost = choice.cost;
-    if (choiceCost === undefined) return choice;
-    if (choiceCost === "must roll") return { ...choice, blocked: true };
-    return choiceCost <= _money ? choice : { ...choice, blocked: true };
+    const { cost } = choice;
+    if (cost === undefined) return choice;
+    if (cost === "must roll") return { ...choice, blocked: true };
+    return cost <= _money ? choice : { ...choice, blocked: true };
   };
 
   const filterCanAfford = (choices) => {
@@ -38,7 +38,7 @@ export function useFilters(choices, luckPassed, pauseChoices) {
   };
 
   const haveItem = (choice) => {
-    const requires = choice.requires;
+    const { requires } = choice;
     if (requires === undefined) return choice;
     return _itemsOwned.includes(requires)
       ? choice
@@ -52,9 +52,9 @@ export function useFilters(choices, luckPassed, pauseChoices) {
   const blockItem = (choice) => {
     const requires = choice.blockItem;
     if (requires === undefined) return choice;
-    return !_itemsOwned.includes(requires)
-      ? choice
-      : { ...choice, blocked: true };
+    return _itemsOwned.includes(requires)
+      ? { ...choice, blocked: true }
+      : choice;
   };
 
   const filterBlockItems = (choices) => {
@@ -73,7 +73,7 @@ export function useFilters(choices, luckPassed, pauseChoices) {
   };
 
   const needAndHaveLibra = (choice) => {
-    const needLibra = choice.needLibra;
+    const { needLibra } = choice;
     if (needLibra === undefined) return choice;
     return _haveLibra ? choice : { ...choice, blocked: true };
   };
@@ -102,6 +102,7 @@ export function useFilters(choices, luckPassed, pauseChoices) {
       if (luckPassed && choice.luck === "success") return choice;
       if (!luckPassed && choice.luck === "failed") return choice;
     }
+
     return { ...choice, blocked: true };
   };
 
@@ -111,11 +112,7 @@ export function useFilters(choices, luckPassed, pauseChoices) {
 
   // Night creatures
   if (_pageNumber === 123) {
-    if (_nightCreatureFight) {
-      return choices.slice(0, 6);
-    } else {
-      return choices.slice(-1);
-    }
+    return _nightCreatureFight ? choices.slice(0, 6) : choices.slice(-1);
   }
 
   if (_pageNumber === 194) {
@@ -128,7 +125,8 @@ export function useFilters(choices, luckPassed, pauseChoices) {
 
   // Do you have Jann?
   if (_pageNumber === 100) {
-    _haveJann ? (choices[1].blocked = true) : (choices[0].blocked = true);
+    const blockChoice = _haveJann ? 1 : 0;
+    choices[blockChoice].blocked = true;
     return choices;
   }
 
@@ -145,36 +143,39 @@ export function useFilters(choices, luckPassed, pauseChoices) {
       traderItems.includes(item)
     );
 
-    let choice1 = { ...choices[0], blocked: !haveTraderItem };
-    let choice2 = { ...choices[1], blocked: haveTraderItem };
+    const choice1 = { ...choices[0], blocked: !haveTraderItem };
+    const choice2 = { ...choices[1], blocked: haveTraderItem };
     return [{ ...choice1 }, { ...choice2 }];
   }
 
   if (_pageNumber === 258) {
-    if (!_seenBox1) return choices;
-    else return [{ ...choices[0], blocked: true }, { ...choices[1] }];
+    return _seenBox1
+      ? [{ ...choices[0], blocked: true }, { ...choices[1] }]
+      : choices;
   }
 
   if (_pageNumber === 403) {
-    if (!_seenBox2) return choices;
-    else return [{ ...choices[0], blocked: true }, { ...choices[1] }];
+    return _seenBox2
+      ? [{ ...choices[0], blocked: true }, { ...choices[1] }]
+      : choices;
   }
 
   // Trader 1, player can only see each item once, and 3 items in total (there are 6)
   if (_pageNumber === 280) {
     if (_traderViews.length >= 3) {
-      let newChoices = choices.slice(0, -1).map((choice) => {
+      const newChoices = choices.slice(0, -1).map((choice) => {
         return { ...choice, blocked: true };
       });
       newChoices.push(choices.slice(-1)[0]);
       return newChoices;
     }
-    if (_traderViews.length < 3)
+    if (_traderViews.length < 3) {
       return choices.map((choice) => {
         return _traderViews.includes(choice.goToPage)
           ? { ...choice, blocked: true }
           : choice;
       });
+    }
   }
 
   let filtered = filterNeedItems(choices);
@@ -182,8 +183,7 @@ export function useFilters(choices, luckPassed, pauseChoices) {
   filtered = filterLuckOptions(filtered);
   filtered = filterCanAfford(filtered);
   filtered = filterNeedLibra(filtered);
-  filtered = filterMagic(filtered);
-  return filtered;
+  return filterMagic(filtered);
 }
 
 export default useFilters;

@@ -34,7 +34,7 @@ const KillSnakes = ({ cancelPause }) => {
   return (
     <Container>
       <b>Try to kill all the snakes</b>
-      <p>Succesful attempts in a row: {successCount}</p>
+      <p>Successful attempts in a row: {successCount}</p>
       <div className="d-flex align-items-baseline">
         <button
           disabled={successCount >= 3}

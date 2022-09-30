@@ -36,29 +36,27 @@ const Trader = ({ itemViews, dice, changeCost, optional, itemName }) => {
     );
   }
 
-  if (dice > 0) {
-    return (
-      <Container className="text-center mb-3">
-        <>
-          <p>
-            Barter with {dice} {dice === 1 ? "die" : "dice"}
-          </p>
-          <button
-            onClick={handleDiceRolls}
-            type="button"
-            className="btn btn-success mb-3"
-            disabled={haveRolled}
-          >
-            Barter?
-          </button>
-        </>
+  if (dice > 0) return (
+    <Container className="text-center mb-3">
+      <>
+        <p>
+          Barter with {dice} {dice === 1 ? "die" : "dice"}
+        </p>
+        <button
+          onClick={handleDiceRolls}
+          type="button"
+          className="btn btn-success mb-3"
+          disabled={haveRolled}
+        >
+          Barter?
+        </button>
+      </>
 
-        {(haveRolled || optional) && (
-          <p>{diceText || `The ${itemName} currently costs 7 Gold Pieces`}</p>
-        )}
-      </Container>
-    );
-  }
+      {(haveRolled || optional) && (
+        <p>{diceText || `The ${itemName} currently costs 7 Gold Pieces`}</p>
+      )}
+    </Container>
+  );
 };
 
 export default Trader;
