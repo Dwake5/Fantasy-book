@@ -30,7 +30,7 @@ const PickpocketBox = () => {
         `${pass ? "Success!" : "Fail."} You rolled ${total} and ${
           pass
             ? "took the key."
-            : "were stung by the scorpon, losing half your Stamina!"
+            : "were stung by the Scorpion, losing half your Stamina!"
         }`,
       ]);
       if (pass) {
@@ -44,7 +44,7 @@ const PickpocketBox = () => {
         `${pass ? "Success!" : "Fail."} You rolled ${total} and ${
           pass
             ? "took a gold piece."
-            : "were stung by the scorpon, losing half your Stamina!"
+            : "were stung by the Scorpion, losing half your Stamina!"
         }`,
       ]);
       if (pass) {
@@ -71,9 +71,7 @@ const PickpocketBox = () => {
             Test your Luck
           </button>
           {keyText.length >= 1 &&
-            keyText.map((text) => {
-              return <p className="mb-1">{text}</p>;
-            })}
+            keyText.map((text) => <p className="mb-1">{text}</p>)}
         </Col>
         <Col>
           <p className="mb-1">Try to take a coin, {goldLeft} left.</p>
@@ -86,9 +84,7 @@ const PickpocketBox = () => {
             Test your Luck
           </button>
           {goldText.length >= 1 &&
-            goldText.map((text) => {
-              return <p className="mb-1">{text}</p>;
-            })}
+            goldText.map((text) => <p className="mb-1">{text}</p>)}
         </Col>
       </Row>
     </Container>

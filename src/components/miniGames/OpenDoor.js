@@ -7,7 +7,7 @@ import { blockChoice, diceRolls, unblockChoice } from "../../utils";
 
 // Used in 228, got here from 66
 const OpenDoor = ({ rerender }) => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const [rollText, setRollText] = useState([]);
   const [rolls, setRolls] = useState(0);
   const [rollTotal, setRollTotal] = useState(0);
@@ -29,18 +29,18 @@ const OpenDoor = ({ rerender }) => {
         unblockChoice(228, 0);
         blockChoice(228, 1);
         blockChoice(228, 2);
-        loseStat(dispatch, "skill", 1)
+        loseStat(dispatch, "skill", 1);
       } else {
         blockChoice(228, 0);
         unblockChoice(228, 1);
         unblockChoice(228, 2);
       }
-      setText(success ? "Success" : "Fail")
-      setAlreadyRan(true)
-      rerender(true)
+      setText(success ? "Success" : "Fail");
+      setAlreadyRan(true);
+      rerender(true);
     };
-    if (rolls === 3 && !alreadyRan) handleFunction()
-  }, [_skill, alreadyRan, dispatch, rollTotal, rolls, rerender])
+    if (rolls === 3 && !alreadyRan) handleFunction();
+  }, [_skill, alreadyRan, dispatch, rollTotal, rolls, rerender]);
 
   return (
     <Container>

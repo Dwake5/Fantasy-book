@@ -22,7 +22,7 @@ const MakeGoblins = ({ cancelPause }) => {
 
   useEffect(() => {
     let hpAmount = _stamina - 1;
-    if (_curse) hpAmount -= 1
+    if (_curse) hpAmount--
     const max = Math.min(hpAmount, _goblinTeethAmount);
     setMaxGoblins(max);
   }, [_goblinTeethAmount, _stamina, _curse]);
@@ -36,7 +36,7 @@ const MakeGoblins = ({ cancelPause }) => {
       name: "goblinTeeth",
       amount: -goblinsSelected,
     });
-    let newAllies = [];
+    const newAllies = [];
     for (let i = 1; i <= goblinsSelected; i++) {
       newAllies.push({ skill: 5, stamina: 5, name: `Goblin ${i}` });
     }

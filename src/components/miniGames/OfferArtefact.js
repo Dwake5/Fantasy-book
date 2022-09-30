@@ -52,24 +52,22 @@ const OfferArtefact = ({ rerender }) => {
       ) : (
         <p>You don't have any suitable artefacts to give him</p>
       )}
-      {(fixedArtefacts.current || artefacts).map((item) => {
-        return (
-          <div
-            className="d-flex justify-content-center align-items-center"
-            key={item}
+      {(fixedArtefacts.current || artefacts).map((item) => (
+        <div
+          className="d-flex justify-content-center align-items-center"
+          key={item}
+        >
+          <p>{_items[item].name}</p>
+          <button
+            type="button"
+            onClick={() => handleGiveArtefact(item)}
+            className="btn btn-sm btn-danger ml-3 mb-3"
+            disabled={gaveArtefact}
           >
-            <p>{_items[item].name}</p>
-            <button
-              type="button"
-              onClick={() => handleGiveArtefact(item)}
-              className="btn btn-sm btn-danger ml-3 mb-3"
-              disabled={gaveArtefact}
-            >
-              Give
-            </button>
-          </div>
-        );
-      })}
+            Give
+          </button>
+        </div>
+      ))}
     </Container>
   );
 };

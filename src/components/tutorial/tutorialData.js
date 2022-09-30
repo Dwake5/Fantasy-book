@@ -82,8 +82,7 @@ const tutorialData = [
     stamina score. You may use your luck here to do additional 
     damage.</li>
     
-    <li>The creature has wounded you, so subtract 2 points from your sta- 
-    mina score. Again, you may use luck at this stage.</li>
+    <li>The creature has wounded you, so subtract 2 points from your stamina score. Again, you may use luck at this stage.</li>
     
     <li>Make the appropriate adjustments to either the creature's or your 
     own stamina score.</li>

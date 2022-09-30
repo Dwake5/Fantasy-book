@@ -41,6 +41,7 @@ const RollDie = ({ cancelPause, pageType }) => {
           dieRoll
         )}</b>.`
       );
+      // TODO looks into why these are the same?
       if (dieRoll === 6) {
         unblockChoice(417, 1);
       } else {
@@ -60,7 +61,7 @@ const RollDie = ({ cancelPause, pageType }) => {
         Roll die
       </button>
       {alreadyRolled && (
-        <p className="mb-4" dangerouslySetInnerHTML={{ __html: text }}></p>
+        <p className="mb-4" dangerouslySetInnerHTML={{ __html: text }} />
       )}
 
       {alreadyRolled && pageType === "beeStings" && (

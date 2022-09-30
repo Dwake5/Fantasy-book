@@ -33,16 +33,12 @@ const WitchSteals = () => {
   const exitFunction = _itemsOwned.includes("spellbookPage")
 
   const getRandomItems = (arr, n) => {
-    let result = new Array(n),
-      len = arr.length,
-      taken = new Array(len);
-    if (n > len) return arr;
-    while (n--) {
-      let x = Math.floor(Math.random() * len);
-      result[n] = arr[x in taken ? taken[x] : x];
-      taken[x] = --len in taken ? taken[len] : len;
-    }
-    return result;
+    if (n >= arr.length) return arr;
+    const shuffled = arr
+      .map((value) => ({ value, sort: Math.random() }))
+      .sort((a, b) => a.sort - b.sort)
+      .map(({ value }) => value);
+    return shuffled.slice(0, n);
   };
 
   useEffect(() => {

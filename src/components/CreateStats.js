@@ -22,9 +22,12 @@ const CreateStats = ({ cancelPause }) => {
     ];
     const sumWeights = weights.map(
       (
-        (sum) => (value) =>
-          (sum += value)
-      )(0)
+        () => {
+        let sum = 0;
+        return (value) =>
+        (sum += value);
+      }
+      )()
     );
     const random = Math.random();
     return sumWeights.filter((el) => random >= el).length;

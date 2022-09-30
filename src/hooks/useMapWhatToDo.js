@@ -45,5 +45,6 @@ export function useMapWhatToDo(
       );
     default:
   }
+  // Does this do anything? 
   alreadyMapped = true;
 }

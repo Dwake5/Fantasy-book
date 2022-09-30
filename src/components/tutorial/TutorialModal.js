@@ -21,7 +21,7 @@ const TutorialModal = () => {
           </Accordion.Toggle>
           <Accordion.Collapse eventKey={i + 1}>
             <Card.Body>
-              <p dangerouslySetInnerHTML={{ __html: tutorial.info }}></p>
+              <p dangerouslySetInnerHTML={{ __html: tutorial.info }} />
               {tutorial.header === "Luck" && <TestLuckTable />}
             </Card.Body>
           </Accordion.Collapse>

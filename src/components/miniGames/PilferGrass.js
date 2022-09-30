@@ -46,35 +46,32 @@ const PilferGrass = ({ amount, pageNumber, rerender }) => {
   const disabledList = (item) => {
     if (lostArtefacts.includes(item)) return true;
     if (lostArtefacts.length >= amount) return true;
-    if (notArtefacts.includes(item) && realArtefacts.length !== 0) return true;
-    return false;
+    return !!(notArtefacts.includes(item) && realArtefacts.length !== 0);
   };
 
   return (
     <Container className="text-center">
       <p>{fixedText.current}</p>
-      {(fixedArtefacts.current || _itemsOwned).map((item) => {
-        return (
-          <div
-            className="d-flex justify-content-center align-items-center"
-            key={item}
+      {(fixedArtefacts.current || _itemsOwned).map((item) => (
+        <div
+          className="d-flex justify-content-center align-items-center"
+          key={item}
+        >
+          <p
+            className={`${lostArtefacts.includes(item) ? "text-danger" : ""}`}
           >
-            <p
-              className={`${lostArtefacts.includes(item) ? "text-danger" : ""}`}
-            >
-              {_items[item].name}
-            </p>
-            <button
-              type="button"
-              onClick={() => handleGiveArtefact(item)}
-              className="btn btn-sm btn-danger ml-3 mb-3"
-              disabled={disabledList(item)}
-            >
-              Lose
-            </button>
-          </div>
-        );
-      })}
+            {_items[item].name}
+          </p>
+          <button
+            type="button"
+            onClick={() => handleGiveArtefact(item)}
+            className="btn btn-sm btn-danger ml-3 mb-3"
+            disabled={disabledList(item)}
+          >
+            Lose
+          </button>
+        </div>
+      ))}
     </Container>
   );
 };

@@ -3,7 +3,7 @@ import { useCallback, useEffect } from "react";
 export function useHandleKeyDown(choices, pause, handleChoice) {
   const handleUserKeyPress = useCallback(
     (event) => {
-      const key = event.key;
+      const { key } = event;
       if (key <= choices.length && key !== "0" && pause !== true) {
         const choice = choices[key - 1];
         if (choice.blocked) return;

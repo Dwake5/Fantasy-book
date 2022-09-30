@@ -55,13 +55,14 @@ const PitFall = ({ rerender }) => {
       loseStat(dispatch, "stamina", 24);
       unblockChoice(277, 1);
       rerender(true);
-    } else if (success) {
-      setRollText(getText("highScore", rolled, rollChange));
-      takeDamage(dispatch, 1);
-      unblockChoice(277, 0);
     } else {
-      setRollText(getText("lowScore", rolled, rollChange))
-      takeDamage(dispatch, 3);
+      if (success) {
+        setRollText(getText("highScore", rolled, rollChange));
+        takeDamage(dispatch, 1);
+      } else {
+        setRollText(getText("lowScore", rolled, rollChange))
+        takeDamage(dispatch, 3);
+      }
       unblockChoice(277, 0);
     }
   };
@@ -83,7 +84,7 @@ const PitFall = ({ rerender }) => {
         Check Fall Damage
       </button>
       {rollText.length > 0 && (
-        <p dangerouslySetInnerHTML={{ __html: rollText }}></p>
+        <p dangerouslySetInnerHTML={{ __html: rollText }} />
       )}
     </Container>
   );

@@ -39,13 +39,13 @@ const NightCreatures = ({ cancelPause }) => {
           "You will gain 1 Stamina point for the disturbed rest after the fight."
         );
       }
-    } else {
-      setRollText(`You rolled a ${dieRoll} and have a peaceful nights sleep.`);
-      nightCreatureFight(dispatch, false);
-      if (doAddTwo) {
-        setHealthText("You gain 2 Stamina points for the restful sleep.");
-        gainStat(dispatch, "stamina", 2);
-      }
+      return;
+    }
+    setRollText(`You rolled a ${dieRoll} and have a peaceful nights sleep.`);
+    nightCreatureFight(dispatch, false);
+    if (doAddTwo) {
+      setHealthText("You gain 2 Stamina points for the restful sleep.");
+      gainStat(dispatch, "stamina", 2);
     }
   };
 

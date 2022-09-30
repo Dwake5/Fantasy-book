@@ -68,7 +68,7 @@ const CreateStats2 = ({ cancelPause }) => {
       </Row>
 
       <p className="h4">Skill</p>
-      <p>Improves your succes in battle and some skill based tasks.</p>
+      <p>Improves your success in battle and some skill based tasks.</p>
       <Row className="mb-4 align-items-center">
         <Col md={5}>
           <InputNumber

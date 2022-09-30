@@ -10,7 +10,7 @@ import { changeItemAmount } from "../redux/items/actions";
 import {
   getMoney,
   getOwnedItems,
-  getProvisions,
+  getProvisions
 } from "../redux/items/selectors";
 import {
   changeEatenToday,
@@ -21,10 +21,10 @@ import {
   playerRecieveCurseSpirit,
   playerRecievePlague,
   takeDamage,
-  takePureDamage,
+  takePureDamage
 } from "../redux/stats/actions";
 import { eatenToday, getPlague } from "../redux/stats/selectors";
-import { playerLearnsJann, setPage } from "../redux/story/actions";
+import { playerLearnsJann } from "../redux/story/actions";
 import EatOption from "./miniGames/EatOption";
 import PlayerChoices from "./PlayerChoices";
 import TestLuck from "./TestLuck";
@@ -68,7 +68,7 @@ const StoryMain = ({ pageNumber }) => {
   let pageChoices = pageData.choices; // spellsOptions will change this
   const pageText = pageData.text;
   let pauseChoices = pageData.pause;
-  let staminaLoss = pageData.staminaLoss;
+  let { staminaLoss } = pageData;
   const playerGetsItems = pageData.getItems;
 
   const playerGetPlague = pageData.plague;
@@ -130,7 +130,7 @@ const StoryMain = ({ pageNumber }) => {
   const [stayShowing, setStayShowing] = useState(false);
 
   // Places the player is specifically told about Jann's magic blocking
-  // In manticore cave, assasin, meet jann spell * 2, lotus * 2
+  // In manticore cave, assassin, meet jann spell * 2, lotus * 2
   const discoverJannSecret = [286, 305, 306, 387, 321, 394];
 
   const cancelPause = () => {
@@ -190,7 +190,7 @@ const StoryMain = ({ pageNumber }) => {
     if (staminaGain !== undefined) gainStat(dispatch, "stamina", staminaGain);
     if (luckGain !== undefined) gainStat(dispatch, "luck", luckGain);
 
-    // does player recieve ailments?
+    // does player receive ailments?
     if (playerGetPlague !== undefined) playerRecievePlague(dispatch);
     if (playerGetCurse !== undefined) playerRecieveCurseSpirit(dispatch);
     if (playerGetCurseAlianna !== undefined) {
@@ -208,8 +208,8 @@ const StoryMain = ({ pageNumber }) => {
       </p>
       <label>Go to page:</label>
       <input type="text" onKeyDown={handleKeyDown}></input> */}
-      <p dangerouslySetInnerHTML={{ __html: pageText }}></p>
-      {spellText && <p dangerouslySetInnerHTML={{ __html: spellText }}></p>}
+      <p dangerouslySetInnerHTML={{ __html: pageText }} />
+      {spellText && <p dangerouslySetInnerHTML={{ __html: spellText }} />}
       {testLuck && (
         <TestLuck
           setLuckPassed={setLuckPassed}
