@@ -22,13 +22,13 @@ const initialState = {
 };
 
 const damageFirstAlly = (state, damage) => {
-  let moreAllies = state.allies.slice(1);
-  let ally = state.allies[0];
+  const moreAllies = state.allies.slice(1);
+  const ally = state.allies[0];
   ally.stamina -= damage;
   if (ally.stamina <= 0) {
     if (moreAllies) return [...moreAllies]
     return
-  };
+  }
   return [ally, ...moreAllies]
 };
 
@@ -51,8 +51,7 @@ export const reducer = (state = initialState, action) => {
         enemyStats: { ...action.payload },
       };
     case DAMAGE_ENEMY:
-      let healthAfter = state.enemyStats.stamina - action.payload;
-      if (healthAfter < 0) healthAfter = 0;
+      const healthAfter = Math.min(state.enemyStats.stamina - action.payload, 0)
       return {
         ...state,
         enemyStats: {

@@ -219,10 +219,11 @@ const initialState = {
 
 const equipSpecificWeapon = (state, weapon) => {
   for (let key in state) {
-    let value = state[key];
+    const value = state[key];
     if (value.equipped !== undefined) {
       value.equipped = weapon === key;
     }
+    // TODO does this key do anything?
     key = value;
   }
   return state;
@@ -230,11 +231,12 @@ const equipSpecificWeapon = (state, weapon) => {
 
 const loseEquippedWeapon = (state) => {
   for (let key in state) {
-    let value = state[key];
+    const value = state[key];
     if (value.equipped) {
       value.amount = 0;
       value.equipped = false;
     }
+    // TODO does this key do anything?
     key = value;
   }
   return state;
@@ -248,8 +250,9 @@ const bluntWeapon = (state, weapon) => {
 
 const loseAllButWeapon = (state) => {
   for (let key in state) {
-    let value = state[key];
+    const value = state[key];
     if (!value.equipped) value.amount = 0;
+    // TODO does this key do anything?
     key = value;
   }
   return state;

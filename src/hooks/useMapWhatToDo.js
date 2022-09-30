@@ -45,5 +45,6 @@ export function useMapWhatToDo(
       );
     default:
   }
+  // TODO Test if this does anything
   alreadyMapped = true;
 }

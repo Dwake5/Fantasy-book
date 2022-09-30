@@ -35,7 +35,7 @@ export function useMapExtraText(
           dice={2}
           changeCost={useItemVariableCost}
           key={214}
-          itemName={"broadsword"}
+          itemName="broadsword"
         />
       );
     case 22:
@@ -44,7 +44,7 @@ export function useMapExtraText(
           dice={1}
           changeCost={useItemVariableCost}
           key={22}
-          itemName={"pipe"}
+          itemName="pipe"
         />
       );
     case 141:
@@ -53,7 +53,7 @@ export function useMapExtraText(
           dice={2}
           changeCost={useItemVariableCost}
           key={141}
-          itemName={"axe"}
+          itemName="axe"
           optional
         />
       );
