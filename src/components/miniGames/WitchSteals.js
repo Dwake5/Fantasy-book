@@ -38,7 +38,7 @@ const WitchSteals = () => {
       taken = new Array(len);
     if (n > len) return arr;
     while (n--) {
-      let x = Math.floor(Math.random() * len);
+      const x = Math.floor(Math.random() * len);
       result[n] = arr[x in taken ? taken[x] : x];
       taken[x] = --len in taken ? taken[len] : len;
     }

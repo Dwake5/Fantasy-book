@@ -58,7 +58,10 @@ const Combat = ({ pageNumber, skill, stamina, maxStamina, luck, maxLuck }) => {
   let playerFighting = true;
   if (_allies.length > 0) playerFighting = false;
 
-  let allyName, allyStamina, allyMaxStamina, allySkill;
+  let allyName;
+  let allyStamina;
+  let allyMaxStamina;
+  let allySkill;
   if (_allies.length) {
     allyName = currentAlly.name;
     allyStamina = currentAlly.stamina;
@@ -81,6 +84,7 @@ const Combat = ({ pageNumber, skill, stamina, maxStamina, luck, maxLuck }) => {
   const _nightCreaturePrevious = useSelector(getNightCreaturePrevious);
 
   const _beeswax = useSelector(getAppliedBeeswax);
+
   // Manticore
   const [manticorePoison, setManticorePoison] = useState(false);
   const [fireballDamage, setFireballDamage] = useState(false);
@@ -196,7 +200,7 @@ const Combat = ({ pageNumber, skill, stamina, maxStamina, luck, maxLuck }) => {
       }
       const whoWasHurt = playerFighting ? "you" : "your champion";
       let textToAdd = `The ${enemyName} damaged ${whoWasHurt} for ${enemyDamage}${curseText} points.`;
-      let critText = playerFighting ? ", you've been poisoned!" : ".";
+      const critText = playerFighting ? ", you've been poisoned!" : ".";
       if (localPoison) textToAdd += ` Critical hit${critText}`;
       newText.line2 = textToAdd;
       newText.line2style += "text-danger";
@@ -236,7 +240,7 @@ const Combat = ({ pageNumber, skill, stamina, maxStamina, luck, maxLuck }) => {
 
   useEffect(() => {
     const checkDeath = () => {
-      let newText = {
+      const newText = {
         line1: "",
         line1style: "mt-3 mb-0 ",
         line2: "",
