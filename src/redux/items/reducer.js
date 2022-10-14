@@ -262,7 +262,7 @@ const changeItemAmount = (state, relevantItem, amountGained) => {
   let amountAfter = state[relevantItem].amount + amountGained;
   if (amountAfter < 0) amountAfter = 0;
 
-  let returnState = {
+  const returnState = {
     ...state[relevantItem],
     amount: amountAfter,
   };

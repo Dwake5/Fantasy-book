@@ -68,7 +68,7 @@ const StoryMain = ({ pageNumber }) => {
   let pageChoices = pageData.choices; // spellsOptions will change this
   const pageText = pageData.text;
   let pauseChoices = pageData.pause;
-  let staminaLoss = pageData.staminaLoss;
+  let { staminaLoss } = pageData;
   const playerGetsItems = pageData.getItems;
 
   const playerGetPlague = pageData.plague;
@@ -130,7 +130,7 @@ const StoryMain = ({ pageNumber }) => {
   const [stayShowing, setStayShowing] = useState(false);
 
   // Places the player is specifically told about Jann's magic blocking
-  // In manticore cave, assasin, meet jann spell * 2, lotus * 2
+  // In manticore cave, assassin, meet jann spell * 2, lotus * 2
   const discoverJannSecret = [286, 305, 306, 387, 321, 394];
 
   const cancelPause = () => {
@@ -176,7 +176,7 @@ const StoryMain = ({ pageNumber }) => {
     if (playerGetsItems !== undefined) addItems(playerGetsItems);
 
     // stats loss
-    // Ensure magic cost is at the
+    // Ensure magic cost is at the start?
     if (magicCost !== undefined) takePureDamage(dispatch, magicCost);
     if (skillLoss !== undefined) loseStat(dispatch, "skill", skillLoss);
     if (staminaLoss !== undefined) takeDamage(dispatch, staminaLoss);
@@ -209,7 +209,7 @@ const StoryMain = ({ pageNumber }) => {
       <label>Go to page:</label>
       <input type="text" onKeyDown={handleKeyDown}></input> */}
       <p dangerouslySetInnerHTML={{ __html: pageText }} />
-      {spellText && <p dangerouslySetInnerHTML={{ __html: spellText }}></p>}
+      {spellText && <p dangerouslySetInnerHTML={{ __html: spellText }} />}
       {testLuck && (
         <TestLuck
           setLuckPassed={setLuckPassed}

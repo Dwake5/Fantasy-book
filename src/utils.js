@@ -5,7 +5,7 @@ import gameData from "./assets/gameData";
 
 // If second argument is true, return an array of values
 export const diceRolls = (number, returnSum) => {
-  let rolls = [];
+  const rolls = [];
   for (let d = 0; d < number; d++) {
     const roll = Math.ceil(Math.random() * 6);
     rolls.push(roll);
@@ -18,7 +18,7 @@ export const diceRolls = (number, returnSum) => {
 // If amount is 1 don't add an 's' otherwise do
 export const pluralize = (word, amount) => {
   if (amount === 1) return word;
-  return word + "s";
+  return `${word}s`;
 };
 
 // Gets the sum of two dice and compares it to luck
@@ -37,7 +37,7 @@ export const testYourLuck = (luck, amulet) => {
 // stamina => maxStamina, I incorporated it in.
 export const uppercase = (word, max) => {
   word = word[0].toUpperCase() + word.slice(1);
-  if (max) return "max" + word;
+  if (max) return `max${word}`;
   return word;
 };
 

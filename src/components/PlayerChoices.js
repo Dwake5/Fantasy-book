@@ -1,3 +1,4 @@
+import { Text } from "@chakra-ui/layout";
 import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import gameData from "../assets/gameData";
@@ -100,7 +101,9 @@ const PlayerChoices = ({ choices, setStayShowing, pause, clearSpellState }) => {
       }
 
       // Block magic from double casting
-      if (choice.text.slice(0, 5) === "Magic") choice.blocked = true;
+      if (choice.text.slice(0, 5) === "Magic") {
+        choice.blocked = true;
+      }
       // Block single use nodes, currently unused
       if (choice.singleUse) {
         choice.blocked = true;
@@ -235,7 +238,7 @@ const PlayerChoices = ({ choices, setStayShowing, pause, clearSpellState }) => {
     });
   };
 
-  return <div className="text-center">{displayOptions()}</div>;
+  return <Text textAlign="center" mt={4}>{displayOptions()}</Text>;
 };
 
 export default PlayerChoices;
