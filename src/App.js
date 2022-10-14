@@ -30,6 +30,7 @@ const App = () => {
   const _playerDead = useSelector(getPlayerDead);
 
   const getComponent = () => {
+    console.log('this is a test')
     if (_playerDead) return <Death />;
     if (!_inCombat) return <StoryMain pageNumber={parseInt(_pageNumber)} />;
     if (_inCombat) {
