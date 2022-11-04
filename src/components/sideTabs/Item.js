@@ -4,7 +4,8 @@ import "../../assets/css/Stats.css";
 import { getInCombat } from "../../redux/combat/selectors";
 import { drinkPotion } from "../../redux/items/actions";
 import { gainStat } from "../../redux/stats/actions";
-import { BlueButton } from '../shared';
+import { BlueButton } from "../shared";
+import { Box } from "@chakra-ui/react";
 
 const Item = ({
   name,
@@ -28,14 +29,16 @@ const Item = ({
   };
 
   return (
-    <div>
+    <Box cursor="pointer">
       {/* Generic text for all items */}
       <p className="mb-1 hoverItem">
         {name}
         {amount !== undefined && singular !== true && `: ${amount}`}
         {info && (
-          <span className="hoverText"
-          dangerouslySetInnerHTML={{ __html: info }} />
+          <span
+            className="hoverText"
+            dangerouslySetInnerHTML={{ __html: info }}
+          />
         )}
       </p>
       {/* Drink potion */}
@@ -48,7 +51,7 @@ const Item = ({
           Drink
         </BlueButton>
       )}
-    </div>
+    </Box>
   );
 };
 

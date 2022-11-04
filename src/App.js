@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { Provider, useSelector } from "react-redux";
 import "./App.css";
@@ -7,7 +7,7 @@ import Libra from "./components/sideTabs/Libra";
 import Magic from "./components/sideTabs/magic/Magic";
 import Stats from "./components/sideTabs/Stats";
 import StoryMain from "./components/StoryMain";
-import Title from "./components/Title";
+import { Title } from "./components/Title";
 import { getSkill, getStat } from "./redux/stats/selectors";
 
 import Combat from "./components/combat/Combat";
@@ -29,7 +29,7 @@ const App = () => {
   const _pageNumber = useSelector(getPage);
   const _playerDead = useSelector(getPlayerDead);
 
-  const getComponent = () => {
+  const getComponent = useMemo(() => {
     if (_playerDead) return <Death />;
     if (!_inCombat) return <StoryMain pageNumber={parseInt(_pageNumber)} />;
     if (_inCombat) {
@@ -44,7 +44,16 @@ const App = () => {
         />
       );
     }
-  };
+  }, [
+    _inCombat,
+    _luck,
+    _maxLuck,
+    _maxStamina,
+    _pageNumber,
+    _playerDead,
+    _skill,
+    _stamina,
+  ]);
 
   return (
     <div className="main">
@@ -64,7 +73,7 @@ const App = () => {
             <Items />
           </Col>
           <Col className="storyMain p-4" xs={8}>
-            {getComponent()}
+            {getComponent}
           </Col>
           <Col className="px-1" xs={2}>
             <Tutorial />
@@ -78,9 +87,20 @@ const App = () => {
   );
 };
 
+const myStyle = {
+  backgroundImage:
+    "url('https://t3.ftcdn.net/jpg/00/88/98/18/360_F_88981880_YjJManMJ6hJmKr5CZteFJAkEzXIh8mxW.jpg')",
+  height: "100vh",
+  backgroundSize: "cover",
+  backgroundRepeat: "no-repeat",
+  fontSize: '14px'
+};
+
 const AppWrapper = () => (
   <Provider store={store}>
-    <App />
+    <div style={myStyle}>
+      <App />
+    </div>
   </Provider>
 );
 

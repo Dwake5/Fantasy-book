@@ -1,7 +1,6 @@
 import React from "react";
+import { Text } from "@chakra-ui/layout";
 
-function Title() {
-  return <div className="h1 text-center">Fighting Fantasy</div>;
+export const Title = () => {
+  return <Text textAlign='center' py={2} fontWeight='600' fontSize='4xl'>Fighting Fantasy</Text>;
 }
-
-export default Title;

@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { Button, Modal } from "react-bootstrap";
+import { Modal } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { takePureDamage } from "../../../redux/stats/actions";
 import { getStat } from "../../../redux/stats/selectors";
 import { getPage } from "../../../redux/story/selectors";
 import { SideTabContainer, SideTabHeader } from "../../shared/SideTabComponents";
 import MagicModal from "./MagicModel";
+import { BlueButton } from '../../shared'
 
 const Magic = () => {
   const dispatch = useDispatch();
@@ -28,13 +29,13 @@ const Magic = () => {
   return (
     <SideTabContainer>
       <SideTabHeader>Spell Book</SideTabHeader>
-      <Button
+      <BlueButton
         onClick={handleShow}
         className={`mb-3 ${leftTutorial ? "hoverWarning" : ""}`}
         disabled={leftTutorial && _stamina <= spellbookViewPenalty}
       >
         View
-      </Button>
+      </BlueButton>
 
       <Modal show={show} onHide={handleClose} className="tutorialModal">
         <Modal.Header closeButton className="mb-2">

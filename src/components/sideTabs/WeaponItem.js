@@ -1,3 +1,4 @@
+import { Box } from "@chakra-ui/layout";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "../../assets/css/Stats.css";
@@ -20,7 +21,7 @@ const Item = ({ name, info, amount, equipped, reduxKey, skillLoss }) => {
   }
 
   return (
-    <>
+    <Box cursor='pointer'>
       {/* Generic text for all items */}
       <p className="mb-1 hoverItem">
         {name}
@@ -43,7 +44,7 @@ const Item = ({ name, info, amount, equipped, reduxKey, skillLoss }) => {
           Equip
         </BlueButton>
       )}
-    </>
+    </Box>
   );
 };
 
