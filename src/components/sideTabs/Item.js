@@ -4,6 +4,7 @@ import "../../assets/css/Stats.css";
 import { getInCombat } from "../../redux/combat/selectors";
 import { drinkPotion } from "../../redux/items/actions";
 import { gainStat } from "../../redux/stats/actions";
+import { BlueButton } from '../shared';
 
 const Item = ({
   name,
@@ -39,13 +40,13 @@ const Item = ({
       </p>
       {/* Drink potion */}
       {reduxKey === "potion" && (
-        <button
+        <BlueButton
           onClick={handleDrinkPotion}
           disabled={healthMax || _inCombat}
           className="btn btn-info btn-sm"
         >
           Drink
-        </button>
+        </BlueButton>
       )}
     </div>
   );

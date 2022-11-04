@@ -1,6 +1,6 @@
 import React from "react";
 import { Col, Row } from "react-bootstrap";
-import spells from "../../assets/spells";
+import spells from "../../../assets/spells";
 import MagicCard from "./MagicCard";
 
 const MagicModal = () => (

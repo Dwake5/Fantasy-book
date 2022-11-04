@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { Accordion, Card } from "react-bootstrap";
 import tutorialData from "./tutorialData";
 import TestLuckTable from "./TestLuckTable";
+import { Text } from "@chakra-ui/layout";
 
-const TutorialModal = () => {
+export const TutorialModalContent = () => {
   const [faqActiveKey, setFaqActiveKey] = useState(0);
 
   const handleFaqClick = (i) => setFaqActiveKey(faqActiveKey === i ? 0 : i);
@@ -21,8 +22,8 @@ const TutorialModal = () => {
           </Accordion.Toggle>
           <Accordion.Collapse eventKey={i + 1}>
             <Card.Body>
-              <p dangerouslySetInnerHTML={{ __html: tutorial.info }}></p>
-              {tutorial.header === "Luck" && <TestLuckTable />}
+              <Text  dangerouslySetInnerHTML={{ __html: tutorial.info }} />
+              {tutorial.header === "Luck" && <TestLuckTable mt={4} />}
             </Card.Body>
           </Accordion.Collapse>
         </Card>
@@ -30,5 +31,3 @@ const TutorialModal = () => {
     </Accordion>
   );
 };
-
-export default TutorialModal;

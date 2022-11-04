@@ -1,14 +1,13 @@
 import React from "react";
-import { Container, ProgressBar } from "react-bootstrap";
+import { ProgressBar } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import "../../assets/css/Stats.css";
-import {
-  eatenToday,
-  getHaveJann,
-  getAliannaCurse,
-} from "../../redux/stats/selectors";
 import { getWeaponSkillLoss } from "../../redux/items/selectors";
+import {
+  eatenToday, getAliannaCurse, getHaveJann
+} from "../../redux/stats/selectors";
 import { getPage } from "../../redux/story/selectors";
+import { SideTabContainer, SideTabHeader } from "../shared/SideTabComponents";
 
 const Stats = ({ skill, maxSkill, stamina, maxStamina, luck, maxLuck }) => {
   const _haveAliannaCurse = useSelector(getAliannaCurse);
@@ -21,8 +20,8 @@ const Stats = ({ skill, maxSkill, stamina, maxStamina, luck, maxLuck }) => {
   const staminaDisplay = stamina >= 0 ? stamina : 0;
 
   return (
-    <Container className="customBorder text-center statsBox sideBox mb-2">
-      <p className="h3 text-center">Stats</p>
+    <SideTabContainer>
+      <SideTabHeader>Stats</SideTabHeader>
 
       {/* Stamina */}
       <p className={`m-0 ${maxStamina < 1 ? "mb-4" : ""}`}>
@@ -55,7 +54,7 @@ const Stats = ({ skill, maxSkill, stamina, maxStamina, luck, maxLuck }) => {
       />
       {_pageNumber < 1000 && <p>Eaten today: {_eatenToday ? "Yes" : "No"}</p>}
       {_haveJann && <p>Jann flies around your shoulders</p>}
-    </Container>
+    </SideTabContainer>
   );
 };
 
