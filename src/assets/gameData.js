@@ -49,7 +49,7 @@ const gameData = {
     
     <p>You also take with you your spellbook, a list of all recorded spells.
     But due to the dangerous nature of your adventure, 
-    looking at your spellbook during your quest will often prove perilious and 
+    looking at your spellbook during your quest will often prove perilous and 
     you will lose 2 Stamina points each time.</p>`,
     choices: [
       {
@@ -99,7 +99,7 @@ const gameData = {
     <p>Take the path ahead to Cantopani, a small settlement of traders - 
     although most are rogues and thieves which you should reach 
     within the hour. From Cantopani onwards there are three routes 
-    through Birritanti to Khare, a city port on the Jabaji river. From Khare 
+    through Birritanti to Khare, a cityport on the Jabaji river. From Khare 
     you must cross the Baklands, which are unknown, it is said that day 
     and night in the Baklands are controlled not by the sun but by 
     supernatural forces; and bear in mind also that, from Khare onwards, 
@@ -127,7 +127,7 @@ const gameData = {
     choices: [{ goToPage: 178, text: "Start the adventure!" }],
   },
   1: {
-    text: `Doing this so it doesnt break`,
+    text: `Doing this so it doesn't break`,
     choices: [{ goToPage: 178, text: "Continue" }],
   },
   2: {
@@ -394,7 +394,7 @@ const gameData = {
       { goToPage: 245, text: "Rolled a 1 or 2", blocked: true },
       { goToPage: 69, text: "Rolled a 3 or 4", blocked: true },
       { goToPage: 99, text: "Rolled a 5 or 6", blocked: true },
-      { goToPage: 245, text: "Succesfully tested your luck", blocked: true },
+      { goToPage: 245, text: "Successfully tested your luck", blocked: true },
     ],
   },
   24: {
@@ -526,7 +526,7 @@ const gameData = {
     text: `You explain that you are travelling to Khare and ask him for advice on 
     the way ahead. "I myself have never left this village" says the man, 
     "but you have two paths ahead. My advice, though, is not free. <b>For 2 
-    Gold Pieces I will tell you what I know.</br>" You may accept his offer, or refuse and press 
+    Gold Pieces I will tell you what I know.</b>" You may accept his offer, or refuse and press 
     onwards.`,
     choices: [
       {
@@ -1228,7 +1228,7 @@ const gameData = {
     villagers spring out with swords drawn. BANDITS! They demand 
     that you hand over your backpack. Will you do as they ask or fight them?`,
     choices: [
-      { goToPage: 261, text: "Hand over your bagpack" },
+      { goToPage: 261, text: "Hand over your backpack" },
       { goToPage: 104, text: "Fight them" },
     ],
   },
@@ -1819,7 +1819,7 @@ const gameData = {
     1 point will be deducted from your Skill when you use this weapon.</p>
     
     <p>If you have multiple weapons, you may equip the less favoured one so as to suffer 
-    no penalty when using your preffered one. You must try at least 
+    no penalty when using your preferred one. You must try at least 
     once but, after this, you may stop at any time, give up and leave the 
     house.</p>`,
     choices: [
@@ -2212,7 +2212,7 @@ const gameData = {
     containing 3 Gold Pieces</b>, around the Troll's neck is a small amulet 
     made of twisted metal. This is a <b>Lucky Charm</b> - although it brought 
     little Luck to the Troll. While carrying this charm, each time you Test your Luck,
-    you will succed on rolling up to your Luck plus one, increasing your odds.`,
+    you will succeed on rolling up to your Luck plus one, increasing your odds.`,
     choices: [{ goToPage: 237, text: "Continue.." }],
     getItems: [
       { name: "gold", amount: 3 },
@@ -2368,7 +2368,7 @@ const gameData = {
     he tells you he is Flanker, an assassin and thief. He always picks on 
     wayfarers for combat practice and thought you would be no match. 
     He too is headed for Khare and, in return for your mercy, he promises 
-    he will remain your friend. This will be a valuable asset in the cityport. 
+    he will remain your friend. This will be a valuable asset in the city port. 
     When you reach Khare you will meet Flanker again and he promises 
     he will aid you. Call upon him in the second adventure 
     to find out how he will help. He will not accompany you to Khare 
@@ -2549,7 +2549,7 @@ const gameData = {
     choices: [{ goToPage: 257, text: "Continue.." }],
   },
   199: {
-    text: `This node has been refactored out, you shouldnt be here`,
+    text: `This node has been refactored out, you shouldn't be here`,
     choices: [{ goToPage: 0, text: "Pretend Death" }],
   },
   200: {
@@ -2849,7 +2849,7 @@ const gameData = {
     stool, a net with a very wide mesh and a large skull, human-shaped 
     but well over normal size. All of this leads you to one conclusion; 
     these caves are inhabited by Giants! <b>You take the net, pebbles and two giant teeth</b>
-    from the skull with you, unfortuantely the stool is too large to fit in your backpack.
+    from the skull with you, unfortunately the stool is too large to fit in your backpack.
     Then you may leave and go either into the other cave or leave the caves 
     and continue onwards.`,
     choices: [
@@ -2905,7 +2905,7 @@ const gameData = {
     staminaLoss: 2,
   },
   225: {
-    text: `He places the coins in a pouch around his waist. 'The lowerway leads 
+    text: `He places the coins in a pouch around his waist. 'The lower way leads 
     through the Vale of the Elvin' he tells you, 'and unless you are 
     prepared for Elvin ways - for they are mischievous and magical - you 
     had better avoid this path. The high way takes you up into the hills 
@@ -3129,11 +3129,11 @@ const gameData = {
   240: {
     text: `I have in my house Ragnar's Armband of Swordmastery, which I will 
     gladly give to you if you will free me' she promises. Will you try to 
-    open the cage as she wishes or doublecross her and search 
+    open the cage as she wishes or double cross her and search 
     around for it anyway?`,
     choices: [
       { goToPage: 4, text: "Try to open the cage" },
-      { goToPage: 213, text: "Doublecross her" },
+      { goToPage: 213, text: "Double cross her" },
     ],
   },
   241: {
@@ -3357,7 +3357,7 @@ const gameData = {
     As you thrash about in the water, you are able to breathe easily and 
     soon you relax knowing you are safe. After several minutes, the 
     water drains off, leaving you on the ground unharmed, although 
-    somewhat damp. The cieling wall disappears into the floor and you 
+    somewhat damp. The ceiling wall disappears into the floor and you 
     return to the large chamber to choose another passage. Will you take 
     the right-hand path or the left-hand path?`,
     choices: [
@@ -4039,7 +4039,7 @@ const gameData = {
     staminaGain: 3,
   },
   319: {
-    // Nothing leads to here??? Also you can get a bag of teeth at the start so this is infactual!
+    // Nothing leads to here??? Also you can get a bag of teeth at the start so this is incorrect!
     text: `Deduct 1 Stamina point. You cast the spell and wait for something to 
     happen, but nothing does. You do not have a Giant's tooth which you 
     may cast this spell on.`,
@@ -4539,7 +4539,7 @@ const gameData = {
     text: `Deduct 4 Stamina points. You cast your spell and an invisible force 
     field forms itself around you, sealing you into a pocket of air. 
     Although the water floods around you, you are quite safe. After 
-    several moments, the cieling wall lowers and the waiter drains off. 
+    several moments, the ceiling wall lowers and the waiter drains off. 
     You may continue by either returning to the junction and taking the 
     other fork or going back to the main chamber and taking 
     the other passageway.`,
@@ -4619,7 +4619,7 @@ const gameData = {
         <p>Each time the Manticore hits a Goblin, one die will be rolled. On a roll of 5 or 6, it 
         will have stung with its poisonous tail, killing the Goblin. 1-4 is a 
         normal hit. The same will be applied when it fights you with slightly different rules.
-        A roll of 5 or 6 will inflict an extra 4 damage, but this can be blocked by succesfully testing your luck.
+        A roll of 5 or 6 will inflict an extra 4 damage, but this can be blocked by successfully testing your luck.
         A roll of 1-4 will do the normal 2 damage.</p>
         
         <p>If the Manticore defeats all your Goblins, you try to finish it off with your sword.</p>`,
@@ -4839,7 +4839,7 @@ const gameData = {
         normal damage.</p>
     
         <p>If the Manticore wins, you finish it off yourself. However you
-        can Test your Luck to block the extra 4 points of damage from a poisonious hit.</p>`,
+        can Test your Luck to block the extra 4 points of damage from a poisonous hit.</p>`,
         choices: [
           {
             goToPage: 277,
@@ -5200,13 +5200,13 @@ const gameData = {
       { goToPage: 347, text: "Magic: ZIP" }, // no item
       { goToPage: 326, text: "Magic: NIT" }, // NAS
       { goToPage: 436, text: "Magic: FIF" }, // NAS
-      { goToPage: 447, text: "Magic: WAL" }, // insta win
+      { goToPage: 447, text: "Magic: WAL" }, // instant win
       { goToPage: 370, text: "Magic: SOD" }, // NAS
       { goToPage: 227, text: "Fight the creature with your weapon" },
     ],
   },
   421: {
-    // Hope this isnt always true...
+    // Hope this isn't always true...
     text: `Deduct 1 Stamina point. You cannot use this spell as you do not 
     have the Vial of Glue you need to cast it. Meanwhile the night creature 
     has attacked and inflicted 2 Stamina points' worth of damage.`,

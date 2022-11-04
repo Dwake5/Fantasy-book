@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
+import { Text } from "@chakra-ui/layout";
 import "../assets/css/Story.css";
 import gameData from "../assets/gameData";
 import useFilters from "../hooks/useFilters";
@@ -10,7 +11,7 @@ import { changeItemAmount } from "../redux/items/actions";
 import {
   getMoney,
   getOwnedItems,
-  getProvisions
+  getProvisions,
 } from "../redux/items/selectors";
 import {
   changeEatenToday,
@@ -21,10 +22,10 @@ import {
   playerReceiveCurseSpirit,
   playerReceivePlague,
   takeDamage,
-  takePureDamage
+  takePureDamage,
 } from "../redux/stats/actions";
 import { eatenToday, getPlague } from "../redux/stats/selectors";
-import { playerLearnsJann } from "../redux/story/actions";
+import { playerLearnsJann, setPage } from "../redux/story/actions";
 import EatOption from "./miniGames/EatOption";
 import PlayerChoices from "./PlayerChoices";
 import TestLuck from "./TestLuck";
@@ -141,12 +142,12 @@ const StoryMain = ({ pageNumber }) => {
   };
 
   // Remove this in production
-  // const handleKeyDown = (event) => {
-  //   if (event.key === "Enter") {
-  //     const page = event.target.value;
-  //     setPage(dispatch, page);
-  //   }
-  // };
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      const page = event.target.value;
+      setPage(dispatch, page);
+    }
+  };
 
   const addItems = (items) => {
     items.forEach((item) => {
@@ -203,12 +204,12 @@ const StoryMain = ({ pageNumber }) => {
 
   return (
     <Container>
-      {/* <p className="h3 mb-3 text-center">
+      <p className="h3 mb-3 text-center">
         Adventure! Current Page: {pageNumber}
       </p>
       <label>Go to page:</label>
-      <input type="text" onKeyDown={handleKeyDown}></input> */}
-      <p dangerouslySetInnerHTML={{ __html: pageText }} />
+      <input type="text" onKeyDown={handleKeyDown} />
+      <Text my={2} dangerouslySetInnerHTML={{ __html: pageText }} />
       {spellText && <p dangerouslySetInnerHTML={{ __html: spellText }} />}
       {testLuck && (
         <TestLuck

@@ -26,9 +26,12 @@ const InputNumber = ({
   const max = () => {
     if (stat + increment <= maxStat && statPoints > 0) {
       let newStat = stat;
-      const difference = maxStat - stat
-      newStat += difference <= (statPoints * increment) ? difference : statPoints * increment;
-      const pointsSpent = (newStat - stat) / increment
+      const difference = maxStat - stat;
+      newStat +=
+        difference <= statPoints * increment
+          ? difference
+          : statPoints * increment;
+      const pointsSpent = (newStat - stat) / increment;
       setStatPoints((p) => p - pointsSpent);
       onChange(newStat);
     }
@@ -67,7 +70,7 @@ const InputNumber = ({
         plainText
         readOnly
         value={`${stat} / ${maxStat}`}
-        className="text-center bg-white"
+        className="text-center bg-white px-2"
       />
 
       <InputGroup.Append onClick={inc} className="cursor-pointer">

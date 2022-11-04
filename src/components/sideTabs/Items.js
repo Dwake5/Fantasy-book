@@ -43,7 +43,7 @@ const Items = () => {
           />
         );
       })}
-      {haveWeapon && <SideTabSubHeader>Weapons</SideTabSubHeader>}
+      {haveWeapon && <SideTabSubHeader mt={2}>Weapons</SideTabSubHeader>}
       {Object.keys(_items).map((key) => {
         const item = _items[key];
         const isWeapon = item.equipped !== undefined;
