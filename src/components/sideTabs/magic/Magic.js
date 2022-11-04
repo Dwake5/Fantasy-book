@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { Container, Modal, Button } from "react-bootstrap";
+import { Button, Modal } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { takePureDamage } from "../../redux/stats/actions";
-import { getStat } from "../../redux/stats/selectors";
-import { getPage } from "../../redux/story/selectors";
+import { takePureDamage } from "../../../redux/stats/actions";
+import { getStat } from "../../../redux/stats/selectors";
+import { getPage } from "../../../redux/story/selectors";
+import { SideTabContainer, SideTabHeader } from "../../shared/SideTabComponents";
 import MagicModal from "./MagicModel";
 
 const Magic = () => {
@@ -25,8 +26,8 @@ const Magic = () => {
   };
 
   return (
-    <Container className="customBorder sideBox text-center mb-2">
-      <p className="h3 text-center">Spell Book</p>
+    <SideTabContainer>
+      <SideTabHeader>Spell Book</SideTabHeader>
       <Button
         onClick={handleShow}
         className={`mb-3 ${leftTutorial ? "hoverWarning" : ""}`}
@@ -41,7 +42,7 @@ const Magic = () => {
         </Modal.Header>
         <MagicModal />
       </Modal>
-    </Container>
+    </SideTabContainer>
   );
 };
 

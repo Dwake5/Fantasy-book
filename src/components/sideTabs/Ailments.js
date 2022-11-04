@@ -1,12 +1,12 @@
 import React from "react";
-import { Container } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import "../../assets/css/Stats.css";
 import {
   getAliannaCurse,
   getPlague,
-  getSpiritCurse,
+  getSpiritCurse
 } from "../../redux/stats/selectors";
+import { SideTabContainer, SideTabHeader } from "../shared/SideTabComponents";
 
 const Ailments = () => {
   const _havePlague = useSelector(getPlague);
@@ -17,8 +17,8 @@ const Ailments = () => {
 
   if (!haveAilment) return null;
   return (
-    <Container className="customBorder sideBox text-center">
-      <p className="h3">Ailments</p>
+    <SideTabContainer>
+      <SideTabHeader>Ailments</SideTabHeader>
       {_havePlague && (
         <div className="mb-1 hoverItem">
           The Plague
@@ -49,7 +49,7 @@ const Ailments = () => {
           </span>
         </div>
       )}
-    </Container>
+    </SideTabContainer>
   );
 };
 

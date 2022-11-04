@@ -1,19 +1,19 @@
 import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
-import { useSelector, Provider } from "react-redux";
+import { Provider, useSelector } from "react-redux";
 import "./App.css";
-import Items from "./components/leftHandTabs/Items";
-import Libra from "./components/leftHandTabs/Libra";
-import Stats from "./components/leftHandTabs/Stats";
-import Magic from "./components/magic/Magic";
+import Items from "./components/sideTabs/Items";
+import Libra from "./components/sideTabs/Libra";
+import Magic from "./components/sideTabs/magic/Magic";
+import Stats from "./components/sideTabs/Stats";
 import StoryMain from "./components/StoryMain";
 import Title from "./components/Title";
 import { getSkill, getStat } from "./redux/stats/selectors";
 
 import Combat from "./components/combat/Combat";
 import Death from "./components/Death";
-import Ailments from "./components/leftHandTabs/Ailments";
-import Tutorial from "./components/tutorial/Tutorial";
+import Ailments from "./components/sideTabs/Ailments";
+import { Tutorial } from "./components/sideTabs/Tutorial";
 import { getInCombat } from "./redux/combat/selectors";
 import { store } from "./redux/store";
 import { getPage, getPlayerDead } from "./redux/story/selectors";

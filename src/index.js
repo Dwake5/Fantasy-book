@@ -22,13 +22,11 @@ const colors = {
 const theme = extendTheme({ colors });
 
 root.render(
-  <React.StrictMode>
-    <ChakraProvider theme={theme}>
-      <Provider store={store}>
-        <App />
-      </Provider>
-    </ChakraProvider>
-  </React.StrictMode>
+  <ChakraProvider theme={theme}>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </ChakraProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function

@@ -183,7 +183,7 @@ const initialState = {
   },
   broadsword: {
     name: "Broadsword",
-    amount: 1,
+    amount: 0,
     singular: true,
     info: "<p>+1 Attack Strength when equipped</p> <p>A fine-edged weapon.</p>",
     equipped: false,
@@ -191,7 +191,7 @@ const initialState = {
   },
   axe: {
     name: "Axe",
-    amount: 1,
+    amount: 0,
     singular: true,
     info: `<p>-1 Attack Strength when equipped</p> 
     <p>The carvings read: This axe was crafted in the Year of the Ox for Glandragor the Protector. 

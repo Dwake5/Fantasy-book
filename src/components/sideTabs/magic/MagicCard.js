@@ -1,6 +1,6 @@
 import React from "react";
 import { Card } from "react-bootstrap";
-import "../../assets/css/MagicCard.css";
+import "../../../assets/css/MagicCard.css";
 
 const MagicCard = ({ name, description, cost, requires }) => (
   <Card>

@@ -1,4 +1,4 @@
-import { Text } from "@chakra-ui/layout";
+import { Box, Text } from "@chakra-ui/layout";
 import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import gameData from "../assets/gameData";
@@ -218,7 +218,7 @@ const PlayerChoices = ({ choices, setStayShowing, pause, clearSpellState }) => {
     return choices.map((choice, i) => {
       const dontBlock = choice.blocked !== true;
       return (
-        <p
+        <Text
           key={i}
           className={`${dontBlock ? "userChoice" : "blockedChoice"}`}
           onClick={() =>
@@ -233,12 +233,12 @@ const PlayerChoices = ({ choices, setStayShowing, pause, clearSpellState }) => {
           }
         >
           {i + 1}: {choice.text}
-        </p>
+        </Text>
       );
     });
   };
 
-  return <Text textAlign="center" mt={4}>{displayOptions()}</Text>;
+  return <Box textAlign="center" mt={4}>{displayOptions()}</Box>;
 };
 
 export default PlayerChoices;
